@@ -1,0 +1,384 @@
+{
+  "corpus_root": "C:\\Users\\fanis\\OneDrive\\Desktop\\чеки\\альфа",
+  "counts": {
+    "emitters": {
+      "ios_quartz": 26,
+      "oracle_bi": 14
+    },
+    "methods": {
+      "card": 2,
+      "phone": 1,
+      "sbp": 37
+    },
+    "pdf_count": 40,
+    "pdf_versions": {
+      "1.3": 26,
+      "1.6": 14
+    }
+  },
+  "files": [
+    {
+      "bytes": 58815,
+      "emitter": "oracle_bi",
+      "method": "sbp",
+      "name": "pdf (1).pdf",
+      "pdf_version": "1.6",
+      "sha256": "9b1c021108a415be75a8c94a8f8643f59e99a745cf2c6c0020d17f6dae0cbe47",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 58199,
+      "emitter": "oracle_bi",
+      "method": "sbp",
+      "name": "pdf (2).pdf",
+      "pdf_version": "1.6",
+      "sha256": "ca6471055570f1faf2888773fa834dbbdd56d9b86b203806531c94cafcbd54ec",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 58750,
+      "emitter": "oracle_bi",
+      "method": "sbp",
+      "name": "pdf (3).pdf",
+      "pdf_version": "1.6",
+      "sha256": "d397a2349b30dad80d54541eef645c70854323d1c441289248cc6fbdb486195b",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 58209,
+      "emitter": "oracle_bi",
+      "method": "sbp",
+      "name": "pdf (4).pdf",
+      "pdf_version": "1.6",
+      "sha256": "8cc8c6b3aef8277769ef18da500f515a05b0d4f6d5db49b839214762f1a41377",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 58823,
+      "emitter": "oracle_bi",
+      "method": "sbp",
+      "name": "pdf.pdf",
+      "pdf_version": "1.6",
+      "sha256": "0415ab08a89033607b8269b96f449035dce9fe4c59985a1a061a92ae2d856967",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 58350,
+      "emitter": "oracle_bi",
+      "method": "sbp",
+      "name": "альфа банк сбп.pdf",
+      "pdf_version": "1.6",
+      "sha256": "ecd485c151d8107943b411ad3972802723bf4632feb78171a77e3b7f026b4f45",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 55326,
+      "emitter": "oracle_bi",
+      "method": "card",
+      "name": "альфа карта.pdf",
+      "pdf_version": "1.6",
+      "sha256": "5fad4349dc23e3997050f5695b591f83b8bb24bffd70ea954769e7c1fa864e9d",
+      "submethod": "card_intrabank"
+    },
+    {
+      "bytes": 55750,
+      "emitter": "oracle_bi",
+      "method": "card",
+      "name": "альфа на карту2.pdf",
+      "pdf_version": "1.6",
+      "sha256": "abd73239eb8d0026fb8166df8b5dca8886c3f0e6a1972a972a1f8ec2e8556a84",
+      "submethod": "card_interbank"
+    },
+    {
+      "bytes": 58398,
+      "emitter": "oracle_bi",
+      "method": "sbp",
+      "name": "альфа сбп.pdf",
+      "pdf_version": "1.6",
+      "sha256": "1b433251b7a285b82ab92b5e5a3e0dab5ea144d004622a53e9149aefd63f60db",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 58123,
+      "emitter": "oracle_bi",
+      "method": "sbp",
+      "name": "альфа сбп7.pdf",
+      "pdf_version": "1.6",
+      "sha256": "0ca9f950fac59f0602ec773ea015ef73defb880e45de94fa53616709df3781f8",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 58359,
+      "emitter": "oracle_bi",
+      "method": "sbp",
+      "name": "альфа сбпп.pdf",
+      "pdf_version": "1.6",
+      "sha256": "c90cb709cafddaba63893518b9c3fc26826eb2de5604e9f20dec304da7cc8324",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 70538,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (10).pdf",
+      "pdf_version": "1.3",
+      "sha256": "ac0721759184922373480119b43b00b8f897a05247551509442ec7345a31486c",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 70909,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (11).pdf",
+      "pdf_version": "1.3",
+      "sha256": "d614ac42b4902d2182c15d7d5a5290b852e39c775366df5ac26a01bef27037fe",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 71397,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (12).pdf",
+      "pdf_version": "1.3",
+      "sha256": "1c0a2738bbcc2c7396b864e1b170520876610eb702ad444f70972d745201a50a",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 69706,
+      "emitter": "ios_quartz",
+      "method": "phone",
+      "name": "Квитанция (13).pdf",
+      "pdf_version": "1.3",
+      "sha256": "3adab01d5e151df3891f3f78d50ed0a88fdd944854fb4f7af17f2b6b12a85560",
+      "submethod": "intrabank_phone"
+    },
+    {
+      "bytes": 71210,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (14).pdf",
+      "pdf_version": "1.3",
+      "sha256": "4f09f68b1be02d5208ca51b663c57a17ca927362395c12e5dabcbc96af9dbc38",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 71354,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (15).pdf",
+      "pdf_version": "1.3",
+      "sha256": "a8eb5639c87c68f0b4fbb0da5287014e6b4263b71ecb80c632d52302b9a504b7",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 70952,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (16).pdf",
+      "pdf_version": "1.3",
+      "sha256": "49f2f72c78149a8ec3a8012a41518f41aa0b8ed7ae5d537811b03f4797c16278",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 70592,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (17).pdf",
+      "pdf_version": "1.3",
+      "sha256": "b27991c2185c6b08035c9c66ce6ff35343b382d657c476431bbe874ec847f74d",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 71125,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (18).pdf",
+      "pdf_version": "1.3",
+      "sha256": "cc120dbfd42f508732d9abded6bf57397d8ec39be2affce77efcf5b74d988fa6",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 70658,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (19).pdf",
+      "pdf_version": "1.3",
+      "sha256": "209d2e9f00948b04eee21f02fbc46186c09e9bb03a1b553a140bc41db4ab0fae",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 71231,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (20).pdf",
+      "pdf_version": "1.3",
+      "sha256": "7d91f4772440e0d9e182a7eb9b9ae51b25980a4696a0f7e1e5a1294a87de9191",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 71508,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (21).pdf",
+      "pdf_version": "1.3",
+      "sha256": "2f97b93ca3c66bba28bc6adea340a326caebea8138eefcffa72eeee63a32a135",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 69974,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (22).pdf",
+      "pdf_version": "1.3",
+      "sha256": "99f76da18706efab29e560679ecb6e38b401e73b86a28cf7eeebc920a7c0c4f9",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 70154,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (23).pdf",
+      "pdf_version": "1.3",
+      "sha256": "d69ed15fdfa1e27214b853e041601d5ff0b3ab3be54e9646c0bf7e3260bb48c1",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 70241,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (24).pdf",
+      "pdf_version": "1.3",
+      "sha256": "c803dc2d20aff9a6165b9ce85a295cafbeaf733fde05032fc0643163a6c9173e",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 70072,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (25).pdf",
+      "pdf_version": "1.3",
+      "sha256": "1cc8263920a8c8178f01c3434929e0ea722ee864f1766fd42a6a201f85e96009",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 71632,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (26).pdf",
+      "pdf_version": "1.3",
+      "sha256": "3b1d495a609d21f4f457f62548bdb01819049b202bebe4070589c397eccc48ef",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 70024,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (27).pdf",
+      "pdf_version": "1.3",
+      "sha256": "b23174c6ee50b167542c009e9be1d1b2c35b8cdc162a496866df1a86ce5c64e6",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 69779,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (28).pdf",
+      "pdf_version": "1.3",
+      "sha256": "6d7e16f0021b2b83104d58ebf9b1b8631eb73d32bc90ccb434d109ba154d0b19",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 70004,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (29).pdf",
+      "pdf_version": "1.3",
+      "sha256": "08a17ae4c1295304e07311a597ae87aad39b24ed51afc59f5315f6537c13eee8",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 70670,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (30).pdf",
+      "pdf_version": "1.3",
+      "sha256": "53f1191dcd505d9e4f7871dafc227f88ad50d161342db27f59b55d0d45dcc42f",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 71326,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (31).pdf",
+      "pdf_version": "1.3",
+      "sha256": "17cd2b8e680b53374bd84c0d1b787b6f91ce886ba23a456aab05185c63e2886a",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 70048,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (32).pdf",
+      "pdf_version": "1.3",
+      "sha256": "a45a5531bcc83688afcf4e943327e6330ab5ad033a8eedb943a3e891fefed653",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 69901,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (33).pdf",
+      "pdf_version": "1.3",
+      "sha256": "121fc332c69e3eb9a5960f3b4b2bfaaa69b15cb12917493e7ff431100ae17da7",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 70189,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (34).pdf",
+      "pdf_version": "1.3",
+      "sha256": "4d861424441850bcaf008df3cee33006268caff098f3bf786430821fa3ecabad",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 70882,
+      "emitter": "ios_quartz",
+      "method": "sbp",
+      "name": "Квитанция (9).pdf",
+      "pdf_version": "1.3",
+      "sha256": "29e78c0d4cf6da4e7c4c300d67008f0b0f83d93aa5da682dd2822bccc0cb7080",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 58203,
+      "emitter": "oracle_bi",
+      "method": "sbp",
+      "name": "сбп альфа 2.pdf",
+      "pdf_version": "1.6",
+      "sha256": "e290cf6c32f1df77839aaa12a43d5e78191c9db4e34ff3c4f02e629869cb615e",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 58201,
+      "emitter": "oracle_bi",
+      "method": "sbp",
+      "name": "сбп альфа.pdf",
+      "pdf_version": "1.6",
+      "sha256": "ddb3121ae012b6f48cf23f54b2144d74ace642d6f083715d5ef894882d26aa05",
+      "submethod": "sbp"
+    },
+    {
+      "bytes": 59087,
+      "emitter": "oracle_bi",
+      "method": "sbp",
+      "name": "сбп альфА7.pdf",
+      "pdf_version": "1.6",
+      "sha256": "48c9db8564b68f21ca3ac6bf106dad0204b1a4786e5f802888fbfa9ff9015b37",
+      "submethod": "sbp"
+    }
+  ],
+  "immutability": "content-addressed corpus; changes require a new manifest filename/version",
+  "schema": "alfa-v2-atlas",
+  "version": "1.0.0"
+}

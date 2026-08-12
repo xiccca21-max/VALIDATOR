@@ -1,0 +1,2111 @@
+{
+  "by_trailer_id": {
+    "0cb6e4495a92b4d1dffadc7d989a180e": {
+      "content_sha256": "05687de148a364cd506b97ddeb31fcb1ffd6122282cea8d02cb9ecffbcdebd44",
+      "emitter": "quartz",
+      "file_name": "Квитанция (20).pdf",
+      "file_sha256": "7d91f4772440e0d9e182a7eb9b9ae51b25980a4696a0f7e1e5a1294a87de9191",
+      "identity": {
+        "amount": "860.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "01.03.2026 12:54:27",
+        "operation_id": "C160103260769640",
+        "phone": "79995617103",
+        "receiver": "Елизавета Валерьевна З",
+        "recipient_bank": "т-банк",
+        "sbp_id": "B60600954189061X0000100011700501"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "02c503a76d3e960caf60480bef132f713769da696bdc79fb7fc359b5c4cb8bc0",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "7c0509c0122e99fe5553c48dee0548b1e12c4a76d9ced52d9d472490518c1c40",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "ad55eb7cd9c1ca1c0d866ef7422cc609ad8d1992085c91ad344293fe2911e320",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "0e689c3968f84444a1f026eea20dcdac": {
+      "content_sha256": "a3c2f3d3690b8eedf05707aa2334c36f6666ff77002a28e3231fbc9c702246a8",
+      "emitter": "quartz",
+      "file_name": "Квитанция (24).pdf",
+      "file_sha256": "c803dc2d20aff9a6165b9ce85a295cafbeaf733fde05032fc0643163a6c9173e",
+      "identity": {
+        "amount": "1900.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "31.12.2025 07:53:47",
+        "operation_id": "C163112250235834",
+        "phone": "",
+        "receiver": "Диана Ренатовна Н",
+        "recipient_bank": "т-банк",
+        "sbp_id": "B53650453422960A0000170011670301"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "b63b61c53e0ac7154f19628e104daf7a2bd53087247ec1474b59ebfb26835917",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "96977018196defd96ed1cc7a4b3b30a7d5c00b2b46b06dbc2d0a04f051ff2e01",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "1f84481a48238c3dd97eaefe15ca018b8acacaed41312dbc844eea6151ff0720",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "1a3e86d2091d16e4ff2bb099043d8d3a": {
+      "content_sha256": "8be5c284d750bb0ef6463986ccdc9a31a4320ac38830c8d77f22c511d4f158f7",
+      "emitter": "oracle",
+      "file_name": "альфа на карту2.pdf",
+      "file_sha256": "abd73239eb8d0026fb8166df8b5dca8886c3f0e6a1972a972a1f8ec2e8556a84",
+      "identity": {
+        "amount": "13140.00",
+        "debit_account": "",
+        "fee": "0.00",
+        "method": "card",
+        "operation_datetime": "22.05.2026 14:28:29",
+        "operation_id": "Z092205260061180",
+        "phone": "",
+        "receiver": "",
+        "recipient_bank": "",
+        "sbp_id": ""
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "13": {
+          "decoded_sha256": "f3fa031ba811f6698dad029e5ec59be55ccd93bf3277466f4d21016d5d70ab2d",
+          "role": "font"
+        },
+        "14": {
+          "decoded_sha256": "c44d22c4abf517a1c27721cae2674f0b10a2368234c8e4195953f8532fc51fed",
+          "role": "tounicode"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "7": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "610a246b31c889f3dab6818c64421b6f5d1f3f88627479f719da9715aedfcbae",
+          "role": "content"
+        }
+      },
+      "producer": "Oracle BI Publisher 12.2.1.4.0"
+    },
+    "1a88a046d11536d3cbaafa9eb001564a": {
+      "content_sha256": "bcdd307a28d4bfbf9f6c13b89d9a6d1a5be157d19b42beba89bde7195cc648fe",
+      "emitter": "oracle",
+      "file_name": "сбп альфА7.pdf",
+      "file_sha256": "48c9db8564b68f21ca3ac6bf106dad0204b1a4786e5f802888fbfa9ff9015b37",
+      "identity": {
+        "amount": "6000.00",
+        "debit_account": "40817810008250204865",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "29.06.2026 19:53:38",
+        "operation_id": "C162906261913448",
+        "phone": "79064307625",
+        "receiver": "Дмитрий Витальевич П",
+        "recipient_bank": "",
+        "sbp_id": "A61801653258791Q0G10070011791103"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "13": {
+          "decoded_sha256": "f7a09eaa2142dc386e4c2cc6fa837511a2ec1a4592aef9cb20d88ac204500223",
+          "role": "font"
+        },
+        "14": {
+          "decoded_sha256": "d92dd0eeb62fea7cda28eabba0f14a9f60d186d04be48d0009a29a33b427fc75",
+          "role": "tounicode"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "7": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "529814492d0aa77308c8c8f4d59c8bbc66360db60a644db4a07be476f1e22064",
+          "role": "content"
+        }
+      },
+      "producer": "Oracle BI Publisher 12.2.1.4.0"
+    },
+    "233ac34b7e6744a6202da4ea6a86e800": {
+      "content_sha256": "8d364def6a52df4c787cf40736f15e92bbb4f685c96144bd98d25364540daf09",
+      "emitter": "oracle",
+      "file_name": "альфа карта.pdf",
+      "file_sha256": "5fad4349dc23e3997050f5695b591f83b8bb24bffd70ea954769e7c1fa864e9d",
+      "identity": {
+        "amount": "4875.00",
+        "debit_account": "",
+        "fee": "0.00",
+        "method": "card",
+        "operation_datetime": "31.03.2025 21:07:45",
+        "operation_id": "Z093103250153021",
+        "phone": "",
+        "receiver": "",
+        "recipient_bank": "",
+        "sbp_id": ""
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "13": {
+          "decoded_sha256": "39a64f0dadfda68b77355f57138c3938b22f5bdfcc9c68260afa4a4e94a18c1b",
+          "role": "font"
+        },
+        "14": {
+          "decoded_sha256": "0743c5dc700b76f80357cdf5a109c1887fb00e0c4c3952b7b2121ae2a702b31e",
+          "role": "tounicode"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "7": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "fab33714b19ba142a5993cb3ac88a4113c573dfa6c398215b5e0c5bc262374a1",
+          "role": "content"
+        }
+      },
+      "producer": "Oracle BI Publisher 12.2.1.4.0"
+    },
+    "2342345694f974ccd93c6912afa1773a": {
+      "content_sha256": "f85dca1336a24b323cb36cb8cd95ab8e00a3775655d34bbf78f001e8d3c2f4e9",
+      "emitter": "oracle",
+      "file_name": "альфа сбп.pdf",
+      "file_sha256": "1b433251b7a285b82ab92b5e5a3e0dab5ea144d004622a53e9149aefd63f60db",
+      "identity": {
+        "amount": "14900.00",
+        "debit_account": "40817810005900196789",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "20.05.2026 14:43:09",
+        "operation_id": "C162005261283449",
+        "phone": "79493058569",
+        "receiver": "Михаил Евгеньевич В",
+        "recipient_bank": "",
+        "sbp_id": "B6140114259469100G10170011770101"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "13": {
+          "decoded_sha256": "f929d0ab91a4204870696f0fe215812b22c61fc5c8d07f8c06a9abf0d696c65c",
+          "role": "font"
+        },
+        "14": {
+          "decoded_sha256": "a2e31ae3145e1c4411f2102f0365f88616eece5ad408a907297080abcc9234c7",
+          "role": "tounicode"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "7": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "441a9abbcf272cf3839dbc59db2ab309f912c7d1c19487a435c1237af5ede5b6",
+          "role": "content"
+        }
+      },
+      "producer": "Oracle BI Publisher 12.2.1.4.0"
+    },
+    "2d7f0d104596556e7f374e63810aea71": {
+      "content_sha256": "7f2ba7588ba8554040829982bdce497be0bc1c2db981a50d03e159a28fcb4f32",
+      "emitter": "oracle",
+      "file_name": "pdf (1).pdf",
+      "file_sha256": "9b1c021108a415be75a8c94a8f8643f59e99a745cf2c6c0020d17f6dae0cbe47",
+      "identity": {
+        "amount": "4000.00",
+        "debit_account": "40817810405614696324",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "04.06.2026 18:45:37",
+        "operation_id": "C160406261736948",
+        "phone": "79274890391",
+        "receiver": "Алина Александровна А",
+        "recipient_bank": "",
+        "sbp_id": "A61551545348731O0G10080011770901"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "13": {
+          "decoded_sha256": "eb96edd6e71e764d581dc4a244b658e7093b62441a630b2e938fdd0bbed254e8",
+          "role": "font"
+        },
+        "14": {
+          "decoded_sha256": "23543ae0904de6d37aa4f537e73e8862b99f93bc954ed5033f7bdf4cd137e090",
+          "role": "tounicode"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "7": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "810f3b9964a2bcb218b6defc923fc31117e2cd7a5dd5419c57bc43f481bcf0b5",
+          "role": "content"
+        }
+      },
+      "producer": "Oracle BI Publisher 12.2.1.4.0"
+    },
+    "2f1232a94a570bf69574c28f85f8e11b": {
+      "content_sha256": "e7d1c354041c0f891773adf78e7fec130784c51840c983eb628bcdad735382e3",
+      "emitter": "quartz",
+      "file_name": "Квитанция (21).pdf",
+      "file_sha256": "2f97b93ca3c66bba28bc6adea340a326caebea8138eefcffa72eeee63a32a135",
+      "identity": {
+        "amount": "40000.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "16.01.2026 10:05:08",
+        "operation_id": "C161601260470263",
+        "phone": "",
+        "receiver": "Алексей Андреевич Х",
+        "recipient_bank": "",
+        "sbp_id": "B6016070344128090000160011680301"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "778e07b7961bf398a5533198f828f471c8265aaa1d5a0abe9b216ac51f8d7e07",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "9a807f418e9d6f91f533250888129e73907c17e1e9c7fe77998b20907816e3ca",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "b4e15efccee7655380ffdd27f953444986d3c86cb8e21f5b12359749864cb99b",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "307b8574648d3144867ae5f395b4cc69": {
+      "content_sha256": "1e5789107e1d0af56130c3f1c7b0b7a49016ff3aeb42ac104877482a6e7a3942",
+      "emitter": "quartz",
+      "file_name": "Квитанция (11).pdf",
+      "file_sha256": "d614ac42b4902d2182c15d7d5a5290b852e39c775366df5ac26a01bef27037fe",
+      "identity": {
+        "amount": "1000.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "18.05.2026 18:49:40",
+        "operation_id": "C161805261839128",
+        "phone": "79083404590",
+        "receiver": "Эмиль Ленарович С",
+        "recipient_bank": "втб",
+        "sbp_id": "A6138154931618150B10030011760501"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "130d54d5b335589d17b9e030594851f39dbd5a6ed90e2a59a8762712b5fc28e7",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "ac651e6485e0a82c79406ccb2cf5a1219301d76a1fbf4dab8b97278b3780a301",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "68d12d9e2262e351f4ec5b6d81da05dc67a1199ca0b61bde4a5e7871e6028b4f",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "315b63d782be72f4a6dc34806b6d0101": {
+      "content_sha256": "a60f56a874cc21bec409be66045bbe2ba85ed8be5ec2b12e6409b03246b9ba39",
+      "emitter": "quartz",
+      "file_name": "Квитанция (18).pdf",
+      "file_sha256": "cc120dbfd42f508732d9abded6bf57397d8ec39be2affce77efcf5b74d988fa6",
+      "identity": {
+        "amount": "500.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "26.03.2026 05:06:14",
+        "operation_id": "C162603260096917",
+        "phone": "79144673827",
+        "receiver": "Людмила Александровна З",
+        "recipient_bank": "сбербанк",
+        "sbp_id": "B6085020610388090G10100011720501"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "5e7d23c45406e6cafc59608e4e582f8dbbe2a5dc6835da8d54d9d4b6b1bea27d",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "c8f3c70043874d463e3b0cb9583db7d9e3ee5750f2563e23ea7c22d9b36255a9",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "406610802edd76fbc5a91ad2b27dfe92d1b675056cd956a1ad0a0db702764dc2",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "373fab2e6618a42151192d87a24df241": {
+      "content_sha256": "803c9bfe5a5c0b08327d8f1e0789dc57a199675895e3ebb25892b8b520c77932",
+      "emitter": "quartz",
+      "file_name": "Квитанция (15).pdf",
+      "file_sha256": "a8eb5639c87c68f0b4fbb0da5287014e6b4263b71ecb80c632d52302b9a504b7",
+      "identity": {
+        "amount": "154.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "12.04.2026 13:48:37",
+        "operation_id": "C161204260751601",
+        "phone": "79961233796",
+        "receiver": "Айгуль Асгатовна Х",
+        "recipient_bank": "",
+        "sbp_id": "B61021048332810E0G10100011740501"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "80798beb3d5166838147145b6bc864ff1f3e6b123c857a4c68a22b0d498dacaa",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "c0e3268f3d6007455bb3bfb66e957b32115dcf31ea6fe859c8a52126f924e919",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "d1ebdaa07ba40431b26f96a1e040ee47f71d5e1bc514a64c83283f53927b840d",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "3e0197cc75c21654a54411364660c0c4": {
+      "content_sha256": "0a54eece4360780213227f59f72d67bb4eadf3130da659d3b1913df5aaef4593",
+      "emitter": "oracle",
+      "file_name": "pdf (4).pdf",
+      "file_sha256": "8cc8c6b3aef8277769ef18da500f515a05b0d4f6d5db49b839214762f1a41377",
+      "identity": {
+        "amount": "2800.00",
+        "debit_account": "40817810405614696324",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "17.06.2026 11:54:21",
+        "operation_id": "C161706260736198",
+        "phone": "79274550288",
+        "receiver": "Дамир Евгеньевич С",
+        "recipient_bank": "т-банк",
+        "sbp_id": "A6168085418511120G10070011770901"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "13": {
+          "decoded_sha256": "4a61ef8a8ef4d027d745448301f078096ebc19d377bda757326886beaca0c68d",
+          "role": "font"
+        },
+        "14": {
+          "decoded_sha256": "bf5f1d264e5c316f56a74ef7edd46dcc00c1a221b427400314891766996aca33",
+          "role": "tounicode"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "7": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "d637ebba9cdd20c578d7199027c0e97b41b170b7575f7549f399b60729fe17d3",
+          "role": "content"
+        }
+      },
+      "producer": "Oracle BI Publisher 12.2.1.4.0"
+    },
+    "41c7e8e8cc85867da31d517834105108": {
+      "content_sha256": "9c1dc553712f1a95dbc68c699e1f117300f027b80438beb64829c3d88342e81d",
+      "emitter": "oracle",
+      "file_name": "альфа сбп7.pdf",
+      "file_sha256": "0ca9f950fac59f0602ec773ea015ef73defb880e45de94fa53616709df3781f8",
+      "identity": {
+        "amount": "6000.00",
+        "debit_account": "40817810007970025833",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "19.05.2026 12:42:09",
+        "operation_id": "C161905260883650",
+        "phone": "79204098696",
+        "receiver": "Елена Юрьевна К",
+        "recipient_bank": "сбербанк",
+        "sbp_id": "B61390942042410J0B10110011760501"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "13": {
+          "decoded_sha256": "7bf9be155125b304a906f11df2c9e09dec847a60a72a73ba74632613b5345770",
+          "role": "font"
+        },
+        "14": {
+          "decoded_sha256": "168346f1de5086d894f89cd35a4c56638135c403d607291198613343827344a2",
+          "role": "tounicode"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "7": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "677e0451e758e453ecdab8e2f431384d92810fe2e9b1f83052dfcc8d2ece2346",
+          "role": "content"
+        }
+      },
+      "producer": "Oracle BI Publisher 12.2.1.4.0"
+    },
+    "4e06a0235c7f66d00dfd09659a8c10c9": {
+      "content_sha256": "a0091743319cb4f4e52dce8c7d52a6692fe73026171b19db92bb814e036a74d9",
+      "emitter": "oracle",
+      "file_name": "альфа банк сбп.pdf",
+      "file_sha256": "ecd485c151d8107943b411ad3972802723bf4632feb78171a77e3b7f026b4f45",
+      "identity": {
+        "amount": "5714.00",
+        "debit_account": "40817810204260172752",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "15.06.2026 22:03:14",
+        "operation_id": "C161506262511380",
+        "phone": "79511577857",
+        "receiver": "Евгения Викторовна Б",
+        "recipient_bank": "сбербанк",
+        "sbp_id": "A6166190309033040G10040011770901"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "13": {
+          "decoded_sha256": "85337e46299d51dbf0cd431bb5e9c31f2982212e651054e7c8facb1b8722b961",
+          "role": "font"
+        },
+        "14": {
+          "decoded_sha256": "4bb19608a2fd31a9f25924160c0d5b2d2cba30ea85b6e9ee747dd2e41c5aadba",
+          "role": "tounicode"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "7": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "0cda9895f9416e74fb1d1c3f6997b45f9a9d1f65a1db279a23f57fde961a1669",
+          "role": "content"
+        }
+      },
+      "producer": "Oracle BI Publisher 12.2.1.4.0"
+    },
+    "513a7d74934693afdae1d42f6b4aa0d6": {
+      "content_sha256": "9a13812d32de7642d2d2cae68649ffd7ef0708a05b519be0e0624c7a0d9adf31",
+      "emitter": "quartz",
+      "file_name": "Квитанция (10).pdf",
+      "file_sha256": "ac0721759184922373480119b43b00b8f897a05247551509442ec7345a31486c",
+      "identity": {
+        "amount": "328.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "31.05.2026 04:13:13",
+        "operation_id": "C163105260034186",
+        "phone": "79393830730",
+        "receiver": "Ринат Радикович С",
+        "recipient_bank": "сбербанк",
+        "sbp_id": "A6150221335268070B10020011770901"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "fea4475ef249a83179de801e8d0e1dcb56300a46854a2b75a23946586d1a0ddb",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "ad7e883a8ec64039d40730f7885798e9efb2308e170d1688d4b774495df3ae8d",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "109e099c973b8fa08678ca6e4b7c1d3b7ff740b89f193a89bb4b3a8c10ad9d2f",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "53fde10b45adcf5b7e656321029514bb": {
+      "content_sha256": "a3ed14d7f8604acb6f37f257f5f89a1d48f55dbd6f16ce7e5eb68f5a772f0667",
+      "emitter": "quartz",
+      "file_name": "Квитанция (28).pdf",
+      "file_sha256": "6d7e16f0021b2b83104d58ebf9b1b8631eb73d32bc90ccb434d109ba154d0b19",
+      "identity": {
+        "amount": "600.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "03.12.2025 03:14:09",
+        "operation_id": "C160312250018919",
+        "phone": "",
+        "receiver": "Данил Дмитриевич К",
+        "recipient_bank": "сбербанк",
+        "sbp_id": "B53362152475750D0000130011650902"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "f93bee5fdb6ed6c679c1897b30982164f8122ab3f4230ab42cd6fd007bb33c49",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "7eb635b28ad64d6f49da605c2e3e68433faa327be07adda5cd47b5e89cd558f7",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "0ae11970faab3d8fb06e6d98bcd5b53e35aeda071df67e9c844f1cbce42fd423",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "561b862bbbd6ee93843f3e1652ac5173": {
+      "content_sha256": "1f1b503e4e19fdc4faf2cb9600264484f0faa0f6b400a164d2d301ffa203631e",
+      "emitter": "quartz",
+      "file_name": "Квитанция (16).pdf",
+      "file_sha256": "49f2f72c78149a8ec3a8012a41518f41aa0b8ed7ae5d537811b03f4797c16278",
+      "identity": {
+        "amount": "15500.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "04.04.2026 22:00:19",
+        "operation_id": "C160404261975038",
+        "phone": "79270444466",
+        "receiver": "Булат Рустемович Г",
+        "recipient_bank": "т-банк",
+        "sbp_id": "A60941900099560V0G10080011730902"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "1e7694e4c0acd643744cc59c7a1282e49d92fb4d6118b1c01151fbdea502a384",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "48372e6b7c720e2e75c7ccf8e0fb4cb802d51e77ad58c2af425e677b731e4034",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "0497443b3467d020a27bcf1274a9c1967b921835896f07bfdd080a074d0e92cf",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "689b675172549f215e135bcb9912f633": {
+      "content_sha256": "511004afbd3f249f241158ce3fe87a8f35aa8051ae2f4ab74fdbb428ccab2e18",
+      "emitter": "quartz",
+      "file_name": "Квитанция (29).pdf",
+      "file_sha256": "08a17ae4c1295304e07311a597ae87aad39b24ed51afc59f5315f6537c13eee8",
+      "identity": {
+        "amount": "4000.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "30.11.2025 19:52:22",
+        "operation_id": "C163011251723323",
+        "phone": "",
+        "receiver": "Людмила Георгиевна Г",
+        "recipient_bank": "сбербанк",
+        "sbp_id": "A53341652192700I0000040011650701"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "0a88fcdbc76d23589bea2e3edc26cd51cd61441b115603006083498252d3334d",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "aa11dd01a3b4d3742b24f53b2c5741732a1a23857f4992994d34a0c8a169f6f5",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "e40e13fdf813b5b40b3cc08731818c3ed8b67b07a87a9cecac6395b4109d9ba4",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "750173c3dd5423dea66e35ed5c829b56": {
+      "content_sha256": "c1ccb00f8260bc8fc6fdb3842ea1e1bc26ca565570d4851a97e6b82fa9ffe26f",
+      "emitter": "quartz",
+      "file_name": "Квитанция (12).pdf",
+      "file_sha256": "1c0a2738bbcc2c7396b864e1b170520876610eb702ad444f70972d745201a50a",
+      "identity": {
+        "amount": "1200.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "09.05.2026 19:55:29",
+        "operation_id": "C160905261659205",
+        "phone": "79274890391",
+        "receiver": "Алина Александровна А",
+        "recipient_bank": "",
+        "sbp_id": "A61291655239301F0G10020011760501"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "9bf41a32e149dc7dbee92ab295708fbe20eb812c19feecd75581b222b569478c",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "3b5638d772c0ee0ba01c3901479a024ec49fdb67935750e3dafc01ac1d364412",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "4323099b3cc0a3ffc180ab0b48cdbe01c165d2c80e8e40a12a1ef461c270c2f7",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "763537832c2ae000f5acd20c2b1281f4": {
+      "content_sha256": "54bf4f9ea07282203f62290fe3952864eb676fc4fc36ce83b6085ee85568bbce",
+      "emitter": "quartz",
+      "file_name": "Квитанция (32).pdf",
+      "file_sha256": "a45a5531bcc83688afcf4e943327e6330ab5ad033a8eedb943a3e891fefed653",
+      "identity": {
+        "amount": "200.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "18.11.2025 17:55:52",
+        "operation_id": "C161811251492950",
+        "phone": "",
+        "receiver": "Руфат Наилевич С",
+        "recipient_bank": "т-банк",
+        "sbp_id": "B5322145542501190000120011630701"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "7365e01a6abc49322b49407cc28768c61d8651bcce7d42421473da94491ab222",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "07fbc6c9558ee5747c971531f75be654be40feb0cd34bd82c9e05da7d6e055cc",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "740899bd71b3e58c8d272a1260dc7d24be204755932f99a29bb6e00014de5a25",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "801db2d1787d765767d12364803f1cc9": {
+      "content_sha256": "d22c55ae3f98e05186d1762527acf5b5f901ce7d2ba57e60d049b9dd1d605bcd",
+      "emitter": "quartz",
+      "file_name": "Квитанция (13).pdf",
+      "file_sha256": "3adab01d5e151df3891f3f78d50ed0a88fdd944854fb4f7af17f2b6b12a85560",
+      "identity": {
+        "amount": "300.00",
+        "debit_account": "",
+        "fee": "0.00",
+        "method": "phone",
+        "operation_datetime": "15.04.2026 18:53:28",
+        "operation_id": "C071504260544819",
+        "phone": "",
+        "receiver": "Вол**в Д. В.",
+        "recipient_bank": "альфа-банк",
+        "sbp_id": ""
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "3718f6fb59447a13e632f306b5db6c4e8ef101a73c7d1dea15289248124d0b92",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "67f27c7f46b6266824c37181f77fc2fdee46f58102565f4d184f30304304ead1",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "b6f44a79524bc9473c0b5a1459493069886b03feb80c268a24485b3d916d40a5",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "82df17eee0e36a4a662617a0edb960e2": {
+      "content_sha256": "09d2ed346c4ff46d294a644c835e988eaf10122d7e8d3452040a086b3d55d737",
+      "emitter": "quartz",
+      "file_name": "Квитанция (17).pdf",
+      "file_sha256": "b27991c2185c6b08035c9c66ce6ff35343b382d657c476431bbe874ec847f74d",
+      "identity": {
+        "amount": "7000.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "27.03.2026 17:47:57",
+        "operation_id": "C162703261808768",
+        "phone": "79656163666",
+        "receiver": "Альберт Альхатович С",
+        "recipient_bank": "сбербанк",
+        "sbp_id": "A60861447487621O0B10040011730501"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "7ee945a11ac594718802615e418901925690908dc10f9cb6715b528eb091b790",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "5092b13890ba0541aa9c46a26791f2b1433341ed09885ef7c076f1d17c2951d3",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "6db60b3777998884c02be543b28c0b55c2da294d2a9155a1c3d67cd50cdb1cf6",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "85a0e432a8204052012333d5bdcffb50": {
+      "content_sha256": "85b9e70b1a358ced439c25599fe5ffe13b9f998db531f1282bb771d4fabd55b3",
+      "emitter": "quartz",
+      "file_name": "Квитанция (34).pdf",
+      "file_sha256": "4d861424441850bcaf008df3cee33006268caff098f3bf786430821fa3ecabad",
+      "identity": {
+        "amount": "461.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "02.11.2025 03:42:51",
+        "operation_id": "C160211250039990",
+        "phone": "",
+        "receiver": "Азат Минзилевич С",
+        "recipient_bank": "",
+        "sbp_id": "A5305230825344030000030011630701"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "b55215ee7408f1534c081d5df86bfd7535579510b141b02563e249b334e5eba1",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "476c2eddbf93105b11fb3edb738feb2f5b80fcd3659782a38d20d749627f4bf3",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "a5ec40fe1045c3dbe28bae56ce7fca81c46a6fc7ae933eadbd589334a56d2acc",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "89f404b96d26ca810c9d39634b10bdef": {
+      "content_sha256": "9e8d5e0640150047ce1fe53312d6bcff28ffdbfb90b85ff0011ad64e9c49d6f1",
+      "emitter": "quartz",
+      "file_name": "Квитанция (27).pdf",
+      "file_sha256": "b23174c6ee50b167542c009e9be1d1b2c35b8cdc162a496866df1a86ce5c64e6",
+      "identity": {
+        "amount": "20000.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "19.12.2025 19:33:49",
+        "operation_id": "C161912252028288",
+        "phone": "",
+        "receiver": "Альбин Альбертович А",
+        "recipient_bank": "втб",
+        "sbp_id": "B5353163344623190000110011661101"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "50417600b25746d01f732a0bfe32224f2dee01a355e58fdbeae309b0102a5247",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "1bc320825fe70a42f5cc1fb60c4a0567a98bd3ac4da58b41617ff35c2c84c9ab",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "7fc1aa6f471337ed9232a5daa80d14d8fd87ee69178eca00743833cd89e86584",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "a8c270405177747891f120d2d0d74db5": {
+      "content_sha256": "26e9b1b200708af37c71c78059b13a680648cceb3d668cb50e8bea3e2e80df7f",
+      "emitter": "quartz",
+      "file_name": "Квитанция (23).pdf",
+      "file_sha256": "d69ed15fdfa1e27214b853e041601d5ff0b3ab3be54e9646c0bf7e3260bb48c1",
+      "identity": {
+        "amount": "1100.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "10.01.2026 14:18:08",
+        "operation_id": "C161001260755330",
+        "phone": "",
+        "receiver": "Рустам Османович Г",
+        "recipient_bank": "сбербанк",
+        "sbp_id": "B60101118033790P0000130011670301"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "fa34fed3dc07d91cde53baeba081aaa26ed38e81c56be826f21412eac08133f5",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "696d9bd600ae1c834a60913905237e978032b1dcfd54b86b927975f63611bce7",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "068f7f9ac11fd271553e01a1bee2725f6ae70529b1022c004594fb72a9783c99",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "ab030317a055f5b14ca3b7f177a0d20f": {
+      "content_sha256": "c50d1c0804ef95cd3849e95c2b2850ef967127bbc8edf62ea2a3cf91069573ea",
+      "emitter": "quartz",
+      "file_name": "Квитанция (25).pdf",
+      "file_sha256": "1cc8263920a8c8178f01c3434929e0ea722ee864f1766fd42a6a201f85e96009",
+      "identity": {
+        "amount": "1200.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "22.12.2025 08:12:52",
+        "operation_id": "C162212250265438",
+        "phone": "",
+        "receiver": "Александр Анатольевич Ч",
+        "recipient_bank": "т-банк",
+        "sbp_id": "A53560512449951E0000000011661101"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "0d98b8144cc210b99a4c80d049a05136739921c8c5c71a4d5e6acc9a2060f7b3",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "4c73c3cdff71d280acdd8de8d6cb88b643e43679fb66c2ca072397fc8b5fa735",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "ad559cfd2aebaf50c41e332356f17b7d9d0cfad93a0a8fe57830c31ebe8b2c42",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "ab9ab93724c0baa6b75eac270fc24463": {
+      "content_sha256": "9b45526c10f3612734adc5c482bab549a20e18079232806b0db4fbcf36c553dd",
+      "emitter": "quartz",
+      "file_name": "Квитанция (33).pdf",
+      "file_sha256": "121fc332c69e3eb9a5960f3b4b2bfaaa69b15cb12917493e7ff431100ae17da7",
+      "identity": {
+        "amount": "570.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "02.11.2025 13:39:08",
+        "operation_id": "C160211250765951",
+        "phone": "",
+        "receiver": "Ильгар Ширин оглы Г",
+        "recipient_bank": "сбербанк",
+        "sbp_id": "B53061039033920H0000170011630701"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "c4900b15042dc4737dae3b072fd742a0cbff7daeb22f535907b078f333d61bd4",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "bce412b7294a5ec44832f279ef51a104546cd66448e6315bf65ee8280faea812",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "ccade4923c736dcedd6a8df504903ee787bb94d72df481c137f77e504887a3d5",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "b1def2840c28c43f565ec9ef6ceb9d4b": {
+      "content_sha256": "392acb4df206ebc7b8c960dd14dddfb87887a2669cb6f23cb81d5ca0a1c6c62c",
+      "emitter": "quartz",
+      "file_name": "Квитанция (9).pdf",
+      "file_sha256": "29e78c0d4cf6da4e7c4c300d67008f0b0f83d93aa5da682dd2822bccc0cb7080",
+      "identity": {
+        "amount": "3500.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "08.06.2026 14:23:47",
+        "operation_id": "C160806261107306",
+        "phone": "79083404590",
+        "receiver": "Эмиль Ленарович С",
+        "recipient_bank": "т-банк",
+        "sbp_id": "A61591123418351C0G10030011770901"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "c4fecbf5362967c553be2d512a73eb42e8cba70ad1251027e6211d38b5b7773f",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "5554e6186321bc56a1f9696b4ae5123d5420637809f205d17e5a4bde7be636e2",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "5ac6d6d4532bd7ce377c374cbaa68607d165ed831aaf5c5c7d9f93391056dd09",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "b215ab572fc2d5b32f639abcf51ed1a9": {
+      "content_sha256": "46207b8eb0214d1b7731b169ac246a196b7a11a215bb24191d9f6f93e4730f07",
+      "emitter": "oracle",
+      "file_name": "альфа сбпп.pdf",
+      "file_sha256": "c90cb709cafddaba63893518b9c3fc26826eb2de5604e9f20dec304da7cc8324",
+      "identity": {
+        "amount": "35000.00",
+        "debit_account": "40817810116080005715",
+        "fee": "175.00",
+        "method": "sbp",
+        "operation_datetime": "16.06.2026 13:58:27",
+        "operation_id": "C161606261117809",
+        "phone": "79963968183",
+        "receiver": "Кирилл Станиславович К",
+        "recipient_bank": "втб",
+        "sbp_id": "A6167105823129080G10080011770901"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "13": {
+          "decoded_sha256": "cfb4b32db79e658a1fbcc8c662c8dec21c86a51ff97dc396863b36bdc7e9d831",
+          "role": "font"
+        },
+        "14": {
+          "decoded_sha256": "b459f834a3bf352f2f1cb0a4eadc77b42e4fb5308b6cf74e471b605bd804db46",
+          "role": "tounicode"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "7": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "cdb3de2a385054f9033c459237f9805302b447e330565cdcb3efc12bb7c9a110",
+          "role": "content"
+        }
+      },
+      "producer": "Oracle BI Publisher 12.2.1.4.0"
+    },
+    "b339b1926ccb5acc3ab5c681a8842aa8": {
+      "content_sha256": "9dbb4cb2cfa8cd1e9cd3dea965fcc1aea33f5a1be16222b0e1d8421d19c605c0",
+      "emitter": "quartz",
+      "file_name": "Квитанция (14).pdf",
+      "file_sha256": "4f09f68b1be02d5208ca51b663c57a17ca927362395c12e5dabcbc96af9dbc38",
+      "identity": {
+        "amount": "500.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "13.04.2026 15:52:14",
+        "operation_id": "C161304261309178",
+        "phone": "79996380686",
+        "receiver": "Эльмира Каримбековна И",
+        "recipient_bank": "газпромбанк",
+        "sbp_id": "A61031252099741S0G10010011740501"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "8a8aff1914afaa40f6dff24bbf98d03a1a78b1972b774f0a57f2e0ea8fa85a9a",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "bbe41d63ebec667d1b5df8f81c47c78368d6104cbfb8f3bf92be0ca9627ac131",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "214d0d9122adf583a51a0d5e457d23a38a96786e39352ea20c8be96c344d4080",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "b58daffdf05396c2c8b2655c5af77766": {
+      "content_sha256": "35931d67032c6413da37e10db1af9abec65a57dbd3b7270045b3808cb87c79e9",
+      "emitter": "oracle",
+      "file_name": "сбп альфа 2.pdf",
+      "file_sha256": "e290cf6c32f1df77839aaa12a43d5e78191c9db4e34ff3c4f02e629869cb615e",
+      "identity": {
+        "amount": "700.00",
+        "debit_account": "40817810405614696324",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "15.06.2026 02:22:25",
+        "operation_id": "C161506260012818",
+        "phone": "79274550288",
+        "receiver": "Дамир Евгеньевич С",
+        "recipient_bank": "т-банк",
+        "sbp_id": "A6165212328595070G10040011770901"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "13": {
+          "decoded_sha256": "99e371c9ad8d1b6ffe1428770ad37f204faedf68499d564c31d435b2fa334939",
+          "role": "font"
+        },
+        "14": {
+          "decoded_sha256": "7a5d39e3f19e2878cab63233da40316b4a690d89bc16fbbe62b5b94b09248827",
+          "role": "tounicode"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "7": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "837d18f279670717f3b8eed21c3e8d8bea2f4017bea7d3a94da742129847b775",
+          "role": "content"
+        }
+      },
+      "producer": "Oracle BI Publisher 12.2.1.4.0"
+    },
+    "b780ecaf293aae16f0062ac58fd12cd5": {
+      "content_sha256": "b63e76d9e6a688db0b44eb5789ed48bef18ee6648f1f9c74bde7e1f9ae999fac",
+      "emitter": "quartz",
+      "file_name": "Квитанция (31).pdf",
+      "file_sha256": "17cd2b8e680b53374bd84c0d1b787b6f91ce886ba23a456aab05185c63e2886a",
+      "identity": {
+        "amount": "196.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "18.11.2025 22:36:13",
+        "operation_id": "C161811251944318",
+        "phone": "",
+        "receiver": "Марина Валерьевна Я",
+        "recipient_bank": "",
+        "sbp_id": "B53221936095890O0000160011630701"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "02209c0da62c696765f85b046a7ebdaf522813176727bd9b867c699bc540dcae",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "7be33655ed0125844812740a420605e05166015c9c06b67c18f7c3ecddfed5f2",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "a7116fde789ee98c7e1fdfdaa689b9e44c66bf4e954ee174efd4effb41d0f9a1",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "bb933b53f251d464b06b3469079ca202": {
+      "content_sha256": "b1ac4e042e07499128af00031fc7da28643885a70b4f7e36e8ee86911e8b6f99",
+      "emitter": "oracle",
+      "file_name": "pdf (2).pdf",
+      "file_sha256": "ca6471055570f1faf2888773fa834dbbdd56d9b86b203806531c94cafcbd54ec",
+      "identity": {
+        "amount": "700.00",
+        "debit_account": "40817810405614696324",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "15.06.2026 02:22:25",
+        "operation_id": "C161506260012818",
+        "phone": "79274550288",
+        "receiver": "Дамир Евгеньевич С",
+        "recipient_bank": "т-банк",
+        "sbp_id": "A6165212328595070G10040011770901"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "13": {
+          "decoded_sha256": "b84f5a986192e5a2aeedf0aab4c967b96bb463611d2e95467d7e93b1d72547f0",
+          "role": "font"
+        },
+        "14": {
+          "decoded_sha256": "9c3341962c3a180fc689755dd84bfcfd125e47e9b352d59ddbefefbc92d2000e",
+          "role": "tounicode"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "7": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "2e3275575c57f04688220dc6040516588568b869e18813b276712ed5010621ee",
+          "role": "content"
+        }
+      },
+      "producer": "Oracle BI Publisher 12.2.1.4.0"
+    },
+    "ca5738cc0918c3021bee0f9aaffc455b": {
+      "content_sha256": "bda6113d499388ebcbad7f2c44dfda552e57fae9e571ba0c9c1e3be5cf2721b7",
+      "emitter": "oracle",
+      "file_name": "pdf.pdf",
+      "file_sha256": "0415ab08a89033607b8269b96f449035dce9fe4c59985a1a061a92ae2d856967",
+      "identity": {
+        "amount": "4300.00",
+        "debit_account": "40817810405614696324",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "24.06.2026 15:16:00",
+        "operation_id": "C162406261196735",
+        "phone": "79274890391",
+        "receiver": "Алина Александровна А",
+        "recipient_bank": "",
+        "sbp_id": "B6175121557618150B10130011790502"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "13": {
+          "decoded_sha256": "25824ee9d29ded23c5bb06ffecacb124f77f3ef41573f143624acd69b8d6d4b4",
+          "role": "font"
+        },
+        "14": {
+          "decoded_sha256": "3903024c0dc8a94eeecaa52a49f3577b15a2ab271a7567b77efadf7c9a3bc4b4",
+          "role": "tounicode"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "7": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "1d557eac95fb416d8746d9eb0c84bc8b7dd1dda19d1f44a28774fe2f62b500be",
+          "role": "content"
+        }
+      },
+      "producer": "Oracle BI Publisher 12.2.1.4.0"
+    },
+    "cc42bca321fe98217c1ad52faed94d4c": {
+      "content_sha256": "7501d126f76f6bb2c43304868d1560a642b18fb095dd5bb70ae5972a648e3d0d",
+      "emitter": "oracle",
+      "file_name": "pdf (3).pdf",
+      "file_sha256": "d397a2349b30dad80d54541eef645c70854323d1c441289248cc6fbdb486195b",
+      "identity": {
+        "amount": "1500.00",
+        "debit_account": "40817810405614696324",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "15.06.2026 15:51:07",
+        "operation_id": "C161506261536028",
+        "phone": "79674614256",
+        "receiver": "Дмитрий Владимирович Ч",
+        "recipient_bank": "т-банк",
+        "sbp_id": "A61661251034380Z0G10080011770901"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "13": {
+          "decoded_sha256": "a680b44e9a284ee751bef6af1fc46df12a57b56bb5b01f3cdf6c4a854833cb00",
+          "role": "font"
+        },
+        "14": {
+          "decoded_sha256": "d87697c82b191e90f599c172e32860f2372b1085a86366626c293f8104a0f80b",
+          "role": "tounicode"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "7": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "ce92930fdfd3a1026925b5b229bd78b8f878d6d3b8e598fb689d95518ea3d691",
+          "role": "content"
+        }
+      },
+      "producer": "Oracle BI Publisher 12.2.1.4.0"
+    },
+    "dbe259ba6ff4b0547c0d2b20ce4fa8c2": {
+      "content_sha256": "728984b3bd77c21ecca9307a942c1e96f4f6867c4c9727fe0f565cf53efc847a",
+      "emitter": "quartz",
+      "file_name": "Квитанция (22).pdf",
+      "file_sha256": "99f76da18706efab29e560679ecb6e38b401e73b86a28cf7eeebc920a7c0c4f9",
+      "identity": {
+        "amount": "3000.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "13.01.2026 18:11:21",
+        "operation_id": "C161301261525421",
+        "phone": "",
+        "receiver": "Джошгун Байпаша оглы Г",
+        "recipient_bank": "сбербанк",
+        "sbp_id": "A60131511137811H0000020011670301"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "007262f87859f3688b77831e9e76213e64806660e738d215a0f1a3a04ea5f6fa",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "73b9f99c7df378a1d6a79708b7be8a42569572a5d0c28d82b7bc26933612807d",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "a11a2f4429bef7290cddb83a939bcac170f33d3eea428f2d398bbf55ad44d718",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "eb1bbd201192f6f17f0893c649c85e85": {
+      "content_sha256": "4eaef5b117d199e5ea36385de9e9fb2469575b0ddf86d569544ccb201b0457f4",
+      "emitter": "quartz",
+      "file_name": "Квитанция (26).pdf",
+      "file_sha256": "3b1d495a609d21f4f457f62548bdb01819049b202bebe4070589c397eccc48ef",
+      "identity": {
+        "amount": "1000.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "20.12.2025 14:44:07",
+        "operation_id": "C162012251113977",
+        "phone": "",
+        "receiver": "Самир Эльхан оглы А",
+        "recipient_bank": "",
+        "sbp_id": "B53541144014380X0000100011661101"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "8609f4bce56e94a433f1a5ccfbcbb115bcc69cc0b26cb642d34330c59b29088b",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "01797739dd48733b778b0f92d08c118cad4022ad4d9fef446cb5d2d564c77f91",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "3f26f4b4a9a41495e3d6ab075fa14b63ee794d83d2b4aa03a7e4718e300e9bd2",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "fa64294b89652077de66b7600d3cddec": {
+      "content_sha256": "0016bb5c9cc14837afd020378e7317efaee632da2166f9712418e94479a8e94b",
+      "emitter": "oracle",
+      "file_name": "сбп альфа.pdf",
+      "file_sha256": "ddb3121ae012b6f48cf23f54b2144d74ace642d6f083715d5ef894882d26aa05",
+      "identity": {
+        "amount": "14000.00",
+        "debit_account": "40817810405614696324",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "13.06.2026 20:15:36",
+        "operation_id": "C161306261706474",
+        "phone": "79274550288",
+        "receiver": "Дамир Евгеньевич С",
+        "recipient_bank": "т-банк",
+        "sbp_id": "A6164171534168080G10030011770901"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "13": {
+          "decoded_sha256": "fe310883cf32910bde00ec072d523dcbd6e711670afc72cea5201cb78119797a",
+          "role": "font"
+        },
+        "14": {
+          "decoded_sha256": "29894d22807ecd96d4be678e8e99a27b128577d8c5b6f97a1724243161b8d6fa",
+          "role": "tounicode"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "7": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bb41bd894be997c12d7dd68f03603fcb5e20682b4263a87fde14e01bf7da3e08",
+          "role": "content"
+        }
+      },
+      "producer": "Oracle BI Publisher 12.2.1.4.0"
+    },
+    "fd7f4890f0f4b717ea5130209116ab15": {
+      "content_sha256": "e05cf68c778c51625d314e1a257cbae092d048b57edd17aa7a92ed9d6b1aa353",
+      "emitter": "quartz",
+      "file_name": "Квитанция (19).pdf",
+      "file_sha256": "209d2e9f00948b04eee21f02fbc46186c09e9bb03a1b553a140bc41db4ab0fae",
+      "identity": {
+        "amount": "5000.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "08.03.2026 08:21:22",
+        "operation_id": "C160803260369690",
+        "phone": "79274887529",
+        "receiver": "Максим Евгеньевич С",
+        "recipient_bank": "сбербанк",
+        "sbp_id": "A60670521147830Y0000030011700501"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "f6121ec5584f2edc3ec90aeff3bf8c0218c9293babf8983a33593e621790a0fb",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "b2925086bf441b863df0535d8b8dbee73e7fc84ebcba73579cba50a4454e8866",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "80448afca8e42339a0e44ad9bfcd0d8d30c86abc6b918479bb326d25e6047c74",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    },
+    "fe78e0148354d2f984c0020bca09173f": {
+      "content_sha256": "3b2ca2f1cd3919aed8aea115919a9aab094e9e6fab9bd940b1cad845168dbddf",
+      "emitter": "quartz",
+      "file_name": "Квитанция (30).pdf",
+      "file_sha256": "53f1191dcd505d9e4f7871dafc227f88ad50d161342db27f59b55d0d45dcc42f",
+      "identity": {
+        "amount": "225.00",
+        "debit_account": "40817810805612580922",
+        "fee": "0.00",
+        "method": "sbp",
+        "operation_datetime": "21.11.2025 19:40:44",
+        "operation_id": "C162111251896480",
+        "phone": "",
+        "receiver": "Рамиль Вагизович К",
+        "recipient_bank": "втб",
+        "sbp_id": "A53251640398581I0000010011640502"
+      },
+      "image_decoded_sha256": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "objects": {
+        "10": {
+          "decoded_sha256": "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e",
+          "role": "icc"
+        },
+        "14": {
+          "decoded_sha256": "975e252565c0a7636c291c7a3d405cce0b0a94ba5c805110e484e704e1b3587f",
+          "role": "tounicode"
+        },
+        "17": {
+          "decoded_sha256": "da816e0b9e82d200b84ea2100c1a30111391aeaa4427d84a435600aebc98ff7b",
+          "role": "font"
+        },
+        "3": {
+          "decoded_sha256": "0a6ce1d26706e87933aee4e6ed0e5461efc9fbaba55d98fc01e10accbde795b0",
+          "role": "content"
+        },
+        "5": {
+          "decoded_sha256": "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a",
+          "role": "image"
+        },
+        "6": {
+          "decoded_sha256": "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a",
+          "role": "image"
+        },
+        "9": {
+          "decoded_sha256": "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d",
+          "role": "image"
+        }
+      },
+      "producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext"
+    }
+  },
+  "count": 40,
+  "schema": "alfa-v2-shell-registry",
+  "version": "1.0.0"
+}

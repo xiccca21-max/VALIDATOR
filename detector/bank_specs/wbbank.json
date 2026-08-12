@@ -1,0 +1,48 @@
+{
+  "version": "bank_spec_2026_06",
+  "key": "wbbank",
+  "name": "ВБ Банк",
+  "folder": "вб банк",
+  "sample_count": 1,
+  "native_producers": [
+    "openpdf"
+  ],
+  "required_fonts": [],
+  "object_count": [
+    20,
+    30
+  ],
+  "content_decoded_global": [
+    7051,
+    7055
+  ],
+  "channels": {
+    "phone": {
+      "samples": [
+        "nvbrJuBOqxiJL8VNXNxdXsqpvJpm3uqXbTWRQIHD.pdf"
+      ],
+      "content_decoded": [
+        7051,
+        7055
+      ]
+    }
+  },
+  "skeleton_hashes": {
+    "phone": [
+      "303800eb8382379a"
+    ]
+  },
+  "skeleton_hashes_global": [
+    "303800eb8382379a"
+  ],
+  "sbp_cipher": true,
+  "require_content_stream": true,
+  "date_prefer_first_line": false,
+  "reject_jasper_clone": false,
+  "ignore_openaction": false,
+  "required_fonts_any": false,
+  "allow_empty_producer": false,
+  "image_based": false,
+  "fontfile2_profile": false,
+  "excluded": []
+}

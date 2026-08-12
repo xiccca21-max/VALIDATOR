@@ -1,0 +1,275 @@
+{
+  "version": 1,
+  "source_count": 6,
+  "fonts": {
+    "GTEestiProDisplay-Regular": {
+      "source_count": 6,
+      "stable_digests": [
+        "7a6fea5bcb0cd6cd",
+        "8ed177f4ddbf79f1",
+        "a33dad207301dc51",
+        "bcc4810ab54d61f3",
+        "c238266524703288"
+      ],
+      "stable_tables": {
+        "OS/2": [
+          "f89a18ea95d193b4"
+        ],
+        "cmap": [
+          "00f3b4f82c52e46f",
+          "23c08940422bedce",
+          "2d1ed1d0b95efc95",
+          "3a0860adf48571ee",
+          "d7fb34699cda278c"
+        ],
+        "cvt ": [
+          "2719147839fe24da"
+        ],
+        "fpgm": [
+          "a117c383171b001d"
+        ],
+        "gasp": [
+          "4ca731f86ad506ac"
+        ],
+        "head": [
+          "da976704dcbcd7ca"
+        ],
+        "hhea": [
+          "8ec781037b89e969"
+        ],
+        "maxp": [
+          "3cb7c9e8a7333d68"
+        ],
+        "name": [
+          "d5fa60b0fd929f05"
+        ],
+        "post": [
+          "77a232e4db6b60c2"
+        ],
+        "prep": [
+          "ca590abb9ee9fc0a"
+        ]
+      },
+      "table_tags": [
+        "OS/2",
+        "cmap",
+        "cvt ",
+        "fpgm",
+        "gasp",
+        "glyf",
+        "head",
+        "hhea",
+        "hmtx",
+        "loca",
+        "maxp",
+        "name",
+        "post",
+        "prep"
+      ],
+      "glyph_hashes": [
+        "0258171b7c8368a1",
+        "027d32a49e6d143a",
+        "0e24b3d167c658ce",
+        "14fe02aeb206d4f8",
+        "19787716e2b1ed3c",
+        "1ac1429fc5c4a939",
+        "1c2d0e8dddac2a67",
+        "1c9b8567f392544b",
+        "1d215d0f90de05e2",
+        "1d2374d780b0fd6e",
+        "207b21ae09227a42",
+        "22b86f4fc21cdd15",
+        "22f99348c5f960a8",
+        "296fbb8fd5819f10",
+        "29ff9b3a935c3232",
+        "2cf6f40ba06cfb40",
+        "2e0dc95ece1905cd",
+        "3becd6cd3bd49ad8",
+        "3f8e51c9e68b582f",
+        "408193542246487e",
+        "4c028fb5317213e8",
+        "4fe803937bde74e6",
+        "527e501dbd058015",
+        "5387a8ca00902993",
+        "58cb9910e3708fb3",
+        "5b225c65b2a682c6",
+        "5b97c49dcd84d984",
+        "5cfebbe21a3a904b",
+        "64807a5fa034346f",
+        "65bca0c4e4498486",
+        "660332aef5677f6a",
+        "695f696d5a43fbb3",
+        "6a73a098b7cc5b73",
+        "72250f96fcd95437",
+        "73e64af84a939566",
+        "7b09f66ae3fb90e5",
+        "7ec51bf8b179be9d",
+        "85136b153b2e7c50",
+        "8c7a91617c028405",
+        "92e635122400c6cd",
+        "97cfdc45063d2473",
+        "9a1fdeaea5eea5d4",
+        "a6d20fc0bdd56842",
+        "a823b4f3e0fbf249",
+        "a9eb7c077ba33f85",
+        "af7b17afe04b3dd8",
+        "b51506a83300d0ac",
+        "b70f8ee99c75757e",
+        "b87a63307fe7a1bb",
+        "ba5f10c8519d047a",
+        "baf88c6cef7e1355",
+        "bef21ff1df1362e9",
+        "c14dc0fd15012bb9",
+        "c25ec36371edf1be",
+        "c5e7116e8a78766e",
+        "c5fcaa6ab79cfaff",
+        "d055ebbfb29ecfdd",
+        "d378bf6775b30fb9",
+        "d46f209942e937c8",
+        "d87fc53b859060ab",
+        "d9a225f3a6f72bfa",
+        "dfd6a4cd1125030a",
+        "e0d3c39a0d875aa8",
+        "e43771cf51218324",
+        "e589d157031d9186",
+        "e778e78ca5c6f939",
+        "ebec1b52bb6aa6d5",
+        "f1e488e1dc4c41fa",
+        "f2b97f9eaa4ab76b",
+        "f5837063be826111",
+        "f6dcc3cbaac30185",
+        "f6e01adde9b14583",
+        "f746fd99dc7858e2",
+        "fdfafc27c4378154"
+      ],
+      "ttf_sha16": [
+        "246de5cddb438a6b",
+        "361373e383cd4391",
+        "4f352e14904b2491",
+        "851f9af13932943e",
+        "ef6ff08fba8e0061"
+      ]
+    },
+    "GTEestiProDisplay-Bold": {
+      "source_count": 6,
+      "stable_digests": [
+        "3c12cc3c61d68cc1",
+        "9c09d389127f1f02"
+      ],
+      "stable_tables": {
+        "OS/2": [
+          "397794b0f3197a46"
+        ],
+        "cmap": [
+          "04dbea53e6cd8e44",
+          "4565a32424f6228d"
+        ],
+        "cvt ": [
+          "f20c61cc3662adf2"
+        ],
+        "fpgm": [
+          "a117c383171b001d"
+        ],
+        "gasp": [
+          "4ca731f86ad506ac"
+        ],
+        "head": [
+          "ef243d30306a8944"
+        ],
+        "hhea": [
+          "820c4093289df8a4"
+        ],
+        "maxp": [
+          "dc95f49acc7adb38"
+        ],
+        "name": [
+          "edfdbade2efdc5fa"
+        ],
+        "post": [
+          "77a232e4db6b60c2"
+        ],
+        "prep": [
+          "ca590abb9ee9fc0a"
+        ]
+      },
+      "table_tags": [
+        "OS/2",
+        "cmap",
+        "cvt ",
+        "fpgm",
+        "gasp",
+        "glyf",
+        "head",
+        "hhea",
+        "hmtx",
+        "loca",
+        "maxp",
+        "name",
+        "post",
+        "prep"
+      ],
+      "glyph_hashes": [
+        "0ade454acf624e22",
+        "0afad46f743cb125",
+        "15af14bac1ea02a0",
+        "1a2b30c9f76f188e",
+        "1fb9a9ccd0282fab",
+        "208d81ca0fe18719",
+        "211044fefbfe01a6",
+        "2787c275f428b6e1",
+        "27ec6149e7d7ac3e",
+        "316f2d2edbba591c",
+        "4f167a48ad8f5c20",
+        "56f272f6c2038fff",
+        "586885888c56275a",
+        "5f75262a8d742862",
+        "657520e5809cb086",
+        "673aeb32fde6c1fa",
+        "6834bc9e79be46d6",
+        "74a70813e5aac58b",
+        "75a96cc09cdd4875",
+        "7a0e6db7095965b7",
+        "7efcea9c99432d71",
+        "89905def0ff5ffe9",
+        "8b89126d2f153bae",
+        "9070c329b5cd365f",
+        "963519eb5ed532ec",
+        "966833e663ad68c0",
+        "9a240eb5a6588799",
+        "9d3fd8d90a534a56",
+        "a7995acfc9863ec4",
+        "a9d4fda32d40541c",
+        "a9dfd4beba70653a",
+        "afb1b7e70cc876ce",
+        "b566daa45d21537e",
+        "b7e7e3d0a5b4e0b3",
+        "baeffe5f69d6a94d",
+        "bf15cc9a1bf9bc4e",
+        "c9bcae317b7127c7",
+        "ca807bbe1fef943e",
+        "d1e946b8cf5be16c",
+        "dc255ef6aab66cf5",
+        "e10e34b8be5dd5d8",
+        "e2941101398e6b27",
+        "e9e623d85038ea3e",
+        "ed2903856666819f",
+        "f12ad608faff4c70",
+        "f9c6b044a5f4dbb1"
+      ],
+      "ttf_sha16": [
+        "531134ff0ad8baea",
+        "7d5b687d9c737ff5"
+      ]
+    }
+  },
+  "bank_key": "ozon",
+  "channel": "card",
+  "source_files": [
+    "kaHY3Z8qC0bfOh05a7xbh5xwU1Gxaw2y00hacVdr.pdf",
+    "ozonbank_document_20260702185012.pdf",
+    "озон банк по номеруу карты в другой банк.pdf",
+    "озон по карте 2.pdf",
+    "озонбанк по номеру карты в другой баннк.pdf",
+    "озонбанк сбп3.pdf"
+  ]
+}

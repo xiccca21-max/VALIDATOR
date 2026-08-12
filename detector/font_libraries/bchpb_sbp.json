@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "source_count": 1,
+  "fonts": {
+    "DejaVuSans": {
+      "source_count": 1,
+      "stable_digests": [
+        "cb80b1c4ff6b4d3d"
+      ],
+      "stable_tables": {
+        "cvt ": [
+          "857075c3f367703a"
+        ],
+        "fpgm": [
+          "ef2bbb131b050c02"
+        ],
+        "head": [
+          "ec1e54650cddce9a"
+        ],
+        "hhea": [
+          "7ea3a16e791df3ef"
+        ],
+        "maxp": [
+          "8c793cb984553d23"
+        ],
+        "prep": [
+          "a683d604aab58b8d"
+        ]
+      },
+      "table_tags": [
+        "cvt ",
+        "fpgm",
+        "glyf",
+        "head",
+        "hhea",
+        "hmtx",
+        "loca",
+        "maxp",
+        "prep"
+      ],
+      "glyph_hashes": [
+        "0161a5d8fc093ddd",
+        "06a6be099c20dc8b",
+        "0cdf03a5027dec56",
+        "1258765b7b8d0b2f",
+        "17263a9ff6d09d6f",
+        "19bffe37f1c4b9bd",
+        "1b0f9c7f55b69fef",
+        "1d3bcdd823e701f9",
+        "1e49e721388d2219",
+        "2ff74118a26e5961",
+        "35697afc91f92474",
+        "42413e5aa1f2db78",
+        "429b341fe68d77fb",
+        "463978698632152b",
+        "4abe409983165589",
+        "4e6a5621740047c9",
+        "5225c6a3b945f264",
+        "5898da76ce0161b8",
+        "5b835838f656a148",
+        "5bade1f624c0ad5a",
+        "6104ac88b8fb6fe8",
+        "62899ac09c29713b",
+        "64456c47a5e7e324",
+        "676140b2398f98ae",
+        "68d6e50c37f179b1",
+        "6a6f53574e2be708",
+        "6ea9924201c49810",
+        "711554b692961594",
+        "73040f017a863399",
+        "76d0b7b5d45dbf8f",
+        "76f7cff7c29e93d0",
+        "7f409c493222885d",
+        "8174cf10488c32b8",
+        "877721205fa9e89a",
+        "87f574e99ce065bd",
+        "8a5769fb7ff7ad13",
+        "8ae4afcd804a4f80",
+        "8b78dbe909d5f0f3",
+        "8d7924ae8398f47d",
+        "918eb5714ac1f77f",
+        "92f17b2f1a47e950",
+        "932011f13267906d",
+        "973f74df66026f6c",
+        "9792d5636a554fa6",
+        "9aca65de4d2244f0",
+        "9d0996533b67422f",
+        "a35ba8736d368333",
+        "a35c75c56e4eed6e",
+        "a6c52f12283d28ff",
+        "a7c6bcb1a4c29a17",
+        "a7d9934cf9efb3ba",
+        "a8e896e47bff541c",
+        "a9011cc061679bb2",
+        "ae01bf15c7c19ceb",
+        "ae55df558e81bb3a",
+        "b3a7ed7eae478c00",
+        "b3eee6017428b0d4",
+        "b4e75cb560fa1d0f",
+        "b6549f36d2680259",
+        "b6cf19a8d98e7c36",
+        "b958c75fb9ad0cd4",
+        "bb00d11cb23018fc",
+        "c14c4d07ce8491f6",
+        "c2578a9bbe5aada1",
+        "cc7b33e9ea562a1d",
+        "d59ad8e8cf17610b",
+        "d88ea984d4fd6470",
+        "db9d1478fa8d6fbb",
+        "ddcf9a4bc85bfde2",
+        "de173f235aeced0a",
+        "e62dbdf078612e60",
+        "e6303c61900b35a1",
+        "e64be420d7e14b4c",
+        "e85a01416f18dcc4",
+        "eafa68deeff77e67",
+        "ebea745da663eccc",
+        "eccdc11b94db5e7a",
+        "f8a7e1be35cb692c",
+        "fb8689840e280f79",
+        "fb915f4ecc751777"
+      ],
+      "ttf_sha16": [
+        "b4e8cec37dc999c4"
+      ]
+    },
+    "DejaVuSans-Bold": {
+      "source_count": 1,
+      "stable_digests": [
+        "81fef23f1f65f487"
+      ],
+      "stable_tables": {
+        "cvt ": [
+          "f846efd5129a39cd"
+        ],
+        "fpgm": [
+          "f8188ab04100f275"
+        ],
+        "head": [
+          "aed44742236868a9"
+        ],
+        "hhea": [
+          "be2328d75a20e934"
+        ],
+        "maxp": [
+          "4ae1a0ca59bacdb5"
+        ],
+        "prep": [
+          "66b1a1685340f5ab"
+        ]
+      },
+      "table_tags": [
+        "cvt ",
+        "fpgm",
+        "glyf",
+        "head",
+        "hhea",
+        "hmtx",
+        "loca",
+        "maxp",
+        "prep"
+      ],
+      "glyph_hashes": [
+        "1c29f72f5c914741",
+        "4242dc2d2e7b53fe",
+        "513e6662c2282a88",
+        "6ad9b7b3154e9e6b",
+        "77edeadee04e6a33",
+        "a99d82d591c83a8e",
+        "baab56c51321e72e"
+      ],
+      "ttf_sha16": [
+        "27e69ac1c738acba"
+      ]
+    }
+  },
+  "bank_key": "bchpb",
+  "channel": "sbp",
+  "source_files": [
+    "бспб банк спб.pdf"
+  ]
+}

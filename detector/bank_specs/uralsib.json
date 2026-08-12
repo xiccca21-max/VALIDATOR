@@ -1,0 +1,51 @@
+{
+  "version": "bank_spec_2026_06",
+  "key": "uralsib",
+  "name": "Уралсиб",
+  "folder": "уралсиб",
+  "sample_count": 2,
+  "native_producers": [
+    "rpdf"
+  ],
+  "required_fonts": [
+    "Arial"
+  ],
+  "object_count": [
+    22,
+    26
+  ],
+  "content_decoded_global": [
+    13305,
+    13309
+  ],
+  "channels": {
+    "sbp": {
+      "samples": [
+        "уралсиб сбп.pdf",
+        "уралсиб сбп4.pdf"
+      ],
+      "content_decoded": [
+        13305,
+        13309
+      ]
+    }
+  },
+  "skeleton_hashes": {
+    "sbp": [
+      "32624b6314a80e23"
+    ]
+  },
+  "skeleton_hashes_global": [
+    "32624b6314a80e23"
+  ],
+  "sbp_cipher": true,
+  "require_content_stream": true,
+  "date_prefer_first_line": false,
+  "reject_jasper_clone": true,
+  "ignore_openaction": false,
+  "required_fonts_any": false,
+  "allow_empty_producer": false,
+  "image_based": false,
+  "fontfile2_profile": false,
+  "excluded": []
+}

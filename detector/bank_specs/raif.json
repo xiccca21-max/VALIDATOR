@@ -1,0 +1,63 @@
+{
+  "version": "bank_spec_2026_06",
+  "key": "raif",
+  "name": "Райффайзенбанк",
+  "folder": "райф",
+  "sample_count": 3,
+  "native_producers": [
+    "itext"
+  ],
+  "required_fonts": [
+    "Hauss",
+    "PTSans",
+    "Navigo"
+  ],
+  "object_count": [
+    17,
+    31
+  ],
+  "content_decoded_global": [
+    4527,
+    4531
+  ],
+  "channels": {
+    "phone": {
+      "samples": [
+        "райф СБП.pdf"
+      ],
+      "content_decoded": [
+        4527,
+        4531
+      ]
+    },
+    "sbp": {
+      "samples": [
+        "райф сбп2.pdf",
+        "райф сбп4.pdf"
+      ],
+      "content_decoded": null
+    }
+  },
+  "skeleton_hashes": {
+    "phone": [
+      "0bd45bcf60313c6a"
+    ],
+    "sbp": [
+      "bcbfb1da9a826580"
+    ]
+  },
+  "skeleton_hashes_global": [
+    "0bd45bcf60313c6a",
+    "bcbfb1da9a826580"
+  ],
+  "sbp_cipher": true,
+  "require_content_stream": false,
+  "date_prefer_first_line": false,
+  "reject_jasper_clone": true,
+  "ignore_openaction": false,
+  "required_fonts_any": true,
+  "allow_empty_producer": true,
+  "image_based": false,
+  "fontfile2_profile": false,
+  "excluded": []
+}

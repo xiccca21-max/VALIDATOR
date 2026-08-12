@@ -1,0 +1,153 @@
+"""Alfa v1.0 rule catalog — future-safe (spec Appendix A)."""
+
+from __future__ import annotations
+
+import re
+
+_CODE_RE = re.compile(r"^\[([A-Z0-9_-]+)\]")
+
+# HARD → external ФЕЙК (proven contradiction)
+HARD_CODES: frozenset[str] = frozenset({
+    "ANALYSIS_NOT_COMPLETED",
+    "NOT_ALFA_RECEIPT",
+    # Container
+    "MULTIPLE_PDF_HEADERS",
+    "PDF_STRUCTURE_INVALID",
+    "TRAILER_INVALID",
+    "XREF_OFFSET_INVALID",
+    "MULTIPLE_STARTXREF_PRESENT",
+    "DUPLICATE_ACTIVE_OBJECT_DEFINITION",
+    "BROKEN_OBJECT_STRUCTURE",
+    "OBJECT_GRAPH_INCONSISTENT",
+    "TRAILING_DATA_AFTER_EOF",
+    # Streams
+    "STREAM_DECOMPRESSION_FAILED",
+    "STREAM_LENGTH_MISMATCH",
+    "UNEXPECTED_STREAM_FILTER",
+    # Active
+    "JAVASCRIPT_PRESENT",
+    "ACTIVE_CONTENT_PRESENT",
+    "OPENACTION_PRESENT",
+    "DANGEROUS_ACTION_PRESENT",
+    "EMBEDDED_FILE_PRESENT",
+    "EMBEDDED_PAYLOAD_PRESENT",
+    "ACROFORM_PRESENT",
+    "XFA_PRESENT",
+    # Visibility / content
+    "ALFA_BT_ET_MISMATCH",
+    "ALFA_CONTENT_STREAM_EDIT",
+    "TEXT_LAYER_INCONSISTENT",
+    "BROKEN_CYRILLIC_MAPPING",
+    "TEXT_EXTRACTION_MAPPING_ANOMALY",
+    # Fonts
+    "USED_CID_MISSING_FROM_CMAP",
+    "USED_CID_MISSING_FROM_W",
+    "CMAP_W_MISMATCH",
+    "CMAP_INVALID",
+    "W_ARRAY_PRETTY_PRINTED",
+    "W_ARRAY_SERIALIZATION_ANOMALY",
+    "FONTFILE2_MISSING",
+    "MISSING_FONT_OBJECT",
+    "MISSING_WIDTH_TABLE",
+    # Semantics / IDs
+    "ALFA_SBP_ID_MISSING",
+    "ALFA_SBP_ID_STRUCTURE",
+    "ALFA_SBP_ID_TIMESTAMP",
+    "ALFA_OPERATION_ID_DATE_MISMATCH",
+    "FIELD_FORMAT_INVALID",
+    "AMOUNT_MISMATCH_BETWEEN_TOTAL_AND_DETAILS",
+    "OPERATION_ID_REUSED",
+    "ALFA_PARSER_PARITY_MISMATCH",
+    "ALFA_IOS_METADATA_CONFLICT",
+    "ALFA_META_CROSS_LAYER",
+    # Known signatures (manual blacklist only)
+    "ALFA-KNOWN-FAKE-001",
+})
+
+KNOWN_FAKE_CODES: frozenset[str] = frozenset({
+    "ALFA-KNOWN-FAKE-001",
+})
+
+# DIAGNOSTIC — never affects verdict
+DIAGNOSTIC_CODES: frozenset[str] = frozenset({
+    "MULTIPLE_EOF_PRESENT",
+    "MULTIPLE_XREF_PRESENT",
+    "PREV_TRAILER_PRESENT",
+    "INCREMENTAL_UPDATE_PRESENT",
+    "STREAM_COMPRESSION_RATIO_OUTLIER",
+    "DECODED_STREAM_SIZE_OUTLIER",
+    "STREAM_FILTER_ANOMALY",
+    "ALFA_PRODUCER_OBSERVATION",
+    "ALFA_GENERATOR_PATH",
+    "ALFA_ORACLE_ORPHANS",
+    "ALFA_NEW_PROFILE",
+    "ALFA_SBP_TAIL_UNKNOWN",
+    "ALFA_SBP_SEPARATOR_DIGIT",
+    "ALFA_OPERATION_ID_UNKNOWN",
+    "ALFA_FONT_HASH_NEW",
+    "CMAP_BFRANGE_ANOMALY",
+    "TOUNICODE_PROFILE_SHIFT",
+    "GLYPH_COUNT_OUTLIER",
+    "TTF_HMTX_PROFILE_SHIFT",
+    "TTF_HEAD_ANOMALY",
+    "CONTENT_STREAM_PROFILE_MISMATCH",
+    "RIGHT_EDGE_ALIGNMENT_DRIFT",
+    "PDF_MODDATE_EDITED",
+})
+
+# DELETED — must not run
+DELETED_CODES: frozenset[str] = frozenset({
+    "ALFA_RENDER_STRUCTURAL_FORGERY",
+    "ALFA_RENDER_FOREIGN_ROWS",
+    "ALFA_PRODUCER_MISMATCH",
+    "FOREIGN_PRODUCER",
+    "ALFA_JASPER_CLONE",
+    "ALFA_CONTENT_SKELETON_UNKNOWN",
+    "ALFA_LAYERED_PROFILE_FORGERY",
+    "ALFA_REASSEMBLY_FORGERY",
+    "ALFA_FONT_RENDER_FORGERY",
+    "FF2_SUBSET_UNKNOWN",
+    "ALFA_SBP_ID_REFERENCE",
+    "ALFA_ID_005",  # 0-1 sec rule deleted
+})
+
+# Forensics HIGH that stay diagnostic for Alfa
+_FORENSICS_DIAGNOSTIC: frozenset[str] = frozenset({
+    "CMAP_BFRANGE_ANOMALY",
+    "TOUNICODE_PROFILE_SHIFT",
+    "GLYPH_COUNT_OUTLIER",
+    "TTF_HMTX_PROFILE_SHIFT",
+    "TTF_HEAD_ANOMALY",
+    "RIGHT_EDGE_ALIGNMENT_DRIFT",
+    "CONTENT_STREAM_PROFILE_MISMATCH",
+    "TEXT_OPERATOR_SEQUENCE_ANOMALY",
+    "FIELD_POSITION_OUT_OF_PROFILE",
+})
+
+_IOS_PRODUCER_MARKERS = ("quartz pdfcontext", "ios version")
+_ORACLE_PRODUCER_MARKERS = ("oracle bi publisher",)
+
+_OPERATION_PREFIX = {
+    "sbp": "C16",
+    "phone": "C07",
+    "card": "Z09",
+}
+
+
+def classify_code(code: str) -> str:
+    if code in DELETED_CODES:
+        return "DELETED"
+    if code in KNOWN_FAKE_CODES:
+        return "KNOWN"
+    if code in HARD_CODES:
+        return "HARD"
+    if code in DIAGNOSTIC_CODES:
+        return "DIAGNOSTIC"
+    if code in _FORENSICS_DIAGNOSTIC:
+        return "DIAGNOSTIC"
+    return "DIAGNOSTIC"
+
+
+def flag_code(flag: str) -> str:
+    m = _CODE_RE.match(flag or "")
+    return m.group(1) if m else ""

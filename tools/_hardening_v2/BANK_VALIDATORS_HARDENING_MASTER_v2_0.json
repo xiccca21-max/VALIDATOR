@@ -1,0 +1,588 @@
+{
+  "schema": {
+    "name": "bank_validators_hardening_master",
+    "version": "2.0",
+    "generated_at_utc": "2026-07-12T12:26:25.176700+00:00",
+    "scope": [
+      "VTB",
+      "SBER",
+      "OZON",
+      "GAZPROMBANK",
+      "WB",
+      "OTP",
+      "PSB",
+      "BSPB",
+      "RAIFFEISEN",
+      "ROCKET",
+      "SOVCOM",
+      "URALSIB",
+      "YANDEX"
+    ],
+    "excluded": [
+      "TBANK"
+    ],
+    "external_verdicts": [
+      "ОРИГИНАЛ",
+      "ФЕЙК",
+      "НЕИЗВЕСТНЫЙ ДОКУМЕНТ"
+    ]
+  },
+  "corpus": {
+    "VTB": {
+      "files": 15,
+      "unique_sha256": 10,
+      "producers": {
+        "openhtmltopdf.com": 15
+      },
+      "observed_statuses": {
+        "Выполнено": 15,
+        "Операция выполнена": 15
+      }
+    },
+    "SBER": {
+      "files": 22,
+      "unique_sha256": 21,
+      "producers": {
+        "iText 2.1.7 by 1T3XT": 20,
+        "iOS Version 26.5.1 (Build 23F81) Quartz PDFContext": 1,
+        "PDFium": 1
+      },
+      "observed_statuses": {}
+    },
+    "OZON": {
+      "files": 32,
+      "unique_sha256": 29,
+      "producers": {
+        "Skia/PDF m105": 32
+      },
+      "observed_statuses": {
+        "Успешно": 32
+      }
+    },
+    "GAZPROMBANK": {
+      "files": 7,
+      "unique_sha256": 6,
+      "producers": {
+        "iText® 7.1.10 ©2000-2020 iText Group NV (AGPL-version)": 4,
+        "iText 2.1.7 by 1T3XT": 3
+      },
+      "observed_statuses": {
+        "Операция выполнена": 5
+      }
+    },
+    "SPARSE9": {
+      "files": 21,
+      "unique_sha256": 15,
+      "producers": {
+        "OpenPDF 1.3.32": 6,
+        "iOS Version 26.5 (Build 23F77) Quartz PDFContext": 2,
+        "mPDF 8.3.1": 1,
+        "FastReport.NET": 4,
+        "PDFProducer": 1,
+        "": 1,
+        "iText® pdfHTML 6.2.0 (AGPL version) ©2000-2025 Apryse Group NV": 2,
+        "iText® Core 9.1.0 (AGPL version) ©2000-2025 Apryse Group NV": 1,
+        "Flying Saucer 10.0.6 with OpenPDF 3.0.0": 1,
+        "rPDF.0.9": 2
+      },
+      "observed_statuses": {
+        "Выполнено": 6,
+        "Исполнено": 5,
+        "ИСПОЛНЕНО": 5,
+        "Обработано": 1,
+        "Успешно": 2,
+        "Перевод выполнен": 1
+      }
+    }
+  },
+  "document_router": {
+    "run_before_authenticity": true,
+    "classes": [
+      "SUPPORTED_RECEIPT",
+      "SUPPORTED_OPERATION_CERTIFICATE",
+      "UNSUPPORTED_STATEMENT",
+      "UNSUPPORTED_CERTIFICATE",
+      "UNKNOWN_DOCUMENT",
+      "RECEIPT_NEW_PROFILE"
+    ],
+    "unsupported_result": "НЕИЗВЕСТНЫЙ ДОКУМЕНТ",
+    "statement_markers": [
+      "Выписка/Statement title",
+      "period",
+      "opening/closing balance",
+      "multi-transaction table",
+      "debit/credit columns",
+      "page numbering"
+    ],
+    "issuer_rule": "branding/footer/legal entity; never recipient bank"
+  },
+  "status_engine": {
+    "authenticity_independent": true,
+    "classes": {
+      "SUCCESS_FINAL": [
+        "Выполнено",
+        "Успешно",
+        "Исполнено",
+        "ИСПОЛНЕНО",
+        "Операция выполнена",
+        "Перевод выполнен",
+        "Обработано (bank/method-scoped)"
+      ],
+      "PENDING_NONFINAL": [
+        "В обработке",
+        "Обрабатывается",
+        "Выполняется",
+        "Принято в обработку",
+        "Ожидает подтверждения",
+        "На проверке"
+      ],
+      "FAILED_FINAL": [
+        "Отклонено",
+        "Отменено",
+        "Не выполнено",
+        "Ошибка",
+        "Возвращено",
+        "Отказ"
+      ],
+      "UNKNOWN_STATUS": []
+    },
+    "hard_only_if_internal_status_conflict": true
+  },
+  "global_rules": [
+    {
+      "rule_id": "G-DOC-001",
+      "layer": "Тип документа",
+      "check": "До проверки подлинности определить: чек/квитанция, поддерживаемая справка, выписка, иной документ.",
+      "false_positive_guard": "Выписка или неподдерживаемый тип → НЕИЗВЕСТНЫЙ ДОКУМЕНТ, без ОРИГИНАЛ/ФЕЙК."
+    },
+    {
+      "rule_id": "G-DOC-002",
+      "layer": "Выписка",
+      "check": "Искать заголовок «Выписка/Statement», период, остатки, многооперационную таблицу, дебет/кредит, нумерацию страниц.",
+      "false_positive_guard": "Не применять receipt-validator к выписке."
+    },
+    {
+      "rule_id": "G-DOC-003",
+      "layer": "Справка",
+      "check": "Слово «Справка» не запрещать глобально: отдельные банки выпускают поддерживаемую справку по одной операции.",
+      "false_positive_guard": "Решение только по bank-specific document contract."
+    },
+    {
+      "rule_id": "G-ROUTE-001",
+      "layer": "Эмитент",
+      "check": "Определять банк по логотипу, юридическому имени, footer/stamp, контактам и структуре.",
+      "false_positive_guard": "Банк получателя никогда не определяет эмитента."
+    },
+    {
+      "rule_id": "G-ROUTE-002",
+      "layer": "Несогласованный бренд",
+      "check": "Сравнить логотип, юрлицо, БИК/корсчёт, footer и контакты внутри одного PDF.",
+      "false_positive_guard": "Hard только при доказанной внутренней подмене."
+    },
+    {
+      "rule_id": "G-RAW-001",
+      "layer": "PDF header",
+      "check": "Ровно один однозначный header; без non-whitespace prefix и второго вложенного PDF.",
+      "false_positive_guard": "Неизвестная версия PDF сама по себе допустима."
+    },
+    {
+      "rule_id": "G-RAW-002",
+      "layer": "XRef/startxref",
+      "check": "Проверить offsets, generations, free/active flags, trailer и все ссылки.",
+      "false_positive_guard": "Hard при неоднозначности или ссылке в чужой span."
+    },
+    {
+      "rule_id": "G-RAW-003",
+      "layer": "EOF",
+      "check": "После последнего %%EOF допускается только ASCII whitespace.",
+      "false_positive_guard": "Любые данные/архив/второй файл после EOF → hard."
+    },
+    {
+      "rule_id": "G-RAW-004",
+      "layer": "Duplicate keys",
+      "check": "Искать дубли ключей до и после PDF Name #xx decoding.",
+      "false_positive_guard": "Конфликтующие effective values → hard."
+    },
+    {
+      "rule_id": "G-RAW-005",
+      "layer": "Duplicate objects",
+      "check": "Искать повторные определения, shadowing и пересекающиеся object spans.",
+      "false_positive_guard": "Hard при неоднозначной активной версии."
+    },
+    {
+      "rule_id": "G-RAW-006",
+      "layer": "Incremental revisions",
+      "check": "Разобрать все revisions и /Prev цепочку.",
+      "false_positive_guard": "Сам incremental update допустим; скрытая поздняя подмена критического объекта → hard."
+    },
+    {
+      "rule_id": "G-RAW-007",
+      "layer": "Polyglot",
+      "check": "Проверить ZIP/PE/HTML/JS и второй PDF внутри байтов.",
+      "false_positive_guard": "Polyglot или исполняемая нагрузка → hard."
+    },
+    {
+      "rule_id": "G-STR-001",
+      "layer": "Stream Length",
+      "check": "Сверить /Length с фактическими границами каждого stream.",
+      "false_positive_guard": "Boundary ambiguity или mismatch → hard."
+    },
+    {
+      "rule_id": "G-STR-002",
+      "layer": "Strict decode",
+      "check": "Строго завершать Flate/LZW/ASCII filters, проверять unused_data/trailing member.",
+      "false_positive_guard": "Лишний compressed member → hard."
+    },
+    {
+      "rule_id": "G-STR-003",
+      "layer": "Decoded budgets",
+      "check": "Ограничить decoded bytes, recursion, images, objects и glyphs.",
+      "false_positive_guard": "Превышение → ANALYSIS_NOT_COMPLETED, не «доказанная подделка»."
+    },
+    {
+      "rule_id": "G-GRAPH-001",
+      "layer": "Page Tree",
+      "check": "Вычислить effective MediaBox/CropBox/Rotate/Resources и проверить циклы.",
+      "false_positive_guard": "Неоднозначный/циклический Page Tree → hard."
+    },
+    {
+      "rule_id": "G-GRAPH-002",
+      "layer": "Reachability",
+      "check": "Построить граф достижимости от Catalog и всех исполняемых entry points.",
+      "false_positive_guard": "Обычный несемантический orphan — diagnostic."
+    },
+    {
+      "rule_id": "G-GRAPH-003",
+      "layer": "Скрытые версии операции",
+      "check": "Декодировать недостижимые content streams и искать сумму, дату, ФИО, телефон, счёт, ID, статус.",
+      "false_positive_guard": "Конфликтующая полноценная старая/новая операция в orphan stream → hard."
+    },
+    {
+      "rule_id": "G-GRAPH-004",
+      "layer": "Orphan resources",
+      "check": "Связать orphan fonts/images/forms с orphan semantic streams.",
+      "false_positive_guard": "Ресурс сам по себе не hard; связка с конфликтующей версией операции усиливает G-GRAPH-003."
+    },
+    {
+      "rule_id": "G-ACT-001",
+      "layer": "Active content",
+      "check": "Рекурсивно проверить JavaScript, Launch, EmbeddedFiles, XFA, RichMedia, SubmitForm, actions.",
+      "false_positive_guard": "Опасный active content → hard."
+    },
+    {
+      "rule_id": "G-ACT-002",
+      "layer": "Шифрование",
+      "check": "Полный анализ должен быть возможен.",
+      "false_positive_guard": "Непрозрачное шифрование → ANALYSIS_NOT_COMPLETED."
+    },
+    {
+      "rule_id": "G-AST-001",
+      "layer": "Content AST",
+      "check": "Проверить баланс BT/ET, q/Q, BDC/EMC и состояние graphics/text.",
+      "false_positive_guard": "Невосстановимое состояние или undefined resource → hard."
+    },
+    {
+      "rule_id": "G-VIS-001",
+      "layer": "Final visibility",
+      "check": "Учитывать clipping, alpha, blend, OCG, transforms, CropBox и paint order.",
+      "false_positive_guard": "Невидимая/перекрытая подмена критического поля → hard."
+    },
+    {
+      "rule_id": "G-VIS-002",
+      "layer": "Off-page content",
+      "check": "Искать критические значения за страницей/в clipping path.",
+      "false_positive_guard": "Конфликтующий off-page semantic text → hard."
+    },
+    {
+      "rule_id": "G-VIS-003",
+      "layer": "Duplicate critical values",
+      "check": "После visibility resolution у каждого реквизита должно быть одно значение.",
+      "false_positive_guard": "Два видимых/эффективных разных значения → hard."
+    },
+    {
+      "rule_id": "G-FONT-001",
+      "layer": "Mapping chain",
+      "check": "Для каждого used code восстановить code→CID→Unicode→GID→glyph.",
+      "false_positive_guard": "Разрыв цепочки в критическом поле → hard."
+    },
+    {
+      "rule_id": "G-FONT-002",
+      "layer": "ToUnicode",
+      "check": "Проверить used CID coverage и отсутствие конфликтующих mappings.",
+      "false_positive_guard": "Лишние неиспользуемые mappings допустимы."
+    },
+    {
+      "rule_id": "G-FONT-003",
+      "layer": "Widths",
+      "check": "Сверить /W, DW, hmtx/CharString width и фактические TJ/Tz/Tc.",
+      "false_positive_guard": "Несогласованность использованного glyph → hard."
+    },
+    {
+      "rule_id": "G-FONT-004",
+      "layer": "Used empty glyph",
+      "check": "Видимая буква/цифра в критическом поле должна иметь реальный contour/CharString/CharProc.",
+      "false_positive_guard": "Пробелы, NBSP и неиспользуемые пустые glyph исключить."
+    },
+    {
+      "rule_id": "G-FONT-005",
+      "layer": "Text↔render",
+      "check": "Сравнить текстовый mapping с отрисованным символом минимум двумя renderer.",
+      "false_positive_guard": "Парсер читает одно, оба renderer показывают другое/ничего → hard."
+    },
+    {
+      "rule_id": "G-FONT-006",
+      "layer": "Composite closure",
+      "check": "Проверить все компоненты composite glyph и циклы.",
+      "false_positive_guard": "Потерянный/циклический компонент used glyph → hard."
+    },
+    {
+      "rule_id": "G-FONT-007",
+      "layer": "Descriptor",
+      "check": "Сверить FontBBox, ascent/descent, Flags и фактический font program.",
+      "false_positive_guard": "Новый subset/hash не hard; внутреннее противоречие — hard."
+    },
+    {
+      "rule_id": "G-FONT-008",
+      "layer": "Confusables",
+      "check": "Выявлять bidi controls, невидимые разделители и Unicode confusables в критических полях.",
+      "false_positive_guard": "Hard только при доказанной визуальной подмене."
+    },
+    {
+      "rule_id": "G-GEO-001",
+      "layer": "Label/value binding",
+      "check": "Связать поля по baseline, колонкам, reading order и видимости.",
+      "false_positive_guard": "Нельзя извлекать значение одним regex без геометрии."
+    },
+    {
+      "rule_id": "G-GEO-002",
+      "layer": "Метрики строки",
+      "check": "End_x считать по font metrics, text matrix, CTM, TJ, Tz, Tc/Tw.",
+      "false_positive_guard": "Bbox одного парсера не является доказательством."
+    },
+    {
+      "rule_id": "G-GEO-003",
+      "layer": "Overflow/wrap",
+      "check": "Проверить выход за колонку, неправильный перенос и координату, оставленную от старого текста.",
+      "false_positive_guard": "Микроразница 0.01–0.02 pt — diagnostic до corpus regression."
+    },
+    {
+      "rule_id": "G-SEM-001",
+      "layer": "Арифметика",
+      "check": "Сумма + комиссия = итог с учётом валюты и правил округления.",
+      "false_positive_guard": "Доказанное несоответствие → hard."
+    },
+    {
+      "rule_id": "G-SEM-002",
+      "layer": "Метод и роли",
+      "check": "Поля отправителя/получателя/счёта/карты/банка должны соответствовать подметоду.",
+      "false_positive_guard": "Новое поле не hard; невозможная ролевая комбинация — hard."
+    },
+    {
+      "rule_id": "G-SEM-003",
+      "layer": "Форматы",
+      "check": "Проверить дату, телефон, маски, валюту, ID и номер документа bank/profile-aware.",
+      "false_positive_guard": "Новый формат — shadow, а не автоматический fake."
+    },
+    {
+      "rule_id": "G-TIME-001",
+      "layer": "Хронология",
+      "check": "Операция не должна происходить после CreationDate в одной временной модели.",
+      "false_positive_guard": "Учитывать UTC rollover и отсутствие metadata."
+    },
+    {
+      "rule_id": "G-ID-001",
+      "layer": "ID syntax",
+      "check": "Проверить длину, alphabet и фиксированные блоки только там, где они доказаны для банка/профиля.",
+      "false_positive_guard": "Не выдумывать checksum или связь суммы с ID."
+    },
+    {
+      "rule_id": "G-ID-002",
+      "layer": "ID timestamp",
+      "check": "Декодировать timestamp core только для подтверждённых семейств.",
+      "false_positive_guard": "Расхождение сверх bank-specific tolerance → hard."
+    },
+    {
+      "rule_id": "G-STATUS-001",
+      "layer": "Нормализация",
+      "check": "Разделить статус подлинности документа и статус банковской операции.",
+      "false_positive_guard": "Оригинальный чек может быть pending/failed."
+    },
+    {
+      "rule_id": "G-STATUS-002",
+      "layer": "Противоречие статусов",
+      "check": "Сравнить поле статуса, stamp/footer и текст подтверждения.",
+      "false_positive_guard": "«Отклонено» + «Операция выполнена» внутри одного PDF → hard."
+    },
+    {
+      "rule_id": "G-STATUS-003",
+      "layer": "Предупреждение",
+      "check": "Pending/failed/unknown status выводить отдельным предупреждением пользователю.",
+      "false_positive_guard": "Не превращать pending в fake."
+    },
+    {
+      "rule_id": "G-PARITY-001",
+      "layer": "Два parser",
+      "check": "Сравнить нормализованные критические поля минимум двумя независимыми parser.",
+      "false_positive_guard": "Расхождение требует raw-разбора."
+    },
+    {
+      "rule_id": "G-PARITY-002",
+      "layer": "Два renderer",
+      "check": "Сравнить смысл отрисованных полей минимум двумя renderer.",
+      "false_positive_guard": "Не использовать render rows и pixel-strip scoring."
+    },
+    {
+      "rule_id": "G-CROSS-001",
+      "layer": "ID conflict",
+      "check": "Один и тот же ID/RRN/document number с разными критическими реквизитами → hard.",
+      "false_positive_guard": "Exact duplicate той же операции допустим."
+    },
+    {
+      "rule_id": "G-EVID-001",
+      "layer": "Evidence",
+      "check": "Каждый hard-verdict: rule_id, object/stream, offset/operator, expected, actual, raw bytes и cross-check.",
+      "false_positive_guard": "Без воспроизводимого evidence hard-правило не принимается."
+    },
+    {
+      "rule_id": "G-CI-001",
+      "layer": "Regression/shadow",
+      "check": "Все подтверждённые originals должны оставаться originals; новые профили сначала shadow.",
+      "false_positive_guard": "Диагностики не суммируются автоматически в fake."
+    }
+  ],
+  "bank_contracts": [
+    {
+      "bank": "ВТБ",
+      "submethods": "Исходящий СБП; СБП с сообщением; перевод на карту; телефон клиенту ВТБ",
+      "observed_success_status": "«Выполнено» + footer «Операция выполнена» в текущем corpus",
+      "hardening": "Проверять согласованность пары статус/footer; openhtmltopdf font chain; Form XObject logo; method-specific fields; minute-level дата + SBP timestamp.",
+      "false_positive_guard": "Не банить новый подметод, новый bank recipient, 1–7 секунд metadata delay или unseen glyph."
+    },
+    {
+      "bank": "СберБанк",
+      "submethods": "Карта→другой банк; клиент Сбера по телефону→карта/счёт; legacy phone; исходящий СБП; запрос СБП",
+      "observed_success_status": "Во многих профилях явного поля статуса нет; подтверждение задаётся stamp/формой документа",
+      "hardening": "Разделять 6 подметодов и 3 generator paths; проверять stamp/auth/document/SBP ID только по своему профилю.",
+      "false_positive_guard": "Не требовать слово «Успешно»; не путать PDFium/Quartz/Jasper; выписку маршрутизировать как unsupported."
+    },
+    {
+      "bank": "Ozon Банк",
+      "submethods": "Внутренний телефон out/in; СБП out/in; карта другого банка",
+      "observed_success_status": "«Успешно» во всех 32 corpus files",
+      "hardening": "Проверять direction-specific account/party fields, сумму/комиссию/итог, 32-char SBP или po-UUID, Chromium Tagged PDF.",
+      "false_positive_guard": "Новый Ozon profile/QR/page height не fake сам по себе."
+    },
+    {
+      "bank": "Газпромбанк",
+      "submethods": "СБП по телефону; перевод по карте; current iText7; legacy Jasper PDF/A",
+      "observed_success_status": "Current: «Операция выполнена»; legacy может не иметь явного статуса",
+      "hardening": "Сначала issuer routing: два Sber receipts в архиве не являются GPB; поддерживать оба generator paths.",
+      "false_positive_guard": "Не требовать iText7 от legacy PDF/A; отсутствие явного статуса в legacy не fake."
+    },
+    {
+      "bank": "ВБ Банк",
+      "submethods": "Перевод по СБП",
+      "observed_success_status": "«Выполнено» + stamp «ИСПОЛНЕНО»",
+      "hardening": "Добавить hard G-GRAPH-003: конфликтующие latent transaction streams; согласованность amount/date/status/stamp/SBP ID.",
+      "false_positive_guard": "Один original слишком мал для вечного whitelist; новый SBP ID или object count не fake."
+    },
+    {
+      "bank": "ОТП Банк",
+      "submethods": "СБП; перевод на карту другого банка",
+      "observed_success_status": "СБП: «Исполнено/ИСПОЛНЕНО»; карта: «Обработано»",
+      "hardening": "Разделять Quartz и mPDF paths; «Обработано» считать success только для card method.",
+      "false_positive_guard": "Не переносить слово «Обработано» на другие банки/методы."
+    },
+    {
+      "bank": "ПСБ",
+      "submethods": "СБП",
+      "observed_success_status": "Явный статус в corpus отсутствует",
+      "hardening": "Проверять «Чек по операции», сумма+комиссия=итого, карту/счёт списания, 32-char SBP ID, FastReport font/render parity.",
+      "false_positive_guard": "Не требовать status label и не считать его отсутствие fake."
+    },
+    {
+      "bank": "БСПБ",
+      "submethods": "СБП",
+      "observed_success_status": "«Успешно» + «Перевод выполнен»",
+      "hardening": "Проверять согласованность двух success-маркеров, сумму/комиссию, ID и счёт.",
+      "false_positive_guard": "Новый producer/opaque metadata не fake."
+    },
+    {
+      "bank": "Райффайзенбанк",
+      "submethods": "Legacy «Справка по операции»; current квитанция СБП",
+      "observed_success_status": "Current: «Исполнено/ИСПОЛНЕНО»; legacy — текст подтверждения",
+      "hardening": "Слово «Справка» здесь может быть поддерживаемым single-operation document; различать legacy/current.",
+      "false_positive_guard": "Не применять глобальный запрет на «Справка»."
+    },
+    {
+      "bank": "Рокетбанк",
+      "submethods": "Исходящий СБП",
+      "observed_success_status": "«Успешно»",
+      "hardening": "Поддерживать iText Core 9.1.0 и большое число CFF subsets; проверить glyph/render, roles, arithmetic.",
+      "false_positive_guard": "26 font subsets не anomaly."
+    },
+    {
+      "bank": "Совкомбанк",
+      "submethods": "Перевод по номеру карты",
+      "observed_success_status": "Явный status в corpus отсутствует",
+      "hardening": "Проверять «ПЛАТЕЖНАЯ КВИТАНЦИЯ», сумму/комиссию/итог, карту/счёт, реквизиты банка.",
+      "false_positive_guard": "Не требовать SBP ID или explicit status."
+    },
+    {
+      "bank": "Уралсиб",
+      "submethods": "СБП",
+      "observed_success_status": "Явный status в corpus отсутствует",
+      "hardening": "Поддерживать rPDF 0.9 и full Arial; проверить квитанцию, amount/fee/total, SBP ID, parties.",
+      "false_positive_guard": "Полное встраивание Arial не fake."
+    },
+    {
+      "bank": "Яндекс Банк",
+      "submethods": "Исходящий СБП",
+      "observed_success_status": "«Выполнено»",
+      "hardening": "Проверять Исх. №, дату документа и операции, status, parties, SBP ID, Jasper/OpenPDF chain.",
+      "false_positive_guard": "Exact duplicates допустимы; новый subset/object graph не fake."
+    }
+  ],
+  "suspect_audit": {
+    "wb": {
+      "file": "вайлдберриз сбп.pdf",
+      "sha256": "72731fc616acef5e3268ecb112eac86cf0b4bf500ce9b4602de36bdea13afe3d",
+      "verdict": "ФЕЙК",
+      "decisive_rule": "G-GRAPH-003",
+      "evidence": {
+        "active_contents_object": 21,
+        "unreachable_semantic_objects": [
+          6,
+          18
+        ],
+        "supporting_orphan_resources": [
+          19,
+          20
+        ],
+        "latent_conflicts": [
+          "amount 9.90 ₽ vs 9 900 ₽",
+          "receipt number/footer removed across rebuild stages"
+        ]
+      }
+    },
+    "vtb": {
+      "file": "втб сбп.pdf",
+      "sha256": "0f6562768c2c26d2bb3c568819cd7fdbe2e22083c3ff677d15f84b2cd3bf4db9",
+      "standalone_pdf_verdict": "ОРИГИНАЛ",
+      "fake_not_proven": true,
+      "reason": "No reproducible intrinsic hard contradiction found; profile matches VTB originals.",
+      "diagnostics_only": [
+        "same-bank destination under outgoing SBP title",
+        "1-second creation delay"
+      ]
+    }
+  },
+  "rollout": {
+    "overlay_existing_v1": true,
+    "priority": "v2.0 wins on conflict",
+    "all_originals_regression_required": true,
+    "shadow_new_profiles": true,
+    "diagnostics_do_not_sum_to_fake": true,
+    "self_trained_blacklist_forbidden": true
+  }
+}

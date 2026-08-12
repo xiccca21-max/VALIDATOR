@@ -1,0 +1,44 @@
+{
+  "version": "bank_spec_2026_06",
+  "key": "rocket",
+  "name": "Рокетбанк",
+  "folder": "рокетбанк",
+  "sample_count": 1,
+  "native_producers": [
+    "itext"
+  ],
+  "required_fonts": [
+    "RocketSans"
+  ],
+  "object_count": [
+    170,
+    190
+  ],
+  "content_decoded_global": null,
+  "channels": {
+    "sbp": {
+      "samples": [
+        "рокетбанк сбп.pdf"
+      ],
+      "content_decoded": null
+    }
+  },
+  "skeleton_hashes": {
+    "sbp": [
+      "d234bc6a59f9ae35"
+    ]
+  },
+  "skeleton_hashes_global": [
+    "d234bc6a59f9ae35"
+  ],
+  "sbp_cipher": true,
+  "require_content_stream": false,
+  "date_prefer_first_line": false,
+  "reject_jasper_clone": true,
+  "ignore_openaction": false,
+  "required_fonts_any": false,
+  "allow_empty_producer": false,
+  "image_based": false,
+  "fontfile2_profile": false,
+  "excluded": []
+}

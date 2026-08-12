@@ -1,0 +1,2425 @@
+{
+  "schema": "sber-v2-atlas",
+  "version": "1.0.0",
+  "corpus_root": "C:\\Users\\fanis\\OneDrive\\Desktop\\чеки\\сбер",
+  "pdf_count": 22,
+  "profile_counts": {
+    "sber_internal_jasper": 5,
+    "sbp_outgoing": 13,
+    "sbp_request": 1,
+    "card_other_ios": 1,
+    "sber_internal_pdfium": 1,
+    "legacy_phone": 1
+  },
+  "profiles": {
+    "sber_internal_jasper": {
+      "count": 5,
+      "label": "Перевод клиенту СберБанка",
+      "generator_paths": {
+        "jasper_itext": 5
+      },
+      "producers": [
+        "iText 2.1.7 by 1T3XT"
+      ],
+      "content_skeletons": [
+        "19611a1f43f6aaa4",
+        "26d0414e32c5680c",
+        "3eef07db3bcc51a0",
+        "edeeddc4e02e640c"
+      ],
+      "page_sizes": [
+        [
+          300.0,
+          699.0
+        ]
+      ],
+      "fontfile2_sha16": [
+        "0bbb387029d72195",
+        "2e55187c5c4f2a76",
+        "9852c2f6d0c17fb1"
+      ],
+      "image_sha16": [
+        "655e8751887c8502",
+        "d6a206f58c985dcd",
+        "d71bb8520ac84529"
+      ],
+      "sbp_markers": [],
+      "sbp_tail_prefix4": [],
+      "stream_role_histograms": [
+        {
+          "image_jpeg": 1,
+          "other": 3,
+          "page_content": 1,
+          "tounicode": 1
+        }
+      ],
+      "files": [
+        "0004_1000000003898697264.pdf",
+        "0004_1000000004357295779.pdf",
+        "0004_1000000005107630683.pdf",
+        "0004_1000000005125763060.pdf",
+        "сбер по номеру телефона на сбер.pdf"
+      ]
+    },
+    "sbp_outgoing": {
+      "count": 13,
+      "label": "Перевод по СБП",
+      "generator_paths": {
+        "jasper_itext": 13
+      },
+      "producers": [
+        "iText 2.1.7 by 1T3XT"
+      ],
+      "content_skeletons": [
+        "049e897dfbd028d6",
+        "0dada88492839afc",
+        "4a828bd3628faf20",
+        "866cd81f4fa31279",
+        "8934e8673322f090",
+        "e631b81cab83544b",
+        "e9f17fb368534d63"
+      ],
+      "page_sizes": [
+        [
+          300.0,
+          795.0
+        ]
+      ],
+      "fontfile2_sha16": [
+        "16f0643fa4acad95",
+        "1df6f9fb4407c432",
+        "1fad5e8bd422cb23",
+        "2070f378988d6ea9",
+        "2b00b17e2f8f359e",
+        "38d90e7040fb3bca",
+        "8304327b072ee2c4",
+        "8b2313c2b2fc6b4c",
+        "ac9613c2a0786d05",
+        "b9e5c25830589093",
+        "c125a6009549de95",
+        "d846405ea6621a99"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_markers": [
+        "A",
+        "B"
+      ],
+      "sbp_tail_prefix4": [
+        "0290",
+        "0640",
+        "1800",
+        "2650",
+        "3470",
+        "4130",
+        "4780",
+        "6091",
+        "6380",
+        "8211",
+        "8241",
+        "9642",
+        "9732"
+      ],
+      "stream_role_histograms": [
+        {
+          "other": 5,
+          "page_content": 1,
+          "tounicode": 1
+        }
+      ],
+      "files": [
+        "receipt (1).pdf",
+        "receipt (10).pdf",
+        "receipt (2).pdf",
+        "receipt (3).pdf",
+        "receipt (4).pdf",
+        "receipt (5).pdf",
+        "receipt (6).pdf",
+        "receipt (7).pdf",
+        "receipt (8).pdf",
+        "receipt.pdf",
+        "сбербанк сбп.pdf",
+        "сбербанк сбп3.pdf",
+        "сбербанк сбп4.pdf"
+      ]
+    },
+    "sbp_request": {
+      "count": 1,
+      "label": "Перевод по запросу СБП",
+      "generator_paths": {
+        "jasper_itext": 1
+      },
+      "producers": [
+        "iText 2.1.7 by 1T3XT"
+      ],
+      "content_skeletons": [
+        "4501ca654abeccde"
+      ],
+      "page_sizes": [
+        [
+          300.0,
+          740.0
+        ]
+      ],
+      "fontfile2_sha16": [
+        "4a0c292eb77d49c3"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_markers": [
+        "B"
+      ],
+      "sbp_tail_prefix4": [
+        "9021"
+      ],
+      "stream_role_histograms": [
+        {
+          "other": 5,
+          "page_content": 1,
+          "tounicode": 1
+        }
+      ],
+      "files": [
+        "receipt (9).pdf"
+      ]
+    },
+    "card_other_ios": {
+      "count": 1,
+      "label": "Перевод в другой банк по номеру карты",
+      "generator_paths": {
+        "ios_quartz": 1
+      },
+      "producers": [
+        "iOS Version 26.5.1 (Build 23F81) Quartz PDFContext"
+      ],
+      "content_skeletons": [
+        "9b6645c6af765ce7"
+      ],
+      "page_sizes": [
+        [
+          335.0,
+          913.0
+        ]
+      ],
+      "fontfile2_sha16": [
+        "297b72ec2120804b"
+      ],
+      "image_sha16": [
+        "5b1207df193b82f9",
+        "5f89eb187204aed8"
+      ],
+      "sbp_markers": [],
+      "sbp_tail_prefix4": [],
+      "stream_role_histograms": [
+        {
+          "other": 6,
+          "page_content": 1,
+          "tounicode": 1
+        }
+      ],
+      "files": [
+        "сбер по карте в другой банк.pdf"
+      ]
+    },
+    "sber_internal_pdfium": {
+      "count": 1,
+      "label": "Перевод клиенту СберБанка (PDFium)",
+      "generator_paths": {
+        "pdfium": 1
+      },
+      "producers": [
+        "PDFium"
+      ],
+      "content_skeletons": [
+        "b4a2a164ff462545"
+      ],
+      "page_sizes": [
+        [
+          300.0,
+          699.0
+        ]
+      ],
+      "fontfile2_sha16": [
+        "189e668b9a67d2c2"
+      ],
+      "image_sha16": [
+        "655e8751887c8502",
+        "d6a206f58c985dcd",
+        "d71bb8520ac84529"
+      ],
+      "sbp_markers": [],
+      "sbp_tail_prefix4": [],
+      "stream_role_histograms": [
+        {
+          "image_jpeg": 1,
+          "other": 4,
+          "page_content": 1,
+          "tounicode": 1
+        }
+      ],
+      "files": [
+        "сбер по номеру на сбер.pdf"
+      ]
+    },
+    "legacy_phone": {
+      "count": 1,
+      "label": "Перевод по номеру телефона (legacy)",
+      "generator_paths": {
+        "jasper_itext": 1
+      },
+      "producers": [
+        "iText 2.1.7 by 1T3XT"
+      ],
+      "content_skeletons": [
+        "e345359fb496e8a9"
+      ],
+      "page_sizes": [
+        [
+          300.0,
+          636.0
+        ]
+      ],
+      "fontfile2_sha16": [
+        "b05a3b86e929a4d1"
+      ],
+      "image_sha16": [
+        "202038c27044aa32",
+        "9920959be8ebce44",
+        "d6a206f58c985dcd",
+        "d71bb8520ac84529"
+      ],
+      "sbp_markers": [],
+      "sbp_tail_prefix4": [],
+      "stream_role_histograms": [
+        {
+          "other": 5,
+          "page_content": 1,
+          "tounicode": 1
+        }
+      ],
+      "files": [
+        "сбер сбп.pdf"
+      ]
+    }
+  },
+  "sbp_empirical": {
+    "combinations": [
+      {
+        "marker": "A",
+        "tail_prefix4": "0640",
+        "tail_suffix4": "0901",
+        "file": "receipt (1).pdf",
+        "profile_id": "sbp_outgoing"
+      },
+      {
+        "marker": "B",
+        "tail_prefix4": "6091",
+        "tail_suffix4": "1101",
+        "file": "receipt (10).pdf",
+        "profile_id": "sbp_outgoing"
+      },
+      {
+        "marker": "A",
+        "tail_prefix4": "2650",
+        "tail_suffix4": "0703",
+        "file": "receipt (2).pdf",
+        "profile_id": "sbp_outgoing"
+      },
+      {
+        "marker": "A",
+        "tail_prefix4": "3470",
+        "tail_suffix4": "0301",
+        "file": "receipt (3).pdf",
+        "profile_id": "sbp_outgoing"
+      },
+      {
+        "marker": "A",
+        "tail_prefix4": "4130",
+        "tail_suffix4": "0902",
+        "file": "receipt (4).pdf",
+        "profile_id": "sbp_outgoing"
+      },
+      {
+        "marker": "B",
+        "tail_prefix4": "6380",
+        "tail_suffix4": "0501",
+        "file": "receipt (5).pdf",
+        "profile_id": "sbp_outgoing"
+      },
+      {
+        "marker": "B",
+        "tail_prefix4": "1800",
+        "tail_suffix4": "0501",
+        "file": "receipt (6).pdf",
+        "profile_id": "sbp_outgoing"
+      },
+      {
+        "marker": "B",
+        "tail_prefix4": "9642",
+        "tail_suffix4": "0501",
+        "file": "receipt (7).pdf",
+        "profile_id": "sbp_outgoing"
+      },
+      {
+        "marker": "B",
+        "tail_prefix4": "9732",
+        "tail_suffix4": "0501",
+        "file": "receipt (8).pdf",
+        "profile_id": "sbp_outgoing"
+      },
+      {
+        "marker": "B",
+        "tail_prefix4": "9021",
+        "tail_suffix4": "0301",
+        "file": "receipt (9).pdf",
+        "profile_id": "sbp_request"
+      },
+      {
+        "marker": "A",
+        "tail_prefix4": "8211",
+        "tail_suffix4": "0502",
+        "file": "receipt.pdf",
+        "profile_id": "sbp_outgoing"
+      },
+      {
+        "marker": "A",
+        "tail_prefix4": "0290",
+        "tail_suffix4": "0901",
+        "file": "сбербанк сбп.pdf",
+        "profile_id": "sbp_outgoing"
+      },
+      {
+        "marker": "A",
+        "tail_prefix4": "8241",
+        "tail_suffix4": "0901",
+        "file": "сбербанк сбп3.pdf",
+        "profile_id": "sbp_outgoing"
+      },
+      {
+        "marker": "A",
+        "tail_prefix4": "8241",
+        "tail_suffix4": "0901",
+        "file": "сбербанк сбп4.pdf",
+        "profile_id": "sbp_outgoing"
+      },
+      {
+        "marker": "A",
+        "tail_prefix4": "4780",
+        "tail_suffix4": "0501",
+        "file": "Документ-2026-01-27-015936.pdf",
+        "profile_id": "sbp_outgoing"
+      }
+    ],
+    "markers": [
+      "A",
+      "B"
+    ],
+    "tail_prefix4": [
+      "0290",
+      "0640",
+      "1800",
+      "2650",
+      "3470",
+      "4130",
+      "4780",
+      "6091",
+      "6380",
+      "8211",
+      "8241",
+      "9021",
+      "9642",
+      "9732"
+    ]
+  },
+  "files": [
+    {
+      "file": "0004_1000000003898697264.pdf",
+      "file_sha256": "efbe9162da2354dc0918ae6d8824f311ef6479bdc27c799e308b2ec50fae6bed",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P2",
+      "profile_id": "sber_internal_jasper",
+      "profile_label": "Перевод клиенту СберБанка",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        699.0
+      ],
+      "object_count": 16,
+      "content_skeleton": "3eef07db3bcc51a0",
+      "content_len": 4662,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 2198,
+          "decoded_len": 47232,
+          "compressed_sha256": "4814e08ee53d750d",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 2721,
+          "decoded_len": 141696,
+          "compressed_sha256": "1d9162216c097d8b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "image_jpeg",
+          "compressed_len": 10328,
+          "decoded_len": 0,
+          "compressed_sha256": "655e8751887c8502",
+          "zlib_header": "ffd8"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 932,
+          "decoded_len": 4662,
+          "compressed_sha256": "d85565b7af0efe38",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 24695,
+          "decoded_len": 55136,
+          "compressed_sha256": "762313de5965400c",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 574,
+          "decoded_len": 1474,
+          "compressed_sha256": "58deea55370621b6",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "2e55187c5c4f2a76"
+      ],
+      "image_sha16": [
+        "655e8751887c8502",
+        "d6a206f58c985dcd",
+        "d71bb8520ac84529"
+      ],
+      "sbp_opid": null,
+      "sbp_slots": null,
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Деньги может вернуть только получатель"
+        ]
+      }
+    },
+    {
+      "file": "0004_1000000004357295779.pdf",
+      "file_sha256": "ad8c3960ae8e165b6e1b79106b97b11b6a2120dc71143e2d763762c8e3abfdd3",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P2",
+      "profile_id": "sber_internal_jasper",
+      "profile_label": "Перевод клиенту СберБанка",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        699.0
+      ],
+      "object_count": 16,
+      "content_skeleton": "19611a1f43f6aaa4",
+      "content_len": 4645,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 2198,
+          "decoded_len": 47232,
+          "compressed_sha256": "4814e08ee53d750d",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 2721,
+          "decoded_len": 141696,
+          "compressed_sha256": "1d9162216c097d8b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "image_jpeg",
+          "compressed_len": 10328,
+          "decoded_len": 0,
+          "compressed_sha256": "655e8751887c8502",
+          "zlib_header": "ffd8"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 924,
+          "decoded_len": 4645,
+          "compressed_sha256": "182a621c508911b0",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 24695,
+          "decoded_len": 55136,
+          "compressed_sha256": "762313de5965400c",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 574,
+          "decoded_len": 1474,
+          "compressed_sha256": "58deea55370621b6",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "2e55187c5c4f2a76"
+      ],
+      "image_sha16": [
+        "655e8751887c8502",
+        "d6a206f58c985dcd",
+        "d71bb8520ac84529"
+      ],
+      "sbp_opid": null,
+      "sbp_slots": null,
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Деньги может вернуть только получатель"
+        ]
+      }
+    },
+    {
+      "file": "0004_1000000005107630683.pdf",
+      "file_sha256": "da00aa158234368e72e946fc7dff08755831444def378382344f9f416c71aa01",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P2",
+      "profile_id": "sber_internal_jasper",
+      "profile_label": "Перевод клиенту СберБанка",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        699.0
+      ],
+      "object_count": 16,
+      "content_skeleton": "26d0414e32c5680c",
+      "content_len": 4641,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 2198,
+          "decoded_len": 47232,
+          "compressed_sha256": "4814e08ee53d750d",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 2721,
+          "decoded_len": 141696,
+          "compressed_sha256": "1d9162216c097d8b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "image_jpeg",
+          "compressed_len": 10328,
+          "decoded_len": 0,
+          "compressed_sha256": "655e8751887c8502",
+          "zlib_header": "ffd8"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 917,
+          "decoded_len": 4641,
+          "compressed_sha256": "d802dd599bd0cbd9",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 25383,
+          "decoded_len": 56064,
+          "compressed_sha256": "3f386587c338043d",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 586,
+          "decoded_len": 1512,
+          "compressed_sha256": "f876fc88d9ff15e6",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "0bbb387029d72195"
+      ],
+      "image_sha16": [
+        "655e8751887c8502",
+        "d6a206f58c985dcd",
+        "d71bb8520ac84529"
+      ],
+      "sbp_opid": null,
+      "sbp_slots": null,
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Деньги может вернуть только получатель"
+        ]
+      }
+    },
+    {
+      "file": "0004_1000000005125763060.pdf",
+      "file_sha256": "fa8fbecd9013b4a6c87080e56df9a4018d9cf0fec2ed97a9acd3fe03742e36c2",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P2",
+      "profile_id": "sber_internal_jasper",
+      "profile_label": "Перевод клиенту СберБанка",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        699.0
+      ],
+      "object_count": 16,
+      "content_skeleton": "26d0414e32c5680c",
+      "content_len": 4642,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 2198,
+          "decoded_len": 47232,
+          "compressed_sha256": "4814e08ee53d750d",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 2721,
+          "decoded_len": 141696,
+          "compressed_sha256": "1d9162216c097d8b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "image_jpeg",
+          "compressed_len": 10328,
+          "decoded_len": 0,
+          "compressed_sha256": "655e8751887c8502",
+          "zlib_header": "ffd8"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 920,
+          "decoded_len": 4642,
+          "compressed_sha256": "72f203b17bf6fe1b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 24695,
+          "decoded_len": 55136,
+          "compressed_sha256": "762313de5965400c",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 574,
+          "decoded_len": 1474,
+          "compressed_sha256": "58deea55370621b6",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "2e55187c5c4f2a76"
+      ],
+      "image_sha16": [
+        "655e8751887c8502",
+        "d6a206f58c985dcd",
+        "d71bb8520ac84529"
+      ],
+      "sbp_opid": null,
+      "sbp_slots": null,
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Деньги может вернуть только получатель"
+        ]
+      }
+    },
+    {
+      "file": "receipt (1).pdf",
+      "file_sha256": "2eaaafb3e75e0c444dcae259fd8d275634d98fa108921e01fe10b74da22d95d6",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P5",
+      "profile_id": "sbp_outgoing",
+      "profile_label": "Перевод по СБП",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        795.0
+      ],
+      "object_count": 17,
+      "content_skeleton": "4a828bd3628faf20",
+      "content_len": 3565,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 6321,
+          "decoded_len": 33744,
+          "compressed_sha256": "7e116470be508f7b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 58680,
+          "decoded_len": 101232,
+          "compressed_sha256": "96ab4600d33305dc",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 5874,
+          "decoded_len": 115843,
+          "compressed_sha256": "7e5c1c25d391a7e3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 4303,
+          "decoded_len": 347529,
+          "compressed_sha256": "a0d87ce4127d8fb4",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 725,
+          "decoded_len": 3565,
+          "compressed_sha256": "f06b5e1362d835e9",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 23186,
+          "decoded_len": 52688,
+          "compressed_sha256": "e9ebb3bf9b4fa76b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 546,
+          "decoded_len": 1360,
+          "compressed_sha256": "1336ea3ec0d2d805",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "2070f378988d6ea9"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_opid": "A6150192917064050B10060011770901",
+      "sbp_slots": {
+        "marker": "A",
+        "core": "6150192917",
+        "tail": "064050B10060011770901",
+        "tail_prefix4": "0640",
+        "tail_suffix4": "0901"
+      },
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Банк получателя",
+          "Номер операции в СБП"
+        ]
+      }
+    },
+    {
+      "file": "receipt (10).pdf",
+      "file_sha256": "30ca08d466dcb9b9f551d7c7e31c64a1478b04d0b02a88a66f8d1dacdd6bd39f",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P5",
+      "profile_id": "sbp_outgoing",
+      "profile_label": "Перевод по СБП",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        795.0
+      ],
+      "object_count": 17,
+      "content_skeleton": "0dada88492839afc",
+      "content_len": 3574,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 6321,
+          "decoded_len": 33744,
+          "compressed_sha256": "7e116470be508f7b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 58680,
+          "decoded_len": 101232,
+          "compressed_sha256": "96ab4600d33305dc",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 5874,
+          "decoded_len": 115843,
+          "compressed_sha256": "7e5c1c25d391a7e3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 4303,
+          "decoded_len": 347529,
+          "compressed_sha256": "a0d87ce4127d8fb4",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 727,
+          "decoded_len": 3574,
+          "compressed_sha256": "2841733c1a63014a",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 23258,
+          "decoded_len": 52872,
+          "compressed_sha256": "dc34e5b66fcd528c",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 538,
+          "decoded_len": 1341,
+          "compressed_sha256": "31b61cb2ce5b9ae2",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "1fad5e8bd422cb23"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_opid": "B5355111949609100000140011661101",
+      "sbp_slots": {
+        "marker": "B",
+        "core": "5355111949",
+        "tail": "609100000140011661101",
+        "tail_prefix4": "6091",
+        "tail_suffix4": "1101"
+      },
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Банк получателя",
+          "Номер операции в СБП"
+        ]
+      }
+    },
+    {
+      "file": "receipt (2).pdf",
+      "file_sha256": "f2aad093199799c0bd635a18a6806639b3a2beb6ea09ff47bc4c397b3a7c5546",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P5",
+      "profile_id": "sbp_outgoing",
+      "profile_label": "Перевод по СБП",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        795.0
+      ],
+      "object_count": 17,
+      "content_skeleton": "4a828bd3628faf20",
+      "content_len": 3583,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 6321,
+          "decoded_len": 33744,
+          "compressed_sha256": "7e116470be508f7b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 58680,
+          "decoded_len": 101232,
+          "compressed_sha256": "96ab4600d33305dc",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 5874,
+          "decoded_len": 115843,
+          "compressed_sha256": "7e5c1c25d391a7e3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 4303,
+          "decoded_len": 347529,
+          "compressed_sha256": "a0d87ce4127d8fb4",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 726,
+          "decoded_len": 3583,
+          "compressed_sha256": "6151a914dd75ed7c",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 23965,
+          "decoded_len": 53912,
+          "compressed_sha256": "dd937cdbf304ba75",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 568,
+          "decoded_len": 1436,
+          "compressed_sha256": "e0045efab4ad74db",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "38d90e7040fb3bca"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_opid": "A61261550202650O0B10200011750703",
+      "sbp_slots": {
+        "marker": "A",
+        "core": "6126155020",
+        "tail": "2650O0B10200011750703",
+        "tail_prefix4": "2650",
+        "tail_suffix4": "0703"
+      },
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Банк получателя",
+          "Номер операции в СБП"
+        ]
+      }
+    },
+    {
+      "file": "receipt (3).pdf",
+      "file_sha256": "05972be144fd3ab6ccd60fed609b41aa40cbdef616abe1bbe3cfc49f6abf7195",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P5",
+      "profile_id": "sbp_outgoing",
+      "profile_label": "Перевод по СБП",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        795.0
+      ],
+      "object_count": 17,
+      "content_skeleton": "049e897dfbd028d6",
+      "content_len": 3572,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 6321,
+          "decoded_len": 33744,
+          "compressed_sha256": "7e116470be508f7b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 58680,
+          "decoded_len": 101232,
+          "compressed_sha256": "96ab4600d33305dc",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 5874,
+          "decoded_len": 115843,
+          "compressed_sha256": "7e5c1c25d391a7e3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 4303,
+          "decoded_len": 347529,
+          "compressed_sha256": "a0d87ce4127d8fb4",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 733,
+          "decoded_len": 3572,
+          "compressed_sha256": "7de562191b470968",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 23482,
+          "decoded_len": 53256,
+          "compressed_sha256": "0a660bb023412bc6",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 551,
+          "decoded_len": 1379,
+          "compressed_sha256": "7df2883b98eb7bd7",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "d846405ea6621a99"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_opid": "A61171128023470R0B10060011750301",
+      "sbp_slots": {
+        "marker": "A",
+        "core": "6117112802",
+        "tail": "3470R0B10060011750301",
+        "tail_prefix4": "3470",
+        "tail_suffix4": "0301"
+      },
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Банк получателя",
+          "Номер операции в СБП"
+        ]
+      }
+    },
+    {
+      "file": "receipt (4).pdf",
+      "file_sha256": "5dc12ce38a463e05eb45e099f96cd0c4d09bc8ec77db8189ade36be8eb84a4ce",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P5",
+      "profile_id": "sbp_outgoing",
+      "profile_label": "Перевод по СБП",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        795.0
+      ],
+      "object_count": 17,
+      "content_skeleton": "049e897dfbd028d6",
+      "content_len": 3568,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 6321,
+          "decoded_len": 33744,
+          "compressed_sha256": "7e116470be508f7b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 58680,
+          "decoded_len": 101232,
+          "compressed_sha256": "96ab4600d33305dc",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 5874,
+          "decoded_len": 115843,
+          "compressed_sha256": "7e5c1c25d391a7e3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 4303,
+          "decoded_len": 347529,
+          "compressed_sha256": "a0d87ce4127d8fb4",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 726,
+          "decoded_len": 3568,
+          "compressed_sha256": "86893a051c046f7a",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 23287,
+          "decoded_len": 52996,
+          "compressed_sha256": "2a5647fdcc37eeb7",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 557,
+          "decoded_len": 1398,
+          "compressed_sha256": "2a24dec4c7cce9f2",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "c125a6009549de95"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_opid": "A60910346004130E0G10040011730902",
+      "sbp_slots": {
+        "marker": "A",
+        "core": "6091034600",
+        "tail": "4130E0G10040011730902",
+        "tail_prefix4": "4130",
+        "tail_suffix4": "0902"
+      },
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Банк получателя",
+          "Номер операции в СБП"
+        ]
+      }
+    },
+    {
+      "file": "receipt (5).pdf",
+      "file_sha256": "7244220ba1bd8b6facc58a7d8b86f3e6b26105dd411b84722f58e7dc68a2cf98",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P5",
+      "profile_id": "sbp_outgoing",
+      "profile_label": "Перевод по СБП",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        795.0
+      ],
+      "object_count": 17,
+      "content_skeleton": "8934e8673322f090",
+      "content_len": 3564,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 6321,
+          "decoded_len": 33744,
+          "compressed_sha256": "7e116470be508f7b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 58680,
+          "decoded_len": 101232,
+          "compressed_sha256": "96ab4600d33305dc",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 5874,
+          "decoded_len": 115843,
+          "compressed_sha256": "7e5c1c25d391a7e3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 4303,
+          "decoded_len": 347529,
+          "compressed_sha256": "a0d87ce4127d8fb4",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 728,
+          "decoded_len": 3564,
+          "compressed_sha256": "fb8b57f48b87ba45",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 23231,
+          "decoded_len": 52976,
+          "compressed_sha256": "c5bf1ba303086a11",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 557,
+          "decoded_len": 1398,
+          "compressed_sha256": "c7aa601759ecd0a0",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "ac9613c2a0786d05"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_opid": "B60801956096380H0G10180011720501",
+      "sbp_slots": {
+        "marker": "B",
+        "core": "6080195609",
+        "tail": "6380H0G10180011720501",
+        "tail_prefix4": "6380",
+        "tail_suffix4": "0501"
+      },
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Банк получателя",
+          "Номер операции в СБП"
+        ]
+      }
+    },
+    {
+      "file": "receipt (6).pdf",
+      "file_sha256": "7097a3fba3633a0a8e6d82c565b6bdf686e044d57344048f7232bbafc42b3671",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P5",
+      "profile_id": "sbp_outgoing",
+      "profile_label": "Перевод по СБП",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        795.0
+      ],
+      "object_count": 17,
+      "content_skeleton": "8934e8673322f090",
+      "content_len": 3577,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 6321,
+          "decoded_len": 33744,
+          "compressed_sha256": "7e116470be508f7b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 58680,
+          "decoded_len": 101232,
+          "compressed_sha256": "96ab4600d33305dc",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 5874,
+          "decoded_len": 115843,
+          "compressed_sha256": "7e5c1c25d391a7e3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 4303,
+          "decoded_len": 347529,
+          "compressed_sha256": "a0d87ce4127d8fb4",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 722,
+          "decoded_len": 3577,
+          "compressed_sha256": "b626d06a3c82567e",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 22998,
+          "decoded_len": 52396,
+          "compressed_sha256": "bebb925887ff4f1c",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 535,
+          "decoded_len": 1322,
+          "compressed_sha256": "60297c25c0b91cd4",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "8b2313c2b2fc6b4c"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_opid": "B6080121638180080G10120011720501",
+      "sbp_slots": {
+        "marker": "B",
+        "core": "6080121638",
+        "tail": "180080G10120011720501",
+        "tail_prefix4": "1800",
+        "tail_suffix4": "0501"
+      },
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Банк получателя",
+          "Номер операции в СБП"
+        ]
+      }
+    },
+    {
+      "file": "receipt (7).pdf",
+      "file_sha256": "f88d6e6563a1f80fc96eff1acd835046ca6e0a76fc244892063858cf2217f9a9",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P5",
+      "profile_id": "sbp_outgoing",
+      "profile_label": "Перевод по СБП",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        795.0
+      ],
+      "object_count": 17,
+      "content_skeleton": "8934e8673322f090",
+      "content_len": 3574,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 6321,
+          "decoded_len": 33744,
+          "compressed_sha256": "7e116470be508f7b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 58680,
+          "decoded_len": 101232,
+          "compressed_sha256": "96ab4600d33305dc",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 5874,
+          "decoded_len": 115843,
+          "compressed_sha256": "7e5c1c25d391a7e3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 4303,
+          "decoded_len": 347529,
+          "compressed_sha256": "a0d87ce4127d8fb4",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 726,
+          "decoded_len": 3574,
+          "compressed_sha256": "67502654f13b4444",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 22897,
+          "decoded_len": 52340,
+          "compressed_sha256": "8a6f834507eb101f",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 545,
+          "decoded_len": 1360,
+          "compressed_sha256": "c4e0df085b5adfb6",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "2b00b17e2f8f359e"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_opid": "B60721350499642T0B10160011700501",
+      "sbp_slots": {
+        "marker": "B",
+        "core": "6072135049",
+        "tail": "9642T0B10160011700501",
+        "tail_prefix4": "9642",
+        "tail_suffix4": "0501"
+      },
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Банк получателя",
+          "Номер операции в СБП"
+        ]
+      }
+    },
+    {
+      "file": "receipt (8).pdf",
+      "file_sha256": "aad7f91b5dce4e607e49fc62ebbfac55aeacff5e31db9f82df6fd0c4b26bd097",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P5",
+      "profile_id": "sbp_outgoing",
+      "profile_label": "Перевод по СБП",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        795.0
+      ],
+      "object_count": 17,
+      "content_skeleton": "e631b81cab83544b",
+      "content_len": 3577,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 6321,
+          "decoded_len": 33744,
+          "compressed_sha256": "7e116470be508f7b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 58680,
+          "decoded_len": 101232,
+          "compressed_sha256": "96ab4600d33305dc",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 5874,
+          "decoded_len": 115843,
+          "compressed_sha256": "7e5c1c25d391a7e3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 4303,
+          "decoded_len": 347529,
+          "compressed_sha256": "a0d87ce4127d8fb4",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 723,
+          "decoded_len": 3577,
+          "compressed_sha256": "fcb3032021ad09d2",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 23647,
+          "decoded_len": 53472,
+          "compressed_sha256": "71e62bc005eb574f",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 558,
+          "decoded_len": 1398,
+          "compressed_sha256": "0e4394fc68c89a16",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "b9e5c25830589093"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_opid": "B6053112613973230000110011700501",
+      "sbp_slots": {
+        "marker": "B",
+        "core": "6053112613",
+        "tail": "973230000110011700501",
+        "tail_prefix4": "9732",
+        "tail_suffix4": "0501"
+      },
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Банк получателя",
+          "Номер операции в СБП"
+        ]
+      }
+    },
+    {
+      "file": "receipt (9).pdf",
+      "file_sha256": "705cfcf21b55eba1789e9dcd52456c221aa8dbbbe1a0dd522e8b6763f28dcd88",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P6",
+      "profile_id": "sbp_request",
+      "profile_label": "Перевод по запросу СБП",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        740.0
+      ],
+      "object_count": 17,
+      "content_skeleton": "4501ca654abeccde",
+      "content_len": 3240,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 6321,
+          "decoded_len": 33744,
+          "compressed_sha256": "7e116470be508f7b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 58680,
+          "decoded_len": 101232,
+          "compressed_sha256": "96ab4600d33305dc",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 5874,
+          "decoded_len": 115843,
+          "compressed_sha256": "7e5c1c25d391a7e3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 4303,
+          "decoded_len": 347529,
+          "compressed_sha256": "a0d87ce4127d8fb4",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 696,
+          "decoded_len": 3240,
+          "compressed_sha256": "212e8fd88af695f3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 22744,
+          "decoded_len": 51944,
+          "compressed_sha256": "6659a04fa34b9477",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 534,
+          "decoded_len": 1322,
+          "compressed_sha256": "b516e63c2cf4f8fb",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "4a0c292eb77d49c3"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_opid": "B60011134509021A0000130011670301",
+      "sbp_slots": {
+        "marker": "B",
+        "core": "6001113450",
+        "tail": "9021A0000130011670301",
+        "tail_prefix4": "9021",
+        "tail_suffix4": "0301"
+      },
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Номер операции в СБП"
+        ]
+      }
+    },
+    {
+      "file": "receipt.pdf",
+      "file_sha256": "1281fd1f0519a2acc43b3f136507755837777b469638dbe4048ed78d4b4c5803",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P5",
+      "profile_id": "sbp_outgoing",
+      "profile_label": "Перевод по СБП",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        795.0
+      ],
+      "object_count": 17,
+      "content_skeleton": "866cd81f4fa31279",
+      "content_len": 3574,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 6321,
+          "decoded_len": 33744,
+          "compressed_sha256": "7e116470be508f7b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 58680,
+          "decoded_len": 101232,
+          "compressed_sha256": "96ab4600d33305dc",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 5874,
+          "decoded_len": 115843,
+          "compressed_sha256": "7e5c1c25d391a7e3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 4303,
+          "decoded_len": 347529,
+          "compressed_sha256": "a0d87ce4127d8fb4",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 707,
+          "decoded_len": 3574,
+          "compressed_sha256": "72c661387695f5c3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 22910,
+          "decoded_len": 52452,
+          "compressed_sha256": "4dc7c3448dad19b9",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 541,
+          "decoded_len": 1341,
+          "compressed_sha256": "5b76c4c97f23aefb",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "8304327b072ee2c4"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_opid": "A6172180605821190B10070011790502",
+      "sbp_slots": {
+        "marker": "A",
+        "core": "6172180605",
+        "tail": "821190B10070011790502",
+        "tail_prefix4": "8211",
+        "tail_suffix4": "0502"
+      },
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Банк получателя",
+          "Номер операции в СБП"
+        ]
+      }
+    },
+    {
+      "file": "сбер по карте в другой банк.pdf",
+      "file_sha256": "7f357e9618241e8821a86cd02c4f3e121c5e31ef4993502f2d5cb1b1ed371935",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P1",
+      "profile_id": "card_other_ios",
+      "profile_label": "Перевод в другой банк по номеру карты",
+      "producer": "iOS Version 26.5.1 (Build 23F81) Quartz PDFContext",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "ios_quartz",
+      "page_size": [
+        335.0,
+        913.0
+      ],
+      "object_count": 18,
+      "content_skeleton": "9b6645c6af765ce7",
+      "content_len": 6413,
+      "stream_roles": [
+        {
+          "role": "page_content",
+          "compressed_len": 921,
+          "decoded_len": 6413,
+          "compressed_sha256": "768c417ebf89542f",
+          "zlib_header": "7801"
+        },
+        {
+          "role": "other",
+          "compressed_len": 1281,
+          "decoded_len": 9438,
+          "compressed_sha256": "d2194870bedf4cf0",
+          "zlib_header": "7801"
+        },
+        {
+          "role": "other",
+          "compressed_len": 2279,
+          "decoded_len": 40260,
+          "compressed_sha256": "51620a3bf60c3ff7",
+          "zlib_header": "7801"
+        },
+        {
+          "role": "other",
+          "compressed_len": 873,
+          "decoded_len": 3146,
+          "compressed_sha256": "e69503045d2dc520",
+          "zlib_header": "7801"
+        },
+        {
+          "role": "other",
+          "compressed_len": 1538,
+          "decoded_len": 13420,
+          "compressed_sha256": "b24c10cbcadf9d95",
+          "zlib_header": "7801"
+        },
+        {
+          "role": "other",
+          "compressed_len": 2612,
+          "decoded_len": 3144,
+          "compressed_sha256": "80e79ecf6f2fbcc7",
+          "zlib_header": "7801"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 409,
+          "decoded_len": 807,
+          "compressed_sha256": "7adaa33efd95df7b",
+          "zlib_header": "7801"
+        },
+        {
+          "role": "other",
+          "compressed_len": 25449,
+          "decoded_len": 54292,
+          "compressed_sha256": "968854863b4a79cc",
+          "zlib_header": "7801"
+        }
+      ],
+      "fontfile2_sha16": [
+        "297b72ec2120804b"
+      ],
+      "image_sha16": [
+        "5b1207df193b82f9",
+        "5f89eb187204aed8"
+      ],
+      "sbp_opid": null,
+      "sbp_slots": null,
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сколько",
+          "Списано",
+          "Комиссия"
+        ]
+      }
+    },
+    {
+      "file": "сбер по номеру на сбер.pdf",
+      "file_sha256": "d0fe173d4cdcd709714e453ea0c5afaf7044968785a3313f1bdfd0c2b4dbf131",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P3",
+      "profile_id": "sber_internal_pdfium",
+      "profile_label": "Перевод клиенту СберБанка (PDFium)",
+      "producer": "PDFium",
+      "creator": "PDFium",
+      "generator_path": "pdfium",
+      "page_size": [
+        300.0,
+        699.0
+      ],
+      "object_count": 14,
+      "content_skeleton": "b4a2a164ff462545",
+      "content_len": 4638,
+      "stream_roles": [
+        {
+          "role": "page_content",
+          "compressed_len": 913,
+          "decoded_len": 4638,
+          "compressed_sha256": "5344c17898a4f749",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 25101,
+          "decoded_len": 55788,
+          "compressed_sha256": "91d120f05f949c1c",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 585,
+          "decoded_len": 1512,
+          "compressed_sha256": "9b9e7527e5a742c9",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 2198,
+          "decoded_len": 47232,
+          "compressed_sha256": "4814e08ee53d750d",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 2721,
+          "decoded_len": 141696,
+          "compressed_sha256": "1d9162216c097d8b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "image_jpeg",
+          "compressed_len": 10328,
+          "decoded_len": 0,
+          "compressed_sha256": "655e8751887c8502",
+          "zlib_header": "ffd8"
+        },
+        {
+          "role": "other",
+          "compressed_len": 8,
+          "decoded_len": 0,
+          "compressed_sha256": "aca503def43dc086",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "189e668b9a67d2c2"
+      ],
+      "image_sha16": [
+        "655e8751887c8502",
+        "d6a206f58c985dcd",
+        "d71bb8520ac84529"
+      ],
+      "sbp_opid": null,
+      "sbp_slots": null,
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Деньги может вернуть только получатель"
+        ]
+      }
+    },
+    {
+      "file": "сбер по номеру телефона на сбер.pdf",
+      "file_sha256": "bfcf63ccb122e7aedc5b166b06c6a4f1c115b91e6d245b5dd16a16c90c87487e",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P2",
+      "profile_id": "sber_internal_jasper",
+      "profile_label": "Перевод клиенту СберБанка",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        699.0
+      ],
+      "object_count": 16,
+      "content_skeleton": "edeeddc4e02e640c",
+      "content_len": 4649,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 2198,
+          "decoded_len": 47232,
+          "compressed_sha256": "4814e08ee53d750d",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 2721,
+          "decoded_len": 141696,
+          "compressed_sha256": "1d9162216c097d8b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "image_jpeg",
+          "compressed_len": 10328,
+          "decoded_len": 0,
+          "compressed_sha256": "655e8751887c8502",
+          "zlib_header": "ffd8"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 921,
+          "decoded_len": 4649,
+          "compressed_sha256": "99a5157cf1148f36",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 24944,
+          "decoded_len": 55476,
+          "compressed_sha256": "70e397c9f769afc1",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 582,
+          "decoded_len": 1493,
+          "compressed_sha256": "aada337002b2b6c4",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "9852c2f6d0c17fb1"
+      ],
+      "image_sha16": [
+        "655e8751887c8502",
+        "d6a206f58c985dcd",
+        "d71bb8520ac84529"
+      ],
+      "sbp_opid": null,
+      "sbp_slots": null,
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Деньги может вернуть только получатель"
+        ]
+      }
+    },
+    {
+      "file": "сбер сбп.pdf",
+      "file_sha256": "491ed42c712f0717abeb854cce8bc24c2faa3f11ed2649fc8df47b41df94c895",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P4",
+      "profile_id": "legacy_phone",
+      "profile_label": "Перевод по номеру телефона (legacy)",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        636.0
+      ],
+      "object_count": 17,
+      "content_skeleton": "e345359fb496e8a9",
+      "content_len": 3251,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 2198,
+          "decoded_len": 47232,
+          "compressed_sha256": "4814e08ee53d750d",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 2721,
+          "decoded_len": 141696,
+          "compressed_sha256": "1d9162216c097d8b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 1466,
+          "decoded_len": 16864,
+          "compressed_sha256": "d167ecb0c12aaedf",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 2069,
+          "decoded_len": 50592,
+          "compressed_sha256": "afe01dc697eaf708",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 716,
+          "decoded_len": 3251,
+          "compressed_sha256": "5d8d44b3c2753467",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 23514,
+          "decoded_len": 53136,
+          "compressed_sha256": "a220a4748f70a684",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 558,
+          "decoded_len": 1417,
+          "compressed_sha256": "f91949d3d2ac706a",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "b05a3b86e929a4d1"
+      ],
+      "image_sha16": [
+        "202038c27044aa32",
+        "9920959be8ebce44",
+        "d6a206f58c985dcd",
+        "d71bb8520ac84529"
+      ],
+      "sbp_opid": null,
+      "sbp_slots": null,
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Получатель",
+          "Банк получателя",
+          "Сколько",
+          "Комиссия"
+        ]
+      }
+    },
+    {
+      "file": "сбербанк сбп.pdf",
+      "file_sha256": "7266151c6fa439a3ec5465248057e27f3d4abcd138079932a6ce0f8c562de34e",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P5",
+      "profile_id": "sbp_outgoing",
+      "profile_label": "Перевод по СБП",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        795.0
+      ],
+      "object_count": 17,
+      "content_skeleton": "866cd81f4fa31279",
+      "content_len": 3558,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 6321,
+          "decoded_len": 33744,
+          "compressed_sha256": "7e116470be508f7b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 58680,
+          "decoded_len": 101232,
+          "compressed_sha256": "96ab4600d33305dc",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 5874,
+          "decoded_len": 115843,
+          "compressed_sha256": "7e5c1c25d391a7e3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 4303,
+          "decoded_len": 347529,
+          "compressed_sha256": "a0d87ce4127d8fb4",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 721,
+          "decoded_len": 3558,
+          "compressed_sha256": "39fec4d45cca4800",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 23047,
+          "decoded_len": 52456,
+          "compressed_sha256": "282da4560cfe8ede",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 539,
+          "decoded_len": 1341,
+          "compressed_sha256": "d274f3005398c1f3",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "1df6f9fb4407c432"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_opid": "A6154094453029020G10030011770901",
+      "sbp_slots": {
+        "marker": "A",
+        "core": "6154094453",
+        "tail": "029020G10030011770901",
+        "tail_prefix4": "0290",
+        "tail_suffix4": "0901"
+      },
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Банк получателя",
+          "Номер операции в СБП"
+        ]
+      }
+    },
+    {
+      "file": "сбербанк сбп3.pdf",
+      "file_sha256": "e172cc38cf4f6be1c4f34bf8aaaeb73d7aa62f0b7aa7562294244cb99b4ce4fc",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P5",
+      "profile_id": "sbp_outgoing",
+      "profile_label": "Перевод по СБП",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        795.0
+      ],
+      "object_count": 17,
+      "content_skeleton": "4a828bd3628faf20",
+      "content_len": 3559,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 6321,
+          "decoded_len": 33744,
+          "compressed_sha256": "7e116470be508f7b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 58680,
+          "decoded_len": 101232,
+          "compressed_sha256": "96ab4600d33305dc",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 5874,
+          "decoded_len": 115843,
+          "compressed_sha256": "7e5c1c25d391a7e3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 4303,
+          "decoded_len": 347529,
+          "compressed_sha256": "a0d87ce4127d8fb4",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 722,
+          "decoded_len": 3559,
+          "compressed_sha256": "de11b5911c0dafef",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 22855,
+          "decoded_len": 52272,
+          "compressed_sha256": "63d6a008a85ad180",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 539,
+          "decoded_len": 1341,
+          "compressed_sha256": "92870f0752647199",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "16f0643fa4acad95"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_opid": "A6151041455824170B10030011770901",
+      "sbp_slots": {
+        "marker": "A",
+        "core": "6151041455",
+        "tail": "824170B10030011770901",
+        "tail_prefix4": "8241",
+        "tail_suffix4": "0901"
+      },
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Банк получателя",
+          "Номер операции в СБП"
+        ]
+      }
+    },
+    {
+      "file": "сбербанк сбп4.pdf",
+      "file_sha256": "e172cc38cf4f6be1c4f34bf8aaaeb73d7aa62f0b7aa7562294244cb99b4ce4fc",
+      "is_sber": true,
+      "legacy_submethod": "SBR-P5",
+      "profile_id": "sbp_outgoing",
+      "profile_label": "Перевод по СБП",
+      "producer": "iText 2.1.7 by 1T3XT",
+      "creator": "JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611",
+      "generator_path": "jasper_itext",
+      "page_size": [
+        300.0,
+        795.0
+      ],
+      "object_count": 17,
+      "content_skeleton": "4a828bd3628faf20",
+      "content_len": 3559,
+      "stream_roles": [
+        {
+          "role": "other",
+          "compressed_len": 6321,
+          "decoded_len": 33744,
+          "compressed_sha256": "7e116470be508f7b",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 58680,
+          "decoded_len": 101232,
+          "compressed_sha256": "96ab4600d33305dc",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 5874,
+          "decoded_len": 115843,
+          "compressed_sha256": "7e5c1c25d391a7e3",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 4303,
+          "decoded_len": 347529,
+          "compressed_sha256": "a0d87ce4127d8fb4",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "page_content",
+          "compressed_len": 722,
+          "decoded_len": 3559,
+          "compressed_sha256": "de11b5911c0dafef",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "other",
+          "compressed_len": 22855,
+          "decoded_len": 52272,
+          "compressed_sha256": "63d6a008a85ad180",
+          "zlib_header": "789c"
+        },
+        {
+          "role": "tounicode",
+          "compressed_len": 539,
+          "decoded_len": 1341,
+          "compressed_sha256": "92870f0752647199",
+          "zlib_header": "789c"
+        }
+      ],
+      "fontfile2_sha16": [
+        "16f0643fa4acad95"
+      ],
+      "image_sha16": [
+        "02b77a9f55299a52",
+        "6163fbdc8c569df1",
+        "8e50d3157e0c2339",
+        "c010814b6f4adb6b"
+      ],
+      "sbp_opid": "A6151041455824170B10030011770901",
+      "sbp_slots": {
+        "marker": "A",
+        "core": "6151041455",
+        "tail": "824170B10030011770901",
+        "tail_prefix4": "8241",
+        "tail_suffix4": "0901"
+      },
+      "geometry_anchors": {
+        "label_order_stub": [
+          "Сумма перевода",
+          "Комиссия",
+          "Банк получателя",
+          "Номер операции в СБП"
+        ]
+      }
+    }
+  ],
+  "notes": [
+    "static image/font hashes are diagnostics only — never solo HARD",
+    "unknown coherent profile must yield НЕИЗВЕСТНЫЙ ДОКУМЕНТ, not ФЕЙК",
+    "sber_internal_pdfium is a legitimate Sber profile"
+  ]
+}

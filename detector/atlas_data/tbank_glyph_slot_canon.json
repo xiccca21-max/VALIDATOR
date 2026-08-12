@@ -1,0 +1,1332 @@
+{
+  "version": "1.0.0",
+  "rule_id": "A-FONT-GLYPH-SLOT-TRANSPLANT-001",
+  "corpus_dir": "C:\\Users\\fanis\\OneDrive\\Desktop\\чеки\\т банк",
+  "corpus_samples": 128,
+  "fonts": {
+    "F1": {
+      "0061": {
+        "unicode": "a",
+        "gid": 117,
+        "outline_norm_hash": "85aeb34854b7",
+        "hmtx_advanceWidth": 476,
+        "hmtx_lsb": 38,
+        "glyph_xMin": 38,
+        "glyph_xMax": 409,
+        "corpus_n": 128
+      },
+      "0062": {
+        "unicode": "b",
+        "gid": 128,
+        "outline_norm_hash": "f7dd0df10015",
+        "hmtx_advanceWidth": 518,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 480,
+        "corpus_n": 128
+      },
+      "0066": {
+        "unicode": "f",
+        "gid": 147,
+        "outline_norm_hash": "d77aeb3c4181",
+        "hmtx_advanceWidth": 278,
+        "hmtx_lsb": 15,
+        "glyph_xMin": 15,
+        "glyph_xMax": 253,
+        "corpus_n": 128
+      },
+      "006B": {
+        "unicode": "k",
+        "gid": 164,
+        "outline_norm_hash": "9238b10b4fd4",
+        "hmtx_advanceWidth": 454,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 449,
+        "corpus_n": 128
+      },
+      "006E": {
+        "unicode": "n",
+        "gid": 172,
+        "outline_norm_hash": "94cde4206e65",
+        "hmtx_advanceWidth": 490,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 430,
+        "corpus_n": 128
+      },
+      "0072": {
+        "unicode": "r",
+        "gid": 191,
+        "outline_norm_hash": "7fd7fa4a42e6",
+        "hmtx_advanceWidth": 325,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 308,
+        "corpus_n": 128
+      },
+      "0074": {
+        "unicode": "t",
+        "gid": 201,
+        "outline_norm_hash": "09d963e4e2e9",
+        "hmtx_advanceWidth": 278,
+        "hmtx_lsb": 15,
+        "glyph_xMin": 15,
+        "glyph_xMax": 253,
+        "corpus_n": 128
+      },
+      "0075": {
+        "unicode": "u",
+        "gid": 206,
+        "outline_norm_hash": "612eba6e4495",
+        "hmtx_advanceWidth": 485,
+        "hmtx_lsb": 60,
+        "glyph_xMin": 60,
+        "glyph_xMax": 418,
+        "corpus_n": 128
+      },
+      "0415": {
+        "unicode": "Е",
+        "gid": 240,
+        "outline_norm_hash": "a6cc37aa9133",
+        "hmtx_advanceWidth": 530,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 473,
+        "corpus_n": 17
+      },
+      "041A": {
+        "unicode": "К",
+        "gid": 246,
+        "outline_norm_hash": "ce6a64f3b16d",
+        "hmtx_advanceWidth": 559,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 551,
+        "corpus_n": 128
+      },
+      "041D": {
+        "unicode": "Н",
+        "gid": 249,
+        "outline_norm_hash": "ffa25a6b0369",
+        "hmtx_advanceWidth": 649,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 562,
+        "corpus_n": 24
+      },
+      "041E": {
+        "unicode": "О",
+        "gid": 250,
+        "outline_norm_hash": "214423736107",
+        "hmtx_advanceWidth": 633,
+        "hmtx_lsb": 48,
+        "glyph_xMin": 48,
+        "glyph_xMax": 585,
+        "corpus_n": 128
+      },
+      "041F": {
+        "unicode": "П",
+        "gid": 251,
+        "outline_norm_hash": "0f7f7f125ee6",
+        "hmtx_advanceWidth": 630,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 543,
+        "corpus_n": 128
+      },
+      "0421": {
+        "unicode": "С",
+        "gid": 253,
+        "outline_norm_hash": "5cbee9d4ec01",
+        "hmtx_advanceWidth": 580,
+        "hmtx_lsb": 48,
+        "glyph_xMin": 48,
+        "glyph_xMax": 543,
+        "corpus_n": 128
+      },
+      "0423": {
+        "unicode": "У",
+        "gid": 255,
+        "outline_norm_hash": "0aec53bad5b7",
+        "hmtx_advanceWidth": 552,
+        "hmtx_lsb": 23,
+        "glyph_xMin": 23,
+        "glyph_xMax": 534,
+        "corpus_n": 128
+      },
+      "0430": {
+        "unicode": "а",
+        "gid": 268,
+        "outline_norm_hash": "e51d543201a2",
+        "hmtx_advanceWidth": 476,
+        "hmtx_lsb": 38,
+        "glyph_xMin": 38,
+        "glyph_xMax": 409,
+        "corpus_n": 128
+      },
+      "0431": {
+        "unicode": "б",
+        "gid": 269,
+        "outline_norm_hash": "888f57d013df",
+        "hmtx_advanceWidth": 502,
+        "hmtx_lsb": 40,
+        "glyph_xMin": 40,
+        "glyph_xMax": 464,
+        "corpus_n": 128
+      },
+      "0432": {
+        "unicode": "в",
+        "gid": 270,
+        "outline_norm_hash": "1516ad35d9b5",
+        "hmtx_advanceWidth": 490,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 448,
+        "corpus_n": 128
+      },
+      "0433": {
+        "unicode": "г",
+        "gid": 271,
+        "outline_norm_hash": "52cb4b7c634c",
+        "hmtx_advanceWidth": 365,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 359,
+        "corpus_n": 20
+      },
+      "0434": {
+        "unicode": "д",
+        "gid": 272,
+        "outline_norm_hash": "1b0b1c8496ea",
+        "hmtx_advanceWidth": 496,
+        "hmtx_lsb": 5,
+        "glyph_xMin": 5,
+        "glyph_xMax": 476,
+        "corpus_n": 128
+      },
+      "0435": {
+        "unicode": "е",
+        "gid": 273,
+        "outline_norm_hash": "f4b1c2a55d1f",
+        "hmtx_advanceWidth": 481,
+        "hmtx_lsb": 38,
+        "glyph_xMin": 38,
+        "glyph_xMax": 435,
+        "corpus_n": 128
+      },
+      "0436": {
+        "unicode": "ж",
+        "gid": 275,
+        "outline_norm_hash": "8c9ec1e14825",
+        "hmtx_advanceWidth": 629,
+        "hmtx_lsb": -1,
+        "glyph_xMin": -1,
+        "glyph_xMax": 629,
+        "corpus_n": 128
+      },
+      "0437": {
+        "unicode": "з",
+        "gid": 276,
+        "outline_norm_hash": "f84a1307be76",
+        "hmtx_advanceWidth": 446,
+        "hmtx_lsb": 29,
+        "glyph_xMin": 29,
+        "glyph_xMax": 414,
+        "corpus_n": 128
+      },
+      "0438": {
+        "unicode": "и",
+        "gid": 277,
+        "outline_norm_hash": "5f9809dedb0b",
+        "hmtx_advanceWidth": 515,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 448,
+        "corpus_n": 128
+      },
+      "0439": {
+        "unicode": "й",
+        "gid": 278,
+        "outline_norm_hash": "efe98b5f0d68",
+        "hmtx_advanceWidth": 515,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 448,
+        "corpus_n": 128
+      },
+      "043A": {
+        "unicode": "к",
+        "gid": 279,
+        "outline_norm_hash": "4d7a60c6f488",
+        "hmtx_advanceWidth": 454,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 449,
+        "corpus_n": 128
+      },
+      "043B": {
+        "unicode": "л",
+        "gid": 280,
+        "outline_norm_hash": "06acf5edf4fc",
+        "hmtx_advanceWidth": 484,
+        "hmtx_lsb": 15,
+        "glyph_xMin": 15,
+        "glyph_xMax": 417,
+        "corpus_n": 128
+      },
+      "043C": {
+        "unicode": "м",
+        "gid": 281,
+        "outline_norm_hash": "8e6633f18b1a",
+        "hmtx_advanceWidth": 650,
+        "hmtx_lsb": 45,
+        "glyph_xMin": 45,
+        "glyph_xMax": 605,
+        "corpus_n": 128
+      },
+      "043D": {
+        "unicode": "н",
+        "gid": 282,
+        "outline_norm_hash": "f2a89fbf9fe5",
+        "hmtx_advanceWidth": 514,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 447,
+        "corpus_n": 128
+      },
+      "043E": {
+        "unicode": "о",
+        "gid": 283,
+        "outline_norm_hash": "f6c5f44569f9",
+        "hmtx_advanceWidth": 500,
+        "hmtx_lsb": 38,
+        "glyph_xMin": 38,
+        "glyph_xMax": 462,
+        "corpus_n": 128
+      },
+      "043F": {
+        "unicode": "п",
+        "gid": 284,
+        "outline_norm_hash": "9ff1658c58f1",
+        "hmtx_advanceWidth": 499,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 432,
+        "corpus_n": 128
+      },
+      "0440": {
+        "unicode": "р",
+        "gid": 285,
+        "outline_norm_hash": "99f9173ee6f5",
+        "hmtx_advanceWidth": 522,
+        "hmtx_lsb": 70,
+        "glyph_xMin": 70,
+        "glyph_xMax": 483,
+        "corpus_n": 128
+      },
+      "0441": {
+        "unicode": "с",
+        "gid": 286,
+        "outline_norm_hash": "7316b68762b3",
+        "hmtx_advanceWidth": 470,
+        "hmtx_lsb": 39,
+        "glyph_xMin": 39,
+        "glyph_xMax": 435,
+        "corpus_n": 128
+      },
+      "0442": {
+        "unicode": "т",
+        "gid": 287,
+        "outline_norm_hash": "eb9428a09fb1",
+        "hmtx_advanceWidth": 403,
+        "hmtx_lsb": 10,
+        "glyph_xMin": 10,
+        "glyph_xMax": 393,
+        "corpus_n": 128
+      },
+      "0443": {
+        "unicode": "у",
+        "gid": 288,
+        "outline_norm_hash": "1b92b61460a7",
+        "hmtx_advanceWidth": 428,
+        "hmtx_lsb": 8,
+        "glyph_xMin": 8,
+        "glyph_xMax": 420,
+        "corpus_n": 128
+      },
+      "0447": {
+        "unicode": "ч",
+        "gid": 291,
+        "outline_norm_hash": "a6f9fed8d961",
+        "hmtx_advanceWidth": 455,
+        "hmtx_lsb": 29,
+        "glyph_xMin": 29,
+        "glyph_xMax": 388,
+        "corpus_n": 128
+      },
+      "0446": {
+        "unicode": "ц",
+        "gid": 292,
+        "outline_norm_hash": "77a02eaccc34",
+        "hmtx_advanceWidth": 518,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 498,
+        "corpus_n": 128
+      },
+      "0448": {
+        "unicode": "ш",
+        "gid": 293,
+        "outline_norm_hash": "6dacaae4ff31",
+        "hmtx_advanceWidth": 699,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 632,
+        "corpus_n": 128
+      },
+      "0449": {
+        "unicode": "щ",
+        "gid": 294,
+        "outline_norm_hash": "399cdbd65d49",
+        "hmtx_advanceWidth": 710,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 690,
+        "corpus_n": 128
+      },
+      "044C": {
+        "unicode": "ь",
+        "gid": 295,
+        "outline_norm_hash": "dced843a0be4",
+        "hmtx_advanceWidth": 461,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 427,
+        "corpus_n": 128
+      },
+      "044E": {
+        "unicode": "ю",
+        "gid": 299,
+        "outline_norm_hash": "a9dd97e5b7d4",
+        "hmtx_advanceWidth": 672,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 634,
+        "corpus_n": 128
+      },
+      "044F": {
+        "unicode": "я",
+        "gid": 300,
+        "outline_norm_hash": "68caf5ec7ab2",
+        "hmtx_advanceWidth": 467,
+        "hmtx_lsb": 12,
+        "glyph_xMin": 12,
+        "glyph_xMax": 400,
+        "corpus_n": 128
+      },
+      "0030": {
+        "unicode": "0",
+        "gid": 305,
+        "outline_norm_hash": "aea24641647f",
+        "hmtx_advanceWidth": 503,
+        "hmtx_lsb": 45,
+        "glyph_xMin": 45,
+        "glyph_xMax": 458,
+        "corpus_n": 128
+      },
+      "0031": {
+        "unicode": "1",
+        "gid": 306,
+        "outline_norm_hash": "40297be0b22e",
+        "hmtx_advanceWidth": 520,
+        "hmtx_lsb": 81,
+        "glyph_xMin": 81,
+        "glyph_xMax": 472,
+        "corpus_n": 128
+      },
+      "0032": {
+        "unicode": "2",
+        "gid": 307,
+        "outline_norm_hash": "8229c79434e9",
+        "hmtx_advanceWidth": 520,
+        "hmtx_lsb": 63,
+        "glyph_xMin": 63,
+        "glyph_xMax": 463,
+        "corpus_n": 128
+      },
+      "0033": {
+        "unicode": "3",
+        "gid": 308,
+        "outline_norm_hash": "385b8f387b86",
+        "hmtx_advanceWidth": 520,
+        "hmtx_lsb": 65,
+        "glyph_xMin": 65,
+        "glyph_xMax": 460,
+        "corpus_n": 128
+      },
+      "0034": {
+        "unicode": "4",
+        "gid": 309,
+        "outline_norm_hash": "985437e23ee9",
+        "hmtx_advanceWidth": 520,
+        "hmtx_lsb": 26,
+        "glyph_xMin": 26,
+        "glyph_xMax": 496,
+        "corpus_n": 123
+      },
+      "0035": {
+        "unicode": "5",
+        "gid": 310,
+        "outline_norm_hash": "444a810c2514",
+        "hmtx_advanceWidth": 520,
+        "hmtx_lsb": 64,
+        "glyph_xMin": 64,
+        "glyph_xMax": 457,
+        "corpus_n": 122
+      },
+      "0036": {
+        "unicode": "6",
+        "gid": 311,
+        "outline_norm_hash": "775d96d6be22",
+        "hmtx_advanceWidth": 520,
+        "hmtx_lsb": 48,
+        "glyph_xMin": 48,
+        "glyph_xMax": 462,
+        "corpus_n": 128
+      },
+      "0037": {
+        "unicode": "7",
+        "gid": 312,
+        "outline_norm_hash": "75919267423e",
+        "hmtx_advanceWidth": 520,
+        "hmtx_lsb": 54,
+        "glyph_xMin": 54,
+        "glyph_xMax": 470,
+        "corpus_n": 116
+      },
+      "0038": {
+        "unicode": "8",
+        "gid": 313,
+        "outline_norm_hash": "39d8594fea42",
+        "hmtx_advanceWidth": 520,
+        "hmtx_lsb": 44,
+        "glyph_xMin": 44,
+        "glyph_xMax": 476,
+        "corpus_n": 108
+      },
+      "0039": {
+        "unicode": "9",
+        "gid": 314,
+        "outline_norm_hash": "a3e04fc78c5a",
+        "hmtx_advanceWidth": 520,
+        "hmtx_lsb": 48,
+        "glyph_xMin": 48,
+        "glyph_xMax": 462,
+        "corpus_n": 126
+      },
+      "002E": {
+        "unicode": ".",
+        "gid": 342,
+        "outline_norm_hash": "deb704f5dbf0",
+        "hmtx_advanceWidth": 265,
+        "hmtx_lsb": 75,
+        "glyph_xMin": 75,
+        "glyph_xMax": 190,
+        "corpus_n": 128
+      },
+      "003A": {
+        "unicode": ":",
+        "gid": 344,
+        "outline_norm_hash": "34f39135aa26",
+        "hmtx_advanceWidth": 265,
+        "hmtx_lsb": 75,
+        "glyph_xMin": 75,
+        "glyph_xMax": 190,
+        "corpus_n": 128
+      },
+      "002A": {
+        "unicode": "*",
+        "gid": 353,
+        "outline_norm_hash": "45547c4fbd4d",
+        "hmtx_advanceWidth": 419,
+        "hmtx_lsb": 60,
+        "glyph_xMin": 60,
+        "glyph_xMax": 359,
+        "corpus_n": 114
+      },
+      "002D": {
+        "unicode": "-",
+        "gid": 363,
+        "outline_norm_hash": "a2c577f5e94d",
+        "hmtx_advanceWidth": 362,
+        "hmtx_lsb": 55,
+        "glyph_xMin": 55,
+        "glyph_xMax": 307,
+        "corpus_n": 128
+      },
+      "0040": {
+        "unicode": "@",
+        "gid": 415,
+        "outline_norm_hash": "71742b36bc36",
+        "hmtx_advanceWidth": 598,
+        "hmtx_lsb": 60,
+        "glyph_xMin": 60,
+        "glyph_xMax": 558,
+        "corpus_n": 128
+      },
+      "2116": {
+        "unicode": "№",
+        "gid": 427,
+        "outline_norm_hash": "0f49b6badb20",
+        "hmtx_advanceWidth": 840,
+        "hmtx_lsb": 79,
+        "glyph_xMin": 79,
+        "glyph_xMax": 807,
+        "corpus_n": 128
+      },
+      "041B": {
+        "unicode": "Л",
+        "gid": 247,
+        "outline_norm_hash": "4e31d33dd83e",
+        "hmtx_advanceWidth": 586,
+        "hmtx_lsb": 20,
+        "glyph_xMin": 20,
+        "glyph_xMax": 499,
+        "corpus_n": 6
+      },
+      "0410": {
+        "unicode": "А",
+        "gid": 235,
+        "outline_norm_hash": "c8f4a8de18ea",
+        "hmtx_advanceWidth": 540,
+        "hmtx_lsb": 18,
+        "glyph_xMin": 18,
+        "glyph_xMax": 522,
+        "corpus_n": 56
+      },
+      "0414": {
+        "unicode": "Д",
+        "gid": 239,
+        "outline_norm_hash": "3bea062fcf88",
+        "hmtx_advanceWidth": 628,
+        "hmtx_lsb": 25,
+        "glyph_xMin": 25,
+        "glyph_xMax": 603,
+        "corpus_n": 51
+      },
+      "0428": {
+        "unicode": "Ш",
+        "gid": 260,
+        "outline_norm_hash": "0fce883e41bb",
+        "hmtx_advanceWidth": 856,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 769,
+        "corpus_n": 7
+      },
+      "041C": {
+        "unicode": "М",
+        "gid": 248,
+        "outline_norm_hash": "c88bc6dfeb16",
+        "hmtx_advanceWidth": 745,
+        "hmtx_lsb": 45,
+        "glyph_xMin": 45,
+        "glyph_xMax": 700,
+        "corpus_n": 29
+      },
+      "042D": {
+        "unicode": "Э",
+        "gid": 265,
+        "outline_norm_hash": "b54805c27358",
+        "hmtx_advanceWidth": 580,
+        "hmtx_lsb": 44,
+        "glyph_xMin": 44,
+        "glyph_xMax": 536,
+        "corpus_n": 3
+      },
+      "0422": {
+        "unicode": "Т",
+        "gid": 254,
+        "outline_norm_hash": "3ba5393ed269",
+        "hmtx_advanceWidth": 500,
+        "hmtx_lsb": 12,
+        "glyph_xMin": 12,
+        "glyph_xMax": 488,
+        "corpus_n": 110
+      },
+      "0451": {
+        "unicode": "ё",
+        "gid": 274,
+        "outline_norm_hash": "e7aef601e079",
+        "hmtx_advanceWidth": 481,
+        "hmtx_lsb": 38,
+        "glyph_xMin": 38,
+        "glyph_xMax": 436,
+        "corpus_n": 3
+      },
+      "0444": {
+        "unicode": "ф",
+        "gid": 289,
+        "outline_norm_hash": "ddb38e6c4f11",
+        "hmtx_advanceWidth": 691,
+        "hmtx_lsb": 38,
+        "glyph_xMin": 38,
+        "glyph_xMax": 653,
+        "corpus_n": 73
+      },
+      "0412": {
+        "unicode": "В",
+        "gid": 237,
+        "outline_norm_hash": "841debc46c7d",
+        "hmtx_advanceWidth": 573,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 518,
+        "corpus_n": 27
+      },
+      "0418": {
+        "unicode": "И",
+        "gid": 244,
+        "outline_norm_hash": "5e0f1790d9b0",
+        "hmtx_advanceWidth": 647,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 560,
+        "corpus_n": 65
+      },
+      "0413": {
+        "unicode": "Г",
+        "gid": 238,
+        "outline_norm_hash": "f762d590e3cd",
+        "hmtx_advanceWidth": 492,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 470,
+        "corpus_n": 21
+      },
+      "0411": {
+        "unicode": "Б",
+        "gid": 236,
+        "outline_norm_hash": "5e54e5efb61b",
+        "hmtx_advanceWidth": 561,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 519,
+        "corpus_n": 108
+      },
+      "0426": {
+        "unicode": "Ц",
+        "gid": 259,
+        "outline_norm_hash": "e1f162c72ebc",
+        "hmtx_advanceWidth": 652,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 627,
+        "corpus_n": 3
+      },
+      "044B": {
+        "unicode": "ы",
+        "gid": 297,
+        "outline_norm_hash": "ceea2d6dc801",
+        "hmtx_advanceWidth": 646,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 579,
+        "corpus_n": 11
+      },
+      "0445": {
+        "unicode": "х",
+        "gid": 290,
+        "outline_norm_hash": "6a685f6856bb",
+        "hmtx_advanceWidth": 425,
+        "hmtx_lsb": 9,
+        "glyph_xMin": 9,
+        "glyph_xMax": 416,
+        "corpus_n": 11
+      },
+      "0425": {
+        "unicode": "Х",
+        "gid": 257,
+        "outline_norm_hash": "62d47c2efdfe",
+        "hmtx_advanceWidth": 550,
+        "hmtx_lsb": 20,
+        "glyph_xMin": 20,
+        "glyph_xMax": 530,
+        "corpus_n": 11
+      },
+      "0420": {
+        "unicode": "Р",
+        "gid": 252,
+        "outline_norm_hash": "216fc6946d5b",
+        "hmtx_advanceWidth": 549,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 519,
+        "corpus_n": 22
+      },
+      "042E": {
+        "unicode": "Ю",
+        "gid": 266,
+        "outline_norm_hash": "8dc19b624c76",
+        "hmtx_advanceWidth": 840,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 792,
+        "corpus_n": 4
+      },
+      "0417": {
+        "unicode": "З",
+        "gid": 243,
+        "outline_norm_hash": "d27c96a89d4d",
+        "hmtx_advanceWidth": 545,
+        "hmtx_lsb": 52,
+        "glyph_xMin": 52,
+        "glyph_xMax": 482,
+        "corpus_n": 9
+      },
+      "0416": {
+        "unicode": "Ж",
+        "gid": 242,
+        "outline_norm_hash": "470a9f1c0ed9",
+        "hmtx_advanceWidth": 826,
+        "hmtx_lsb": 28,
+        "glyph_xMin": 28,
+        "glyph_xMax": 798,
+        "corpus_n": 3
+      },
+      "0424": {
+        "unicode": "Ф",
+        "gid": 256,
+        "outline_norm_hash": "095d2e5e81bd",
+        "hmtx_advanceWidth": 756,
+        "hmtx_lsb": 38,
+        "glyph_xMin": 38,
+        "glyph_xMax": 718,
+        "corpus_n": 5
+      },
+      "0429": {
+        "unicode": "Щ",
+        "gid": 261,
+        "outline_norm_hash": "db17ccb21c6e",
+        "hmtx_advanceWidth": 869,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 844,
+        "corpus_n": 1
+      },
+      "002C": {
+        "unicode": ",",
+        "gid": 343,
+        "outline_norm_hash": "7d12e57015c4",
+        "hmtx_advanceWidth": 265,
+        "hmtx_lsb": 75,
+        "glyph_xMin": 75,
+        "glyph_xMax": 190,
+        "corpus_n": 6
+      },
+      "0427": {
+        "unicode": "Ч",
+        "gid": 258,
+        "outline_norm_hash": "c123147fa7f9",
+        "hmtx_advanceWidth": 559,
+        "hmtx_lsb": 50,
+        "glyph_xMin": 50,
+        "glyph_xMax": 489,
+        "corpus_n": 4
+      },
+      "0028": {
+        "unicode": "(",
+        "gid": 357,
+        "outline_norm_hash": "bdf79447f2e8",
+        "hmtx_advanceWidth": 265,
+        "hmtx_lsb": 51,
+        "glyph_xMin": 51,
+        "glyph_xMax": 217,
+        "corpus_n": 70
+      },
+      "0029": {
+        "unicode": ")",
+        "gid": 358,
+        "outline_norm_hash": "27e2d46aefc6",
+        "hmtx_advanceWidth": 265,
+        "hmtx_lsb": 52,
+        "glyph_xMin": 52,
+        "glyph_xMax": 218,
+        "corpus_n": 70
+      },
+      "002B": {
+        "unicode": "+",
+        "gid": 390,
+        "outline_norm_hash": "cf781f2e8007",
+        "hmtx_advanceWidth": 566,
+        "hmtx_lsb": 57,
+        "glyph_xMin": 57,
+        "glyph_xMax": 509,
+        "corpus_n": 70
+      },
+      "044D": {
+        "unicode": "э",
+        "gid": 298,
+        "outline_norm_hash": "a456bf89196b",
+        "hmtx_advanceWidth": 473,
+        "hmtx_lsb": 38,
+        "glyph_xMin": 38,
+        "glyph_xMax": 434,
+        "corpus_n": 1
+      },
+      "0041": {
+        "unicode": "A",
+        "gid": 4,
+        "outline_norm_hash": "60c69ea77b95",
+        "hmtx_advanceWidth": 540,
+        "hmtx_lsb": 18,
+        "glyph_xMin": 18,
+        "glyph_xMax": 522,
+        "corpus_n": 32
+      },
+      "0047": {
+        "unicode": "G",
+        "gid": 35,
+        "outline_norm_hash": "1e1e4dc63739",
+        "hmtx_advanceWidth": 600,
+        "hmtx_lsb": 48,
+        "glyph_xMin": 48,
+        "glyph_xMax": 564,
+        "corpus_n": 24
+      },
+      "0055": {
+        "unicode": "U",
+        "gid": 92,
+        "outline_norm_hash": "049bed03780d",
+        "hmtx_advanceWidth": 624,
+        "hmtx_lsb": 75,
+        "glyph_xMin": 75,
+        "glyph_xMax": 549,
+        "corpus_n": 1
+      },
+      "0042": {
+        "unicode": "B",
+        "gid": 15,
+        "outline_norm_hash": "eb26e8904631",
+        "hmtx_advanceWidth": 573,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 518,
+        "corpus_n": 37
+      },
+      "0045": {
+        "unicode": "E",
+        "gid": 25,
+        "outline_norm_hash": "ca5374e3a932",
+        "hmtx_advanceWidth": 530,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 473,
+        "corpus_n": 1
+      },
+      "0053": {
+        "unicode": "S",
+        "gid": 81,
+        "outline_norm_hash": "dcab831ae09c",
+        "hmtx_advanceWidth": 547,
+        "hmtx_lsb": 55,
+        "glyph_xMin": 55,
+        "glyph_xMax": 492,
+        "corpus_n": 1
+      },
+      "0043": {
+        "unicode": "C",
+        "gid": 16,
+        "outline_norm_hash": "c233efed01fa",
+        "hmtx_advanceWidth": 580,
+        "hmtx_lsb": 48,
+        "glyph_xMin": 48,
+        "glyph_xMax": 543,
+        "corpus_n": 2
+      },
+      "004C": {
+        "unicode": "L",
+        "gid": 52,
+        "outline_norm_hash": "7b903798f69f",
+        "hmtx_advanceWidth": 498,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 463,
+        "corpus_n": 2
+      },
+      "004F": {
+        "unicode": "O",
+        "gid": 64,
+        "outline_norm_hash": "fe075138737f",
+        "hmtx_advanceWidth": 633,
+        "hmtx_lsb": 48,
+        "glyph_xMin": 48,
+        "glyph_xMax": 585,
+        "corpus_n": 7
+      },
+      "0044": {
+        "unicode": "D",
+        "gid": 21,
+        "outline_norm_hash": "09f420d228a8",
+        "hmtx_advanceWidth": 621,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 573,
+        "corpus_n": 11
+      },
+      "006F": {
+        "unicode": "o",
+        "gid": 178,
+        "outline_norm_hash": "e5a096b1e1ec",
+        "hmtx_advanceWidth": 500,
+        "hmtx_lsb": 38,
+        "glyph_xMin": 38,
+        "glyph_xMax": 462,
+        "corpus_n": 6
+      },
+      "007A": {
+        "unicode": "z",
+        "gid": 227,
+        "outline_norm_hash": "935fe7041c51",
+        "hmtx_advanceWidth": 416,
+        "hmtx_lsb": 30,
+        "glyph_xMin": 30,
+        "glyph_xMax": 386,
+        "corpus_n": 6
+      },
+      "0046": {
+        "unicode": "F",
+        "gid": 34,
+        "outline_norm_hash": "2ff90e798599",
+        "hmtx_advanceWidth": 488,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 463,
+        "corpus_n": 2
+      },
+      "004E": {
+        "unicode": "N",
+        "gid": 58,
+        "outline_norm_hash": "4c60b3ffb7d6",
+        "hmtx_advanceWidth": 654,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 567,
+        "corpus_n": 3
+      },
+      "0057": {
+        "unicode": "W",
+        "gid": 102,
+        "outline_norm_hash": "a54882e70b2a",
+        "hmtx_advanceWidth": 804,
+        "hmtx_lsb": 30,
+        "glyph_xMin": 30,
+        "glyph_xMax": 774,
+        "corpus_n": 6
+      },
+      "0064": {
+        "unicode": "d",
+        "gid": 134,
+        "outline_norm_hash": "fbea3211f3c1",
+        "hmtx_advanceWidth": 518,
+        "hmtx_lsb": 38,
+        "glyph_xMin": 38,
+        "glyph_xMax": 451,
+        "corpus_n": 5
+      },
+      "0065": {
+        "unicode": "e",
+        "gid": 138,
+        "outline_norm_hash": "d69e1a12e095",
+        "hmtx_advanceWidth": 481,
+        "hmtx_lsb": 38,
+        "glyph_xMin": 38,
+        "glyph_xMax": 435,
+        "corpus_n": 5
+      },
+      "0069": {
+        "unicode": "i",
+        "gid": 154,
+        "outline_norm_hash": "038aaa701c92",
+        "hmtx_advanceWidth": 225,
+        "hmtx_lsb": 54,
+        "glyph_xMin": 54,
+        "glyph_xMax": 171,
+        "corpus_n": 5
+      },
+      "006C": {
+        "unicode": "l",
+        "gid": 166,
+        "outline_norm_hash": "e576550fded4",
+        "hmtx_advanceWidth": 217,
+        "hmtx_lsb": 67,
+        "glyph_xMin": 67,
+        "glyph_xMax": 150,
+        "corpus_n": 5
+      },
+      "0073": {
+        "unicode": "s",
+        "gid": 195,
+        "outline_norm_hash": "3823658cc7f5",
+        "hmtx_advanceWidth": 445,
+        "hmtx_lsb": 40,
+        "glyph_xMin": 40,
+        "glyph_xMax": 405,
+        "corpus_n": 5
+      },
+      "0054": {
+        "unicode": "T",
+        "gid": 87,
+        "outline_norm_hash": "3e4e02acac5b",
+        "hmtx_advanceWidth": 500,
+        "hmtx_lsb": 12,
+        "glyph_xMin": 12,
+        "glyph_xMax": 488,
+        "corpus_n": 3
+      },
+      "004B": {
+        "unicode": "K",
+        "gid": 50,
+        "outline_norm_hash": "c26a1de30b7b",
+        "hmtx_advanceWidth": 559,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 551,
+        "corpus_n": 1
+      },
+      "0052": {
+        "unicode": "R",
+        "gid": 77,
+        "outline_norm_hash": "e3f7534a62da",
+        "hmtx_advanceWidth": 553,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 533,
+        "corpus_n": 1
+      },
+      "005A": {
+        "unicode": "Z",
+        "gid": 113,
+        "outline_norm_hash": "91bd290fbc7e",
+        "hmtx_advanceWidth": 490,
+        "hmtx_lsb": 27,
+        "glyph_xMin": 27,
+        "glyph_xMax": 463,
+        "corpus_n": 1
+      },
+      "0059": {
+        "unicode": "Y",
+        "gid": 108,
+        "outline_norm_hash": "5d25dc8b2438",
+        "hmtx_advanceWidth": 532,
+        "hmtx_lsb": 18,
+        "glyph_xMin": 18,
+        "glyph_xMax": 514,
+        "corpus_n": 1
+      },
+      "042F": {
+        "unicode": "Я",
+        "gid": 267,
+        "outline_norm_hash": "c327d476faa9",
+        "hmtx_advanceWidth": 553,
+        "hmtx_lsb": 20,
+        "glyph_xMin": 20,
+        "glyph_xMax": 466,
+        "corpus_n": 3
+      },
+      "0049": {
+        "unicode": "I",
+        "gid": 41,
+        "outline_norm_hash": "90ca2635657d",
+        "hmtx_advanceWidth": 262,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 175,
+        "corpus_n": 1
+      },
+      "004A": {
+        "unicode": "J",
+        "gid": 49,
+        "outline_norm_hash": "e6b62c68ca21",
+        "hmtx_advanceWidth": 444,
+        "hmtx_lsb": 22,
+        "glyph_xMin": 22,
+        "glyph_xMax": 382,
+        "corpus_n": 1
+      },
+      "0048": {
+        "unicode": "H",
+        "gid": 39,
+        "outline_norm_hash": "008cb61b3902",
+        "hmtx_advanceWidth": 649,
+        "hmtx_lsb": 87,
+        "glyph_xMin": 87,
+        "glyph_xMax": 562,
+        "corpus_n": 1
+      },
+      "0056": {
+        "unicode": "V",
+        "gid": 101,
+        "outline_norm_hash": "d14a4601697e",
+        "hmtx_advanceWidth": 532,
+        "hmtx_lsb": 18,
+        "glyph_xMin": 18,
+        "glyph_xMax": 514,
+        "corpus_n": 1
+      }
+    },
+    "F2": {
+      "0418": {
+        "unicode": "И",
+        "gid": 244,
+        "outline_norm_hash": "50f5807f81d9",
+        "hmtx_advanceWidth": 675,
+        "hmtx_lsb": 70,
+        "glyph_xMin": 70,
+        "glyph_xMax": 605,
+        "corpus_n": 128
+      },
+      "0433": {
+        "unicode": "г",
+        "gid": 271,
+        "outline_norm_hash": "a0bc5d0fdac2",
+        "hmtx_advanceWidth": 390,
+        "hmtx_lsb": 60,
+        "glyph_xMin": 60,
+        "glyph_xMax": 375,
+        "corpus_n": 128
+      },
+      "043E": {
+        "unicode": "о",
+        "gid": 283,
+        "outline_norm_hash": "ac574f48dcc1",
+        "hmtx_advanceWidth": 544,
+        "hmtx_lsb": 35,
+        "glyph_xMin": 35,
+        "glyph_xMax": 509,
+        "corpus_n": 128
+      },
+      "0442": {
+        "unicode": "т",
+        "gid": 287,
+        "outline_norm_hash": "717fb71648c7",
+        "hmtx_advanceWidth": 418,
+        "hmtx_lsb": 10,
+        "glyph_xMin": 10,
+        "glyph_xMax": 408,
+        "corpus_n": 128
+      },
+      "0030": {
+        "unicode": "0",
+        "gid": 305,
+        "outline_norm_hash": "fd1fac17f80a",
+        "hmtx_advanceWidth": 570,
+        "hmtx_lsb": 45,
+        "glyph_xMin": 45,
+        "glyph_xMax": 525,
+        "corpus_n": 113
+      },
+      "0033": {
+        "unicode": "3",
+        "gid": 308,
+        "outline_norm_hash": "25842647cbc9",
+        "hmtx_advanceWidth": 523,
+        "hmtx_lsb": 35,
+        "glyph_xMin": 35,
+        "glyph_xMax": 488,
+        "corpus_n": 41
+      },
+      "0037": {
+        "unicode": "7",
+        "gid": 312,
+        "outline_norm_hash": "10c76f3920b6",
+        "hmtx_advanceWidth": 492,
+        "hmtx_lsb": 35,
+        "glyph_xMin": 35,
+        "glyph_xMax": 472,
+        "corpus_n": 26
+      },
+      "0039": {
+        "unicode": "9",
+        "gid": 314,
+        "outline_norm_hash": "cdb55d92e451",
+        "hmtx_advanceWidth": 534,
+        "hmtx_lsb": 35,
+        "glyph_xMin": 35,
+        "glyph_xMax": 499,
+        "corpus_n": 25
+      },
+      "0035": {
+        "unicode": "5",
+        "gid": 310,
+        "outline_norm_hash": "ec80516b93fa",
+        "hmtx_advanceWidth": 509,
+        "hmtx_lsb": 35,
+        "glyph_xMin": 35,
+        "glyph_xMax": 474,
+        "corpus_n": 64
+      },
+      "0031": {
+        "unicode": "1",
+        "gid": 306,
+        "outline_norm_hash": "024b62197018",
+        "hmtx_advanceWidth": 509,
+        "hmtx_lsb": 60,
+        "glyph_xMin": 60,
+        "glyph_xMax": 474,
+        "corpus_n": 29
+      },
+      "0034": {
+        "unicode": "4",
+        "gid": 309,
+        "outline_norm_hash": "7cc84639c3dd",
+        "hmtx_advanceWidth": 571,
+        "hmtx_lsb": 35,
+        "glyph_xMin": 35,
+        "glyph_xMax": 546,
+        "corpus_n": 38
+      },
+      "0032": {
+        "unicode": "2",
+        "gid": 307,
+        "outline_norm_hash": "e1f291763830",
+        "hmtx_advanceWidth": 516,
+        "hmtx_lsb": 40,
+        "glyph_xMin": 40,
+        "glyph_xMax": 476,
+        "corpus_n": 19
+      },
+      "0036": {
+        "unicode": "6",
+        "gid": 311,
+        "outline_norm_hash": "d4168cd46154",
+        "hmtx_advanceWidth": 534,
+        "hmtx_lsb": 35,
+        "glyph_xMin": 35,
+        "glyph_xMax": 499,
+        "corpus_n": 13
+      },
+      "0038": {
+        "unicode": "8",
+        "gid": 313,
+        "outline_norm_hash": "3043cdc22e5e",
+        "hmtx_advanceWidth": 542,
+        "hmtx_lsb": 35,
+        "glyph_xMin": 35,
+        "glyph_xMax": 507,
+        "corpus_n": 9
+      },
+      "002C": {
+        "unicode": ",",
+        "gid": 343,
+        "outline_norm_hash": "f79faca50d74",
+        "hmtx_advanceWidth": 249,
+        "hmtx_lsb": 45,
+        "glyph_xMin": 45,
+        "glyph_xMax": 204,
+        "corpus_n": 4
+      }
+    }
+  }
+}

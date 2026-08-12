@@ -1,0 +1,309 @@
+{
+  "version": 1,
+  "source_count": 2,
+  "fonts": {
+    "MicrosoftSansSerif": {
+      "source_count": 2,
+      "stable_digests": [
+        "962bbc48d71b9b3f"
+      ],
+      "stable_tables": {
+        "cvt ": [
+          "59453d1be0e3eb7f"
+        ],
+        "fpgm": [
+          "75dd96d5182f66b5"
+        ],
+        "head": [
+          "ffebb1d5131a174b"
+        ],
+        "hhea": [
+          "31be800e557d6535"
+        ],
+        "maxp": [
+          "82efa4b26576c6f0"
+        ],
+        "prep": [
+          "bd4fbca74c6ffdf7"
+        ]
+      },
+      "table_tags": [
+        "cvt ",
+        "fpgm",
+        "glyf",
+        "head",
+        "hhea",
+        "hmtx",
+        "loca",
+        "maxp",
+        "prep"
+      ],
+      "glyph_hashes": [
+        "09e7bf65baad48b1"
+      ],
+      "ttf_sha16": [
+        "7c10743da1e8bda5"
+      ]
+    },
+    "TimesNewRomanPS-BoldMT": {
+      "source_count": 2,
+      "stable_digests": [
+        "967449792dc0cf84"
+      ],
+      "stable_tables": {
+        "cvt ": [
+          "404673950f3a8a70"
+        ],
+        "fpgm": [
+          "6ec996cea08865ea"
+        ],
+        "head": [
+          "787671aa783a6ffd"
+        ],
+        "hhea": [
+          "705fdb98af8cc368"
+        ],
+        "maxp": [
+          "f9d687ca42a3e502"
+        ],
+        "prep": [
+          "b8b928a07b1ba352"
+        ]
+      },
+      "table_tags": [
+        "cvt ",
+        "fpgm",
+        "glyf",
+        "head",
+        "hhea",
+        "hmtx",
+        "loca",
+        "maxp",
+        "prep"
+      ],
+      "glyph_hashes": [
+        "02cea21e7a921754",
+        "2c12d2d31aec49b8",
+        "3efc51030d69fcbf",
+        "5fde3136c772986f",
+        "6f0a84e6dcdf865f",
+        "706b3c1c975a319e",
+        "8ff8c4cfd1908386",
+        "94a12c694194221f",
+        "9ab979db809a77f0",
+        "b387020092d0a226",
+        "d5319a8f464265c4",
+        "d96beaf89e382f78",
+        "e02738f1fa079fd5",
+        "ef3c5dd3326e0280"
+      ],
+      "ttf_sha16": [
+        "e0789b7705c99c04"
+      ]
+    },
+    "Calibri": {
+      "source_count": 2,
+      "stable_digests": [
+        "73fd319e3669645f"
+      ],
+      "stable_tables": {
+        "cvt ": [
+          "11bac2fe7dd4cfd0"
+        ],
+        "fpgm": [
+          "5328b2bf1b9e5274"
+        ],
+        "head": [
+          "30aa3c2a1b8d358e"
+        ],
+        "hhea": [
+          "1c85602f0142e11e"
+        ],
+        "maxp": [
+          "9247215d307a97d4"
+        ],
+        "prep": [
+          "60470faaa64a572d"
+        ]
+      },
+      "table_tags": [
+        "cvt ",
+        "fpgm",
+        "glyf",
+        "head",
+        "hhea",
+        "hmtx",
+        "loca",
+        "maxp",
+        "prep"
+      ],
+      "glyph_hashes": [
+        "0026eb03bb97c04f",
+        "019fbca27621d49e",
+        "0a9aa9e1596af038",
+        "0d7a2e3c031e1d98",
+        "0f07cace2ab82c97",
+        "107a50e6bfc1aaff",
+        "18b93cd0d431f26c",
+        "1bc74af91a903982",
+        "210425e2b243b731",
+        "27db2759417fe0e0",
+        "285f487453963002",
+        "29c37ec3f5c919c3",
+        "2b09963a5566ee7d",
+        "2c2849f94d3a82c0",
+        "31029284a38f9b49",
+        "3262c955205caab5",
+        "37105a2a410a9efb",
+        "382c0584f33cf747",
+        "3bcb99d7709e9945",
+        "3f24f2b44f5e87fb",
+        "3fab6d3ea5ede91c",
+        "41bc2d596f34e686",
+        "4a643c120652d324",
+        "4c79f2238372b6b4",
+        "5d3db4c544681078",
+        "64d0fa464b09e7d6",
+        "65fd25d82fe74a66",
+        "6b838c53165ee505",
+        "6d52ed1c240ce326",
+        "706667f335335d13",
+        "75db63bc8d47f27a",
+        "764bb268380524b1",
+        "77cae6bed433bffe",
+        "77fd5c45ba9b660f",
+        "7aeaaf6463aba272",
+        "7eef05a2b5de6492",
+        "800918706100bb88",
+        "84999b34802873e9",
+        "870428d002a3dc2c",
+        "8d8bedfeb56a8a93",
+        "8fe1a24c20820fac",
+        "9091c3407b598929",
+        "90dbdb74cd796b6e",
+        "9191e3af9ae8cf38",
+        "941a2dc37b5dcda5",
+        "9582474687bb9d6d",
+        "97bc8aeb5a4e0ba6",
+        "9c4cedf8839b1dde",
+        "9eb2ec391aa298a9",
+        "a2b8ac125ad67e5b",
+        "a2c393e56915745e",
+        "a7818ffbd6c73158",
+        "ab85ce7567e2f73a",
+        "b1a447fbf9e509ac",
+        "bda42cf47e571a4a",
+        "bdf3af14f502ddc0",
+        "bfb4f06526455e6c",
+        "c3c88a21150272f8",
+        "c3cceacaeceda54e",
+        "c6fb7e47fd743c24",
+        "cc4c82f826afe9e6",
+        "cc6524c1f9f7cfb5",
+        "ccceaad053582d45",
+        "d0b8807cfcff5649",
+        "d94b447f9efbc186",
+        "e21ab8edc35e53cc",
+        "e21e6f02b6d23967",
+        "e23530049f5fc936",
+        "e73c23bc7d9565fb",
+        "e863117aad746a8b",
+        "e9b4ee140764e9bf",
+        "eb4c758f6fa40e9f",
+        "f057ea1946bb1377",
+        "f646e2e1546dd9cb",
+        "f6f7352423be5a8c",
+        "f9f61edafbd7c350"
+      ],
+      "ttf_sha16": [
+        "dd10c418db403a20"
+      ]
+    },
+    "ArialNarrow": {
+      "source_count": 2,
+      "stable_digests": [
+        "bb523cfc7d362751"
+      ],
+      "stable_tables": {
+        "cvt ": [
+          "3ec694f848bbcca7"
+        ],
+        "fpgm": [
+          "579f31266ac0e6e2"
+        ],
+        "head": [
+          "ca95ddd18893f412"
+        ],
+        "hhea": [
+          "b97f8d90c008147c"
+        ],
+        "maxp": [
+          "f04ebba2fe7dd932"
+        ],
+        "prep": [
+          "aca7de9360047eec"
+        ]
+      },
+      "table_tags": [
+        "cvt ",
+        "fpgm",
+        "glyf",
+        "head",
+        "hhea",
+        "hmtx",
+        "loca",
+        "maxp",
+        "prep"
+      ],
+      "glyph_hashes": [
+        "05b9d71fb20dffc5",
+        "07402eac5650ea4d",
+        "0cc4f09090e3418c",
+        "11c7e32b9c8bc05f",
+        "19154545b75c19bf",
+        "1ee734a0c8c69d5a",
+        "2c91c0f9b3fde6eb",
+        "30b2c0cb99080995",
+        "3878197f1cc17e91",
+        "3c370c6f7867d298",
+        "3c7371c564cc71be",
+        "492502e10db9a0fa",
+        "51b259d02d4d38a5",
+        "54a69f7746503a97",
+        "5c99b59606e966f3",
+        "5fc98c17631c64f6",
+        "6153a197e094631a",
+        "61e104ff7ac05877",
+        "627f06f2ae102e06",
+        "92026560263728ba",
+        "95a804dde9cfc509",
+        "a0e64ccd6f0e1fb3",
+        "a12de44141f70404",
+        "a2336f0d7bdd6095",
+        "a782ba68c09a2d9a",
+        "aeb0ca9252e27901",
+        "b0dea42b785dff09",
+        "b16ebf28b4295af0",
+        "b1f856ff5c9070c4",
+        "b4c6914c89a38478",
+        "ba864796990b27b1",
+        "cb32887bedb03cd8",
+        "d0a082db2f999878",
+        "d6d7156061e1a808",
+        "dd3bce36992d3e3c",
+        "df5c6c4da9951c0a",
+        "dff58c8b70134feb",
+        "e047d61b6e0bac88"
+      ],
+      "ttf_sha16": [
+        "e969dcb92af12986"
+      ]
+    }
+  },
+  "bank_key": "gazprombank",
+  "channel": "card",
+  "source_files": [
+    "газпромбанк по карте.pdf",
+    "газпромбанк по номеру карты в другой банк.pdf"
+  ]
+}

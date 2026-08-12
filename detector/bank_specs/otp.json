@@ -1,0 +1,60 @@
+{
+  "version": "bank_spec_2026_06",
+  "key": "otp",
+  "name": "ОТП Банк",
+  "folder": "отп банк",
+  "sample_count": 3,
+  "native_producers": [
+    "quartz pdfcontext",
+    "mpdf"
+  ],
+  "required_fonts": [],
+  "object_count": [
+    27,
+    41
+  ],
+  "content_decoded_global": [
+    12673,
+    12677
+  ],
+  "channels": {
+    "sbp": {
+      "samples": [
+        "отп банк сбп.pdf",
+        "отп сбп.pdf"
+      ],
+      "content_decoded": [
+        12673,
+        12677
+      ]
+    },
+    "phone": {
+      "samples": [
+        "отп отп.pdf"
+      ],
+      "content_decoded": null
+    }
+  },
+  "skeleton_hashes": {
+    "sbp": [
+      "ea73d48a57dc15e7"
+    ],
+    "phone": [
+      "ea14afac128cf1ff"
+    ]
+  },
+  "skeleton_hashes_global": [
+    "ea14afac128cf1ff",
+    "ea73d48a57dc15e7"
+  ],
+  "sbp_cipher": true,
+  "require_content_stream": true,
+  "date_prefer_first_line": false,
+  "reject_jasper_clone": true,
+  "ignore_openaction": false,
+  "required_fonts_any": false,
+  "allow_empty_producer": true,
+  "image_based": false,
+  "fontfile2_profile": false,
+  "excluded": []
+}

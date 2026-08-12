@@ -1,0 +1,59 @@
+{
+  "version": "bank_spec_2026_06",
+  "key": "yandex",
+  "name": "Яндекс Банк",
+  "folder": "яндекс банк",
+  "sample_count": 5,
+  "native_producers": [
+    "openpdf",
+    "jasperreports"
+  ],
+  "required_fonts": [
+    "YSText"
+  ],
+  "object_count": [
+    22,
+    24
+  ],
+  "content_decoded_global": [
+    6231,
+    6242
+  ],
+  "channels": {
+    "sbp": {
+      "samples": [
+        "яндекс банк сбп.pdf",
+        "яндекс сбп.pdf",
+        "яндекс сбп2.pdf",
+        "яндекс сбп3.pdf",
+        "яндекс сбп7.pdf"
+      ],
+      "content_decoded": [
+        6231,
+        6242
+      ]
+    }
+  },
+  "skeleton_hashes": {
+    "sbp": [
+      "407f48f4d3f7d86a",
+      "5e3de87d677fdf8a",
+      "a8ae9c6e03bba2e4"
+    ]
+  },
+  "skeleton_hashes_global": [
+    "407f48f4d3f7d86a",
+    "5e3de87d677fdf8a",
+    "a8ae9c6e03bba2e4"
+  ],
+  "sbp_cipher": true,
+  "require_content_stream": true,
+  "date_prefer_first_line": false,
+  "reject_jasper_clone": false,
+  "ignore_openaction": false,
+  "required_fonts_any": false,
+  "allow_empty_producer": false,
+  "image_based": false,
+  "fontfile2_profile": false,
+  "excluded": []
+}

@@ -1,0 +1,3981 @@
+{
+  "schema": {
+    "name": "sparse_9_banks_validator_future_safe_master",
+    "version": "1.0",
+    "generated_at_utc": "2026-07-11T19:05:29.313000+00:00",
+    "language": "ru"
+  },
+  "purpose": "Shared hardened PDF-forensic core plus thin future-safe bank modules for nine banks with sparse original corpora.",
+  "corpus": {
+    "uploaded_files": 21,
+    "unique_files": 15,
+    "banks": 9,
+    "duplicates": {
+      "dd4d0214bcb3f278c13093daec5a73a929e4afaacf8a105b532031fa12925c60": [
+        "ОТП БАНК/отп банк сбп.pdf",
+        "ОТП БАНК/отп сбп.pdf"
+      ],
+      "bff01559f12a03e5f5ffa19453708618078601768ae2e1a7c9e3b9449da1a6b9": [
+        "Промсвязьбанк/псб сбп 2.pdf",
+        "Промсвязьбанк/псббаннк сбп.pdf"
+      ],
+      "cf8553af700a03da26f5c2fc33c05119be2ca8aa9aad5a35ca8609616ab8a932": [
+        "Промсвязьбанк/псб сбп 3.pdf",
+        "Промсвязьбанк/псббаннк сбп2.pdf"
+      ],
+      "48d2232faa0fa17570fe2aea8166a770aa5af9c1c1022d11646fa0bfce66311e": [
+        "уралсиб/уралсиб сбп.pdf",
+        "уралсиб/уралсиб сбп4.pdf"
+      ],
+      "013be8ac2f495e4f65d5df3b7c694a41922ea35db6b55c69f1b19b849a886b7d": [
+        "яндекс банк/яндекс банк сбп.pdf",
+        "яндекс банк/яндекс сбп7.pdf"
+      ],
+      "f3b7d17b3e44e39fe03d9aacc7402ea093dff660f4595e85aae3e40f26adfbb7": [
+        "яндекс банк/яндекс сбп2.pdf",
+        "яндекс банк/яндекс сбп3.pdf"
+      ]
+    },
+    "bank_mapping": {
+      "Вайлдберриз Банк": "WB_BANK",
+      "ОТП БАНК": "OTP_BANK",
+      "Промсвязьбанк": "PSB",
+      "бcпб банк": "BSPB",
+      "райф": "RAIFFEISEN",
+      "рокетбанк": "ROCKET",
+      "совком": "SOVCOMBANK",
+      "уралсиб": "URALSIB",
+      "яндекс банк": "YANDEX_BANK"
+    }
+  },
+  "decision_policy": {
+    "external_verdicts": [
+      "ОРИГИНАЛ",
+      "ФЕЙК"
+    ],
+    "fake_only_if": [
+      "proven HARD contradiction",
+      "externally confirmed exact bad signature with zero original collisions",
+      "cross-document identity conflict"
+    ],
+    "original_if": "full analysis finds no proven hard evidence, including when the coherent official profile is new or absent from the sparse corpus",
+    "never_fake_alone": [
+      "unknown producer/template/layout/object graph",
+      "new font/subset/hash/size",
+      "new method/field/status/commission",
+      "file absent from corpus",
+      "multiple diagnostic deviations"
+    ],
+    "analysis_failure": "If encryption/resource limits/unsupported critical decoding prevent any safe determination, output ФЕЙК with reason ANALYSIS_NOT_COMPLETED; do not claim proven forgery."
+  },
+  "router_policy": {
+    "issuer_detection": "Use issuer branding, footer/legal entity, BIC/correspondent account, logo/stamp, and generator/layout coherence. Never route by recipient-bank field alone.",
+    "unknown_bank": "Do not apply another bank profile; run shared core and require explicit issuer evidence before bank-specific semantics."
+  },
+  "rules": [
+    {
+      "id": "MB-CONT-001",
+      "tier": "HARD",
+      "group": "container",
+      "condition": "PDF header missing, ambiguous, repeated, or preceded by non-whitespace/polyglot bytes",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-CONT-002",
+      "tier": "HARD",
+      "group": "container",
+      "condition": "missing or multiple active EOF/startxref/trailer structures",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-CONT-003",
+      "tier": "HARD",
+      "group": "container",
+      "condition": "startxref or xref entry points outside the claimed object span",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-CONT-004",
+      "tier": "HARD",
+      "group": "container",
+      "condition": "non-whitespace data after final EOF",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-CONT-005",
+      "tier": "HARD",
+      "group": "container",
+      "condition": "duplicate dictionary key before or after PDF Name #xx decoding",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-CONT-006",
+      "tier": "HARD",
+      "group": "container",
+      "condition": "duplicate active object definition, object shadowing, or overlapping spans",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-CONT-007",
+      "tier": "HARD",
+      "group": "container",
+      "condition": "xref active/free/generation mismatch or reference to missing/free object",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-CONT-008",
+      "tier": "HARD",
+      "group": "container",
+      "condition": "conflicting incremental revision changes critical visible content",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-CONT-009",
+      "tier": "HARD",
+      "group": "container",
+      "condition": "truncated object, unbalanced delimiters, or ambiguous stream boundary",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-CONT-010",
+      "tier": "HARD",
+      "group": "container",
+      "condition": "critical Page Tree inheritance conflict or multiple effective roots",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-CONT-011",
+      "tier": "DIAGNOSTIC",
+      "group": "profile",
+      "condition": "xref stream, ObjStm, hybrid xref, or new object graph",
+      "action": "NO_VERDICT_IMPACT",
+      "guard": "valid PDF constructs may appear in future originals"
+    },
+    {
+      "id": "MB-STRM-001",
+      "tier": "HARD",
+      "group": "stream",
+      "condition": "stream /Length does not match exact encoded payload",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-STRM-002",
+      "tier": "HARD",
+      "group": "stream",
+      "condition": "declared filter fails or strict decoders disagree",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-STRM-003",
+      "tier": "HARD",
+      "group": "stream",
+      "condition": "trailing compressed data, second zlib member, or unconsumed bytes",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-STRM-004",
+      "tier": "HARD",
+      "group": "stream",
+      "condition": "decoded image/resource size contradicts declared geometry",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-STRM-005",
+      "tier": "HARD",
+      "group": "stream",
+      "condition": "unsupported/recursive filter chain is used to obscure critical content",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-STRM-006",
+      "tier": "DIAGNOSTIC",
+      "group": "profile",
+      "condition": "different compression level, framing, or stream order",
+      "action": "NO_VERDICT_IMPACT",
+      "guard": null
+    },
+    {
+      "id": "MB-ACT-001",
+      "tier": "HARD",
+      "group": "active_content",
+      "condition": "JavaScript, OpenAction, Launch, GoToR/GoToE, SubmitForm, or ImportData",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-ACT-002",
+      "tier": "HARD",
+      "group": "active_content",
+      "condition": "XFA, EmbeddedFiles, RichMedia, 3D, Movie, or Sound",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-ACT-003",
+      "tier": "HARD",
+      "group": "active_content",
+      "condition": "hidden /Next or additional-action chain",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-ACT-004",
+      "tier": "HARD",
+      "group": "active_content",
+      "condition": "annotation appearance or optional layer changes critical visible data",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-ACT-005",
+      "tier": "HARD",
+      "group": "active_content",
+      "condition": "encryption prevents full inspection",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-ACT-006",
+      "tier": "DIAGNOSTIC",
+      "group": "profile",
+      "condition": "new safe HTTPS/QR annotation with matching visible target",
+      "action": "NO_VERDICT_IMPACT",
+      "guard": null
+    },
+    {
+      "id": "MB-VIS-001",
+      "tier": "HARD",
+      "group": "visibility",
+      "condition": "unbalanced BT/ET or q/Q changes interpretation",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-VIS-002",
+      "tier": "HARD",
+      "group": "visibility",
+      "condition": "undefined or shadowed resource used by content",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-VIS-003",
+      "tier": "HARD",
+      "group": "visibility",
+      "condition": "invisible text, text clipping, white-on-white, or off-page critical field",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-VIS-004",
+      "tier": "HARD",
+      "group": "visibility",
+      "condition": "late opaque/transparent overlay replaces a previously painted critical value",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-VIS-005",
+      "tier": "HARD",
+      "group": "visibility",
+      "condition": "critical field has multiple conflicting visible or structural values",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-VIS-006",
+      "tier": "HARD",
+      "group": "visibility",
+      "condition": "text layer and rendered glyphs encode different critical values",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-VIS-007",
+      "tier": "HARD",
+      "group": "visibility",
+      "condition": "negative scale/reflection/material transform used for substitution",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-VIS-008",
+      "tier": "HARD",
+      "group": "visibility",
+      "condition": "CropBox/clip/Form XObject hides or substitutes critical content",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-VIS-009",
+      "tier": "DELETED",
+      "group": "false_positive",
+      "condition": "render rows, pixel-row hashes, foreign stripes, perceptual thresholds",
+      "action": "DO_NOT_RUN",
+      "guard": null
+    },
+    {
+      "id": "MB-FONT-001",
+      "tier": "HARD",
+      "group": "font",
+      "condition": "used CID/code is absent from ToUnicode or encoding map required for extraction",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-FONT-002",
+      "tier": "HARD",
+      "group": "font",
+      "condition": "used CID/code is absent from /W or mapped width table",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-FONT-003",
+      "tier": "HARD",
+      "group": "font",
+      "condition": "CIDToGID/GID mapping points outside the embedded font or to a missing glyph",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-FONT-004",
+      "tier": "HARD",
+      "group": "font",
+      "condition": "PDF width and embedded hmtx disagree materially for a used glyph",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-FONT-005",
+      "tier": "HARD",
+      "group": "font",
+      "condition": "duplicate/conflicting CMap mapping for a used code",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-FONT-006",
+      "tier": "HARD",
+      "group": "font",
+      "condition": "malformed loca/glyf/head/hhea/hmtx/maxp/CFF structure",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-FONT-007",
+      "tier": "HARD",
+      "group": "font",
+      "condition": "FontDescriptor metrics or Length1 contradict the embedded font program",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-FONT-008",
+      "tier": "HARD",
+      "group": "font",
+      "condition": "Unicode mapping and visible glyph outline represent different characters",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-FONT-009",
+      "tier": "HARD",
+      "group": "font",
+      "condition": "bidi, zero-width, controls, or confusables occur in amount/date/phone/card/account/ID fields",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-FONT-010",
+      "tier": "DIAGNOSTIC",
+      "group": "profile",
+      "condition": "new font family, revision, subset prefix, full hash, size, or used glyph set",
+      "action": "NO_VERDICT_IMPACT",
+      "guard": null
+    },
+    {
+      "id": "MB-FONT-011",
+      "tier": "DIAGNOSTIC",
+      "group": "profile",
+      "condition": "extra unused mappings or glyphs without an exact confirmed malicious package",
+      "action": "NO_VERDICT_IMPACT",
+      "guard": null
+    },
+    {
+      "id": "MB-FONT-012",
+      "tier": "DIAGNOSTIC",
+      "group": "profile",
+      "condition": "full embedded font instead of subset, or many one-run subset fonts",
+      "action": "NO_VERDICT_IMPACT",
+      "guard": null
+    },
+    {
+      "id": "MB-FONT-013",
+      "tier": "DIAGNOSTIC",
+      "group": "profile",
+      "condition": "CIDToGIDMap is Identity or non-Identity",
+      "action": "NO_VERDICT_IMPACT",
+      "guard": null
+    },
+    {
+      "id": "MB-SEM-001",
+      "tier": "HARD",
+      "group": "semantic",
+      "condition": "amount is missing, malformed, visually ambiguous, or contains hidden precision",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-SEM-002",
+      "tier": "HARD",
+      "group": "semantic",
+      "condition": "amount, commission, and total arithmetic is inconsistent where all components are present",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-SEM-003",
+      "tier": "HARD",
+      "group": "semantic",
+      "condition": "date/status/recipient/account/phone/card differs between text, geometry, and render",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-SEM-004",
+      "tier": "HARD",
+      "group": "semantic",
+      "condition": "label is paired with an impossible value or fields form a contradictory method",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-SEM-005",
+      "tier": "HARD",
+      "group": "semantic",
+      "condition": "critical field occurs twice with conflicting values",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-SEM-006",
+      "tier": "HARD",
+      "group": "semantic",
+      "condition": "issuer branding/footer/BIC contradict the routed bank",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-SEM-007",
+      "tier": "DIAGNOSTIC",
+      "group": "profile",
+      "condition": "new field, status, commission, bank, BIN, phone/card format, or method",
+      "action": "NO_VERDICT_IMPACT",
+      "guard": null
+    },
+    {
+      "id": "MB-SEM-008",
+      "tier": "DIAGNOSTIC",
+      "group": "profile",
+      "condition": "missing field that is only required by an observed legacy template but the new profile is otherwise coherent",
+      "action": "NO_VERDICT_IMPACT",
+      "guard": null
+    },
+    {
+      "id": "MB-SBP-001",
+      "tier": "HARD",
+      "group": "sbp",
+      "condition": "observed SBP family requires an ID but the ID is missing from both text and visible layer",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-SBP-002",
+      "tier": "HARD",
+      "group": "sbp",
+      "condition": "SBP ID is not 32 uppercase ASCII alphanumeric when that bank profile uses the standard 32-char ID",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-SBP-003",
+      "tier": "HARD",
+      "group": "sbp",
+      "condition": "timestamp core encodes an impossible year/day/hour/minute/second",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-SBP-004",
+      "tier": "HARD",
+      "group": "sbp",
+      "condition": "timestamp core is materially inconsistent with operation time after bank-specific precision/timezone rules",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-SBP-005",
+      "tier": "DIAGNOSTIC",
+      "group": "profile",
+      "condition": "unknown SBP tail, new split, or new operation-ID format",
+      "action": "NO_VERDICT_IMPACT",
+      "guard": "tail is not a universal checksum"
+    },
+    {
+      "id": "MB-PAR-001",
+      "tier": "HARD",
+      "group": "parser_confusion",
+      "condition": "independent parsers extract different critical values",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-PAR-002",
+      "tier": "HARD",
+      "group": "parser_confusion",
+      "condition": "independent renderers display different critical values",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-PAR-003",
+      "tier": "HARD",
+      "group": "parser_confusion",
+      "condition": "parser repair changes the object graph or visible values",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-PAR-004",
+      "tier": "DIAGNOSTIC",
+      "group": "profile",
+      "condition": "harmless line-break or anti-aliasing difference",
+      "action": "NO_VERDICT_IMPACT",
+      "guard": null
+    },
+    {
+      "id": "MB-XDOC-001",
+      "tier": "HARD",
+      "group": "cross_document",
+      "condition": "same SBP/operation/document identifier appears with different amount",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-XDOC-002",
+      "tier": "HARD",
+      "group": "cross_document",
+      "condition": "same identifier appears with different date, recipient, phone, bank, or account",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-XDOC-003",
+      "tier": "HARD",
+      "group": "cross_document",
+      "condition": "externally confirmed exact malicious signature has zero collisions on originals",
+      "action": "FAKE",
+      "guard": null
+    },
+    {
+      "id": "MB-XDOC-004",
+      "tier": "DELETED",
+      "group": "known_fake",
+      "condition": "automatic blacklist training from self-classified files",
+      "action": "DO_NOT_RUN",
+      "guard": null
+    },
+    {
+      "id": "MB-XDOC-005",
+      "tier": "IGNORE",
+      "group": "cross_document",
+      "condition": "exact duplicate or regenerated copy with identical critical fields",
+      "action": "ORIGINAL",
+      "guard": null
+    },
+    {
+      "id": "MB-PROF-001",
+      "tier": "DIAGNOSTIC",
+      "group": "profile",
+      "condition": "unknown producer/creator/version/object graph/layout/operator sequence",
+      "action": "NO_VERDICT_IMPACT",
+      "guard": null
+    },
+    {
+      "id": "MB-PROF-002",
+      "tier": "DIAGNOSTIC",
+      "group": "profile",
+      "condition": "unknown hash, image, stamp, font subset, page height, or file size",
+      "action": "NO_VERDICT_IMPACT",
+      "guard": null
+    },
+    {
+      "id": "MB-PROF-003",
+      "tier": "DIAGNOSTIC",
+      "group": "profile",
+      "condition": "file or method not previously present in the corpus",
+      "action": "NO_VERDICT_IMPACT",
+      "guard": null
+    }
+  ],
+  "bank_contracts": {
+    "WB_BANK": {
+      "display_name": "ВБ Банк / Wildberries Bank",
+      "corpus_unique": 1,
+      "observed_methods": [
+        "Перевод по СБП"
+      ],
+      "current_generators": [
+        "JasperReports 7.0.3 + OpenPDF 1.3.32"
+      ],
+      "sbp_id_policy": "Current receipt does not print SBP ID; do not require it. Validate receipt number, phone, recipient bank, amount, status, and branding.",
+      "future_guard": "A future WB profile may add SBP ID, QR, or another generator; novelty is diagnostic."
+    },
+    "OTP_BANK": {
+      "display_name": "ОТП Банк",
+      "corpus_unique": 2,
+      "observed_methods": [
+        "Перевод по номеру телефона / СБП",
+        "На карту другого банка"
+      ],
+      "current_generators": [
+        "iOS Quartz PDFContext",
+        "mPDF 8.3.1"
+      ],
+      "sbp_id_policy": "Standard 32-char ID in SBP receipt. Observed decoded time is +30 seconds from printed exact operation time.",
+      "future_guard": "Both Quartz and mPDF are legitimate paths; do not require one global OTP object/font profile."
+    },
+    "PSB": {
+      "display_name": "Промсвязьбанк / ПСБ",
+      "corpus_unique": 2,
+      "observed_methods": [
+        "Исходящий СБП"
+      ],
+      "current_generators": [
+        "FastReport.NET"
+      ],
+      "sbp_id_policy": "Standard 32-char ID split across two lines. Observed deltas -6 and -3 seconds from printed exact time.",
+      "future_guard": "Tagged PDF and full embedded DejaVu fonts are current-profile traits, not eternal requirements."
+    },
+    "BSPB": {
+      "display_name": "Банк Санкт-Петербург",
+      "corpus_unique": 1,
+      "observed_methods": [
+        "Исходящий СБП"
+      ],
+      "current_generators": [
+        "PDFCreator/PDFProducer (opaque names)"
+      ],
+      "sbp_id_policy": "Standard 32-char ID. Printed time has minute precision; decoded time is within the displayed minute (+28 sec).",
+      "future_guard": "Opaque producer strings are weak evidence and must never be whitelisted as proof."
+    },
+    "RAIFFEISEN": {
+      "display_name": "Райффайзенбанк",
+      "corpus_unique": 3,
+      "observed_methods": [
+        "Legacy ruble transfer by phone",
+        "СБП"
+      ],
+      "current_generators": [
+        "legacy profile without Producer",
+        "iText pdfHTML 6.2.0"
+      ],
+      "sbp_id_policy": "New SBP profile uses standard 32-char ID; decoded time is within displayed minute (+15 to +56 sec). Legacy phone-transfer profile has no printed SBP ID.",
+      "future_guard": "Two radically different original paths are confirmed; generator mismatch alone is never hard."
+    },
+    "ROCKET": {
+      "display_name": "Рокет / Рокетбанк",
+      "corpus_unique": 1,
+      "observed_methods": [
+        "Исходящий СБП"
+      ],
+      "current_generators": [
+        "iText Core 9.1.0"
+      ],
+      "sbp_id_policy": "Standard 32-char ID; decoded time is within displayed minute (+24 sec).",
+      "future_guard": "Current PDF has 26 embedded CFF subset fonts, many apparently per run. High font count is legitimate and must not be a hard signal."
+    },
+    "SOVCOMBANK": {
+      "display_name": "Совкомбанк",
+      "corpus_unique": 1,
+      "observed_methods": [
+        "Перевод по номеру карты"
+      ],
+      "current_generators": [
+        "Flying Saucer 10.0.6 + OpenPDF 3.0.0"
+      ],
+      "sbp_id_policy": "Not applicable to observed card method.",
+      "future_guard": "PDF 2.0 and Letter page are legitimate current traits; do not force A4/PDF 1.x."
+    },
+    "URALSIB": {
+      "display_name": "Уралсиб",
+      "corpus_unique": 1,
+      "observed_methods": [
+        "Исходящий СБП"
+      ],
+      "current_generators": [
+        "rPDF 0.9"
+      ],
+      "sbp_id_policy": "Standard 32-char ID; decoded time is within displayed minute (+20 sec).",
+      "future_guard": "Current profile embeds full ArialMT without subset; full-font embedding is not suspicious."
+    },
+    "YANDEX_BANK": {
+      "display_name": "Яндекс Банк",
+      "corpus_unique": 3,
+      "observed_methods": [
+        "Исходящий СБП"
+      ],
+      "current_generators": [
+        "JasperReports 6.21.2 + OpenPDF 1.3.32"
+      ],
+      "sbp_id_policy": "Standard 32-char ID; decoded time is within displayed minute (+13 to +24 sec).",
+      "future_guard": "Current exact AST/object profile is stable across 3 originals but remains diagnostic for future versions."
+    }
+  },
+  "observed_profiles": [
+    {
+      "bank": "WB_BANK",
+      "sha256": "70b7d9831010e8dc306c37bf28d4911456bf1d38c284ee99dc6bf50dd364895f",
+      "size": 23476,
+      "method_detected": "SBP_OUT",
+      "pdf_header": "%PDF-1.5",
+      "object_defs": 17,
+      "eof_count": 1,
+      "tail_only_whitespace": true,
+      "startxref_count": 1,
+      "xref_keyword_count": 1,
+      "prev_count": 0,
+      "page": {
+        "width": 421.0,
+        "height": 595.0,
+        "rotate": 0
+      },
+      "metadata": {
+        "/Producer": "OpenPDF 1.3.32",
+        "/Creator": "JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd",
+        "/Title": null,
+        "/CreationDate": "D:20260703141606Z",
+        "/ModDate": null
+      },
+      "fonts": [
+        {
+          "basefont": "/Helvetica",
+          "subtype": "/Type1",
+          "encoding": "/WinAnsiEncoding",
+          "embedded_kind": null,
+          "embedded_len": null,
+          "embedded_sha256": null,
+          "to_unicode": false,
+          "cid_to_gid_kind": null,
+          "fontbbox": null,
+          "ttf": null
+        },
+        {
+          "basefont": "/YSPDGG+ALSHaussVF-Regular",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 11564,
+          "embedded_sha256": "b929a07c3fbac306f236084a7b4d08efd2ec7730b6f341387df60b55063453f8",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -174.0,
+            -262.0,
+            1291.0,
+            962.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -174,
+              -262,
+              1291,
+              962
+            ],
+            "created_mac": 3702441114,
+            "modified_mac": 3747324681,
+            "num_glyphs": 967,
+            "number_hmetrics": 967,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "hmtx",
+              "loca",
+              "glyf"
+            ]
+          }
+        }
+      ],
+      "xobjects": [
+        {
+          "subtype": "/Image",
+          "decoded_len": 815889,
+          "decoded_sha256": "df074842eaaee1706f30769d1bcff03c9d18f4a7a5329161d139098d88dcd0a4",
+          "width": 961,
+          "height": 283,
+          "colorspace": "/DeviceRGB",
+          "bpc": 8,
+          "smask": true,
+          "bbox": null,
+          "matrix": null
+        },
+        {
+          "subtype": "/Image",
+          "decoded_len": 271963,
+          "decoded_sha256": "26a4e875009a6d0974edd36e7dca32751ef6472f41c93edad8a074aa1c14ec2b",
+          "width": 961,
+          "height": 283,
+          "colorspace": "/DeviceGray",
+          "bpc": 8,
+          "smask": false,
+          "bbox": null,
+          "matrix": null
+        }
+      ],
+      "content": {
+        "operator_count": 782,
+        "operator_set": [
+          "BT",
+          "Do",
+          "ET",
+          "J",
+          "Q",
+          "RG",
+          "S",
+          "Td",
+          "Tf",
+          "Tj",
+          "Tm",
+          "cm",
+          "d",
+          "f",
+          "g",
+          "l",
+          "m",
+          "q",
+          "re",
+          "rg",
+          "w"
+        ],
+        "operator_sequence_sha256": "f0d4835ff8fbe5c8b8f455c3ad3bf99a0d3391330e3ff039d092ac9817b536c9",
+        "bt_et": [
+          27,
+          27
+        ],
+        "q_Q": [
+          2,
+          2
+        ],
+        "text_show_ops": {
+          "Tj": 25
+        }
+      },
+      "annotations_count": 0,
+      "sbp_timestamp_core_present": false
+    },
+    {
+      "bank": "OTP_BANK",
+      "sha256": "dd4d0214bcb3f278c13093daec5a73a929e4afaacf8a105b532031fa12925c60",
+      "size": 31660,
+      "method_detected": "PHONE_TRANSFER",
+      "pdf_header": "%PDF-1.3",
+      "object_defs": 28,
+      "eof_count": 1,
+      "tail_only_whitespace": true,
+      "startxref_count": 1,
+      "xref_keyword_count": 1,
+      "prev_count": 0,
+      "page": {
+        "width": 595.0,
+        "height": 842.0,
+        "rotate": 0
+      },
+      "metadata": {
+        "/Producer": "iOS Version 26.5 (Build 23F77) Quartz PDFContext",
+        "/Creator": null,
+        "/Title": "Invoice",
+        "/CreationDate": "D:20260520055739Z00'00'",
+        "/ModDate": "D:20260520055739Z00'00'"
+      },
+      "fonts": [
+        {
+          "basefont": "/AAAAAB+font000000002fbd849e",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 6656,
+          "embedded_sha256": "d106bfc139c44119d8619b9bd6120facd70fea68e29cf7a102f92b55854bff99",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            -191.0,
+            -303.0,
+            2855.0,
+            970.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -191,
+              -303,
+              2855,
+              970
+            ],
+            "created_mac": 3727006486,
+            "modified_mac": 3776850179,
+            "num_glyphs": 457,
+            "number_hmetrics": 457,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "OS/2",
+              "hmtx",
+              "cmap",
+              "prep",
+              "loca",
+              "glyf"
+            ]
+          }
+        },
+        {
+          "basefont": "/AAAAAC+font000000002fbd849e",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 10468,
+          "embedded_sha256": "18f12bf72654c945be893ffaa547b453285ba9e7eb6d9d70226c58ef37c31e79",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            -171.0,
+            -304.0,
+            2855.0,
+            960.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -171,
+              -304,
+              2855,
+              960
+            ],
+            "created_mac": 3727006486,
+            "modified_mac": 3776850179,
+            "num_glyphs": 498,
+            "number_hmetrics": 498,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "OS/2",
+              "hmtx",
+              "cmap",
+              "prep",
+              "loca",
+              "glyf"
+            ]
+          }
+        },
+        {
+          "basefont": "/AAAAAD+font000000002fbd849e",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 11880,
+          "embedded_sha256": "099138c2209ea8a04b8cef6c4f0c25b8efa34ee642e61bde5abb7607c629d1c0",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            -442.0,
+            -332.0,
+            1316.0,
+            1028.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -442,
+              -332,
+              1316,
+              1028
+            ],
+            "created_mac": 3568722145,
+            "modified_mac": 3568811881,
+            "num_glyphs": 452,
+            "number_hmetrics": 452,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "OS/2",
+              "hmtx",
+              "cmap",
+              "fpgm",
+              "prep",
+              "cvt ",
+              "loca",
+              "glyf"
+            ]
+          }
+        }
+      ],
+      "xobjects": [
+        {
+          "subtype": "/Image",
+          "decoded_len": 71400,
+          "decoded_sha256": "247467ae30bed8686a85d92f6ae24765c8ee01fc6d87250fb4ee4c954ebc753f",
+          "width": 1190,
+          "height": 20,
+          "colorspace": "['/CalRGB', {'/WhitePoint': [0.95043, 1, 1.09], '/Gamma': [2.2, 2.2, 2.2], '/Matrix': [0.41239, 0.21264, 0.01933, 0.35758, 0.71517, 0.11919, 0.18045, 0.07218, 0.9504]}]",
+          "bpc": 8,
+          "smask": false,
+          "bbox": null,
+          "matrix": null
+        }
+      ],
+      "content": {
+        "operator_count": 515,
+        "operator_set": [
+          "BT",
+          "CS",
+          "Do",
+          "ET",
+          "Q",
+          "S",
+          "SC",
+          "Tc",
+          "Tf",
+          "Tj",
+          "Tm",
+          "W",
+          "c",
+          "cm",
+          "cs",
+          "f",
+          "h",
+          "l",
+          "m",
+          "n",
+          "q",
+          "re",
+          "sc",
+          "w"
+        ],
+        "operator_sequence_sha256": "a8c6e076595ba068d2ca8147dce7a48e6d94c72c7f129e85b403e6e8776b4df1",
+        "bt_et": [
+          32,
+          32
+        ],
+        "q_Q": [
+          11,
+          11
+        ],
+        "text_show_ops": {
+          "Tj": 32
+        }
+      },
+      "annotations_count": 0,
+      "sbp_timestamp_core_present": true
+    },
+    {
+      "bank": "OTP_BANK",
+      "sha256": "10ba835806c812c4aeeed5e841aa851e33ca6332211d14cf917250aaa8a720e8",
+      "size": 56611,
+      "method_detected": "CARD_TRANSFER",
+      "pdf_header": "%PDF-1.4",
+      "object_defs": 40,
+      "eof_count": 1,
+      "tail_only_whitespace": true,
+      "startxref_count": 1,
+      "xref_keyword_count": 1,
+      "prev_count": 0,
+      "page": {
+        "width": 595.28,
+        "height": 841.89,
+        "rotate": 0
+      },
+      "metadata": {
+        "/Producer": "mPDF 8.3.1",
+        "/Creator": null,
+        "/Title": "Invoice",
+        "/CreationDate": "D:20260703160935+03'00'",
+        "/ModDate": "D:20260703160935+03'00'"
+      },
+      "fonts": [
+        {
+          "basefont": "/MPDFAA+Onest-Regular",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 15004,
+          "embedded_sha256": "338d75537eedd22c156c4f6494e53ed70f3e13a2bd73683e15dc500c1521f7d0",
+          "to_unicode": true,
+          "cid_to_gid_kind": "stream",
+          "fontbbox": [
+            -171.0,
+            -304.0,
+            2855.0,
+            960.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -171,
+              -304,
+              2855,
+              960
+            ],
+            "created_mac": 3727006486,
+            "modified_mac": 3776850179,
+            "num_glyphs": 153,
+            "number_hmetrics": 153,
+            "names": {
+              "1": "Onest",
+              "2": "Regular",
+              "4": "Onest Regular",
+              "6": "Onest-Regular"
+            },
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "OS/2",
+              "hmtx",
+              "cmap",
+              "prep",
+              "loca",
+              "glyf",
+              "name",
+              "post",
+              "gasp"
+            ]
+          }
+        },
+        {
+          "basefont": "/MPDFAA+Onest-SemiBold",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 12408,
+          "embedded_sha256": "6f5f87781164f309a0befc9af10730a53c3d90b0b67c4fbacab1f5f2a8218743",
+          "to_unicode": true,
+          "cid_to_gid_kind": "stream",
+          "fontbbox": [
+            -191.0,
+            -303.0,
+            2855.0,
+            970.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -191,
+              -303,
+              2855,
+              970
+            ],
+            "created_mac": 3727006486,
+            "modified_mac": 3776850179,
+            "num_glyphs": 120,
+            "number_hmetrics": 120,
+            "names": {
+              "1": "Onest SemiBold",
+              "2": "Regular",
+              "4": "Onest SemiBold",
+              "6": "Onest-SemiBold"
+            },
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "OS/2",
+              "hmtx",
+              "cmap",
+              "prep",
+              "loca",
+              "glyf",
+              "name",
+              "post",
+              "gasp"
+            ]
+          }
+        },
+        {
+          "basefont": "/MPDFAA+Podkova-Medium",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 23788,
+          "embedded_sha256": "9fd1885e4f0701da20ad4a6e9e2902a5faa88d28473903f48c4a02fbcf080b56",
+          "to_unicode": true,
+          "cid_to_gid_kind": "stream",
+          "fontbbox": [
+            -410.0,
+            -309.0,
+            1307.0,
+            980.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -410,
+              -309,
+              1307,
+              980
+            ],
+            "created_mac": 3568722145,
+            "modified_mac": 3568811880,
+            "num_glyphs": 111,
+            "number_hmetrics": 111,
+            "names": {
+              "1": "Podkova Medium",
+              "2": "Regular",
+              "4": "Podkova Medium",
+              "6": "Podkova-Medium"
+            },
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "OS/2",
+              "hmtx",
+              "cmap",
+              "fpgm",
+              "prep",
+              "cvt ",
+              "loca",
+              "glyf",
+              "name",
+              "post",
+              "gasp"
+            ]
+          }
+        },
+        {
+          "basefont": "/MPDFAA+Helvetica-Regular",
+          "subtype": "/TrueType",
+          "encoding": null,
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 11892,
+          "embedded_sha256": "a634de0dfc251fc764658a72cb055f1c99f620ffa48784035fe26f2fe4eba119",
+          "to_unicode": true,
+          "cid_to_gid_kind": null,
+          "fontbbox": [
+            -951.0,
+            -481.0,
+            1446.0,
+            1122.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -951,
+              -481,
+              1446,
+              1122
+            ],
+            "created_mac": 3512828931,
+            "modified_mac": 3512828931,
+            "num_glyphs": 106,
+            "number_hmetrics": 106,
+            "names": {
+              "1": "Helvetica",
+              "2": "Regular",
+              "4": "Helvetica",
+              "6": "Helvetica-Regular"
+            },
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "OS/2",
+              "hmtx",
+              "cmap",
+              "loca",
+              "glyf",
+              "name",
+              "post",
+              "gasp"
+            ]
+          }
+        }
+      ],
+      "xobjects": [
+        {
+          "subtype": "/Image",
+          "decoded_len": 71400,
+          "decoded_sha256": "247467ae30bed8686a85d92f6ae24765c8ee01fc6d87250fb4ee4c954ebc753f",
+          "width": 1190,
+          "height": 20,
+          "colorspace": "/DeviceRGB",
+          "bpc": 8,
+          "smask": false,
+          "bbox": null,
+          "matrix": null
+        },
+        {
+          "subtype": "/Form",
+          "decoded_len": 6557,
+          "decoded_sha256": "568ab625f4ca9ea108141e539484f228a487fad792615b16efe9b69643334e94",
+          "width": null,
+          "height": null,
+          "colorspace": null,
+          "bpc": null,
+          "smask": null,
+          "bbox": [
+            0.0,
+            0.0,
+            120.03780718336,
+            -24.007561436673
+          ],
+          "matrix": null
+        },
+        {
+          "subtype": "/Form",
+          "decoded_len": 135,
+          "decoded_sha256": "76f409674e437414860a2866aed54ebb8267df8497332bdd2fb8582765fdbcc0",
+          "width": null,
+          "height": null,
+          "colorspace": null,
+          "bpc": null,
+          "smask": null,
+          "bbox": [
+            0.0,
+            0.0,
+            375.86838374291,
+            -1.5004725897921
+          ],
+          "matrix": null
+        }
+      ],
+      "content": {
+        "operator_count": 545,
+        "operator_set": [
+          "BT",
+          "Do",
+          "ET",
+          "G",
+          "J",
+          "Q",
+          "RG",
+          "S",
+          "TJ",
+          "Tc",
+          "Td",
+          "Tf",
+          "Tj",
+          "Tr",
+          "Tw",
+          "cm",
+          "d",
+          "g",
+          "gs",
+          "j",
+          "l",
+          "m",
+          "q",
+          "rg",
+          "w"
+        ],
+        "operator_sequence_sha256": "45eb6099b62a820526773b2585b5601b5a68e017e437b72c8f46edc2faa7d888",
+        "bt_et": [
+          119,
+          119
+        ],
+        "q_Q": [
+          25,
+          25
+        ],
+        "text_show_ops": {
+          "Tj": 8,
+          "TJ": 13
+        }
+      },
+      "annotations_count": 0,
+      "sbp_timestamp_core_present": false
+    },
+    {
+      "bank": "PSB",
+      "sha256": "bff01559f12a03e5f5ffa19453708618078601768ae2e1a7c9e3b9449da1a6b9",
+      "size": 128517,
+      "method_detected": "SBP_OUT",
+      "pdf_header": "%PDF-1.5",
+      "object_defs": 17,
+      "eof_count": 1,
+      "tail_only_whitespace": true,
+      "startxref_count": 1,
+      "xref_keyword_count": 1,
+      "prev_count": 0,
+      "page": {
+        "width": 595.27,
+        "height": 841.89,
+        "rotate": 0
+      },
+      "metadata": {
+        "/Producer": "FastReport.NET",
+        "/Creator": "FastReport",
+        "/Title": "",
+        "/CreationDate": "D:20260531150851Z",
+        "/ModDate": "D:20260531150851Z"
+      },
+      "fonts": [
+        {
+          "basefont": "/DejaVuSans",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 154364,
+          "embedded_sha256": "a3ddf813b6bed416221b316d837cfae314d4ad8bc01af5533a9a2fd1324766b4",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -2090.0,
+            -948.0,
+            3673.0,
+            2524.0
+          ],
+          "ttf": {
+            "units_per_em": 2048,
+            "bbox": [
+              -2090,
+              -948,
+              3673,
+              2524
+            ],
+            "created_mac": 3552717820,
+            "modified_mac": 3552717820,
+            "num_glyphs": 6253,
+            "number_hmetrics": 6238,
+            "names": {
+              "1": "DejaVu Sans",
+              "2": "Book",
+              "4": "DejaVu Sans",
+              "6": "DejaVuSans"
+            },
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "OS/2",
+              "hmtx",
+              "fpgm",
+              "prep",
+              "cvt ",
+              "loca",
+              "glyf",
+              "kern",
+              "name",
+              "post"
+            ]
+          }
+        },
+        {
+          "basefont": "/DejaVuSans-Bold",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 140024,
+          "embedded_sha256": "abcd06f51ea2f559bafa37f485aa146f9630954dd6a9dc1ad30b7a481f9c1538",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -2190.0,
+            -850.0,
+            4045.0,
+            2405.0
+          ],
+          "ttf": {
+            "units_per_em": 2048,
+            "bbox": [
+              -2190,
+              -850,
+              4045,
+              2405
+            ],
+            "created_mac": 3552717817,
+            "modified_mac": 3552717817,
+            "num_glyphs": 6196,
+            "number_hmetrics": 6195,
+            "names": {
+              "1": "DejaVu Sans",
+              "2": "Bold",
+              "4": "DejaVu Sans Bold",
+              "6": "DejaVuSans-Bold"
+            },
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "OS/2",
+              "hmtx",
+              "fpgm",
+              "prep",
+              "cvt ",
+              "loca",
+              "glyf",
+              "kern",
+              "name",
+              "post"
+            ]
+          }
+        }
+      ],
+      "xobjects": [],
+      "content": {
+        "operator_count": 2950,
+        "operator_set": [
+          "BT",
+          "ET",
+          "J",
+          "Q",
+          "RG",
+          "S",
+          "TJ",
+          "Td",
+          "Tf",
+          "Tr",
+          "W",
+          "c",
+          "cm",
+          "d",
+          "f",
+          "gs",
+          "h",
+          "l",
+          "m",
+          "n",
+          "q",
+          "re",
+          "rg",
+          "s",
+          "w"
+        ],
+        "operator_sequence_sha256": "4499e6a6a0b9c6993ef576b97f17df8583bd6888ca358fb16b2ece12604d672a",
+        "bt_et": [
+          22,
+          22
+        ],
+        "q_Q": [
+          167,
+          167
+        ],
+        "text_show_ops": {
+          "TJ": 22
+        }
+      },
+      "annotations_count": 0,
+      "sbp_timestamp_core_present": true
+    },
+    {
+      "bank": "PSB",
+      "sha256": "cf8553af700a03da26f5c2fc33c05119be2ca8aa9aad5a35ca8609616ab8a932",
+      "size": 128257,
+      "method_detected": "SBP_OUT",
+      "pdf_header": "%PDF-1.5",
+      "object_defs": 17,
+      "eof_count": 1,
+      "tail_only_whitespace": true,
+      "startxref_count": 1,
+      "xref_keyword_count": 1,
+      "prev_count": 0,
+      "page": {
+        "width": 595.27,
+        "height": 841.89,
+        "rotate": 0
+      },
+      "metadata": {
+        "/Producer": "FastReport.NET",
+        "/Creator": "FastReport",
+        "/Title": "",
+        "/CreationDate": "D:20260527082417Z",
+        "/ModDate": "D:20260527082417Z"
+      },
+      "fonts": [
+        {
+          "basefont": "/DejaVuSans",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 154220,
+          "embedded_sha256": "61f106d0e855178c1f6ec3eb2c629df8ec84bc8cbf4c7674ff813b6e3d1b2a87",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -2090.0,
+            -948.0,
+            3673.0,
+            2524.0
+          ],
+          "ttf": {
+            "units_per_em": 2048,
+            "bbox": [
+              -2090,
+              -948,
+              3673,
+              2524
+            ],
+            "created_mac": 3514695156,
+            "modified_mac": 3514695156,
+            "num_glyphs": 6241,
+            "number_hmetrics": 6226,
+            "names": {
+              "1": "DejaVu Sans",
+              "2": "Book",
+              "4": "DejaVu Sans",
+              "6": "DejaVuSans"
+            },
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "OS/2",
+              "hmtx",
+              "fpgm",
+              "prep",
+              "cvt ",
+              "loca",
+              "glyf",
+              "kern",
+              "name",
+              "post"
+            ]
+          }
+        },
+        {
+          "basefont": "/DejaVuSans-Bold",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 139708,
+          "embedded_sha256": "d7f2cfb560fa98c250959aebd76e9294f349dfd31c2365737b58a319b055963c",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -2190.0,
+            -850.0,
+            4045.0,
+            2407.0
+          ],
+          "ttf": {
+            "units_per_em": 2048,
+            "bbox": [
+              -2190,
+              -850,
+              4045,
+              2407
+            ],
+            "created_mac": 3514695156,
+            "modified_mac": 3514695156,
+            "num_glyphs": 6184,
+            "number_hmetrics": 6183,
+            "names": {
+              "1": "DejaVu Sans",
+              "2": "Bold",
+              "4": "DejaVu Sans Bold",
+              "6": "DejaVuSans-Bold"
+            },
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "OS/2",
+              "hmtx",
+              "fpgm",
+              "prep",
+              "cvt ",
+              "loca",
+              "glyf",
+              "kern",
+              "name",
+              "post"
+            ]
+          }
+        }
+      ],
+      "xobjects": [],
+      "content": {
+        "operator_count": 2950,
+        "operator_set": [
+          "BT",
+          "ET",
+          "J",
+          "Q",
+          "RG",
+          "S",
+          "TJ",
+          "Td",
+          "Tf",
+          "Tr",
+          "W",
+          "c",
+          "cm",
+          "d",
+          "f",
+          "gs",
+          "h",
+          "l",
+          "m",
+          "n",
+          "q",
+          "re",
+          "rg",
+          "s",
+          "w"
+        ],
+        "operator_sequence_sha256": "4499e6a6a0b9c6993ef576b97f17df8583bd6888ca358fb16b2ece12604d672a",
+        "bt_et": [
+          22,
+          22
+        ],
+        "q_Q": [
+          167,
+          167
+        ],
+        "text_show_ops": {
+          "TJ": 22
+        }
+      },
+      "annotations_count": 0,
+      "sbp_timestamp_core_present": true
+    },
+    {
+      "bank": "BSPB",
+      "sha256": "24de397c9f558b9c45da1aa32e8fb43c3ad567e497fc9aaced42b3ca68cf18a5",
+      "size": 37571,
+      "method_detected": "SBP_OUT",
+      "pdf_header": "%PDF-1.5",
+      "object_defs": 23,
+      "eof_count": 1,
+      "tail_only_whitespace": true,
+      "startxref_count": 1,
+      "xref_keyword_count": 1,
+      "prev_count": 0,
+      "page": {
+        "width": 420.0,
+        "height": 595.0,
+        "rotate": 0
+      },
+      "metadata": {
+        "/Producer": "PDFProducer",
+        "/Creator": "PDFCreator",
+        "/Title": null,
+        "/CreationDate": "D:20260615181109+03'00'",
+        "/ModDate": null
+      },
+      "fonts": [
+        {
+          "basefont": "/Helvetica",
+          "subtype": "/Type1",
+          "encoding": "/WinAnsiEncoding",
+          "embedded_kind": null,
+          "embedded_len": null,
+          "embedded_sha256": null,
+          "to_unicode": false,
+          "cid_to_gid_kind": null,
+          "fontbbox": null,
+          "ttf": null
+        },
+        {
+          "basefont": "/JRTHFF+DejaVuSans",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 62208,
+          "embedded_sha256": "b4e8cec37dc999c41b963af23e0bcee580ccebe17198d3518509b78a0d13aeab",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -1020.0,
+            -462.0,
+            1793.0,
+            1232.0
+          ],
+          "ttf": {
+            "units_per_em": 2048,
+            "bbox": [
+              -2090,
+              -948,
+              3673,
+              2524
+            ],
+            "created_mac": 3552717820,
+            "modified_mac": 3552717820,
+            "num_glyphs": 6253,
+            "number_hmetrics": 6238,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "hmtx",
+              "fpgm",
+              "prep",
+              "cvt ",
+              "loca",
+              "glyf"
+            ]
+          }
+        },
+        {
+          "basefont": "/LHVQME+DejaVuSans-Bold",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 53352,
+          "embedded_sha256": "27e69ac1c738acbac90203cccdd59dd9df01fb16c73ed1b7a1775e0c8e1b460f",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -1069.0,
+            -415.0,
+            1975.0,
+            1174.0
+          ],
+          "ttf": {
+            "units_per_em": 2048,
+            "bbox": [
+              -2190,
+              -850,
+              4045,
+              2405
+            ],
+            "created_mac": 3552717817,
+            "modified_mac": 3552717817,
+            "num_glyphs": 6196,
+            "number_hmetrics": 6195,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "hmtx",
+              "fpgm",
+              "prep",
+              "cvt ",
+              "loca",
+              "glyf"
+            ]
+          }
+        }
+      ],
+      "xobjects": [
+        {
+          "subtype": "/Form",
+          "decoded_len": 2312,
+          "decoded_sha256": "c3a9a20b7e2ef758b10fe6f863c58ea9248d6aeb66fda76cdf371c6701a42091",
+          "width": null,
+          "height": null,
+          "colorspace": null,
+          "bpc": null,
+          "smask": null,
+          "bbox": [
+            0.0,
+            0.0,
+            72.0,
+            24.0
+          ],
+          "matrix": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "subtype": "/Form",
+          "decoded_len": 1070,
+          "decoded_sha256": "9aeda5d4231a8d4795d0bfc2995567778406ef06107f2d69d410acfa71a07e58",
+          "width": null,
+          "height": null,
+          "colorspace": null,
+          "bpc": null,
+          "smask": null,
+          "bbox": [
+            0.0,
+            0.0,
+            20.0,
+            23.0
+          ],
+          "matrix": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "content": {
+        "operator_count": 310,
+        "operator_set": [
+          "BT",
+          "Do",
+          "ET",
+          "J",
+          "Q",
+          "RG",
+          "S",
+          "Td",
+          "Tf",
+          "Tj",
+          "Tm",
+          "cm",
+          "d",
+          "g",
+          "l",
+          "m",
+          "q",
+          "rg",
+          "w"
+        ],
+        "operator_sequence_sha256": "570968fa8ae4af07e6de0611b2a1c742f351bc7c83da085ff3ed643e2b45b05c",
+        "bt_et": [
+          26,
+          26
+        ],
+        "q_Q": [
+          3,
+          3
+        ],
+        "text_show_ops": {
+          "Tj": 23
+        }
+      },
+      "annotations_count": 0,
+      "sbp_timestamp_core_present": true
+    },
+    {
+      "bank": "RAIFFEISEN",
+      "sha256": "3e3d4db937b1b238589c253a423d8f4a24d66f29eab1852c01df818e462a2f24",
+      "size": 45589,
+      "method_detected": "PHONE_TRANSFER",
+      "pdf_header": "%PDF-1.5",
+      "object_defs": 18,
+      "eof_count": 1,
+      "tail_only_whitespace": true,
+      "startxref_count": 1,
+      "xref_keyword_count": 1,
+      "prev_count": 0,
+      "page": {
+        "width": 595.28,
+        "height": 841.88,
+        "rotate": 0
+      },
+      "metadata": {
+        "/Producer": null,
+        "/Creator": null,
+        "/Title": "Document",
+        "/CreationDate": null,
+        "/ModDate": null
+      },
+      "fonts": [
+        {
+          "basefont": "/DKKAJK+PTSans-Regular",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 40804,
+          "embedded_sha256": "b2c929ad9edbaefacc40bfaf544360ace2433a490f64c3e9716acd84cc883281",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -355.0,
+            -245.0,
+            1093.0,
+            993.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -355,
+              -245,
+              1093,
+              993
+            ],
+            "created_mac": 3375861540,
+            "modified_mac": 3375977793,
+            "num_glyphs": 720,
+            "number_hmetrics": 720,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "hmtx",
+              "fpgm",
+              "prep",
+              "cvt ",
+              "loca",
+              "glyf"
+            ]
+          }
+        },
+        {
+          "basefont": "/IRQSGB+PTSans-Bold",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 24720,
+          "embedded_sha256": "56fbca38b872177b75c8d5730d09f8a812ec2890a8d1a4a23f3c1697ef19e9ea",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -387.0,
+            -273.0,
+            1191.0,
+            1010.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -387,
+              -273,
+              1191,
+              1010
+            ],
+            "created_mac": 3375861544,
+            "modified_mac": 3375977802,
+            "num_glyphs": 720,
+            "number_hmetrics": 720,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "hmtx",
+              "fpgm",
+              "prep",
+              "cvt ",
+              "loca",
+              "glyf"
+            ]
+          }
+        }
+      ],
+      "xobjects": [
+        {
+          "subtype": "/Form",
+          "decoded_len": 729,
+          "decoded_sha256": "891de40d70b3f135ad2be0f62e9334aa6cb974a2e48d46f6e13f30260117920b",
+          "width": null,
+          "height": null,
+          "colorspace": null,
+          "bpc": null,
+          "smask": null,
+          "bbox": [
+            0.0,
+            0.0,
+            29.0,
+            29.0
+          ],
+          "matrix": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "subtype": "/Form",
+          "decoded_len": 6908,
+          "decoded_sha256": "b361b09c768840b7274383404f77d3ba814da3984ce778d93ca5cb4baa4634ab",
+          "width": null,
+          "height": null,
+          "colorspace": null,
+          "bpc": null,
+          "smask": null,
+          "bbox": [
+            0.0,
+            0.0,
+            109.0,
+            26.0
+          ],
+          "matrix": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "subtype": "/Form",
+          "decoded_len": 540,
+          "decoded_sha256": "e8be1b77f6f88f7c8d89e034690fc1c90533a92bf7b044b539429229cbd2dc7d",
+          "width": null,
+          "height": null,
+          "colorspace": null,
+          "bpc": null,
+          "smask": null,
+          "bbox": [
+            0.0,
+            0.0,
+            24.0,
+            24.0
+          ],
+          "matrix": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "content": {
+        "operator_count": 354,
+        "operator_set": [
+          "BT",
+          "Do",
+          "ET",
+          "J",
+          "M",
+          "Q",
+          "Td",
+          "Tf",
+          "Tj",
+          "Tm",
+          "W",
+          "cm",
+          "d",
+          "f",
+          "h",
+          "j",
+          "l",
+          "m",
+          "n",
+          "q",
+          "rg",
+          "w"
+        ],
+        "operator_sequence_sha256": "fdc1091a4df9cc2ed1e62c327ee14ead2dd760a3d40d9b696aa82ed25214aa55",
+        "bt_et": [
+          41,
+          41
+        ],
+        "q_Q": [
+          12,
+          12
+        ],
+        "text_show_ops": {
+          "Tj": 40
+        }
+      },
+      "annotations_count": 0,
+      "sbp_timestamp_core_present": false
+    },
+    {
+      "bank": "RAIFFEISEN",
+      "sha256": "085972a6486f548040a1e15e8cab81fddcb021993c6681e75b4815eaf01497af",
+      "size": 125009,
+      "method_detected": "SBP_OUT",
+      "pdf_header": "%PDF-1.7",
+      "object_defs": 29,
+      "eof_count": 1,
+      "tail_only_whitespace": true,
+      "startxref_count": 1,
+      "xref_keyword_count": 1,
+      "prev_count": 0,
+      "page": {
+        "width": 595.0,
+        "height": 842.0,
+        "rotate": 0
+      },
+      "metadata": {
+        "/Producer": "iText® pdfHTML 6.2.0 (AGPL version) ©2000-2025 Apryse Group NV",
+        "/Creator": null,
+        "/Title": "Document",
+        "/CreationDate": "D:20260603122002+03'00'",
+        "/ModDate": "D:20260603122002+03'00'"
+      },
+      "fonts": [
+        {
+          "basefont": "/PDNVML+Navigo-Bold",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 4920,
+          "embedded_sha256": "b15bc7b08afbd769bc7380a7d0db3762f748b0cc68209e23a0d2a01a43f9c1f6",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -135.0,
+            -260.0,
+            1073.0,
+            1149.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -135,
+              -260,
+              1073,
+              1149
+            ],
+            "created_mac": 3569145674,
+            "modified_mac": 3569496169,
+            "num_glyphs": 315,
+            "number_hmetrics": 315,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "OS/2",
+              "hmtx",
+              "cmap",
+              "loca",
+              "glyf"
+            ]
+          }
+        },
+        {
+          "basefont": "/CKADZB+ALSHauss-Bold-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 18332,
+          "embedded_sha256": "a5a87d881454626ed5e70884cb14ce0bec9764a4f94ee63fd123ef2b79b462c7",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            -202.0,
+            -305.0,
+            1335.0,
+            993.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/FRADPV+ALSHauss-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 19642,
+          "embedded_sha256": "33c7d3c55ea17a8bf2bd5f581f1d12e40a32c631a4584b0736e607b2779f80da",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            -174.0,
+            -262.0,
+            1219.0,
+            962.0
+          ],
+          "ttf": null
+        }
+      ],
+      "xobjects": [
+        {
+          "subtype": "/Form",
+          "decoded_len": 43,
+          "decoded_sha256": "464ac0082f968c5920d37555b70f6b900ae51963b7d49ec953d1aa4b04faedcc",
+          "width": null,
+          "height": null,
+          "colorspace": null,
+          "bpc": null,
+          "smask": null,
+          "bbox": [
+            0.0,
+            0.0,
+            129.75,
+            36.75
+          ],
+          "matrix": null
+        },
+        {
+          "subtype": "/Image",
+          "decoded_len": 2462508,
+          "decoded_sha256": "882e20539c8e08769693af2653f85860a2f3773af72537fdd3c5f114aefcb12e",
+          "width": 906,
+          "height": 906,
+          "colorspace": "/DeviceRGB",
+          "bpc": 8,
+          "smask": true,
+          "bbox": null,
+          "matrix": null
+        },
+        {
+          "subtype": "/Image",
+          "decoded_len": 55311,
+          "decoded_sha256": "622549b25faccb533526bf21aef5bfb87820b1c73e4f9ce18b52efb8fe1c2787",
+          "width": 179,
+          "height": 103,
+          "colorspace": "['/CalRGB', {'/Matrix': [0.41239, 0.21264, 0.01933, 0.35758, 0.71517, 0.11919, 0.18045, 0.07218, 0.9504], '/WhitePoint': [0.95043, 1, 1.09]}]",
+          "bpc": 8,
+          "smask": true,
+          "bbox": null,
+          "matrix": null
+        }
+      ],
+      "content": {
+        "operator_count": 340,
+        "operator_set": [
+          "BT",
+          "Do",
+          "ET",
+          "Q",
+          "Td",
+          "Tf",
+          "Tj",
+          "W",
+          "cm",
+          "f",
+          "n",
+          "q",
+          "re",
+          "rg"
+        ],
+        "operator_sequence_sha256": "e61395ba1f5db8069b684251c00ca836106f9a713233c404c374c55827f4d82d",
+        "bt_et": [
+          37,
+          37
+        ],
+        "q_Q": [
+          46,
+          46
+        ],
+        "text_show_ops": {
+          "Tj": 39
+        }
+      },
+      "annotations_count": 0,
+      "sbp_timestamp_core_present": true
+    },
+    {
+      "bank": "RAIFFEISEN",
+      "sha256": "ebacacce01ca9c6e2dae1257b0eb9760cd0dde5fa243f6bc46762862982f3bc9",
+      "size": 124816,
+      "method_detected": "SBP_OUT",
+      "pdf_header": "%PDF-1.7",
+      "object_defs": 29,
+      "eof_count": 1,
+      "tail_only_whitespace": true,
+      "startxref_count": 1,
+      "xref_keyword_count": 1,
+      "prev_count": 0,
+      "page": {
+        "width": 595.0,
+        "height": 842.0,
+        "rotate": 0
+      },
+      "metadata": {
+        "/Producer": "iText® pdfHTML 6.2.0 (AGPL version) ©2000-2025 Apryse Group NV",
+        "/Creator": null,
+        "/Title": "Document",
+        "/CreationDate": "D:20260507134153+03'00'",
+        "/ModDate": "D:20260507134153+03'00'"
+      },
+      "fonts": [
+        {
+          "basefont": "/WJITDK+Navigo-Bold",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 4920,
+          "embedded_sha256": "b15bc7b08afbd769bc7380a7d0db3762f748b0cc68209e23a0d2a01a43f9c1f6",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -135.0,
+            -260.0,
+            1073.0,
+            1149.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -135,
+              -260,
+              1073,
+              1149
+            ],
+            "created_mac": 3569145674,
+            "modified_mac": 3569496169,
+            "num_glyphs": 315,
+            "number_hmetrics": 315,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "OS/2",
+              "hmtx",
+              "cmap",
+              "loca",
+              "glyf"
+            ]
+          }
+        },
+        {
+          "basefont": "/TQGMVQ+ALSHauss-Bold-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 18332,
+          "embedded_sha256": "a5a87d881454626ed5e70884cb14ce0bec9764a4f94ee63fd123ef2b79b462c7",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            -202.0,
+            -305.0,
+            1335.0,
+            993.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/TVTWWE+ALSHauss-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 19496,
+          "embedded_sha256": "4a9fa454675433ee2267a540e945a796048fee0c984716c93deadee5fbfa8210",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            -174.0,
+            -262.0,
+            1219.0,
+            962.0
+          ],
+          "ttf": null
+        }
+      ],
+      "xobjects": [
+        {
+          "subtype": "/Form",
+          "decoded_len": 43,
+          "decoded_sha256": "464ac0082f968c5920d37555b70f6b900ae51963b7d49ec953d1aa4b04faedcc",
+          "width": null,
+          "height": null,
+          "colorspace": null,
+          "bpc": null,
+          "smask": null,
+          "bbox": [
+            0.0,
+            0.0,
+            129.75,
+            36.75
+          ],
+          "matrix": null
+        },
+        {
+          "subtype": "/Image",
+          "decoded_len": 2462508,
+          "decoded_sha256": "882e20539c8e08769693af2653f85860a2f3773af72537fdd3c5f114aefcb12e",
+          "width": 906,
+          "height": 906,
+          "colorspace": "/DeviceRGB",
+          "bpc": 8,
+          "smask": true,
+          "bbox": null,
+          "matrix": null
+        },
+        {
+          "subtype": "/Image",
+          "decoded_len": 55311,
+          "decoded_sha256": "622549b25faccb533526bf21aef5bfb87820b1c73e4f9ce18b52efb8fe1c2787",
+          "width": 179,
+          "height": 103,
+          "colorspace": "['/CalRGB', {'/Matrix': [0.41239, 0.21264, 0.01933, 0.35758, 0.71517, 0.11919, 0.18045, 0.07218, 0.9504], '/WhitePoint': [0.95043, 1, 1.09]}]",
+          "bpc": 8,
+          "smask": true,
+          "bbox": null,
+          "matrix": null
+        }
+      ],
+      "content": {
+        "operator_count": 340,
+        "operator_set": [
+          "BT",
+          "Do",
+          "ET",
+          "Q",
+          "Td",
+          "Tf",
+          "Tj",
+          "W",
+          "cm",
+          "f",
+          "n",
+          "q",
+          "re",
+          "rg"
+        ],
+        "operator_sequence_sha256": "e61395ba1f5db8069b684251c00ca836106f9a713233c404c374c55827f4d82d",
+        "bt_et": [
+          37,
+          37
+        ],
+        "q_Q": [
+          46,
+          46
+        ],
+        "text_show_ops": {
+          "Tj": 39
+        }
+      },
+      "annotations_count": 0,
+      "sbp_timestamp_core_present": true
+    },
+    {
+      "bank": "ROCKET",
+      "sha256": "925c7b31799c340ff270f71ada6964e2e83253f3ea79faefdda461a535446582",
+      "size": 88902,
+      "method_detected": "UNKNOWN",
+      "pdf_header": "%PDF-1.7",
+      "object_defs": 181,
+      "eof_count": 1,
+      "tail_only_whitespace": true,
+      "startxref_count": 1,
+      "xref_keyword_count": 1,
+      "prev_count": 0,
+      "page": {
+        "width": 420.0,
+        "height": 1116.0,
+        "rotate": 0
+      },
+      "metadata": {
+        "/Producer": "iText® Core 9.1.0 (AGPL version) ©2000-2025 Apryse Group NV",
+        "/Creator": null,
+        "/Title": null,
+        "/CreationDate": "D:20260530165542Z",
+        "/ModDate": "D:20260530165542Z"
+      },
+      "fonts": [
+        {
+          "basefont": "/SPXDKB+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2994,
+          "embedded_sha256": "5fe506d3fafb3a7ae0c8ae11181116077b79c6eb8db7ede6ef0e9be05b501fe6",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/DTKWSW+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2721,
+          "embedded_sha256": "140e2c2da1e5bc4e3da9c4a0b44f2076ac8d2cc0572f4481f1bad10dbe589778",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/LQDMSB+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2707,
+          "embedded_sha256": "80aed23ee89b230c0cf185f7e4e908847c5249cdd34ba14df9293cd5c31f7bac",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/RYLNMJ+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2693,
+          "embedded_sha256": "3ee908986f8207e7fc9fd45574e907278bd86bc9e0083cce02717b6fa98c47f8",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/NJXIMO+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2670,
+          "embedded_sha256": "99b6bcb87effb2ac7a8a84415775d32621c87b43120798308447a0a583604d34",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/VASYAN+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2663,
+          "embedded_sha256": "cb157cec2341b59852eabbde86f27f2bdf584490a8293b78254e27fc18bf66d2",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/CIDTWH+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2788,
+          "embedded_sha256": "22d770584811d9c4df567f0eb533060cfe7bf7f81a1aaad7abe91a35cd2badee",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/VUWBMB+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2576,
+          "embedded_sha256": "70e34a810c5831ed8df8300542c61a0170f48400ca9c5b30ae3770c3bbdbc36a",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/PQDWUH+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2790,
+          "embedded_sha256": "7c65331a85ce5bf533c633f09082e8f3b2ff292561c1e9c2f790b39050e48589",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/QFUAWX+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2375,
+          "embedded_sha256": "a85a385e9cb4424df7f06fbccac5b83fc8e647fb568b13b1235c234b7eecc3f4",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/EEDPBT+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2828,
+          "embedded_sha256": "8c8334cc30fe1fde5782ccedfab750c1c4d4628a319959d61680734a374f9531",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/RWSAOJ+RocketSans-Wide-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2270,
+          "embedded_sha256": "8b0b90d59bf8476e27e3cdf3cc705f8fe86d91953b29bab0cbe99219e81bad3f",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            -965.0,
+            -250.0,
+            1734.0,
+            967.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/RAMQJB+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2645,
+          "embedded_sha256": "5b595f39e6259440222c2f3d98eeed524095534f6af724a98502da692c74eb3e",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/IAVJMV+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2869,
+          "embedded_sha256": "a3abc6a18e9b57ef1b16020a6d3fc08232365a71cce52f4ddf4fa49f4e07b61a",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/ANVDKL+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2926,
+          "embedded_sha256": "9cef067b4f661db42044d07590b190f544180ef7a9f4c24c60c1ef4b0006ce50",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/KTXSIF+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2345,
+          "embedded_sha256": "f355a2906fe68964c9a9dd79bc6982f8347bc48b0ca3058ce7e300557ab86115",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/EEZDUO+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2448,
+          "embedded_sha256": "8691da8f96a113367631c790833fca5dda478f7d877aa0f66170fb2737bcc137",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/BULQBI+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2654,
+          "embedded_sha256": "69791d43ff6d1ceae0ebe481f4b2a3c30f2debf75059967c30402ab26ebab6f4",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/UTLBIL+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2722,
+          "embedded_sha256": "603e0407701ca976c1328ea3c31fe593ed86c29c354bc7daf5c648c9ddbb7a8c",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/QGKILR+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2523,
+          "embedded_sha256": "e06d1f311ee920ee58e71b0ff8bab0996f8d80008cd90c36748b28e8d17e1e18",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/QDJSCP+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2657,
+          "embedded_sha256": "d229b921504b9b5f7b1afa1a648eb61636d87876a9df24449a03f991cc89cf35",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/BDQKIL+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2790,
+          "embedded_sha256": "3c8133b23cdba7981585d6aae6c5d52c7734bbc4e818a9411d389d86615769c4",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/OJUTZR+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2624,
+          "embedded_sha256": "5cb8d9f972d8973775578bbff4b81d3c1cd683bdb376e99d8694655fb6f7e350",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/IIXWYX+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2587,
+          "embedded_sha256": "78c3ab28f935b2827634c736fdf8c1e67c829d887af48205e4ec40af788ea7bd",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/LSAWZO+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2749,
+          "embedded_sha256": "90f6e6ef0377b425f1ba6cb3128a73b33256e5690323cfa9ac3c6c2b8db5081a",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        },
+        {
+          "basefont": "/FHRBVB+RocketMono-Regular-Identity-H",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile3",
+          "embedded_len": 2705,
+          "embedded_sha256": "79d6b408f54c9c58f0d82ca5dea02b9091b207033e40f0700c0c52984f8c62a4",
+          "to_unicode": true,
+          "cid_to_gid_kind": "None",
+          "fontbbox": [
+            10.0,
+            -205.0,
+            1246.0,
+            858.0
+          ],
+          "ttf": null
+        }
+      ],
+      "xobjects": [
+        {
+          "subtype": "/Form",
+          "decoded_len": 40,
+          "decoded_sha256": "3c4e4a2c54684155066de61ea7b914c469ed7140eba00d0186eb229508ce0e69",
+          "width": null,
+          "height": null,
+          "colorspace": null,
+          "bpc": null,
+          "smask": null,
+          "bbox": [
+            0.0,
+            0.0,
+            98.25,
+            30.0
+          ],
+          "matrix": null
+        },
+        {
+          "subtype": "/Form",
+          "decoded_len": 40,
+          "decoded_sha256": "10721886a28d8fd5af38990d5fff285c35c484bc3fa0c79c4d82d5493f689974",
+          "width": null,
+          "height": null,
+          "colorspace": null,
+          "bpc": null,
+          "smask": null,
+          "bbox": [
+            0.0,
+            0.0,
+            255.0,
+            90.0
+          ],
+          "matrix": null
+        }
+      ],
+      "content": {
+        "operator_count": 242,
+        "operator_set": [
+          "BT",
+          "Do",
+          "ET",
+          "Q",
+          "Td",
+          "Tf",
+          "Tj",
+          "cm",
+          "gs",
+          "q",
+          "rg"
+        ],
+        "operator_sequence_sha256": "84a387a62d8494350d61e99207ee5e172b0b720b9881b2fe97c6378297b41314",
+        "bt_et": [
+          26,
+          26
+        ],
+        "q_Q": [
+          28,
+          28
+        ],
+        "text_show_ops": {
+          "Tj": 39
+        }
+      },
+      "annotations_count": 0,
+      "sbp_timestamp_core_present": true
+    },
+    {
+      "bank": "SOVCOMBANK",
+      "sha256": "e0def455492d98a8ef98aadcd62cec9bb6919f22ce9b795771aff74b0b1ff41b",
+      "size": 78424,
+      "method_detected": "CARD_TRANSFER",
+      "pdf_header": "%PDF-2.0",
+      "object_defs": 12,
+      "eof_count": 1,
+      "tail_only_whitespace": true,
+      "startxref_count": 1,
+      "xref_keyword_count": 0,
+      "prev_count": 0,
+      "page": {
+        "width": 612.0,
+        "height": 792.0,
+        "rotate": 0
+      },
+      "metadata": {
+        "/Producer": "Flying Saucer 10.0.6 with OpenPDF 3.0.0",
+        "/Creator": "Flying Saucer 10.0.6 with OpenPDF 3.0.0",
+        "/Title": null,
+        "/CreationDate": "D:20260606105039Z",
+        "/ModDate": null
+      },
+      "fonts": [
+        {
+          "basefont": "/Times-Roman",
+          "subtype": "/Type1",
+          "encoding": "/WinAnsiEncoding",
+          "embedded_kind": null,
+          "embedded_len": null,
+          "embedded_sha256": null,
+          "to_unicode": false,
+          "cid_to_gid_kind": null,
+          "fontbbox": null,
+          "ttf": null
+        },
+        {
+          "basefont": "/WBIGGA+Montserrat-Regular",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 24756,
+          "embedded_sha256": "cc4aaa2ed2502dadd8a066a8acb03b92bbdbf0fca2b4ffc01565424d10a4723b",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -392.0,
+            -459.0,
+            1585.0,
+            1018.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -392,
+              -459,
+              1585,
+              1018
+            ],
+            "created_mac": 3707109548,
+            "modified_mac": 3812004717,
+            "num_glyphs": 2654,
+            "number_hmetrics": 2654,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "hmtx",
+              "fpgm",
+              "prep",
+              "cvt ",
+              "loca",
+              "glyf"
+            ]
+          }
+        }
+      ],
+      "xobjects": [
+        {
+          "subtype": "/Image",
+          "decoded_len": 1428480,
+          "decoded_sha256": "4a919bbb11f57f5182c7f533eef62d3b03d9af3ea8ffc26250a1b3c0e6785fdb",
+          "width": 930,
+          "height": 512,
+          "colorspace": "/DeviceRGB",
+          "bpc": 8,
+          "smask": true,
+          "bbox": null,
+          "matrix": null
+        },
+        {
+          "subtype": "/Image",
+          "decoded_len": 476160,
+          "decoded_sha256": "08060ae93b1b8da1915c335e2afefae34734f6f814ebd298db02b8b23cc9adf7",
+          "width": 930,
+          "height": 512,
+          "colorspace": "/DeviceGray",
+          "bpc": 8,
+          "smask": false,
+          "bbox": null,
+          "matrix": null
+        },
+        {
+          "subtype": "/Image",
+          "decoded_len": 202662,
+          "decoded_sha256": "bbca21bdb3da9191bdfbb7c3bdd1f90ed2f08415f521d7733dd40877531257eb",
+          "width": 834,
+          "height": 81,
+          "colorspace": "/DeviceRGB",
+          "bpc": 8,
+          "smask": true,
+          "bbox": null,
+          "matrix": null
+        },
+        {
+          "subtype": "/Image",
+          "decoded_len": 67554,
+          "decoded_sha256": "afc2c48d8bee61f074c0d0e0a1afb9fe51413f204b1ceb7344ba89e71e2eef54",
+          "width": 834,
+          "height": 81,
+          "colorspace": "/DeviceGray",
+          "bpc": 8,
+          "smask": false,
+          "bbox": null,
+          "matrix": null
+        }
+      ],
+      "content": {
+        "operator_count": 214,
+        "operator_set": [
+          "BT",
+          "Do",
+          "ET",
+          "J",
+          "M",
+          "Q",
+          "RG",
+          "Td",
+          "Tf",
+          "Tj",
+          "Tm",
+          "Tr",
+          "W",
+          "cm",
+          "d",
+          "f",
+          "h",
+          "j",
+          "l",
+          "m",
+          "n",
+          "q",
+          "rg",
+          "w"
+        ],
+        "operator_sequence_sha256": "9f5dcc5f65efbac6e4c596f155b275d93a274b6746b3a6dcb090acc6370999b5",
+        "bt_et": [
+          19,
+          19
+        ],
+        "q_Q": [
+          5,
+          5
+        ],
+        "text_show_ops": {
+          "Tj": 18
+        }
+      },
+      "annotations_count": 0,
+      "sbp_timestamp_core_present": false
+    },
+    {
+      "bank": "URALSIB",
+      "sha256": "48d2232faa0fa17570fe2aea8166a770aa5af9c1c1022d11646fa0bfce66311e",
+      "size": 26239,
+      "method_detected": "SBP_OUT",
+      "pdf_header": "%PDF-1.4",
+      "object_defs": 24,
+      "eof_count": 1,
+      "tail_only_whitespace": true,
+      "startxref_count": 1,
+      "xref_keyword_count": 1,
+      "prev_count": 0,
+      "page": {
+        "width": 595.0,
+        "height": 842.0,
+        "rotate": 0
+      },
+      "metadata": {
+        "/Producer": "rPDF.0.9",
+        "/Creator": "UnknownApplication",
+        "/Title": "",
+        "/CreationDate": "D:20260519163959+03'00'",
+        "/ModDate": null
+      },
+      "fonts": [
+        {
+          "basefont": "/ArialMT",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 15516,
+          "embedded_sha256": "8d9cb8e77c81230937a95daf620c9d19b99b98e5a1b08a7668ec7970d37eaf43",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -664.550781,
+            -324.707031,
+            2000.0,
+            1039.55078
+          ],
+          "ttf": {
+            "units_per_em": 2048,
+            "bbox": [
+              -5,
+              -432,
+              2112,
+              1501
+            ],
+            "created_mac": 2082840000,
+            "modified_mac": 2082840000,
+            "num_glyphs": 71,
+            "number_hmetrics": 71,
+            "names": {
+              "1": "Arial",
+              "2": "Regular",
+              "4": "Arial",
+              "6": "ArialMT"
+            },
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "OS/2",
+              "hmtx",
+              "loca",
+              "glyf",
+              "name"
+            ]
+          }
+        }
+      ],
+      "xobjects": [
+        {
+          "subtype": "/Image",
+          "decoded_len": 76860,
+          "decoded_sha256": "88f07f592053c4d952820cefff17379d6423acd4289a0fa62adcb0521dde370f",
+          "width": 366,
+          "height": 70,
+          "colorspace": "/DeviceRGB",
+          "bpc": 8,
+          "smask": true,
+          "bbox": null,
+          "matrix": null
+        },
+        {
+          "subtype": "/Image",
+          "decoded_len": 45240,
+          "decoded_sha256": "734db1a15f30f110f4132332983e2cae8152f35cd6e5ebc1d846675c3c66f3ef",
+          "width": 232,
+          "height": 65,
+          "colorspace": "/DeviceRGB",
+          "bpc": 8,
+          "smask": true,
+          "bbox": null,
+          "matrix": null
+        }
+      ],
+      "content": {
+        "operator_count": 1214,
+        "operator_set": [
+          "BT",
+          "CS",
+          "Do",
+          "ET",
+          "J",
+          "Q",
+          "SCN",
+          "Td",
+          "Tf",
+          "Tj",
+          "Tm",
+          "W*",
+          "cm",
+          "cs",
+          "d",
+          "gs",
+          "h",
+          "j",
+          "l",
+          "m",
+          "n",
+          "q",
+          "scn",
+          "w"
+        ],
+        "operator_sequence_sha256": "793cd59e7ce96885ec299be00812f85e003c4175942be3cb9d0b44d341a90dda",
+        "bt_et": [
+          26,
+          26
+        ],
+        "q_Q": [
+          38,
+          38
+        ],
+        "text_show_ops": {
+          "Tj": 355
+        }
+      },
+      "annotations_count": 0,
+      "sbp_timestamp_core_present": true
+    },
+    {
+      "bank": "YANDEX_BANK",
+      "sha256": "013be8ac2f495e4f65d5df3b7c694a41922ea35db6b55c69f1b19b849a886b7d",
+      "size": 120675,
+      "method_detected": "SBP_OUT",
+      "pdf_header": "%PDF-1.5",
+      "object_defs": 23,
+      "eof_count": 1,
+      "tail_only_whitespace": true,
+      "startxref_count": 1,
+      "xref_keyword_count": 1,
+      "prev_count": 0,
+      "page": {
+        "width": 595.0,
+        "height": 842.0,
+        "rotate": 0
+      },
+      "metadata": {
+        "/Producer": "OpenPDF 1.3.32",
+        "/Creator": "JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a",
+        "/Title": null,
+        "/CreationDate": "D:20260606153545Z",
+        "/ModDate": null
+      },
+      "fonts": [
+        {
+          "basefont": "/Helvetica",
+          "subtype": "/Type1",
+          "encoding": "/WinAnsiEncoding",
+          "embedded_kind": null,
+          "embedded_len": null,
+          "embedded_sha256": null,
+          "to_unicode": false,
+          "cid_to_gid_kind": null,
+          "fontbbox": null,
+          "ttf": null
+        },
+        {
+          "basefont": "/VFQWAU+YSText-Medium",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 6316,
+          "embedded_sha256": "bdb26dc281f4a0cbce8414ec3d152d9f7e45905e52c258d012aec25e1ead0ce0",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -393.0,
+            -237.0,
+            1404.0,
+            1115.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -393,
+              -237,
+              1404,
+              1115
+            ],
+            "created_mac": 3731395634,
+            "modified_mac": 3749657022,
+            "num_glyphs": 911,
+            "number_hmetrics": 911,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "hmtx",
+              "prep",
+              "loca",
+              "glyf"
+            ]
+          }
+        },
+        {
+          "basefont": "/DJAGWO+YSText-Regular",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 10668,
+          "embedded_sha256": "98886f674e7d148256a04d073dd0ba334a320c5ce10e9ef92fcee4af9c1ccf21",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -392.0,
+            -228.0,
+            1367.0,
+            1101.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -392,
+              -228,
+              1367,
+              1101
+            ],
+            "created_mac": 3731395634,
+            "modified_mac": 3749657023,
+            "num_glyphs": 911,
+            "number_hmetrics": 911,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "hmtx",
+              "prep",
+              "loca",
+              "glyf"
+            ]
+          }
+        }
+      ],
+      "xobjects": [
+        {
+          "subtype": "/Image",
+          "decoded_len": 1976760,
+          "decoded_sha256": "d8e9696603b80d6df62d77e65843f859b3c940644ff1562a394eeef5226393af",
+          "width": 1615,
+          "height": 408,
+          "colorspace": "/DeviceRGB",
+          "bpc": 8,
+          "smask": true,
+          "bbox": null,
+          "matrix": null
+        },
+        {
+          "subtype": "/Image",
+          "decoded_len": 658920,
+          "decoded_sha256": "cef111bd914ca599d66061daa8c79b9aef3b562a34963dfa0cb96e4afa3569aa",
+          "width": 1615,
+          "height": 408,
+          "colorspace": "/DeviceGray",
+          "bpc": 8,
+          "smask": false,
+          "bbox": null,
+          "matrix": null
+        }
+      ],
+      "content": {
+        "operator_count": 596,
+        "operator_set": [
+          "BT",
+          "Do",
+          "ET",
+          "J",
+          "Q",
+          "RG",
+          "S",
+          "Td",
+          "Tf",
+          "Tj",
+          "Tm",
+          "cm",
+          "d",
+          "g",
+          "l",
+          "m",
+          "q",
+          "rg",
+          "w"
+        ],
+        "operator_sequence_sha256": "933b65a645273fa9318e6ca4f209365692a4eeac144c6181bf64a38f0c9ddad3",
+        "bt_et": [
+          35,
+          35
+        ],
+        "q_Q": [
+          2,
+          2
+        ],
+        "text_show_ops": {
+          "Tj": 33
+        }
+      },
+      "annotations_count": 0,
+      "sbp_timestamp_core_present": true
+    },
+    {
+      "bank": "YANDEX_BANK",
+      "sha256": "03ab692a38bf133fcd9442e0118c5975ad514b72fe88d91fbdd8b2a96193ff25",
+      "size": 120436,
+      "method_detected": "SBP_OUT",
+      "pdf_header": "%PDF-1.5",
+      "object_defs": 23,
+      "eof_count": 1,
+      "tail_only_whitespace": true,
+      "startxref_count": 1,
+      "xref_keyword_count": 1,
+      "prev_count": 0,
+      "page": {
+        "width": 595.0,
+        "height": 842.0,
+        "rotate": 0
+      },
+      "metadata": {
+        "/Producer": "OpenPDF 1.3.32",
+        "/Creator": "JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a",
+        "/Title": null,
+        "/CreationDate": "D:20260518151054Z",
+        "/ModDate": null
+      },
+      "fonts": [
+        {
+          "basefont": "/Helvetica",
+          "subtype": "/Type1",
+          "encoding": "/WinAnsiEncoding",
+          "embedded_kind": null,
+          "embedded_len": null,
+          "embedded_sha256": null,
+          "to_unicode": false,
+          "cid_to_gid_kind": null,
+          "fontbbox": null,
+          "ttf": null
+        },
+        {
+          "basefont": "/HSFGWH+YSText-Medium",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 6316,
+          "embedded_sha256": "bdb26dc281f4a0cbce8414ec3d152d9f7e45905e52c258d012aec25e1ead0ce0",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -393.0,
+            -237.0,
+            1404.0,
+            1115.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -393,
+              -237,
+              1404,
+              1115
+            ],
+            "created_mac": 3731395634,
+            "modified_mac": 3749657022,
+            "num_glyphs": 911,
+            "number_hmetrics": 911,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "hmtx",
+              "prep",
+              "loca",
+              "glyf"
+            ]
+          }
+        },
+        {
+          "basefont": "/BMOQRZ+YSText-Regular",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 10364,
+          "embedded_sha256": "c0ae8a01a6df5cd06c88167dece3d25312621b1d2eb254789e32c741f4af2f9f",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -392.0,
+            -228.0,
+            1367.0,
+            1101.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -392,
+              -228,
+              1367,
+              1101
+            ],
+            "created_mac": 3731395634,
+            "modified_mac": 3749657023,
+            "num_glyphs": 911,
+            "number_hmetrics": 911,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "hmtx",
+              "prep",
+              "loca",
+              "glyf"
+            ]
+          }
+        }
+      ],
+      "xobjects": [
+        {
+          "subtype": "/Image",
+          "decoded_len": 1976760,
+          "decoded_sha256": "d8e9696603b80d6df62d77e65843f859b3c940644ff1562a394eeef5226393af",
+          "width": 1615,
+          "height": 408,
+          "colorspace": "/DeviceRGB",
+          "bpc": 8,
+          "smask": true,
+          "bbox": null,
+          "matrix": null
+        },
+        {
+          "subtype": "/Image",
+          "decoded_len": 658920,
+          "decoded_sha256": "cef111bd914ca599d66061daa8c79b9aef3b562a34963dfa0cb96e4afa3569aa",
+          "width": 1615,
+          "height": 408,
+          "colorspace": "/DeviceGray",
+          "bpc": 8,
+          "smask": false,
+          "bbox": null,
+          "matrix": null
+        }
+      ],
+      "content": {
+        "operator_count": 596,
+        "operator_set": [
+          "BT",
+          "Do",
+          "ET",
+          "J",
+          "Q",
+          "RG",
+          "S",
+          "Td",
+          "Tf",
+          "Tj",
+          "Tm",
+          "cm",
+          "d",
+          "g",
+          "l",
+          "m",
+          "q",
+          "rg",
+          "w"
+        ],
+        "operator_sequence_sha256": "933b65a645273fa9318e6ca4f209365692a4eeac144c6181bf64a38f0c9ddad3",
+        "bt_et": [
+          35,
+          35
+        ],
+        "q_Q": [
+          2,
+          2
+        ],
+        "text_show_ops": {
+          "Tj": 33
+        }
+      },
+      "annotations_count": 0,
+      "sbp_timestamp_core_present": true
+    },
+    {
+      "bank": "YANDEX_BANK",
+      "sha256": "f3b7d17b3e44e39fe03d9aacc7402ea093dff660f4595e85aae3e40f26adfbb7",
+      "size": 120496,
+      "method_detected": "SBP_OUT",
+      "pdf_header": "%PDF-1.5",
+      "object_defs": 23,
+      "eof_count": 1,
+      "tail_only_whitespace": true,
+      "startxref_count": 1,
+      "xref_keyword_count": 1,
+      "prev_count": 0,
+      "page": {
+        "width": 595.0,
+        "height": 842.0,
+        "rotate": 0
+      },
+      "metadata": {
+        "/Producer": "OpenPDF 1.3.32",
+        "/Creator": "JasperReports Library version 6.21.2-8434a0bd7c3bbc37cbf916f2968d35e4b165821a",
+        "/Title": null,
+        "/CreationDate": "D:20260520130959Z",
+        "/ModDate": null
+      },
+      "fonts": [
+        {
+          "basefont": "/Helvetica",
+          "subtype": "/Type1",
+          "encoding": "/WinAnsiEncoding",
+          "embedded_kind": null,
+          "embedded_len": null,
+          "embedded_sha256": null,
+          "to_unicode": false,
+          "cid_to_gid_kind": null,
+          "fontbbox": null,
+          "ttf": null
+        },
+        {
+          "basefont": "/VQYVDS+YSText-Medium",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 6316,
+          "embedded_sha256": "bdb26dc281f4a0cbce8414ec3d152d9f7e45905e52c258d012aec25e1ead0ce0",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -393.0,
+            -237.0,
+            1404.0,
+            1115.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -393,
+              -237,
+              1404,
+              1115
+            ],
+            "created_mac": 3731395634,
+            "modified_mac": 3749657022,
+            "num_glyphs": 911,
+            "number_hmetrics": 911,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "hmtx",
+              "prep",
+              "loca",
+              "glyf"
+            ]
+          }
+        },
+        {
+          "basefont": "/MAMAWA+YSText-Regular",
+          "subtype": "/Type0",
+          "encoding": "/Identity-H",
+          "embedded_kind": "/FontFile2",
+          "embedded_len": 10432,
+          "embedded_sha256": "fcf3d25100184397dea02ac971cd1ae42751027187ee1ef54d583f52b9f4b405",
+          "to_unicode": true,
+          "cid_to_gid_kind": "/Identity",
+          "fontbbox": [
+            -392.0,
+            -228.0,
+            1367.0,
+            1101.0
+          ],
+          "ttf": {
+            "units_per_em": 1000,
+            "bbox": [
+              -392,
+              -228,
+              1367,
+              1101
+            ],
+            "created_mac": 3731395634,
+            "modified_mac": 3749657023,
+            "num_glyphs": 911,
+            "number_hmetrics": 911,
+            "names": {},
+            "tables": [
+              "GlyphOrder",
+              "head",
+              "hhea",
+              "maxp",
+              "hmtx",
+              "prep",
+              "loca",
+              "glyf"
+            ]
+          }
+        }
+      ],
+      "xobjects": [
+        {
+          "subtype": "/Image",
+          "decoded_len": 1976760,
+          "decoded_sha256": "d8e9696603b80d6df62d77e65843f859b3c940644ff1562a394eeef5226393af",
+          "width": 1615,
+          "height": 408,
+          "colorspace": "/DeviceRGB",
+          "bpc": 8,
+          "smask": true,
+          "bbox": null,
+          "matrix": null
+        },
+        {
+          "subtype": "/Image",
+          "decoded_len": 658920,
+          "decoded_sha256": "cef111bd914ca599d66061daa8c79b9aef3b562a34963dfa0cb96e4afa3569aa",
+          "width": 1615,
+          "height": 408,
+          "colorspace": "/DeviceGray",
+          "bpc": 8,
+          "smask": false,
+          "bbox": null,
+          "matrix": null
+        }
+      ],
+      "content": {
+        "operator_count": 596,
+        "operator_set": [
+          "BT",
+          "Do",
+          "ET",
+          "J",
+          "Q",
+          "RG",
+          "S",
+          "Td",
+          "Tf",
+          "Tj",
+          "Tm",
+          "cm",
+          "d",
+          "g",
+          "l",
+          "m",
+          "q",
+          "rg",
+          "w"
+        ],
+        "operator_sequence_sha256": "933b65a645273fa9318e6ca4f209365692a4eeac144c6181bf64a38f0c9ddad3",
+        "bt_et": [
+          35,
+          35
+        ],
+        "q_Q": [
+          2,
+          2
+        ],
+        "text_show_ops": {
+          "Tj": 33
+        }
+      },
+      "annotations_count": 0,
+      "sbp_timestamp_core_present": true
+    }
+  ],
+  "rollout": {
+    "shadow_mode": true,
+    "feature_flags_per_bank": true,
+    "requirements": [
+      "all 19 uploaded originals -> ОРИГИНАЛ",
+      "all 15 unique originals -> ОРИГИНАЛ",
+      "mutation corpus hard attacks -> ФЕЙК",
+      "no automatic blacklist training"
+    ]
+  }
+}

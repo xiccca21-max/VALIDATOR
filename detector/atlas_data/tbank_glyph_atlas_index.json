@@ -1,0 +1,16 @@
+{
+  "version": "3.0.0",
+  "rule_id": "K-TBANK-GLYPH-ATLAS-001",
+  "total_glyph_count": 133,
+  "render_stats": {
+    "samples": 124,
+    "max_delta_pt": 0.0,
+    "p95_delta_pt": 0.0
+  },
+  "font_files": {
+    "F1": "tbank_glyph_atlas_F1.json",
+    "F2": "tbank_glyph_atlas_F2.json",
+    "F3": "tbank_glyph_atlas_F3.json"
+  },
+  "subset_builder_file": "tbank_subset_builder_atlas.json"
+}

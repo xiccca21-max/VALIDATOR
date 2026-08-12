@@ -1,0 +1,52 @@
+{
+  "version": "bank_spec_2026_06",
+  "key": "sovkom",
+  "name": "Совкомбанк",
+  "folder": "совком",
+  "sample_count": 1,
+  "native_producers": [
+    "openpdf",
+    "flying saucer"
+  ],
+  "native_producer_exact": [
+    "Flying Saucer 10.0.6 with OpenPDF 3.0.0"
+  ],
+  "required_fonts": [],
+  "object_count": [
+    11,
+    13
+  ],
+  "content_decoded_global": [
+    2402,
+    2406
+  ],
+  "channels": {
+    "card": {
+      "samples": [
+        "совкомбанк по номеру карты в другой банк.pdf"
+      ],
+      "content_decoded": [
+        2402,
+        2406
+      ]
+    }
+  },
+  "skeleton_hashes": {
+    "card": [
+      "06f202097fa10ac6"
+    ]
+  },
+  "skeleton_hashes_global": [
+    "06f202097fa10ac6"
+  ],
+  "sbp_cipher": true,
+  "require_content_stream": true,
+  "date_prefer_first_line": false,
+  "reject_jasper_clone": true,
+  "ignore_openaction": false,
+  "required_fonts_any": false,
+  "allow_empty_producer": false,
+  "image_based": true,
+  "fontfile2_profile": false,
+  "excluded": []
+}

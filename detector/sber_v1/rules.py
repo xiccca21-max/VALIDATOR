@@ -1,0 +1,326 @@
+"""Sber v1.0 rule catalog — future-safe (spec Appendix A, 79 rules)."""
+
+
+
+from __future__ import annotations
+
+
+
+import re
+
+
+
+_CODE_RE = re.compile(r"^\[([A-Z0-9_-]+)\]")
+
+
+
+# HARD → external ФЕЙК (proven contradiction)
+
+HARD_CODES: frozenset[str] = frozenset({
+
+    "ANALYSIS_NOT_COMPLETED",
+
+    "NOT_SBER_RECEIPT",
+
+    # Container (SBR-CONT-001..010)
+
+    "MULTIPLE_PDF_HEADERS",
+
+    "PDF_STRUCTURE_INVALID",
+
+    "TRAILER_INVALID",
+
+    "XREF_OFFSET_INVALID",
+
+    "MULTIPLE_STARTXREF_PRESENT",
+
+    "DUPLICATE_ACTIVE_OBJECT_DEFINITION",
+
+    "BROKEN_OBJECT_STRUCTURE",
+
+    "OBJECT_GRAPH_INCONSISTENT",
+
+    "TRAILING_DATA_AFTER_EOF",
+
+    # Streams (SBR-STRM-001..005, 008)
+
+    "STREAM_DECOMPRESSION_FAILED",
+
+    "STREAM_LENGTH_MISMATCH",
+
+    "UNEXPECTED_STREAM_FILTER",
+
+    # Active (SBR-GRAPH-001..005, 008, 009)
+
+    "JAVASCRIPT_PRESENT",
+
+    "ACTIVE_CONTENT_PRESENT",
+
+    "OPENACTION_PRESENT",
+
+    "DANGEROUS_ACTION_PRESENT",
+
+    "EMBEDDED_FILE_PRESENT",
+
+    "EMBEDDED_PAYLOAD_PRESENT",
+
+    "ACROFORM_PRESENT",
+
+    "XFA_PRESENT",
+
+    # Visibility (SBR-VIS-001..008)
+
+    "SBER_BT_ET_MISMATCH",
+
+    "SBER_CONTENT_STREAM_EDIT",
+
+    "TEXT_LAYER_INCONSISTENT",
+
+    "BROKEN_CYRILLIC_MAPPING",
+
+    "TEXT_EXTRACTION_MAPPING_ANOMALY",
+
+    # Fonts (SBR-FONT-001..010)
+
+    "USED_CID_MISSING_FROM_CMAP",
+
+    "USED_CID_MISSING_FROM_W",
+
+    "CMAP_W_MISMATCH",
+
+    "CMAP_INVALID",
+
+    "FONTFILE2_MISSING",
+
+    "MISSING_FONT_OBJECT",
+
+    "MISSING_WIDTH_TABLE",
+
+    "GLYPH_OUTLINE_MISMATCH",
+
+    "BROKEN_GLYPH_ZERO_LENGTH",
+
+    "LOCA_TABLE_BROKEN",
+
+    # Semantics / IDs (SBR-SEM-001..008, 010, 012)
+
+    "SBER_DYNAMIC_NOW_IN_STATIC_RECEIPT",
+
+    "SBER_TEXT_LAYER_CORRUPT",
+
+    "SBER_AMOUNT_GLYPH_CORRUPT",
+
+    "SBER_CARD_ARITHMETIC_MISMATCH",
+
+    "SBER_SBP_ID_MISSING",
+
+    "SBER_SBP_ID_STRUCTURE",
+
+    "SBER_SBP_ID_TIMESTAMP",
+
+    "SBER_LEGACY_DOC_STRUCTURE",
+
+    "SBER_LEGACY_DOC_TIMESTAMP",
+
+    "SBER_FIELD_CONFLICT",
+
+    "SBER_PARSER_PARITY_MISMATCH",
+
+    "SBER_META_OPERATION_BEFORE_CREATION",
+
+    # Cross-document (SBR-XDOC-001..003)
+
+    "OPERATION_ID_REUSED",
+
+    "SBER_DOCUMENT_ID_REUSED",
+
+    # Known signatures (manual only)
+
+    "SBR-KNOWN-001",
+
+})
+
+
+
+KNOWN_FAKE_CODES: frozenset[str] = frozenset({
+
+    "SBR-KNOWN-001",
+
+})
+
+
+
+DIAGNOSTIC_CODES: frozenset[str] = frozenset({
+
+    "MULTIPLE_EOF_PRESENT",
+
+    "MULTIPLE_XREF_PRESENT",
+
+    "PREV_TRAILER_PRESENT",
+
+    "INCREMENTAL_UPDATE_PRESENT",
+
+    "STREAM_COMPRESSION_RATIO_OUTLIER",
+
+    "DECODED_STREAM_SIZE_OUTLIER",
+
+    "STREAM_FILTER_ANOMALY",
+
+    "SBER_EOF_EOL_ONLY",
+
+    "SBER_GENERATOR_PATH",
+
+    "SBER_NEW_PROFILE",
+
+    "SBER_SUBMETHOD",
+
+    "SBER_PDFIUM_ORPHAN",
+
+    "SBER_SBP_TAIL_UNKNOWN",
+
+    "SBER_LEGACY_DOC_UNKNOWN",
+
+    "SBER_INTERNAL_DOC_UNKNOWN",
+
+    "SBER_META_CREATION_LATE",
+
+    "SBER_META_ABSENT",
+
+    "SBER_OPERATION_AFTER_PDF_CREATION",
+
+    "SBER_VIS_OPERATOR_DRIFT",
+
+    "SBER_FONT_HASH_NEW",
+
+    "CMAP_BFRANGE_ANOMALY",
+
+    "TOUNICODE_PROFILE_SHIFT",
+
+    "GLYPH_COUNT_OUTLIER",
+
+    "TTF_HMTX_PROFILE_SHIFT",
+
+    "TTF_HEAD_ANOMALY",
+
+    "CONTENT_STREAM_PROFILE_MISMATCH",
+
+    "W_ARRAY_PRETTY_PRINTED",
+
+    "W_ARRAY_SERIALIZATION_ANOMALY",
+
+    "W_EXTRA_CID",
+
+    "PDF_MODDATE_EDITED",
+
+})
+
+
+
+DELETED_CODES: frozenset[str] = frozenset({
+
+    # SBR-VIS-011, SBR-PARSE-003 — render rows / pixel stripes
+
+    "SBER_RENDER_STRUCTURAL_FORGERY",
+
+    "SBER_RENDER_FOREIGN_ROWS",
+
+    "RENDER_ROW_MISMATCH",
+
+    "PIXEL_ROW_FINGERPRINT",
+
+    "PERCEPTUAL_ROW_HASH",
+
+    "SBER_PRODUCER_MISMATCH",
+
+    "FOREIGN_PRODUCER",
+
+    "SBER_CONTENT_SKELETON_UNKNOWN",
+
+    "SBER_LAYERED_PROFILE_FORGERY",
+
+    "SBER_FONT_RENDER_FORGERY",
+
+    "FF2_SUBSET_UNKNOWN",
+
+    "SBER_SBP_LAYOUT_DRIFT",
+
+    "SBER_AMOUNT_FORMAT_ANOMALY",
+
+    "SBER_SBP_OPID_INVALID",
+
+    # Legacy score-based codes — fully disabled
+
+    "SBER_OPERATION_AFTER_PDF_CREATION_HARD",
+
+})
+
+
+
+_FORENSICS_DIAGNOSTIC: frozenset[str] = frozenset({
+
+    "CMAP_BFRANGE_ANOMALY",
+
+    "TOUNICODE_PROFILE_SHIFT",
+
+    "GLYPH_COUNT_OUTLIER",
+
+    "TTF_HMTX_PROFILE_SHIFT",
+
+    "TTF_HEAD_ANOMALY",
+
+    "CONTENT_STREAM_PROFILE_MISMATCH",
+
+    "TEXT_OPERATOR_SEQUENCE_ANOMALY",
+
+    "FIELD_POSITION_OUT_OF_PROFILE",
+
+    "RIGHT_EDGE_ALIGNMENT_DRIFT",
+
+})
+
+
+
+_IOS_PRODUCER_MARKERS = ("quartz pdfcontext", "ios version")
+
+_PDFIUM_MARKERS = ("pdfium",)
+
+_JASPER_MARKERS = ("jasperreports", "itext 2.1.7", "itext")
+
+
+
+
+
+def classify_code(code: str) -> str:
+
+    if code in DELETED_CODES:
+
+        return "DELETED"
+
+    if code in KNOWN_FAKE_CODES:
+
+        return "KNOWN"
+
+    if code in HARD_CODES:
+
+        return "HARD"
+
+    if code in DIAGNOSTIC_CODES:
+
+        return "DIAGNOSTIC"
+
+    if code in _FORENSICS_DIAGNOSTIC:
+
+        return "DIAGNOSTIC"
+
+    return "DIAGNOSTIC"
+
+
+
+
+
+def flag_code(flag: str) -> str:
+
+    m = _CODE_RE.match(flag or "")
+
+    return m.group(1) if m else ""
+

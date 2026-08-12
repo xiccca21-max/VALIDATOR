@@ -1,0 +1,220 @@
+"""GPB v1.0 rule catalog — future-safe (spec Appendix A)."""
+
+
+
+from __future__ import annotations
+
+
+
+import re
+
+
+
+_CODE_RE = re.compile(r"^\[([A-Z0-9_-]+)\]")
+
+
+
+HARD_CODES: frozenset[str] = frozenset({
+
+    "ANALYSIS_NOT_COMPLETED",
+
+    "NOT_GAZPROMBANK_RECEIPT",
+
+    "MULTIPLE_PDF_HEADERS",
+
+    "PDF_STRUCTURE_INVALID",
+
+    "TRAILER_INVALID",
+
+    "XREF_OFFSET_INVALID",
+
+    "MULTIPLE_STARTXREF_PRESENT",
+
+    "DUPLICATE_ACTIVE_OBJECT_DEFINITION",
+
+    "BROKEN_OBJECT_STRUCTURE",
+
+    "OBJECT_GRAPH_INCONSISTENT",
+
+    "TRAILING_DATA_AFTER_EOF",
+
+    "STREAM_DECOMPRESSION_FAILED",
+
+    "STREAM_LENGTH_MISMATCH",
+
+    "UNEXPECTED_STREAM_FILTER",
+
+    "JAVASCRIPT_PRESENT",
+
+    "ACTIVE_CONTENT_PRESENT",
+
+    "OPENACTION_PRESENT",
+
+    "DANGEROUS_ACTION_PRESENT",
+
+    "EMBEDDED_FILE_PRESENT",
+
+    "EMBEDDED_PAYLOAD_PRESENT",
+
+    "ACROFORM_PRESENT",
+
+    "XFA_PRESENT",
+
+    "GPB_BT_ET_MISMATCH",
+
+    "GPB_CONTENT_STREAM_EDIT",
+
+    "TEXT_LAYER_INCONSISTENT",
+
+    "USED_CID_MISSING_FROM_CMAP",
+
+    "USED_CID_MISSING_FROM_W",
+
+    "CMAP_W_MISMATCH",
+
+    "CMAP_INVALID",
+
+    "FONTFILE2_MISSING",
+
+    "MISSING_FONT_OBJECT",
+
+    "GLYPH_OUTLINE_MISMATCH",
+
+    "GPB_SFNT_ORDER_MISMATCH",
+
+    "GPB_FONTFILE2_COUNT_MISMATCH",
+
+    "GPB_LOGO_DCT_DIMS_MISMATCH",
+
+    "GPB_TOTAL_ARITHMETIC_MISMATCH",
+
+    "GPB_SBP_ID_MISSING",
+
+    "GPB_SBP_ID_STRUCTURE",
+
+    "GPB_SBP_ID_TIMESTAMP",
+
+    "GPB_PARSER_PARITY_MISMATCH",
+
+    "OPERATION_ID_REUSED",
+
+    "GPB-KNOWN-001",
+
+    "GPB_LATENT_RECEIPT_REVISION_CONFLICT",
+
+    "GPB_OPERATION_AFTER_PDF_CREATION",
+
+})
+
+
+
+KNOWN_FAKE_CODES: frozenset[str] = frozenset({"GPB-KNOWN-001"})
+
+
+
+DIAGNOSTIC_CODES: frozenset[str] = frozenset({
+
+    "MULTIPLE_EOF_PRESENT",
+
+    "MULTIPLE_XREF_PRESENT",
+
+    "PREV_TRAILER_PRESENT",
+
+    "INCREMENTAL_UPDATE_PRESENT",
+
+    "STREAM_COMPRESSION_RATIO_OUTLIER",
+
+    "STREAM_FILTER_ANOMALY",
+
+    "GPB_EOF_EOL_ONLY",
+
+    "GPB_GENERATOR_PATH",
+
+    "GPB_NEW_PROFILE",
+
+    "GPB_FAMILY",
+
+    "GPB_SBP_ID_DRIFT",
+
+    "GPB_META_CREATION_LATE",
+
+    "GPB_VIS_OPERATOR_DRIFT",
+
+    "W_EXTRA_CID",
+
+    "TOUNICODE_PROFILE_SHIFT",
+
+    "GLYPH_COUNT_OUTLIER",
+
+    "CONTENT_STREAM_PROFILE_MISMATCH",
+
+    "PDF_MODDATE_EDITED",
+
+})
+
+
+
+DELETED_CODES: frozenset[str] = frozenset({
+
+    "GPB_RENDER_STRUCTURAL_FORGERY",
+
+    "GPB_RENDER_FOREIGN_ROWS",
+
+    "RENDER_ROW_MISMATCH",
+
+    "PIXEL_ROW_FINGERPRINT",
+
+    "SBP_CIPHER_STRUCTURE",
+
+    "FOREIGN_PRODUCER",
+
+    "FF2_SUBSET_UNKNOWN",
+
+})
+
+
+
+_FORENSICS_DIAGNOSTIC: frozenset[str] = frozenset({
+
+    "W_EXTRA_CID",
+
+    "TOUNICODE_PROFILE_SHIFT",
+
+    "GLYPH_COUNT_OUTLIER",
+
+    "TTF_HMTX_PROFILE_SHIFT",
+
+    "CONTENT_STREAM_PROFILE_MISMATCH",
+
+    "CMAP_BFRANGE_ANOMALY",
+
+})
+
+
+
+
+
+def classify_code(code: str) -> str:
+
+    if code in DELETED_CODES:
+
+        return "DELETED"
+
+    if code in KNOWN_FAKE_CODES:
+
+        return "KNOWN"
+
+    if code in HARD_CODES:
+
+        return "HARD"
+
+    if code in DIAGNOSTIC_CODES:
+
+        return "DIAGNOSTIC"
+
+    if code in _FORENSICS_DIAGNOSTIC:
+
+        return "DIAGNOSTIC"
+
+    return "DIAGNOSTIC"
+

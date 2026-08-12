@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "bank_key": "sber",
+  "channel": "sbp",
+  "source_count": 14,
+  "source_files": [
+    "receipt (1).pdf",
+    "receipt (10).pdf",
+    "receipt (2).pdf",
+    "receipt (3).pdf",
+    "receipt (4).pdf",
+    "receipt (5).pdf",
+    "receipt (6).pdf",
+    "receipt (7).pdf",
+    "receipt (8).pdf",
+    "receipt (9).pdf",
+    "receipt.pdf",
+    "сбербанк сбп.pdf",
+    "сбербанк сбп3.pdf",
+    "сбербанк сбп4.pdf"
+  ],
+  "ops_envelope": {
+    "content_size": [
+      3232,
+      3591
+    ],
+    "tm_count": [
+      21,
+      25
+    ],
+    "tj_count": [
+      -1,
+      1
+    ]
+  },
+  "operator_signatures": [
+    "049e897dfbd028d6",
+    "0dada88492839afc",
+    "4501ca654abeccde",
+    "4a828bd3628faf20",
+    "866cd81f4fa31279",
+    "8934e8673322f090",
+    "e631b81cab83544b"
+  ],
+  "labels_norm_y": {
+    "банк получателя": [
+      0.31397,
+      0.32597
+    ],
+    "комиссия": [
+      0.50668,
+      0.55239
+    ]
+  }
+}

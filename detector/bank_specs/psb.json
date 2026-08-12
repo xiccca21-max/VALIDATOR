@@ -1,0 +1,49 @@
+{
+  "version": "bank_spec_2026_06",
+  "key": "psb",
+  "name": "ПСБ",
+  "folder": "псб",
+  "sample_count": 4,
+  "native_producers": [
+    "fastreport"
+  ],
+  "required_fonts": [
+    "DejaVu"
+  ],
+  "object_count": [
+    16,
+    18
+  ],
+  "content_decoded_global": null,
+  "channels": {
+    "sbp": {
+      "samples": [
+        "псб сбп 2.pdf",
+        "псб сбп 3.pdf",
+        "псббаннк сбп.pdf",
+        "псббаннк сбп2.pdf"
+      ],
+      "content_decoded": null
+    }
+  },
+  "skeleton_hashes": {
+    "sbp": [
+      "56e30c7260706cdd",
+      "afd2bfd5a3387863"
+    ]
+  },
+  "skeleton_hashes_global": [
+    "56e30c7260706cdd",
+    "afd2bfd5a3387863"
+  ],
+  "sbp_cipher": true,
+  "require_content_stream": false,
+  "date_prefer_first_line": false,
+  "reject_jasper_clone": true,
+  "ignore_openaction": true,
+  "required_fonts_any": false,
+  "allow_empty_producer": false,
+  "image_based": false,
+  "fontfile2_profile": false,
+  "excluded": []
+}

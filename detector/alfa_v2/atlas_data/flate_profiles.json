@@ -1,0 +1,67 @@
+{
+  "oracle": {
+    "content": {
+      "levels": [
+        6
+      ]
+    },
+    "font": {
+      "levels": [
+        6
+      ]
+    },
+    "image": {
+      "levels": [
+        6
+      ]
+    },
+    "tounicode": {
+      "levels": [
+        6
+      ]
+    },
+    "xref": {
+      "levels": [
+        6
+      ]
+    }
+  },
+  "quartz": {
+    "content": {
+      "levels": [
+        6,
+        9
+      ]
+    },
+    "font": {
+      "levels": [
+        6,
+        9
+      ]
+    },
+    "icc": {
+      "levels": [
+        6,
+        9
+      ]
+    },
+    "image": {
+      "levels": [
+        6,
+        9
+      ]
+    },
+    "tounicode": {
+      "levels": [
+        6,
+        9
+      ]
+    },
+    "xref": {
+      "levels": [
+        6,
+        9
+      ]
+    }
+  }
+}

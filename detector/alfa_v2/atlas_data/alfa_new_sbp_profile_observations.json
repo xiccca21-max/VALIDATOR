@@ -1,0 +1,33 @@
+{
+  "schema": "alfa-new-sbp-profile-observations",
+  "version": "1",
+  "profiles": [
+    {
+      "bank5": "00118",
+      "suffix": "810101",
+      "first_seen_utc": "2026-07-20T19:49:12Z",
+      "last_seen_utc": "2026-07-20T19:49:32Z",
+      "sightings": 2,
+      "example_file_hash": "d5e39bada6f3b90176cd7a0797382093861366fe6cf48a8003927e9ed6ff556f",
+      "note": "corpus through 2026-06-29 had bank5∈{00116,00117} only"
+    },
+    {
+      "bank5": "00118",
+      "suffix": "810901",
+      "first_seen_utc": "2026-07-30T10:47:29Z",
+      "last_seen_utc": "2026-08-12T18:18:18Z",
+      "sightings": 69,
+      "example_file_hash": "d36a413251734e8f17913e4af2772f358e3614f06ac2802ec9219faf86bce2d7",
+      "note": "corpus through 2026-06-29 had bank5∈{00116,00117} only"
+    },
+    {
+      "bank5": "00118",
+      "suffix": "820705",
+      "first_seen_utc": "2026-07-31T21:23:46Z",
+      "last_seen_utc": "2026-08-12T18:18:18Z",
+      "sightings": 67,
+      "example_file_hash": "df7f8fbadbf9a7663aa52b9ee3ad37aadf878db861741b717150afe1d17f279a",
+      "note": "corpus through 2026-06-29 had bank5∈{00116,00117} only"
+    }
+  ]
+}

@@ -1,0 +1,943 @@
+{
+  "entries": [
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 155,
+        "observed_day_of_year": 155,
+        "operation_datetime": "04.06.2026 18:45:37",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "9b1c021108a415be75a8c94a8f8643f59e99a745cf2c6c0020d17f6dae0cbe47",
+      "operation_id": "C160406261736948",
+      "sbp_id": "A61551545348731O0G10080011770901",
+      "segments": {
+        "channel": "1008",
+        "emitter_core": "00117",
+        "hour_utc": "15",
+        "minute": "45",
+        "operation_type": "A",
+        "reference": "8731O0",
+        "route_tail": "70901",
+        "second": "34",
+        "separator": "G",
+        "year_day": "6155"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": -1,
+        "encoded_day_of_year": 165,
+        "observed_day_of_year": 166,
+        "operation_datetime": "15.06.2026 02:22:25",
+        "reference_letter_count": 0,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "ca6471055570f1faf2888773fa834dbbdd56d9b86b203806531c94cafcbd54ec",
+      "operation_id": "C161506260012818",
+      "sbp_id": "A6165212328595070G10040011770901",
+      "segments": {
+        "channel": "1004",
+        "emitter_core": "00117",
+        "hour_utc": "21",
+        "minute": "23",
+        "operation_type": "A",
+        "reference": "595070",
+        "route_tail": "70901",
+        "second": "28",
+        "separator": "G",
+        "year_day": "6165"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 166,
+        "observed_day_of_year": 166,
+        "operation_datetime": "15.06.2026 15:51:07",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "d397a2349b30dad80d54541eef645c70854323d1c441289248cc6fbdb486195b",
+      "operation_id": "C161506261536028",
+      "sbp_id": "A61661251034380Z0G10080011770901",
+      "segments": {
+        "channel": "1008",
+        "emitter_core": "00117",
+        "hour_utc": "12",
+        "minute": "51",
+        "operation_type": "A",
+        "reference": "4380Z0",
+        "route_tail": "70901",
+        "second": "03",
+        "separator": "G",
+        "year_day": "6166"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 168,
+        "observed_day_of_year": 168,
+        "operation_datetime": "17.06.2026 11:54:21",
+        "reference_letter_count": 0,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "8cc8c6b3aef8277769ef18da500f515a05b0d4f6d5db49b839214762f1a41377",
+      "operation_id": "C161706260736198",
+      "sbp_id": "A6168085418511120G10070011770901",
+      "segments": {
+        "channel": "1007",
+        "emitter_core": "00117",
+        "hour_utc": "08",
+        "minute": "54",
+        "operation_type": "A",
+        "reference": "511120",
+        "route_tail": "70901",
+        "second": "18",
+        "separator": "G",
+        "year_day": "6168"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 175,
+        "observed_day_of_year": 175,
+        "operation_datetime": "24.06.2026 15:16:00",
+        "reference_letter_count": 0,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "0415ab08a89033607b8269b96f449035dce9fe4c59985a1a061a92ae2d856967",
+      "operation_id": "C162406261196735",
+      "sbp_id": "B6175121557618150B10130011790502",
+      "segments": {
+        "channel": "1013",
+        "emitter_core": "00117",
+        "hour_utc": "12",
+        "minute": "15",
+        "operation_type": "B",
+        "reference": "618150",
+        "route_tail": "90502",
+        "second": "57",
+        "separator": "B",
+        "year_day": "6175"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 166,
+        "observed_day_of_year": 166,
+        "operation_datetime": "15.06.2026 22:03:14",
+        "reference_letter_count": 0,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "ecd485c151d8107943b411ad3972802723bf4632feb78171a77e3b7f026b4f45",
+      "operation_id": "C161506262511380",
+      "sbp_id": "A6166190309033040G10040011770901",
+      "segments": {
+        "channel": "1004",
+        "emitter_core": "00117",
+        "hour_utc": "19",
+        "minute": "03",
+        "operation_type": "A",
+        "reference": "033040",
+        "route_tail": "70901",
+        "second": "09",
+        "separator": "G",
+        "year_day": "6166"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 140,
+        "observed_day_of_year": 140,
+        "operation_datetime": "20.05.2026 14:43:09",
+        "reference_letter_count": 0,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "1b433251b7a285b82ab92b5e5a3e0dab5ea144d004622a53e9149aefd63f60db",
+      "operation_id": "C162005261283449",
+      "sbp_id": "B6140114259469100G10170011770101",
+      "segments": {
+        "channel": "1017",
+        "emitter_core": "00117",
+        "hour_utc": "11",
+        "minute": "42",
+        "operation_type": "B",
+        "reference": "469100",
+        "route_tail": "70101",
+        "second": "59",
+        "separator": "G",
+        "year_day": "6140"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 139,
+        "observed_day_of_year": 139,
+        "operation_datetime": "19.05.2026 12:42:09",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "0ca9f950fac59f0602ec773ea015ef73defb880e45de94fa53616709df3781f8",
+      "operation_id": "C161905260883650",
+      "sbp_id": "B61390942042410J0B10110011760501",
+      "segments": {
+        "channel": "1011",
+        "emitter_core": "00117",
+        "hour_utc": "09",
+        "minute": "42",
+        "operation_type": "B",
+        "reference": "2410J0",
+        "route_tail": "60501",
+        "second": "04",
+        "separator": "B",
+        "year_day": "6139"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 167,
+        "observed_day_of_year": 167,
+        "operation_datetime": "16.06.2026 13:58:27",
+        "reference_letter_count": 0,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "c90cb709cafddaba63893518b9c3fc26826eb2de5604e9f20dec304da7cc8324",
+      "operation_id": "C161606261117809",
+      "sbp_id": "A6167105823129080G10080011770901",
+      "segments": {
+        "channel": "1008",
+        "emitter_core": "00117",
+        "hour_utc": "10",
+        "minute": "58",
+        "operation_type": "A",
+        "reference": "129080",
+        "route_tail": "70901",
+        "second": "23",
+        "separator": "G",
+        "year_day": "6167"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": -1,
+        "encoded_day_of_year": 150,
+        "observed_day_of_year": 151,
+        "operation_datetime": "31.05.2026 04:13:13",
+        "reference_letter_count": 0,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "ac0721759184922373480119b43b00b8f897a05247551509442ec7345a31486c",
+      "operation_id": "C163105260034186",
+      "sbp_id": "A6150221335268070B10020011770901",
+      "segments": {
+        "channel": "1002",
+        "emitter_core": "00117",
+        "hour_utc": "22",
+        "minute": "13",
+        "operation_type": "A",
+        "reference": "268070",
+        "route_tail": "70901",
+        "second": "35",
+        "separator": "B",
+        "year_day": "6150"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 138,
+        "observed_day_of_year": 138,
+        "operation_datetime": "18.05.2026 18:49:40",
+        "reference_letter_count": 0,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "d614ac42b4902d2182c15d7d5a5290b852e39c775366df5ac26a01bef27037fe",
+      "operation_id": "C161805261839128",
+      "sbp_id": "A6138154931618150B10030011760501",
+      "segments": {
+        "channel": "1003",
+        "emitter_core": "00117",
+        "hour_utc": "15",
+        "minute": "49",
+        "operation_type": "A",
+        "reference": "618150",
+        "route_tail": "60501",
+        "second": "31",
+        "separator": "B",
+        "year_day": "6138"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 129,
+        "observed_day_of_year": 129,
+        "operation_datetime": "09.05.2026 19:55:29",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "1c0a2738bbcc2c7396b864e1b170520876610eb702ad444f70972d745201a50a",
+      "operation_id": "C160905261659205",
+      "sbp_id": "A61291655239301F0G10020011760501",
+      "segments": {
+        "channel": "1002",
+        "emitter_core": "00117",
+        "hour_utc": "16",
+        "minute": "55",
+        "operation_type": "A",
+        "reference": "9301F0",
+        "route_tail": "60501",
+        "second": "23",
+        "separator": "G",
+        "year_day": "6129"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 103,
+        "observed_day_of_year": 103,
+        "operation_datetime": "13.04.2026 15:52:14",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "4f09f68b1be02d5208ca51b663c57a17ca927362395c12e5dabcbc96af9dbc38",
+      "operation_id": "C161304261309178",
+      "sbp_id": "A61031252099741S0G10010011740501",
+      "segments": {
+        "channel": "1001",
+        "emitter_core": "00117",
+        "hour_utc": "12",
+        "minute": "52",
+        "operation_type": "A",
+        "reference": "9741S0",
+        "route_tail": "40501",
+        "second": "09",
+        "separator": "G",
+        "year_day": "6103"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 102,
+        "observed_day_of_year": 102,
+        "operation_datetime": "12.04.2026 13:48:37",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "a8eb5639c87c68f0b4fbb0da5287014e6b4263b71ecb80c632d52302b9a504b7",
+      "operation_id": "C161204260751601",
+      "sbp_id": "B61021048332810E0G10100011740501",
+      "segments": {
+        "channel": "1010",
+        "emitter_core": "00117",
+        "hour_utc": "10",
+        "minute": "48",
+        "operation_type": "B",
+        "reference": "2810E0",
+        "route_tail": "40501",
+        "second": "33",
+        "separator": "G",
+        "year_day": "6102"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 94,
+        "observed_day_of_year": 94,
+        "operation_datetime": "04.04.2026 22:00:19",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "49f2f72c78149a8ec3a8012a41518f41aa0b8ed7ae5d537811b03f4797c16278",
+      "operation_id": "C160404261975038",
+      "sbp_id": "A60941900099560V0G10080011730902",
+      "segments": {
+        "channel": "1008",
+        "emitter_core": "00117",
+        "hour_utc": "19",
+        "minute": "00",
+        "operation_type": "A",
+        "reference": "9560V0",
+        "route_tail": "30902",
+        "second": "09",
+        "separator": "G",
+        "year_day": "6094"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 86,
+        "observed_day_of_year": 86,
+        "operation_datetime": "27.03.2026 17:47:57",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "b27991c2185c6b08035c9c66ce6ff35343b382d657c476431bbe874ec847f74d",
+      "operation_id": "C162703261808768",
+      "sbp_id": "A60861447487621O0B10040011730501",
+      "segments": {
+        "channel": "1004",
+        "emitter_core": "00117",
+        "hour_utc": "14",
+        "minute": "47",
+        "operation_type": "A",
+        "reference": "7621O0",
+        "route_tail": "30501",
+        "second": "48",
+        "separator": "B",
+        "year_day": "6086"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 85,
+        "observed_day_of_year": 85,
+        "operation_datetime": "26.03.2026 05:06:14",
+        "reference_letter_count": 0,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "cc120dbfd42f508732d9abded6bf57397d8ec39be2affce77efcf5b74d988fa6",
+      "operation_id": "C162603260096917",
+      "sbp_id": "B6085020610388090G10100011720501",
+      "segments": {
+        "channel": "1010",
+        "emitter_core": "00117",
+        "hour_utc": "02",
+        "minute": "06",
+        "operation_type": "B",
+        "reference": "388090",
+        "route_tail": "20501",
+        "second": "10",
+        "separator": "G",
+        "year_day": "6085"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 67,
+        "observed_day_of_year": 67,
+        "operation_datetime": "08.03.2026 08:21:22",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "209d2e9f00948b04eee21f02fbc46186c09e9bb03a1b553a140bc41db4ab0fae",
+      "operation_id": "C160803260369690",
+      "sbp_id": "A60670521147830Y0000030011700501",
+      "segments": {
+        "channel": "0003",
+        "emitter_core": "00117",
+        "hour_utc": "05",
+        "minute": "21",
+        "operation_type": "A",
+        "reference": "7830Y0",
+        "route_tail": "00501",
+        "second": "14",
+        "separator": "0",
+        "year_day": "6067"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 60,
+        "observed_day_of_year": 60,
+        "operation_datetime": "01.03.2026 12:54:27",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "7d91f4772440e0d9e182a7eb9b9ae51b25980a4696a0f7e1e5a1294a87de9191",
+      "operation_id": "C160103260769640",
+      "sbp_id": "B60600954189061X0000100011700501",
+      "segments": {
+        "channel": "0010",
+        "emitter_core": "00117",
+        "hour_utc": "09",
+        "minute": "54",
+        "operation_type": "B",
+        "reference": "9061X0",
+        "route_tail": "00501",
+        "second": "18",
+        "separator": "0",
+        "year_day": "6060"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 16,
+        "observed_day_of_year": 16,
+        "operation_datetime": "16.01.2026 10:05:08",
+        "reference_letter_count": 0,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "2f97b93ca3c66bba28bc6adea340a326caebea8138eefcffa72eeee63a32a135",
+      "operation_id": "C161601260470263",
+      "sbp_id": "B6016070344128090000160011680301",
+      "segments": {
+        "channel": "0016",
+        "emitter_core": "00116",
+        "hour_utc": "07",
+        "minute": "03",
+        "operation_type": "B",
+        "reference": "128090",
+        "route_tail": "80301",
+        "second": "44",
+        "separator": "0",
+        "year_day": "6016"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 13,
+        "observed_day_of_year": 13,
+        "operation_datetime": "13.01.2026 18:11:21",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "99f76da18706efab29e560679ecb6e38b401e73b86a28cf7eeebc920a7c0c4f9",
+      "operation_id": "C161301261525421",
+      "sbp_id": "A60131511137811H0000020011670301",
+      "segments": {
+        "channel": "0002",
+        "emitter_core": "00116",
+        "hour_utc": "15",
+        "minute": "11",
+        "operation_type": "A",
+        "reference": "7811H0",
+        "route_tail": "70301",
+        "second": "13",
+        "separator": "0",
+        "year_day": "6013"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 10,
+        "observed_day_of_year": 10,
+        "operation_datetime": "10.01.2026 14:18:08",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "d69ed15fdfa1e27214b853e041601d5ff0b3ab3be54e9646c0bf7e3260bb48c1",
+      "operation_id": "C161001260755330",
+      "sbp_id": "B60101118033790P0000130011670301",
+      "segments": {
+        "channel": "0013",
+        "emitter_core": "00116",
+        "hour_utc": "11",
+        "minute": "18",
+        "operation_type": "B",
+        "reference": "3790P0",
+        "route_tail": "70301",
+        "second": "03",
+        "separator": "0",
+        "year_day": "6010"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 365,
+        "observed_day_of_year": 365,
+        "operation_datetime": "31.12.2025 07:53:47",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "c803dc2d20aff9a6165b9ce85a295cafbeaf733fde05032fc0643163a6c9173e",
+      "operation_id": "C163112250235834",
+      "sbp_id": "B53650453422960A0000170011670301",
+      "segments": {
+        "channel": "0017",
+        "emitter_core": "00116",
+        "hour_utc": "04",
+        "minute": "53",
+        "operation_type": "B",
+        "reference": "2960A0",
+        "route_tail": "70301",
+        "second": "42",
+        "separator": "0",
+        "year_day": "5365"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 356,
+        "observed_day_of_year": 356,
+        "operation_datetime": "22.12.2025 08:12:52",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "1cc8263920a8c8178f01c3434929e0ea722ee864f1766fd42a6a201f85e96009",
+      "operation_id": "C162212250265438",
+      "sbp_id": "A53560512449951E0000000011661101",
+      "segments": {
+        "channel": "0000",
+        "emitter_core": "00116",
+        "hour_utc": "05",
+        "minute": "12",
+        "operation_type": "A",
+        "reference": "9951E0",
+        "route_tail": "61101",
+        "second": "44",
+        "separator": "0",
+        "year_day": "5356"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 354,
+        "observed_day_of_year": 354,
+        "operation_datetime": "20.12.2025 14:44:07",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "3b1d495a609d21f4f457f62548bdb01819049b202bebe4070589c397eccc48ef",
+      "operation_id": "C162012251113977",
+      "sbp_id": "B53541144014380X0000100011661101",
+      "segments": {
+        "channel": "0010",
+        "emitter_core": "00116",
+        "hour_utc": "11",
+        "minute": "44",
+        "operation_type": "B",
+        "reference": "4380X0",
+        "route_tail": "61101",
+        "second": "01",
+        "separator": "0",
+        "year_day": "5354"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 353,
+        "observed_day_of_year": 353,
+        "operation_datetime": "19.12.2025 19:33:49",
+        "reference_letter_count": 0,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "b23174c6ee50b167542c009e9be1d1b2c35b8cdc162a496866df1a86ce5c64e6",
+      "operation_id": "C161912252028288",
+      "sbp_id": "B5353163344623190000110011661101",
+      "segments": {
+        "channel": "0011",
+        "emitter_core": "00116",
+        "hour_utc": "16",
+        "minute": "33",
+        "operation_type": "B",
+        "reference": "623190",
+        "route_tail": "61101",
+        "second": "44",
+        "separator": "0",
+        "year_day": "5353"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": -1,
+        "encoded_day_of_year": 336,
+        "observed_day_of_year": 337,
+        "operation_datetime": "03.12.2025 03:14:09",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "6d7e16f0021b2b83104d58ebf9b1b8631eb73d32bc90ccb434d109ba154d0b19",
+      "operation_id": "C160312250018919",
+      "sbp_id": "B53362152475750D0000130011650902",
+      "segments": {
+        "channel": "0013",
+        "emitter_core": "00116",
+        "hour_utc": "21",
+        "minute": "52",
+        "operation_type": "B",
+        "reference": "5750D0",
+        "route_tail": "50902",
+        "second": "47",
+        "separator": "0",
+        "year_day": "5336"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 334,
+        "observed_day_of_year": 334,
+        "operation_datetime": "30.11.2025 19:52:22",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "08a17ae4c1295304e07311a597ae87aad39b24ed51afc59f5315f6537c13eee8",
+      "operation_id": "C163011251723323",
+      "sbp_id": "A53341652192700I0000040011650701",
+      "segments": {
+        "channel": "0004",
+        "emitter_core": "00116",
+        "hour_utc": "16",
+        "minute": "52",
+        "operation_type": "A",
+        "reference": "2700I0",
+        "route_tail": "50701",
+        "second": "19",
+        "separator": "0",
+        "year_day": "5334"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 325,
+        "observed_day_of_year": 325,
+        "operation_datetime": "21.11.2025 19:40:44",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "53f1191dcd505d9e4f7871dafc227f88ad50d161342db27f59b55d0d45dcc42f",
+      "operation_id": "C162111251896480",
+      "sbp_id": "A53251640398581I0000010011640502",
+      "segments": {
+        "channel": "0001",
+        "emitter_core": "00116",
+        "hour_utc": "16",
+        "minute": "40",
+        "operation_type": "A",
+        "reference": "8581I0",
+        "route_tail": "40502",
+        "second": "39",
+        "separator": "0",
+        "year_day": "5325"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 322,
+        "observed_day_of_year": 322,
+        "operation_datetime": "18.11.2025 22:36:13",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "17cd2b8e680b53374bd84c0d1b787b6f91ce886ba23a456aab05185c63e2886a",
+      "operation_id": "C161811251944318",
+      "sbp_id": "B53221936095890O0000160011630701",
+      "segments": {
+        "channel": "0016",
+        "emitter_core": "00116",
+        "hour_utc": "19",
+        "minute": "36",
+        "operation_type": "B",
+        "reference": "5890O0",
+        "route_tail": "30701",
+        "second": "09",
+        "separator": "0",
+        "year_day": "5322"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 322,
+        "observed_day_of_year": 322,
+        "operation_datetime": "18.11.2025 17:55:52",
+        "reference_letter_count": 0,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "a45a5531bcc83688afcf4e943327e6330ab5ad033a8eedb943a3e891fefed653",
+      "operation_id": "C161811251492950",
+      "sbp_id": "B5322145542501190000120011630701",
+      "segments": {
+        "channel": "0012",
+        "emitter_core": "00116",
+        "hour_utc": "14",
+        "minute": "55",
+        "operation_type": "B",
+        "reference": "501190",
+        "route_tail": "30701",
+        "second": "42",
+        "separator": "0",
+        "year_day": "5322"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 306,
+        "observed_day_of_year": 306,
+        "operation_datetime": "02.11.2025 13:39:08",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "121fc332c69e3eb9a5960f3b4b2bfaaa69b15cb12917493e7ff431100ae17da7",
+      "operation_id": "C160211250765951",
+      "sbp_id": "B53061039033920H0000170011630701",
+      "segments": {
+        "channel": "0017",
+        "emitter_core": "00116",
+        "hour_utc": "10",
+        "minute": "39",
+        "operation_type": "B",
+        "reference": "3920H0",
+        "route_tail": "30701",
+        "second": "03",
+        "separator": "0",
+        "year_day": "5306"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": -1,
+        "encoded_day_of_year": 305,
+        "observed_day_of_year": 306,
+        "operation_datetime": "02.11.2025 03:42:51",
+        "reference_letter_count": 0,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "4d861424441850bcaf008df3cee33006268caff098f3bf786430821fa3ecabad",
+      "operation_id": "C160211250039990",
+      "sbp_id": "A5305230825344030000030011630701",
+      "segments": {
+        "channel": "0003",
+        "emitter_core": "00116",
+        "hour_utc": "23",
+        "minute": "08",
+        "operation_type": "A",
+        "reference": "344030",
+        "route_tail": "30701",
+        "second": "25",
+        "separator": "0",
+        "year_day": "5305"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 159,
+        "observed_day_of_year": 159,
+        "operation_datetime": "08.06.2026 14:23:47",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "29e78c0d4cf6da4e7c4c300d67008f0b0f83d93aa5da682dd2822bccc0cb7080",
+      "operation_id": "C160806261107306",
+      "sbp_id": "A61591123418351C0G10030011770901",
+      "segments": {
+        "channel": "1003",
+        "emitter_core": "00117",
+        "hour_utc": "11",
+        "minute": "23",
+        "operation_type": "A",
+        "reference": "8351C0",
+        "route_tail": "70901",
+        "second": "41",
+        "separator": "G",
+        "year_day": "6159"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": -1,
+        "encoded_day_of_year": 165,
+        "observed_day_of_year": 166,
+        "operation_datetime": "15.06.2026 02:22:25",
+        "reference_letter_count": 0,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "e290cf6c32f1df77839aaa12a43d5e78191c9db4e34ff3c4f02e629869cb615e",
+      "operation_id": "C161506260012818",
+      "sbp_id": "A6165212328595070G10040011770901",
+      "segments": {
+        "channel": "1004",
+        "emitter_core": "00117",
+        "hour_utc": "21",
+        "minute": "23",
+        "operation_type": "A",
+        "reference": "595070",
+        "route_tail": "70901",
+        "second": "28",
+        "separator": "G",
+        "year_day": "6165"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 164,
+        "observed_day_of_year": 164,
+        "operation_datetime": "13.06.2026 20:15:36",
+        "reference_letter_count": 0,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "ddb3121ae012b6f48cf23f54b2144d74ace642d6f083715d5ef894882d26aa05",
+      "operation_id": "C161306261706474",
+      "sbp_id": "A6164171534168080G10030011770901",
+      "segments": {
+        "channel": "1003",
+        "emitter_core": "00117",
+        "hour_utc": "17",
+        "minute": "15",
+        "operation_type": "A",
+        "reference": "168080",
+        "route_tail": "70901",
+        "second": "34",
+        "separator": "G",
+        "year_day": "6164"
+      }
+    },
+    {
+      "empirical": {
+        "day_delta": 0,
+        "encoded_day_of_year": 180,
+        "observed_day_of_year": 180,
+        "operation_datetime": "29.06.2026 19:53:38",
+        "reference_letter_count": 1,
+        "reference_terminal_zero": true
+      },
+      "file_sha256": "48c9db8564b68f21ca3ac6bf106dad0204b1a4786e5f802888fbfa9ff9015b37",
+      "operation_id": "C162906261913448",
+      "sbp_id": "A61801653258791Q0G10070011791103",
+      "segments": {
+        "channel": "1007",
+        "emitter_core": "00117",
+        "hour_utc": "16",
+        "minute": "53",
+        "operation_type": "A",
+        "reference": "8791Q0",
+        "route_tail": "91103",
+        "second": "25",
+        "separator": "G",
+        "year_day": "6180"
+      }
+    }
+  ],
+  "schema": "alfa-v2-sbp-runtime",
+  "segmentation": [
+    "[0] type",
+    "[1:5] year/day",
+    "[5:7] hour UTC",
+    "[7:9] minute",
+    "[9:11] second",
+    "[11:17] reference",
+    "[17] separator",
+    "[18:22] channel",
+    "[22:27] emitter core",
+    "[27:32] route tail"
+  ],
+  "version": "1.0.0"
+}

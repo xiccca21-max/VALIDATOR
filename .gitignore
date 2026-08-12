@@ -1,0 +1,57 @@
+# secrets / local env
+.env
+.deploy.env
+*.pem
+*.key
+credentials*.json
+
+# Telegram sessions
+tools/.tg_defender_session*
+**/.tg_*session*
+*.session
+*.session-journal
+*.session.bak*
+
+# runtime / inbox / bulk output
+output/
+**/defender_inbox/
+**/__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# JVM crash dumps / logs
+hs_err_pid*.log
+*.log
+!docs/**/*.md
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# large / local only
+*.pdf
+!docs/**/*.pdf
+
+# local probe / scratch dumps at repo root
+_*.txt
+_*.json
+_*.out
+_out*.txt
+_probe*.py
+_analyze*.py
+_check*.py
+_cmp*.py
+_deep*.py
+_cid*.py
+hs_err_pid*
+*.log

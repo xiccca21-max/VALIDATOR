@@ -1,0 +1,212 @@
+{
+  "version": 1,
+  "source_count": 4,
+  "fonts": {
+    "DejaVuSans": {
+      "source_count": 4,
+      "stable_digests": [
+        "6451e16352c56ad0",
+        "e419494a2f8ece3a"
+      ],
+      "stable_tables": {
+        "OS/2": [
+          "e791b61a6bf40330"
+        ],
+        "cvt ": [
+          "857075c3f367703a"
+        ],
+        "fpgm": [
+          "ef2bbb131b050c02"
+        ],
+        "head": [
+          "28477458d3e30f82",
+          "ec1e54650cddce9a"
+        ],
+        "hhea": [
+          "7ea3a16e791df3ef"
+        ],
+        "maxp": [
+          "8c793cb984553d23"
+        ],
+        "name": [
+          "3263a385f4447709",
+          "6b181c9848b000a6"
+        ],
+        "post": [
+          "883289645c7a46a1",
+          "b12551adea2bfeb6"
+        ],
+        "prep": [
+          "a683d604aab58b8d"
+        ]
+      },
+      "table_tags": [
+        "OS/2",
+        "cvt ",
+        "fpgm",
+        "glyf",
+        "head",
+        "hhea",
+        "hmtx",
+        "kern",
+        "loca",
+        "maxp",
+        "name",
+        "post",
+        "prep"
+      ],
+      "glyph_hashes": [
+        "0161a5d8fc093ddd",
+        "0c888b7c8a21f448",
+        "1258765b7b8d0b2f",
+        "19bffe37f1c4b9bd",
+        "1b0f9c7f55b69fef",
+        "1d3bcdd823e701f9",
+        "1e49e721388d2219",
+        "208dbefc23220a04",
+        "2547cc32bb46a794",
+        "2ff74118a26e5961",
+        "42413e5aa1f2db78",
+        "429b341fe68d77fb",
+        "4abe409983165589",
+        "4e6a5621740047c9",
+        "51d2c9f1086f9d2c",
+        "5b835838f656a148",
+        "5bade1f624c0ad5a",
+        "6104ac88b8fb6fe8",
+        "62899ac09c29713b",
+        "64456c47a5e7e324",
+        "676140b2398f98ae",
+        "68d6e50c37f179b1",
+        "6ea9924201c49810",
+        "711554b692961594",
+        "713f918ecb228a57",
+        "73040f017a863399",
+        "76d0b7b5d45dbf8f",
+        "76f7cff7c29e93d0",
+        "7c2340b2d9dd5c0c",
+        "7f409c493222885d",
+        "8174cf10488c32b8",
+        "877721205fa9e89a",
+        "886803078c42f87a",
+        "8a5769fb7ff7ad13",
+        "8ae4afcd804a4f80",
+        "8d7924ae8398f47d",
+        "92f17b2f1a47e950",
+        "932011f13267906d",
+        "973f74df66026f6c",
+        "97542ef840e7590e",
+        "9792d5636a554fa6",
+        "a35ba8736d368333",
+        "a7c6bcb1a4c29a17",
+        "a7d9934cf9efb3ba",
+        "a8e896e47bff541c",
+        "a9011cc061679bb2",
+        "b3eee6017428b0d4",
+        "b4e75cb560fa1d0f",
+        "b6fc79e081fe25b6",
+        "bb00d11cb23018fc",
+        "c14c4d07ce8491f6",
+        "cc7b33e9ea562a1d",
+        "d88ea984d4fd6470",
+        "d9c294d92e884603",
+        "ddcf9a4bc85bfde2",
+        "de173f235aeced0a",
+        "e62dbdf078612e60",
+        "e64be420d7e14b4c",
+        "e85a01416f18dcc4",
+        "e8693cb7c439ffed",
+        "ebea745da663eccc",
+        "eccdc11b94db5e7a",
+        "f8a7e1be35cb692c",
+        "fb8689840e280f79",
+        "fb915f4ecc751777"
+      ],
+      "ttf_sha16": [
+        "61f106d0e855178c",
+        "a3ddf813b6bed416"
+      ]
+    },
+    "DejaVuSans-Bold": {
+      "source_count": 4,
+      "stable_digests": [
+        "1b10759f0985d5a8",
+        "cdbc0eb5fb5b43c3"
+      ],
+      "stable_tables": {
+        "OS/2": [
+          "deede4c4eb7f7b7b"
+        ],
+        "cvt ": [
+          "f846efd5129a39cd"
+        ],
+        "fpgm": [
+          "f8188ab04100f275"
+        ],
+        "head": [
+          "aed44742236868a9",
+          "d7f54c6a045fd532"
+        ],
+        "hhea": [
+          "be2328d75a20e934"
+        ],
+        "maxp": [
+          "4ae1a0ca59bacdb5"
+        ],
+        "name": [
+          "628a0c99a1f35a4b",
+          "df6fb7ce8f864d2d"
+        ],
+        "post": [
+          "3d3356b13306c00c",
+          "f74fb705243bb0c0"
+        ],
+        "prep": [
+          "66b1a1685340f5ab"
+        ]
+      },
+      "table_tags": [
+        "OS/2",
+        "cvt ",
+        "fpgm",
+        "glyf",
+        "head",
+        "hhea",
+        "hmtx",
+        "kern",
+        "loca",
+        "maxp",
+        "name",
+        "post",
+        "prep"
+      ],
+      "glyph_hashes": [
+        "4242dc2d2e7b53fe",
+        "50b3ce07cb439548",
+        "6ad9b7b3154e9e6b",
+        "729101a45b4d7f0a",
+        "77edeadee04e6a33",
+        "83751221b292b9ea",
+        "aa6ad03aaf3ed172",
+        "b0a36e06be958c62",
+        "baab56c51321e72e",
+        "c92043dbc0444ec8",
+        "d4c009f991e46c99",
+        "e7200cbc5f574237",
+        "ffeac6e4db54d0e7"
+      ],
+      "ttf_sha16": [
+        "abcd06f51ea2f559",
+        "d7f2cfb560fa98c2"
+      ]
+    }
+  },
+  "bank_key": "psb",
+  "channel": "sbp",
+  "source_files": [
+    "псб сбп 2.pdf",
+    "псб сбп 3.pdf",
+    "псббаннк сбп.pdf",
+    "псббаннк сбп2.pdf"
+  ]
+}

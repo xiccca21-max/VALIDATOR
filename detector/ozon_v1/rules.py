@@ -1,0 +1,279 @@
+"""Ozon v1.0 rule catalog — future-safe (spec Appendix A)."""
+
+
+
+from __future__ import annotations
+
+
+
+import re
+
+
+
+_CODE_RE = re.compile(r"^\[([A-Z0-9_-]+)\]")
+
+
+
+HARD_CODES: frozenset[str] = frozenset({
+
+    "ANALYSIS_NOT_COMPLETED",
+
+    "NOT_OZON_RECEIPT",
+
+    "MULTIPLE_PDF_HEADERS",
+
+    "PDF_STRUCTURE_INVALID",
+
+    "TRAILER_INVALID",
+
+    "XREF_OFFSET_INVALID",
+
+    "MULTIPLE_STARTXREF_PRESENT",
+
+    "DUPLICATE_ACTIVE_OBJECT_DEFINITION",
+
+    "BROKEN_OBJECT_STRUCTURE",
+
+    "OBJECT_GRAPH_INCONSISTENT",
+
+    "TRAILING_DATA_AFTER_EOF",
+
+    "STREAM_DECOMPRESSION_FAILED",
+
+    "STREAM_LENGTH_MISMATCH",
+
+    "UNEXPECTED_STREAM_FILTER",
+
+    "JAVASCRIPT_PRESENT",
+
+    "ACTIVE_CONTENT_PRESENT",
+
+    "OPENACTION_PRESENT",
+
+    "DANGEROUS_ACTION_PRESENT",
+
+    "EMBEDDED_FILE_PRESENT",
+
+    "EMBEDDED_PAYLOAD_PRESENT",
+
+    "ACROFORM_PRESENT",
+
+    "XFA_PRESENT",
+
+    "OZON_BT_ET_MISMATCH",
+
+    "OZON_BDC_EMC_MISMATCH",
+
+    "OZON_TAG_STRUCT_MISSING",
+
+    "OZON_CONTENT_STREAM_EDIT",
+
+    "TEXT_LAYER_INCONSISTENT",
+
+    "USED_CID_MISSING_FROM_CMAP",
+
+    "USED_CID_MISSING_FROM_W",
+
+    "CMAP_W_MISMATCH",
+
+    "CMAP_INVALID",
+
+    "FONTFILE2_MISSING",
+
+    "MISSING_FONT_OBJECT",
+
+    "GLYPH_OUTLINE_MISMATCH",
+
+    "OZON_TOTAL_ARITHMETIC_MISMATCH",
+
+    "OZON_SBP_ID_MISSING",
+
+    "OZON_SBP_ID_STRUCTURE",
+
+    "OZON_SBP_ID_TIMESTAMP",
+
+    "OZON_AMOUNT_FORMAT_INVALID",
+
+    "OZON_SERIALIZER_MIX_PROVENANCE",
+
+    "OZON_SKIA_FONTFILE2_COUNT_MISMATCH",
+
+    "OZON_SKIA_SFNT_ORDER_MISMATCH",
+
+    "OZON_SKIA_PRE_BT_LINE_COUNT_MISMATCH",
+
+    "OZON_PO_ID_INVALID",
+
+    "OZON_PARSER_PARITY_MISMATCH",
+
+    "OPERATION_ID_REUSED",
+
+    "OZON_KNOWN_FAKE_SBP_TAIL_FAMILY",
+
+    # OZON_CURRENT_GENERATOR_PROVENANCE_CONFLICT demoted — unknown SBP tail
+    # is incomplete atlas / novelty, not structural proof.
+
+    "OZ-KNOWN-001",
+
+})
+
+
+
+KNOWN_FAKE_CODES: frozenset[str] = frozenset({
+
+    "OZ-KNOWN-001",
+
+    "OZON_KNOWN_FAKE_SBP_TAIL_FAMILY",
+
+})
+
+
+
+DIAGNOSTIC_CODES: frozenset[str] = frozenset({
+    # Confirmed genuine Ozon SBP receipts can contain G100/G101-like tails.
+    "OZON_SBP_ID_CROSS_BANK_TAIL",
+
+    "MULTIPLE_EOF_PRESENT",
+
+    "MULTIPLE_XREF_PRESENT",
+
+    "PREV_TRAILER_PRESENT",
+
+    "INCREMENTAL_UPDATE_PRESENT",
+
+    "STREAM_COMPRESSION_RATIO_OUTLIER",
+
+    "DECODED_STREAM_SIZE_OUTLIER",
+
+    "STREAM_FILTER_ANOMALY",
+
+    "OZON_EOF_EOL_ONLY",
+
+    "OZON_GENERATOR_PATH",
+
+    "OZON_NEW_PROFILE",
+
+    "OZON_FAMILY",
+
+    "OZON_SBP_TAIL_UNKNOWN",
+
+    "OZON_CURRENT_GENERATOR_PROVENANCE_CONFLICT",
+
+    "OZON_SBP_PDF_CLOCK_COLLAPSE",
+
+    "OZON_OFFICIAL_FILENAME_GRAMMAR_CONFLICT",
+
+    "OZON_TAG_ABSENT",
+
+    "OZON_META_CREATION_LATE",
+
+    "OZON_VIS_OPERATOR_DRIFT",
+
+    "CMAP_BFRANGE_ANOMALY",
+
+    "TOUNICODE_PROFILE_SHIFT",
+
+    "GLYPH_COUNT_OUTLIER",
+
+    "TTF_HMTX_PROFILE_SHIFT",
+
+    "TTF_HEAD_ANOMALY",
+
+    "CONTENT_STREAM_PROFILE_MISMATCH",
+
+    "W_ARRAY_PRETTY_PRINTED",
+
+    "W_EXTRA_CID",
+
+    "PDF_MODDATE_EDITED",
+
+})
+
+
+
+DELETED_CODES: frozenset[str] = frozenset({
+
+    "OZON_RENDER_STRUCTURAL_FORGERY",
+
+    "OZON_RENDER_FOREIGN_ROWS",
+
+    "RENDER_ROW_MISMATCH",
+
+    "PIXEL_ROW_FINGERPRINT",
+
+    "SBP_CIPHER_STRUCTURE",
+
+    "FOREIGN_PRODUCER",
+
+    "PRODUCER_MISMATCH",
+
+    "CONTENT_SKELETON_UNKNOWN",
+
+    "FF2_SUBSET_UNKNOWN",
+
+})
+
+
+
+_FORENSICS_DIAGNOSTIC: frozenset[str] = frozenset({
+
+    "CMAP_BFRANGE_ANOMALY",
+
+    "TOUNICODE_PROFILE_SHIFT",
+
+    "GLYPH_COUNT_OUTLIER",
+
+    "TTF_HMTX_PROFILE_SHIFT",
+
+    "TTF_HEAD_ANOMALY",
+
+    "CONTENT_STREAM_PROFILE_MISMATCH",
+
+    "TEXT_OPERATOR_SEQUENCE_ANOMALY",
+
+    "FIELD_POSITION_OUT_OF_PROFILE",
+
+})
+
+
+
+_SKIA_MARKERS = ("skia/pdf", "chromium")
+
+
+
+
+
+def classify_code(code: str) -> str:
+
+    if code in DELETED_CODES:
+
+        return "DELETED"
+
+    if code in KNOWN_FAKE_CODES:
+
+        return "KNOWN"
+
+    if code in HARD_CODES:
+
+        return "HARD"
+
+    if code in DIAGNOSTIC_CODES:
+
+        return "DIAGNOSTIC"
+
+    if code in _FORENSICS_DIAGNOSTIC:
+
+        return "DIAGNOSTIC"
+
+    return "DIAGNOSTIC"
+
+
+
+
+
+def flag_code(flag: str) -> str:
+
+    m = _CODE_RE.match(flag or "")
+
+    return m.group(1) if m else ""
+

@@ -1,0 +1,244 @@
+"""VTB v1.0 rule catalog — future-safe (spec Appendix A)."""
+
+
+
+from __future__ import annotations
+
+
+
+import re
+
+
+
+_CODE_RE = re.compile(r"^\[([A-Z0-9_-]+)\]")
+
+
+
+HARD_CODES: frozenset[str] = frozenset({
+
+    "ANALYSIS_NOT_COMPLETED",
+
+    "NOT_VTB_RECEIPT",
+
+    "MULTIPLE_PDF_HEADERS",
+
+    "PDF_STRUCTURE_INVALID",
+
+    "TRAILER_INVALID",
+
+    "XREF_OFFSET_INVALID",
+
+    "MULTIPLE_STARTXREF_PRESENT",
+
+    "DUPLICATE_ACTIVE_OBJECT_DEFINITION",
+
+    "BROKEN_OBJECT_STRUCTURE",
+
+    "OBJECT_GRAPH_INCONSISTENT",
+
+    "TRAILING_DATA_AFTER_EOF",
+
+    "STREAM_DECOMPRESSION_FAILED",
+
+    "STREAM_LENGTH_MISMATCH",
+
+    "UNEXPECTED_STREAM_FILTER",
+
+    "JAVASCRIPT_PRESENT",
+
+    "ACTIVE_CONTENT_PRESENT",
+
+    "OPENACTION_PRESENT",
+
+    "DANGEROUS_ACTION_PRESENT",
+
+    "EMBEDDED_FILE_PRESENT",
+
+    "EMBEDDED_PAYLOAD_PRESENT",
+
+    "ACROFORM_PRESENT",
+
+    "XFA_PRESENT",
+
+    "VTB_BT_ET_MISMATCH",
+
+    "VTB_CONTENT_STREAM_EDIT",
+
+    "TEXT_LAYER_INCONSISTENT",
+
+    "USED_CID_MISSING_FROM_CMAP",
+
+    "USED_CID_MISSING_FROM_W",
+
+    "CMAP_W_MISMATCH",
+
+    "CMAP_INVALID",
+
+    "FONTFILE2_MISSING",
+
+    "MISSING_FONT_OBJECT",
+
+    "GLYPH_OUTLINE_MISMATCH",
+
+    "VTB_SBP_ID_MISSING",
+
+    "VTB_SBP_ID_STRUCTURE",
+
+    "VTB_SBP_ID_TIMESTAMP",
+
+    "VTB_PARSER_PARITY_MISMATCH",
+
+    "OPERATION_ID_REUSED",
+
+    "VTB-KNOWN-001",
+
+})
+
+
+
+KNOWN_FAKE_CODES: frozenset[str] = frozenset({"VTB-KNOWN-001"})
+
+
+
+DIAGNOSTIC_CODES: frozenset[str] = frozenset({
+
+    "MULTIPLE_EOF_PRESENT",
+
+    "MULTIPLE_XREF_PRESENT",
+
+    "PREV_TRAILER_PRESENT",
+
+    "INCREMENTAL_UPDATE_PRESENT",
+
+    "STREAM_COMPRESSION_RATIO_OUTLIER",
+
+    "DECODED_STREAM_SIZE_OUTLIER",
+
+    "STREAM_FILTER_ANOMALY",
+
+    "VTB_EOF_EOL_ONLY",
+
+    "VTB_GENERATOR_PATH",
+
+    "VTB_NEW_PROFILE",
+
+    "VTB_FAMILY",
+
+    "VTB_SBP_TAIL_UNKNOWN",
+
+    "VTB_SBP_ID_DRIFT",
+
+    "VTB_META_CREATION_LATE",
+
+    "VTB_VIS_OPERATOR_DRIFT",
+
+    "VTB_CIDTOGID_OBSERVATION",
+
+    "W_EXTRA_CID",
+
+    "TOUNICODE_PROFILE_SHIFT",
+
+    "CMAP_BFRANGE_ANOMALY",
+
+    "GLYPH_COUNT_OUTLIER",
+
+    "TTF_HMTX_PROFILE_SHIFT",
+
+    "TTF_HEAD_ANOMALY",
+
+    "CONTENT_STREAM_PROFILE_MISMATCH",
+
+    "W_ARRAY_PRETTY_PRINTED",
+
+    "PDF_MODDATE_EDITED",
+
+})
+
+
+
+DELETED_CODES: frozenset[str] = frozenset({
+
+    "VTB_RENDER_STRUCTURAL_FORGERY",
+
+    "VTB_RENDER_FOREIGN_ROWS",
+
+    "RENDER_ROW_MISMATCH",
+
+    "PIXEL_ROW_FINGERPRINT",
+
+    "SBP_CIPHER_STRUCTURE",
+
+    "FOREIGN_PRODUCER",
+
+    "PRODUCER_MISMATCH",
+
+    "CIDTOGID_IDENTITY_REQUIRED",
+
+    "TOUNICODE_USED_SET_MISMATCH",
+
+    "FF2_SUBSET_UNKNOWN",
+
+})
+
+
+
+_FORENSICS_DIAGNOSTIC: frozenset[str] = frozenset({
+
+    "CMAP_BFRANGE_ANOMALY",
+
+    "TOUNICODE_PROFILE_SHIFT",
+
+    "GLYPH_COUNT_OUTLIER",
+
+    "TTF_HMTX_PROFILE_SHIFT",
+
+    "TTF_HEAD_ANOMALY",
+
+    "CONTENT_STREAM_PROFILE_MISMATCH",
+
+    "W_EXTRA_CID",
+
+    "W_ARRAY_PRETTY_PRINTED",
+
+    "MISSING_WIDTH_TABLE",
+
+})
+
+
+
+
+
+def classify_code(code: str) -> str:
+
+    if code in DELETED_CODES:
+
+        return "DELETED"
+
+    if code in KNOWN_FAKE_CODES:
+
+        return "KNOWN"
+
+    if code in HARD_CODES:
+
+        return "HARD"
+
+    if code in DIAGNOSTIC_CODES:
+
+        return "DIAGNOSTIC"
+
+    if code in _FORENSICS_DIAGNOSTIC:
+
+        return "DIAGNOSTIC"
+
+    return "DIAGNOSTIC"
+
+
+
+
+
+def flag_code(flag: str) -> str:
+
+    m = _CODE_RE.match(flag or "")
+
+    return m.group(1) if m else ""
+

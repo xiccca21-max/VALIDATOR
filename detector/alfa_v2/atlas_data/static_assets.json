@@ -1,0 +1,31 @@
+{
+  "oracle": {
+    "images": {
+      "603x258": [
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "900x105": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a"
+      ],
+      "90x138": [
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a"
+      ]
+    }
+  },
+  "quartz": {
+    "icc": [
+      "2b3aa1645779a9e634744faf9b01e9102b0c9b88fd6deced7934df86b949af7e"
+    ],
+    "images": {
+      "603x258": [
+        "bfb9b68299256c95ad656e05d85d21b733286a9b24dc907a020587dab8249f9d"
+      ],
+      "900x105": [
+        "30cead7b7731078d3482523f06b1decd75959506931ea5e4f33ffdd3ca9bb19a"
+      ],
+      "90x138": [
+        "4b97c0d5ffaea51dfc0199c6a1c822328a0fc716603d1749c7ec936536b1f79a"
+      ]
+    }
+  }
+}
