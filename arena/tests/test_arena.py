@@ -1,0 +1,66 @@
+from __future__ import annotations
+
+import json
+
+import pytest
+
+from arena.adapter import check_structural_bytes
+from arena.generator import default_state, offline_plans, update_strategy
+from arena.synthetic import (
+    ALLOWED_MUTATIONS,
+    MutationPlan,
+    build_pdf,
+    write_candidate,
+)
+
+
+def test_factory_base_is_structurally_clean():
+    result = check_structural_bytes(build_pdf())
+    assert result.error is None
+    assert not result.all_codes
+
+
+@pytest.mark.parametrize("mutation", sorted(ALLOWED_MUTATIONS))
+def test_each_whitelisted_mutation_builds_and_audits_without_crashing(mutation):
+    plan = MutationPlan((mutation,))
+    pdf_bytes = build_pdf(plan)
+    result = check_structural_bytes(pdf_bytes)
+    assert pdf_bytes.startswith(b"%PDF-")
+    assert plan.expected_codes
+    assert result.error is None
+
+
+def test_unknown_mutation_is_rejected():
+    with pytest.raises(ValueError, match="unsupported"):
+        MutationPlan(("visual_receipt_forgery",))
+
+
+def test_candidate_manifest_contains_no_visual_content(tmp_path):
+    plan = MutationPlan(("page_count_conflict",), "test")
+    manifest = write_candidate(tmp_path, 1, 1, plan)
+    saved = json.loads(next(tmp_path.glob("*.json")).read_text(encoding="utf-8"))
+    assert manifest["synthetic"] is True
+    assert saved["visual_content"] is False
+    assert saved["mutations"] == ["page_count_conflict"]
+
+
+def test_misses_increase_generator_weight():
+    state = default_state()
+    update_strategy(
+        state,
+        [
+            {
+                "caught": False,
+                "mutations": ["page_count_conflict"],
+                "signature": "page_count_conflict",
+            }
+        ],
+    )
+    assert state["weights"]["page_count_conflict"] > 1.0
+
+
+def test_offline_generator_is_deterministic_and_allowlisted():
+    first = offline_plans(default_state(), count=5, seed=123)
+    second = offline_plans(default_state(), count=5, seed=123)
+    assert first == second
+    assert all(set(plan.mutations) <= ALLOWED_MUTATIONS for plan in first)

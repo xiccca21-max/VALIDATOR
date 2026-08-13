@@ -64,6 +64,11 @@ _GLOBAL_STRUCTURE_HARD = frozenset({
     "MULTIPLE_PDF_HEADERS",
     "TRAILER_INVALID",
     "XREF_OFFSET_INVALID",
+    "XREF_ENTRY_OBJECT_MISMATCH",
+    "XREF_GENERATION_MISMATCH",
+    "XREF_SUBSECTION_INVALID",
+    "XREF_SIZE_CONTRADICTION",
+    "XREF_DUPLICATE_LIVE_MAPPING",
     "MULTIPLE_STARTXREF_PRESENT",
     "MULTIPLE_EOF_PRESENT",
     "INCREMENTAL_UPDATE_PRESENT",
@@ -72,6 +77,21 @@ _GLOBAL_STRUCTURE_HARD = frozenset({
     "EMBEDDED_FILE_PRESENT",
     "EMBEDDED_PAYLOAD_PRESENT",
     "XFA_PRESENT",
+    "STREAM_LENGTH_REFERENCE_INVALID",
+    "STREAM_LENGTH_TYPE_INVALID",
+    "STREAM_LENGTH_BOUNDARY_CONTRADICTION",
+    "STREAM_ENDSTREAM_CONTRADICTION",
+    "DUPLICATE_CRITICAL_DICT_KEY_CONFLICT",
+    "PAGETREE_PARENT_CONTRADICTION",
+    "PAGETREE_COUNT_CONTRADICTION",
+    "PAGETREE_CYCLE",
+    "PAGE_CONTENT_REFERENCE_INVALID",
+    "SFNT_TABLE_CHECKSUM_INVALID",
+    "SFNT_CHECKSUM_ADJUSTMENT_INVALID",
+    "SFNT_DIRECTORY_CONTRADICTION",
+    "INDIRECT_REFERENCE_GENERATION_MISMATCH",
+    "CRITICAL_INDIRECT_REFERENCE_BROKEN",
+    "PDF_CRITICAL_PARSE_AMBIGUITY",
 })
 
 
@@ -97,7 +117,19 @@ def _structure_rules(pdf_bytes: bytes, res: GlobalRulesResult) -> None:
     _mark(res, "G-RAW-002")
     broken, detail = xref_integrity(pdf_bytes)
     if broken:
-        _add_hard(res, "G-RAW-002", "XREF_OFFSET_INVALID", detail or "xref broken")
+        # Prefer specific deep code name when detail embeds it; else legacy.
+        code = "XREF_OFFSET_INVALID"
+        for specific in (
+            "XREF_ENTRY_OBJECT_MISMATCH",
+            "XREF_GENERATION_MISMATCH",
+            "XREF_SUBSECTION_INVALID",
+            "XREF_SIZE_CONTRADICTION",
+            "XREF_DUPLICATE_LIVE_MAPPING",
+        ):
+            if specific in (detail or ""):
+                code = specific
+                break
+        _add_hard(res, "G-RAW-002", code, detail or "xref broken")
 
     _mark(res, "G-RAW-003", "trailing-after-EOF via structure preflight")
     _mark(res, "G-RAW-004", "duplicate keys via structure preflight")
@@ -112,6 +144,23 @@ def _structure_rules(pdf_bytes: bytes, res: GlobalRulesResult) -> None:
     _mark(res, "G-AST-001", "content AST via bank font/content engine")
     _mark(res, "G-VIS-001", "visibility via glyph/render parity")
     _mark(res, "G-VIS-002", "off-page content — bank geometry engine")
+
+    # Structural deep audits (feature-gated HARD via ENABLED_STRUCTURAL_HARD)
+    _mark(res, "G-DEEP-001")
+    try:
+        from ..structural_deep import findings_for_policy
+
+        hard, diag, deep_stats = findings_for_policy(pdf_bytes)
+        res.stats["structural_deep"] = deep_stats
+        res.stats["structural_deep_details"] = [f.as_dict() for f in hard[:40]]
+        for f in hard:
+            _add_hard(res, "G-DEEP-001", f.code, f.detail)
+        for f in diag[:30]:
+            res.diagnostics.append(
+                f"[G-DEEP-001] diagnostic {f.code}: {f.detail[:200]}"
+            )
+    except Exception as exc:
+        res.diagnostics.append(f"[G-DEEP-001] audit error: {exc}")
 
 
 def _semantic_rules(text: str, res: GlobalRulesResult) -> None:

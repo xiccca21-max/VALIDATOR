@@ -449,11 +449,11 @@ def _stage_semantics(
         )
         result.stats["sbp_cipher"] = sbp.stats
         for cf in sbp.flags:
-            tier = (
-                "DIAGNOSTIC"
-                if cf.code == "OZON_SBP_ID_CROSS_BANK_TAIL"
-                else "HARD"
-            )
+            # Policy: HARD_CODES / else DIAGNOSTIC_CODES / else HARD by default.
+            if cf.code in DIAGNOSTIC_CODES:
+                tier = "DIAGNOSTIC"
+            else:
+                tier = "HARD"
             ingest_flag(result, _flag(
                 cf.code, cf.detail, tier=tier,
                 group="identifier", rule_id=cf.rule_id,

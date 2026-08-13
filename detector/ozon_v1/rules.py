@@ -110,6 +110,11 @@ HARD_CODES: frozenset[str] = frozenset({
 
     "OZON_KNOWN_FAKE_SBP_TAIL_FAMILY",
 
+    # T-Bank Jasper route block spliced into Ozon Skia SBP ID (G100/G101).
+    # 0 FP on genuine Ozon corpus routes ∈ {00, B1}; known forgeries sbp.pdf /
+    # sbp1.pdf / live miss 185650 use G10x.
+    "OZON_SBP_ID_CROSS_BANK_TAIL",
+
     # OZON_CURRENT_GENERATOR_PROVENANCE_CONFLICT demoted — unknown SBP tail
     # is incomplete atlas / novelty, not structural proof.
 
@@ -130,8 +135,8 @@ KNOWN_FAKE_CODES: frozenset[str] = frozenset({
 
 
 DIAGNOSTIC_CODES: frozenset[str] = frozenset({
-    # Confirmed genuine Ozon SBP receipts can contain G100/G101-like tails.
-    "OZON_SBP_ID_CROSS_BANK_TAIL",
+    # G100/G101 on Skia Ozon is HARD (see HARD_CODES). Earlier demotion was
+    # polluted by known forgeries sbp.pdf/sbp1.pdf sitting in a «genuine» folder.
 
     "MULTIPLE_EOF_PRESENT",
 

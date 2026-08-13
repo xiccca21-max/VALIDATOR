@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "model": "auto",
+  "candidates_per_round": 8,
+  "max_rounds_per_run": 20,
+  "stop_after_clean_rounds": 3,
+  "generator_seed": 73191,
+  "enable_defender": true,
+  "fast_gate": [
+    "py",
+    "-3.13",
+    "-m",
+    "pytest",
+    "tests/test_structural_deep_hard.py",
+    "-q"
+  ],
+  "slow_gates": [
+    [
+      "py",
+      "-3.13",
+      "tools/_structural_deep_fp_gate.py"
+    ]
+  ],
+  "slow_gate_timeout_seconds": 1800
+}

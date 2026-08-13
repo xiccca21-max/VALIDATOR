@@ -15,8 +15,8 @@
       "bank5": "00118",
       "suffix": "810901",
       "first_seen_utc": "2026-07-30T10:47:29Z",
-      "last_seen_utc": "2026-08-12T18:18:18Z",
-      "sightings": 69,
+      "last_seen_utc": "2026-08-13T00:50:22Z",
+      "sightings": 71,
       "example_file_hash": "d36a413251734e8f17913e4af2772f358e3614f06ac2802ec9219faf86bce2d7",
       "note": "corpus through 2026-06-29 had bank5∈{00116,00117} only"
     },
@@ -24,9 +24,18 @@
       "bank5": "00118",
       "suffix": "820705",
       "first_seen_utc": "2026-07-31T21:23:46Z",
-      "last_seen_utc": "2026-08-12T18:18:18Z",
-      "sightings": 67,
+      "last_seen_utc": "2026-08-13T00:50:23Z",
+      "sightings": 69,
       "example_file_hash": "df7f8fbadbf9a7663aa52b9ee3ad37aadf878db861741b717150afe1d17f279a",
+      "note": "corpus through 2026-06-29 had bank5∈{00116,00117} only"
+    },
+    {
+      "bank5": "00118",
+      "suffix": "821301",
+      "first_seen_utc": "2026-08-13T10:00:29Z",
+      "last_seen_utc": "2026-08-13T10:00:29Z",
+      "sightings": 1,
+      "example_file_hash": "307547f1a503240d7ca3d3fd3b119a7431dc0e484965b8e69e671deaee513839",
       "note": "corpus through 2026-06-29 had bank5∈{00116,00117} only"
     }
   ]

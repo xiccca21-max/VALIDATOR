@@ -73,29 +73,26 @@ def _stream_from_obj(obj: bytes, indirect: dict[int, int]) -> tuple[bytes, bytes
     return raw, _decompress_raw(raw)
 
 
-def find_streams(pdf_bytes: bytes):
-    """Yield (raw_bytes, decompressed_bytes) для каждого stream-объекта PDF."""
+def find_streams(pdf_bytes: bytes, *, dedupe: bool = True):
+    """Yield (raw_bytes, decompressed_bytes) для каждого stream-объекта PDF.
+
+    dedupe=True keeps historical (len, prefix16) collapsing for content-skeleton
+    helpers. Integrity audits must use audit_stream_length_contract (per-object)
+    or call with dedupe=False — identical prefixes must not hide a second object.
+    """
     indirect = _indirect_lengths(pdf_bytes)
     seen: set[tuple[int, bytes]] = set()
-
-    def _yield_unique(raw: bytes):
-        if not raw:
-            return
-        key = (len(raw), raw[:16])
-        if key in seen:
-            return
-        seen.add(key)
-        return raw, _decompress_raw(raw)
 
     # Pass 1: объекты N M obj … stream (с /Length и косвенными ссылками)
     for m in _OBJ_BODY_RE.finditer(pdf_bytes):
         raw, dec = _stream_from_obj(m.group(0), indirect)
         if not raw:
             continue
-        key = (len(raw), raw[:16])
-        if key in seen:
-            continue
-        seen.add(key)
+        if dedupe:
+            key = (len(raw), raw[:16])
+            if key in seen:
+                continue
+            seen.add(key)
         yield raw, dec
 
     # Pass 2: >> stream … (для PDF с нестандартной разметкой объектов)
@@ -110,10 +107,11 @@ def find_streams(pdf_bytes: bytes):
             if es < 0:
                 continue
             raw = pdf_bytes[start:es].rstrip(b"\r\n")
-        key = (len(raw), raw[:16])
-        if key in seen:
-            continue
-        seen.add(key)
+        if dedupe:
+            key = (len(raw), raw[:16])
+            if key in seen:
+                continue
+            seen.add(key)
         yield raw, _decompress_raw(raw)
 
 
@@ -175,31 +173,90 @@ def xref_integrity(pdf_bytes: bytes) -> tuple[bool, str]:
 
 
 def _validate_classic(b: bytes, off: int) -> tuple[bool, str]:
+    """Classic xref deepened: subsection first+count, live entry → matching N G obj.
+
+    New specific codes (XREF_ENTRY_OBJECT_MISMATCH etc.) are emitted by
+    audit_xref_deep; this function only sets the legacy broken flag used by
+    existing XREF_OFFSET_INVALID HARD paths.
+    """
     if b[off:off + 4] != b"xref":
         return (True, "ожидался xref")
-    trailer = b.rfind(b"trailer")
+    trailer = b.find(b"trailer", off)
     if trailer < 0:
+        trailer = b.rfind(b"trailer")
+    if trailer < 0 or trailer < off:
         return (True, "нет trailer")
     body = b[off:trailer]
-    for m in _XREF_ENTRY_RE.finditer(body):
-        o = int(m.group(1))
-        if m.group(3) == b"n" and o > 0:
-            if o >= len(b):
+    pos = 4
+    while pos < len(body) and body[pos:pos + 1] in b"\r\n \t":
+        pos += 1
+    saw_subsection = False
+    while pos < len(body):
+        if body[pos:pos + 7] == b"trailer":
+            break
+        hm = re.match(rb"(\d+)\s+(\d+)\s*\r?\n", body[pos:])
+        if not hm:
+            break
+        saw_subsection = True
+        first = int(hm.group(1))
+        count = int(hm.group(2))
+        pos += hm.end()
+        for i in range(count):
+            # Prefer fixed 20-byte xref lines; fall back to regex
+            chunk = body[pos:pos + 22]
+            em = re.match(rb"(\d{10}) (\d{5}) ([nf])(?: \r?\n|\r?\n| )?", chunk)
+            if not em:
+                em = _XREF_ENTRY_RE.match(body[pos:])
+                if not em:
+                    return (True, f"xref subsection {first}/{count}: битая запись #{i}")
+            o = int(em.group(1))
+            gen = int(em.group(2))
+            nf = em.group(3)
+            pos += em.end()
+            while pos < len(body) and body[pos:pos + 1] in b"\r\n ":
+                pos += 1
+            if nf != b"n":
+                continue
+            if o <= 0 or o >= len(b):
                 return (True, f"xref entry offset {o} за пределами файла")
-            if not re.match(rb"\d+\s+\d+\s+obj", b[o:o + 32]):
+            objnum = first + i
+            mobj = re.match(rb"(\d+)\s+(\d+)\s+obj", b[o:o + 32])
+            if not mobj:
                 return (True, f"xref offset {o} не указывает на объект")
+            if int(mobj.group(1)) != objnum:
+                return (
+                    True,
+                    f"xref slot {objnum} указывает на object {int(mobj.group(1))} "
+                    f"(XREF_ENTRY_OBJECT_MISMATCH)",
+                )
+            if int(mobj.group(2)) != gen:
+                return (
+                    True,
+                    f"xref slot {objnum} gen={gen} ≠ object gen={int(mobj.group(2))} "
+                    f"(XREF_GENERATION_MISMATCH)",
+                )
+    if not saw_subsection:
+        # Legacy fallback: any n-entry offset must point at an object
+        for m in _XREF_ENTRY_RE.finditer(body):
+            o = int(m.group(1))
+            if m.group(3) == b"n" and o > 0:
+                if o >= len(b):
+                    return (True, f"xref entry offset {o} за пределами файла")
+                if not re.match(rb"\d+\s+\d+\s+obj", b[o:o + 32]):
+                    return (True, f"xref offset {o} не указывает на объект")
     return (False, "")
 
 
 def _validate_xref_stream(b: bytes, off: int) -> tuple[bool, str]:
+    """Xref-stream: decode /W, walk ALL /Index pairs, validate type-1 targets."""
     try:
         om = re.match(rb"(\d+)\s+(\d+)\s+obj", b[off:off + 40])
         if not om:
             return (True, "некорректный xref-stream объект")
-        objnum = int(om.group(1))
         stream_start = b.find(b"stream", off)
         if stream_start < 0:
             return (True, "xref-stream без stream")
+        hdr = b[off:stream_start]
         cs = stream_start + 6
         if b[cs:cs + 2] == b"\r\n":
             cs += 2
@@ -207,28 +264,74 @@ def _validate_xref_stream(b: bytes, off: int) -> tuple[bool, str]:
             cs += 1
         es = b.find(b"endstream", cs)
         raw = b[cs:es].rstrip(b"\r\n")
-        dec = zlib.decompress(raw)
-        sm = _SIZE_RE.search(b[off:stream_start])
+        lm = _STREAM_LEN_RE.search(hdr)
+        if lm:
+            raw = b[cs:cs + int(lm.group(1))]
+        try:
+            dec = zlib.decompress(raw)
+        except Exception:
+            dec = raw
+        sm = _SIZE_RE.search(hdr)
         if not sm:
             return (False, "")
         size = int(sm.group(1))
-        wm = _W_RE.search(b[off:stream_start])
+        wm = _W_RE.search(hdr)
         if not wm:
             return (False, "")
         w = [int(wm.group(i)) for i in range(1, 4)]
-        idx_m = _INDEX_RE.search(b[off:stream_start])
-        if idx_m:
-            parts = [int(x) for x in idx_m.group(1).split()]
-            if len(parts) >= 2:
-                first, count = parts[0], parts[1]
-            else:
-                first, count = 0, size
-        else:
-            first, count = 0, size
         row = w[0] + w[1] + w[2]
-        need = count * row
+        if row <= 0:
+            return (True, f"некорректный /W {w}")
+        index_pairs: list[tuple[int, int]] = []
+        for idx_m in re.finditer(rb"/Index\s*\[([^\]]*)\]", hdr):
+            parts = [int(x) for x in re.findall(rb"\d+", idx_m.group(1))]
+            if len(parts) % 2 != 0:
+                return (True, f"malformed /Index {idx_m.group(1)!r}")
+            for i in range(0, len(parts), 2):
+                index_pairs.append((parts[i], parts[i + 1]))
+        if not index_pairs:
+            index_pairs = [(0, size)]
+        need = sum(c for _, c in index_pairs) * row
         if len(dec) < need:
             return (True, "xref-stream слишком короткий")
+
+        def _be(buf: bytes, n: int) -> int:
+            if n <= 0:
+                return 0
+            v = 0
+            for x in buf[:n]:
+                v = (v << 8) | x
+            return v
+
+        cursor = 0
+        for first, count in index_pairs:
+            for i in range(count):
+                chunk = dec[cursor:cursor + row]
+                cursor += row
+                ftype = _be(chunk[0:w[0]], w[0]) if w[0] else 1
+                f1 = _be(chunk[w[0]:w[0] + w[1]], w[1]) if w[1] else 0
+                f2 = _be(chunk[w[0] + w[1]:], w[2]) if w[2] else 0
+                if ftype != 1:
+                    continue
+                eoff, gen = f1, f2
+                objnum = first + i
+                if eoff <= 0 or eoff >= len(b):
+                    return (True, f"xref-stream offset {eoff} за пределами файла")
+                mobj = re.match(rb"(\d+)\s+(\d+)\s+obj", b[eoff:eoff + 32])
+                if not mobj:
+                    return (True, f"xref-stream offset {eoff} не указывает на объект")
+                if int(mobj.group(1)) != objnum:
+                    return (
+                        True,
+                        f"xref-stream slot {objnum} → object {int(mobj.group(1))} "
+                        f"(XREF_ENTRY_OBJECT_MISMATCH)",
+                    )
+                if int(mobj.group(2)) != gen:
+                    return (
+                        True,
+                        f"xref-stream slot {objnum} gen mismatch "
+                        f"(XREF_GENERATION_MISMATCH)",
+                    )
         return (False, "")
     except Exception as e:
         return (True, f"ошибка разбора xref-stream: {e}")

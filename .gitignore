@@ -15,6 +15,9 @@ tools/.tg_defender_session*
 # runtime / inbox / bulk output
 output/
 **/defender_inbox/
+arena/corpus/generated/
+arena/reports/
+arena/state.json
 **/__pycache__/
 *.pyc
 *.pyo
