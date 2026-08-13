@@ -6,6 +6,7 @@ import pytest
 
 from arena.adapter import check_structural_bytes
 from arena.generator import default_state, offline_plans, update_strategy
+from arena.ingest_external import ingest_folder
 from arena.synthetic import (
     ALLOWED_MUTATIONS,
     MutationPlan,
@@ -64,3 +65,12 @@ def test_offline_generator_is_deterministic_and_allowlisted():
     second = offline_plans(default_state(), count=5, seed=123)
     assert first == second
     assert all(set(plan.mutations) <= ALLOWED_MUTATIONS for plan in first)
+
+
+def test_external_ingest_scores_existing_files_only(tmp_path):
+    pdf_path = tmp_path / "existing.pdf"
+    pdf_path.write_bytes(build_pdf(MutationPlan(("xref_object_mismatch",))))
+    report = ingest_folder(tmp_path, limit=5)
+    assert report["scanned"] == 1
+    assert report["evaluations"][0]["file"] == str(pdf_path)
+    assert report["caught"] + report["missed"] + report["errors"] + report["unknown"] == 1

@@ -6,6 +6,8 @@
   "stop_after_clean_rounds": 3,
   "generator_seed": 73191,
   "enable_defender": true,
+  "generator_output_dir": "C:\\Users\\fanis\\OneDrive\\Desktop\\ЗАПАСКА 13.07.26\\output",
+  "generator_ingest_limit": 40,
   "fast_gate": [
     "py",
     "-3.13",

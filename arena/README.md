@@ -47,3 +47,15 @@ deploys them automatically.
 
 Runtime PDFs, reports, and adaptive state are ignored by Git. API keys are read
 only from the environment and are never written to reports.
+
+## Existing generator PDFs
+
+The live receipt generator is never imported and never asked to become stealthier.
+To score files that already exist in its `output` folder:
+
+```powershell
+py -3.13 -m arena.ingest_external --limit 40
+```
+
+A CLEAN result on those files is a validator miss. The defender may then patch
+the validator. The generator itself is left unchanged.
