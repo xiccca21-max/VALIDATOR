@@ -68,8 +68,16 @@ class SbpIdentifier:
 
     @property
     def slot(self) -> str:
-        """Compatibility name for the four-character route slot."""
+        """Compatibility name for the four-character channel."""
         return self.route
+
+    @property
+    def channel(self) -> str:
+        return self.route
+
+    @property
+    def calendar_time(self) -> str:
+        return f"{self.calendar}{self.hour}{self.minute}{self.second}"
 
 
 @dataclass(frozen=True)
@@ -80,14 +88,10 @@ class SbpAtlas:
     cores: frozenset[str] = frozenset()
     tails: frozenset[str] = frozenset()
     combinations: frozenset[tuple[str, str, str, str]] = frozenset()
+    core_tails: frozenset[tuple[str, str]] = frozenset()
     deterministic_links: Mapping[tuple[str, str, str], frozenset[str]] = field(
         default_factory=dict
     )
-    # (control, class, slot, bank5, suffix) -> observed route markers at [14]
-    linked_route_markers: Mapping[tuple[str, str, str, str, str], frozenset[str]] = field(
-        default_factory=dict
-    )
-    allowed_route_markers: frozenset[str] = frozenset({"0", "1"})
     sources: tuple[str, ...] = ()
 
 
@@ -122,6 +126,26 @@ def _opid_from_sample(sample: Mapping[str, Any]) -> str:
     return ""
 
 
+def canonical_segments(opid: str) -> dict[str, str]:
+    """Alfa SBP: type | calendar/time | reference | control | channel | core | tail.
+
+    Overlapping T-Bank-style linked-tuple slices (route_marker[14], class[17:19],
+    suffix[26:32]) are not part of this layout and must not be used.
+    """
+    value = (opid or "").strip().upper()
+    if len(value) < 32:
+        value = value.ljust(32)
+    return {
+        "type": value[0:1],
+        "calendar_time": value[1:11],
+        "reference": value[11:17],
+        "control": value[17:18],
+        "channel": value[18:22],
+        "core": value[22:27],
+        "tail": value[27:32],
+    }
+
+
 def load_generated_atlas(paths: Iterable[Path] | None = None) -> SbpAtlas:
     """Load optional generated data without making startup depend on it."""
     markers: set[str] = set()
@@ -130,9 +154,8 @@ def load_generated_atlas(paths: Iterable[Path] | None = None) -> SbpAtlas:
     cores: set[str] = set()
     tails: set[str] = set()
     combinations: set[tuple[str, str, str, str]] = set()
+    core_tails: set[tuple[str, str]] = set()
     links: dict[tuple[str, str, str], set[str]] = {}
-    linked_markers: dict[tuple[str, str, str, str, str], set[str]] = {}
-    observed_route_markers: set[str] = set()
     sources: list[str] = []
 
     for path in paths or _ATLAS_PATHS:
@@ -166,25 +189,16 @@ def load_generated_atlas(paths: Iterable[Path] | None = None) -> SbpAtlas:
             if not _ALPHABET_RE.fullmatch(opid):
                 continue
             # Also accept sbp_id field from segmentation entries.
-            marker, control = opid[0], opid[17]
-            route, core, tail = opid[18:22], opid[22:27], opid[27:32]
+            segs = canonical_segments(opid)
+            marker, control = segs["type"], segs["control"]
+            route, core, tail = segs["channel"], segs["core"], segs["tail"]
             markers.add(marker)
             controls.add(control)
             routes.add(route)
             cores.add(core)
             tails.add(tail)
             combinations.add((marker, control, route, tail))
-
-            route_marker = opid[14]
-            route_control = opid[15]
-            sb_class = opid[17:19]
-            slot = opid[19:22]
-            bank5 = opid[22:27]
-            suffix = opid[26:32]
-            # Confirmed linked tuple: control/class/slot/bank5/suffix → markers.
-            linked_key = (route_control, sb_class, slot, bank5, suffix)
-            linked_markers.setdefault(linked_key, set()).add(route_marker)
-            observed_route_markers.add(route_marker)
+            core_tails.add((core, tail))
 
     return SbpAtlas(
         markers=frozenset(markers),
@@ -193,15 +207,8 @@ def load_generated_atlas(paths: Iterable[Path] | None = None) -> SbpAtlas:
         cores=frozenset(cores),
         tails=frozenset(tails),
         combinations=frozenset(combinations),
+        core_tails=frozenset(core_tails),
         deterministic_links={key: frozenset(value) for key, value in links.items()},
-        linked_route_markers={
-            key: frozenset(value) for key, value in linked_markers.items()
-        },
-        allowed_route_markers=(
-            frozenset(observed_route_markers)
-            if observed_route_markers
-            else frozenset({"0", "1"})
-        ),
         sources=tuple(sources),
     )
 
@@ -288,22 +295,6 @@ def _add_empirical(result: SbpResult, details: list[str]) -> None:
 
 
 
-def _route_segments(opid: str) -> dict[str, str]:
-    """Alfa SBP route layout used for linked-tuple provenance."""
-    return {
-        "lead": opid[0:1],
-        "timestamp": opid[1:11],
-        "reference": opid[11:14],
-        "route_marker": opid[14:15],
-        "control": opid[15:16],
-        "separator": opid[16:17],
-        "class": opid[17:19],
-        "slot": opid[19:22],
-        "bank5": opid[22:27],
-        "suffix": opid[26:32],
-    }
-
-
 def validate_sbp_id(
     identifier: str,
     text: str = "",
@@ -333,16 +324,20 @@ def validate_sbp_id(
         )
         return result
 
+    segs = canonical_segments(parsed.raw)
     result.stats.update(
         {
             "marker": parsed.marker,
+            "type": segs["type"],
             "calendar": parsed.calendar,
+            "calendar_time": segs["calendar_time"],
             "hour": parsed.hour,
             "minute": parsed.minute,
             "second": parsed.second,
             "reference": parsed.reference,
             "control": parsed.control,
             "route": parsed.route,
+            "channel": segs["channel"],
             "slot": parsed.slot,
             "core": parsed.core,
             "tail": parsed.tail,
@@ -380,7 +375,7 @@ def validate_sbp_id(
     if not parsed.route.isdigit():
         result.add(
             "ALFA_SBP_ID_STRUCTURE_INVALID",
-            f"route/slot [18:22] is not numeric: {parsed.route!r}",
+            f"channel [18:22] is not numeric: {parsed.route!r}",
         )
     if not parsed.core.isdigit():
         result.add(
@@ -431,10 +426,10 @@ def validate_sbp_id(
     if atlas.controls and parsed.control not in atlas.controls:
         empirical.append(f"unknown control {parsed.control}")
     if atlas.routes and parsed.route not in atlas.routes:
-        empirical.append(f"unknown route/slot {parsed.route}")
-    # Unknown bank5/core or suffix/tail is observational only (Tier-B at most).
+        empirical.append(f"unknown channel {parsed.route}")
+    # Unknown core/tail is observational only (Tier-B at most).
     # Never HARD from absence in the closed corpus ending 2026-06-29
-    # (historically bank5∈{00116,00117}); new emitters such as 00118/810101
+    # (historically core∈{00116,00117}); new emitters such as 00118/810101
     # must not decide authenticity alone.
     if atlas.cores and parsed.core not in atlas.cores:
         empirical.append(f"unknown core {parsed.core}")
@@ -458,30 +453,6 @@ def validate_sbp_id(
             f"atlas deterministically links {'/'.join(deterministic_key)} to "
             f"{sorted(allowed_tails)}, not {parsed.tail}",
             group="sbp_atlas",
-        )
-
-    # Linked tuple: control/class/slot/bank5/suffix → allowed route marker [14].
-    # Unknown new tuples stay observational; HARD only when a corpus-confirmed
-    # tuple is reused with a different marker.
-    segs = _route_segments(parsed.raw)
-    result.stats.update({f"route_{k}": v for k, v in segs.items()})
-    linked_key = (
-        segs["control"],
-        segs["class"],
-        segs["slot"],
-        segs["bank5"],
-        segs["suffix"],
-    )
-    allowed_markers = atlas.linked_route_markers.get(linked_key)
-    route_marker = segs["route_marker"]
-    if allowed_markers is not None and route_marker not in allowed_markers:
-        result.add(
-            "ALFA_SBP_LINKED_TUPLE_CONFLICT",
-            "SBP linked tuple "
-            f"control={segs['control']} class={segs['class']} slot={segs['slot']} "
-            f"bank5={segs['bank5']} suffix={segs['suffix']} is attested only with "
-            f"marker∈{sorted(allowed_markers)}, not {route_marker!r}",
-            group="sbp_linked_tuple",
         )
     return result
 

@@ -1,0 +1,586 @@
+{
+  "total_submissions": 256,
+  "passes": 50,
+  "fails": 206,
+  "missing_pdfs": 0,
+  "reliable_byte_submissions": 249,
+  "unreliable_overwritten_paths": 7,
+  "unique_pdf_sha": 243,
+  "unique_font_sha": 197,
+  "pdf_sha_contradictions": [
+    {
+      "pdf_sha": "531ee0b467ec9ab4296b38ee6b53a5bd4882e23002b5d1b31a201f032e27d9a6",
+      "passes": 1,
+      "fails": 1,
+      "events": [
+        {
+          "filename": "B1.pdf",
+          "sent_at": "2026-08-14T19:52:23+00:00",
+          "verdict": "PASS",
+          "message_id": 4001
+        },
+        {
+          "filename": "B1_control.pdf",
+          "sent_at": "2026-08-14T20:08:14+00:00",
+          "verdict": "FAIL",
+          "message_id": 4014
+        }
+      ]
+    }
+  ],
+  "font_sha_contradictions": [
+    {
+      "font_sha": "c039bac6a70ea03f676f67fee8c85502005aa7323e42c0a1c3e81a40099997f7",
+      "passes": 5,
+      "fails": 9,
+      "events": [
+        {
+          "filename": "five_01.pdf",
+          "sent_at": "2026-08-13T11:17:48+00:00",
+          "verdict": "PASS",
+          "message_id": 3226
+        },
+        {
+          "filename": "five_01.pdf",
+          "sent_at": "2026-08-13T11:46:40+00:00",
+          "verdict": "PASS",
+          "message_id": 3242
+        },
+        {
+          "filename": "five_03_no_closure.pdf",
+          "sent_at": "2026-08-13T11:47:35+00:00",
+          "verdict": "FAIL",
+          "message_id": 3247
+        },
+        {
+          "filename": "n1_phone_from_pass01.pdf",
+          "sent_at": "2026-08-13T12:00:08+00:00",
+          "verdict": "PASS",
+          "message_id": 3251
+        },
+        {
+          "filename": "n2_account_from_pass01.pdf",
+          "sent_at": "2026-08-13T12:00:15+00:00",
+          "verdict": "FAIL",
+          "message_id": 3254
+        },
+        {
+          "filename": "n3_op_from_pass01.pdf",
+          "sent_at": "2026-08-13T12:00:23+00:00",
+          "verdict": "FAIL",
+          "message_id": 3256
+        },
+        {
+          "filename": "n4_sbp_from_pass01.pdf",
+          "sent_at": "2026-08-13T12:00:30+00:00",
+          "verdict": "FAIL",
+          "message_id": 3258
+        },
+        {
+          "filename": "n5_op_acc_sbp_from_pass01.pdf",
+          "sent_at": "2026-08-13T12:00:37+00:00",
+          "verdict": "PASS",
+          "message_id": 3260
+        },
+        {
+          "filename": "n6_op_acc_from_pass01.pdf",
+          "sent_at": "2026-08-13T12:01:03+00:00",
+          "verdict": "FAIL",
+          "message_id": 3263
+        },
+        {
+          "filename": "n7_acc_sbp_from_pass01.pdf",
+          "sent_at": "2026-08-13T12:01:11+00:00",
+          "verdict": "FAIL",
+          "message_id": 3265
+        },
+        {
+          "filename": "five_01.pdf",
+          "sent_at": "2026-08-13T12:55:22+00:00",
+          "verdict": "PASS",
+          "message_id": 3273
+        },
+        {
+          "filename": "03_five01_amount1.pdf",
+          "sent_at": "2026-08-13T13:24:58+00:00",
+          "verdict": "FAIL",
+          "message_id": 3349
+        },
+        {
+          "filename": "04_five01_eofspace.pdf",
+          "sent_at": "2026-08-13T13:25:30+00:00",
+          "verdict": "FAIL",
+          "message_id": 3351
+        },
+        {
+          "filename": "05_five01_producer.pdf",
+          "sent_at": "2026-08-13T13:26:02+00:00",
+          "verdict": "FAIL",
+          "message_id": 3353
+        }
+      ]
+    },
+    {
+      "font_sha": "99e371c9ad8d1b6ffe1428770ad37f204faedf68499d564c31d435b2fa334939",
+      "passes": 5,
+      "fails": 3,
+      "events": [
+        {
+          "filename": "00_sbp_alfa2.pdf",
+          "sent_at": "2026-08-13T13:23:24+00:00",
+          "verdict": "PASS",
+          "message_id": 3342
+        },
+        {
+          "filename": "clone_alfa2.pdf",
+          "sent_at": "2026-08-14T00:25:16+00:00",
+          "verdict": "FAIL",
+          "message_id": 3539
+        },
+        {
+          "filename": "сбп альфа 2.pdf",
+          "sent_at": "2026-08-14T00:26:56+03:00",
+          "verdict": "PASS",
+          "message_id": 3519
+        },
+        {
+          "filename": "control_exact.pdf",
+          "sent_at": "2026-08-14T00:41:29+00:00",
+          "verdict": "PASS",
+          "message_id": 3541
+        },
+        {
+          "filename": "control_id.pdf",
+          "sent_at": "2026-08-14T00:41:46+00:00",
+          "verdict": "PASS",
+          "message_id": 3546
+        },
+        {
+          "filename": "control_prefix.pdf",
+          "sent_at": "2026-08-14T00:42:02+00:00",
+          "verdict": "FAIL",
+          "message_id": 3549
+        },
+        {
+          "filename": "control_both.pdf",
+          "sent_at": "2026-08-14T00:42:19+00:00",
+          "verdict": "FAIL",
+          "message_id": 3551
+        },
+        {
+          "filename": "control_known_prefix.pdf",
+          "sent_at": "2026-08-14T00:55:42+00:00",
+          "verdict": "PASS",
+          "message_id": 3553
+        }
+      ]
+    },
+    {
+      "font_sha": "9211a1275240d0c692bd924a66c9fdc5f9e068620759151cdfab009f3110e6e8",
+      "passes": 1,
+      "fails": 4,
+      "events": [
+        {
+          "filename": "B1.pdf",
+          "sent_at": "2026-08-14T19:52:23+00:00",
+          "verdict": "PASS",
+          "message_id": 4001
+        },
+        {
+          "filename": "B1_control.pdf",
+          "sent_at": "2026-08-14T20:08:14+00:00",
+          "verdict": "FAIL",
+          "message_id": 4014
+        },
+        {
+          "filename": "H1.pdf",
+          "sent_at": "2026-08-14T20:08:44+00:00",
+          "verdict": "FAIL",
+          "message_id": 4017
+        },
+        {
+          "filename": "H2.pdf",
+          "sent_at": "2026-08-14T20:09:12+00:00",
+          "verdict": "FAIL",
+          "message_id": 4020
+        },
+        {
+          "filename": "H3.pdf",
+          "sent_at": "2026-08-14T20:09:41+00:00",
+          "verdict": "FAIL",
+          "message_id": 4023
+        }
+      ]
+    },
+    {
+      "font_sha": "635dee2685416c2069388317e91855056db5109dccf38a798a7ebfc8a8785b02",
+      "passes": 1,
+      "fails": 3,
+      "events": [
+        {
+          "filename": "padd_keep_01.pdf",
+          "sent_at": "2026-08-13T13:16:23+00:00",
+          "verdict": "FAIL",
+          "message_id": 3324
+        },
+        {
+          "filename": "00_014153.pdf",
+          "sent_at": "2026-08-13T13:21:52+00:00",
+          "verdict": "PASS",
+          "message_id": 3330
+        },
+        {
+          "filename": "01_014153_trailer.pdf",
+          "sent_at": "2026-08-13T13:22:10+00:00",
+          "verdict": "FAIL",
+          "message_id": 3335
+        },
+        {
+          "filename": "02_014153_amount1.pdf",
+          "sent_at": "2026-08-13T13:24:09+00:00",
+          "verdict": "FAIL",
+          "message_id": 3347
+        }
+      ]
+    },
+    {
+      "font_sha": "4e36a7253841ecafb4a046b79474136d4b50bf782890315f1937d43e9813d485",
+      "passes": 1,
+      "fails": 2,
+      "events": [
+        {
+          "filename": "streak_03.pdf",
+          "sent_at": "2026-08-13T16:19:00+00:00",
+          "verdict": "PASS",
+          "message_id": 3461
+        },
+        {
+          "filename": "ablate_amount.pdf",
+          "sent_at": "2026-08-13T17:32:32+00:00",
+          "verdict": "FAIL",
+          "message_id": 3476
+        },
+        {
+          "filename": "03_no_fio_nbsp.pdf",
+          "sent_at": "2026-08-13T17:53:15+00:00",
+          "verdict": "FAIL",
+          "message_id": 3482
+        }
+      ]
+    },
+    {
+      "font_sha": "5fdbeb7e86e84b5a567ddb3cc6831741dfde6183984606b5fb279d001eb70106",
+      "passes": 1,
+      "fails": 2,
+      "events": [
+        {
+          "filename": "streak_05.pdf",
+          "sent_at": "2026-08-13T16:21:23+00:00",
+          "verdict": "FAIL",
+          "message_id": 3466
+        },
+        {
+          "filename": "05_fio_nbsp.pdf",
+          "sent_at": "2026-08-13T17:54:03+00:00",
+          "verdict": "PASS",
+          "message_id": 3484
+        },
+        {
+          "filename": "05_fio_op_nbsp.pdf",
+          "sent_at": "2026-08-13T17:54:30+00:00",
+          "verdict": "FAIL",
+          "message_id": 3487
+        }
+      ]
+    },
+    {
+      "font_sha": "ae202e3bbcd2351622d327ac94156b5ff6ba9991d3fd44eaf9fc268f74a377e6",
+      "passes": 1,
+      "fails": 2,
+      "events": [
+        {
+          "filename": "bp_10_oleg_22may.pdf",
+          "sent_at": "2026-08-14T15:52:42+00:00",
+          "verdict": "PASS",
+          "message_id": 3765
+        },
+        {
+          "filename": "bp_17_clone_date1408.pdf",
+          "sent_at": "2026-08-14T16:13:34+00:00",
+          "verdict": "FAIL",
+          "message_id": 3776
+        },
+        {
+          "filename": "bp_18_clone_amt_phone.pdf",
+          "sent_at": "2026-08-14T16:16:30+00:00",
+          "verdict": "FAIL",
+          "message_id": 3778
+        }
+      ]
+    },
+    {
+      "font_sha": "eb96edd6e71e764d581dc4a244b658e7093b62441a630b2e938fdd0bbed254e8",
+      "passes": 1,
+      "fails": 2,
+      "events": [
+        {
+          "filename": "_bankpdf_real_orig.pdf",
+          "sent_at": "2026-08-13T01:24:01+00:00",
+          "verdict": "PASS",
+          "message_id": 3153
+        },
+        {
+          "filename": "_bankpdf_keep_id_1digit.pdf",
+          "sent_at": "2026-08-13T09:40:47+00:00",
+          "verdict": "FAIL",
+          "message_id": 3171
+        },
+        {
+          "filename": "inplace_01.pdf",
+          "sent_at": "2026-08-13T15:31:02+00:00",
+          "verdict": "FAIL",
+          "message_id": 3447
+        }
+      ]
+    },
+    {
+      "font_sha": "fc522b5022f6c86e8ecfb326c4edfa34eb582cff19cec9161fa3a06bf3c0f903",
+      "passes": 1,
+      "fails": 2,
+      "events": [
+        {
+          "filename": "02_sber.pdf",
+          "sent_at": "2026-08-14T12:04:22+00:00",
+          "verdict": "FAIL",
+          "message_id": 3698
+        },
+        {
+          "filename": "02_ab_amount.pdf",
+          "sent_at": "2026-08-14T12:07:23+00:00",
+          "verdict": "PASS",
+          "message_id": 3700
+        },
+        {
+          "filename": "02_ab_phone.pdf",
+          "sent_at": "2026-08-14T12:09:21+00:00",
+          "verdict": "FAIL",
+          "message_id": 3703
+        }
+      ]
+    },
+    {
+      "font_sha": "31e2caf6529b2e076d0dd5b54fc6d22271c9f3d85794945dff2f58f10f70640d",
+      "passes": 1,
+      "fails": 1,
+      "events": [
+        {
+          "filename": "юмани по карте в другой банк.pdf",
+          "sent_at": "2026-08-14T14:08:21+03:00",
+          "verdict": "PASS",
+          "message_id": 3637
+        },
+        {
+          "filename": "receipt_hx3ys1l8v7rn5ugqeo8qkzje4hkcq91q.pdf",
+          "sent_at": "2026-08-14T14:09:18+03:00",
+          "verdict": "FAIL",
+          "message_id": 3642
+        }
+      ]
+    },
+    {
+      "font_sha": "7dbac8563f3a5a4c06e8fcc2f39044887815bda8db034262d8d4e7b99f94b995",
+      "passes": 1,
+      "fails": 1,
+      "events": [
+        {
+          "filename": "pass_zhf_01.pdf",
+          "sent_at": "2026-08-13T14:05:16+00:00",
+          "verdict": "PASS",
+          "message_id": 3378
+        },
+        {
+          "filename": "pass_zhf_reuse_01.pdf",
+          "sent_at": "2026-08-13T14:18:05+00:00",
+          "verdict": "FAIL",
+          "message_id": 3405
+        }
+      ]
+    },
+    {
+      "font_sha": "b84f5a986192e5a2aeedf0aab4c967b96bb463611d2e95467d7e93b1d72547f0",
+      "passes": 1,
+      "fails": 1,
+      "events": [
+        {
+          "filename": "_bankpdf_corpus2.pdf",
+          "sent_at": "2026-08-13T01:24:48+00:00",
+          "verdict": "PASS",
+          "message_id": 3157
+        },
+        {
+          "filename": "native_01.pdf",
+          "sent_at": "2026-08-13T13:36:22+00:00",
+          "verdict": "FAIL",
+          "message_id": 3356
+        }
+      ]
+    }
+  ],
+  "content_sha_contradictions": [
+    {
+      "content_sha": "837d18f279670717f3b8eed21c3e8d8bea2f4017bea7d3a94da742129847b775",
+      "passes": 5,
+      "fails": 3,
+      "events": [
+        {
+          "filename": "00_sbp_alfa2.pdf",
+          "sent_at": "2026-08-13T13:23:24+00:00",
+          "verdict": "PASS",
+          "message_id": 3342
+        },
+        {
+          "filename": "clone_alfa2.pdf",
+          "sent_at": "2026-08-14T00:25:16+00:00",
+          "verdict": "FAIL",
+          "message_id": 3539
+        },
+        {
+          "filename": "сбп альфа 2.pdf",
+          "sent_at": "2026-08-14T00:26:56+03:00",
+          "verdict": "PASS",
+          "message_id": 3519
+        },
+        {
+          "filename": "control_exact.pdf",
+          "sent_at": "2026-08-14T00:41:29+00:00",
+          "verdict": "PASS",
+          "message_id": 3541
+        },
+        {
+          "filename": "control_id.pdf",
+          "sent_at": "2026-08-14T00:41:46+00:00",
+          "verdict": "PASS",
+          "message_id": 3546
+        },
+        {
+          "filename": "control_prefix.pdf",
+          "sent_at": "2026-08-14T00:42:02+00:00",
+          "verdict": "FAIL",
+          "message_id": 3549
+        },
+        {
+          "filename": "control_both.pdf",
+          "sent_at": "2026-08-14T00:42:19+00:00",
+          "verdict": "FAIL",
+          "message_id": 3551
+        },
+        {
+          "filename": "control_known_prefix.pdf",
+          "sent_at": "2026-08-14T00:55:42+00:00",
+          "verdict": "PASS",
+          "message_id": 3553
+        }
+      ]
+    },
+    {
+      "content_sha": "867283aef71421913695799d69bd9a4cb24b14d3eca0530907e413bd277958e8",
+      "passes": 3,
+      "fails": 2,
+      "events": [
+        {
+          "filename": "five_01.pdf",
+          "sent_at": "2026-08-13T11:17:48+00:00",
+          "verdict": "PASS",
+          "message_id": 3226
+        },
+        {
+          "filename": "five_01.pdf",
+          "sent_at": "2026-08-13T11:46:40+00:00",
+          "verdict": "PASS",
+          "message_id": 3242
+        },
+        {
+          "filename": "five_01.pdf",
+          "sent_at": "2026-08-13T12:55:22+00:00",
+          "verdict": "PASS",
+          "message_id": 3273
+        },
+        {
+          "filename": "04_five01_eofspace.pdf",
+          "sent_at": "2026-08-13T13:25:30+00:00",
+          "verdict": "FAIL",
+          "message_id": 3351
+        },
+        {
+          "filename": "05_five01_producer.pdf",
+          "sent_at": "2026-08-13T13:26:02+00:00",
+          "verdict": "FAIL",
+          "message_id": 3353
+        }
+      ]
+    },
+    {
+      "content_sha": "8ec298a63252549ba018d6ff62b6e86aad359402a2328d8702926c7a054466e8",
+      "passes": 1,
+      "fails": 2,
+      "events": [
+        {
+          "filename": "B1.pdf",
+          "sent_at": "2026-08-14T19:52:23+00:00",
+          "verdict": "PASS",
+          "message_id": 4001
+        },
+        {
+          "filename": "B1_control.pdf",
+          "sent_at": "2026-08-14T20:08:14+00:00",
+          "verdict": "FAIL",
+          "message_id": 4014
+        },
+        {
+          "filename": "H1.pdf",
+          "sent_at": "2026-08-14T20:08:44+00:00",
+          "verdict": "FAIL",
+          "message_id": 4017
+        }
+      ]
+    },
+    {
+      "content_sha": "4a0b3a699d9d65e3932c8b5786a5158bdd4c5cbf2c929856e49f9820dfc75fb2",
+      "passes": 1,
+      "fails": 1,
+      "events": [
+        {
+          "filename": "streak_03.pdf",
+          "sent_at": "2026-08-13T16:19:00+00:00",
+          "verdict": "PASS",
+          "message_id": 3461
+        },
+        {
+          "filename": "ablate_ff2.pdf",
+          "sent_at": "2026-08-13T17:33:23+00:00",
+          "verdict": "FAIL",
+          "message_id": 3478
+        }
+      ]
+    },
+    {
+      "content_sha": "4a3bee6e51f16ba3c72274f75ac58218f8c081f192a86bff2df9002cb241aa08",
+      "passes": 1,
+      "fails": 1,
+      "events": [
+        {
+          "filename": "00_014153.pdf",
+          "sent_at": "2026-08-13T13:21:52+00:00",
+          "verdict": "PASS",
+          "message_id": 3330
+        },
+        {
+          "filename": "01_014153_trailer.pdf",
+          "sent_at": "2026-08-13T13:22:10+00:00",
+          "verdict": "FAIL",
+          "message_id": 3335
+        }
+      ]
+    }
+  ]
+}

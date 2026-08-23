@@ -13,17 +13,15 @@ _PDF_DATE_RE = re.compile(
     r"D:(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})"
 )
 
-# SEQ/forger generation token. Native Jasper IB/Receipt genuines (чеки/т банк,
-# n=128) always use third-token «991»; DOCS-2035 appears only on confirmed fakes
-# (serializer families + CLEAN-miss SBP shells). The prior "bank switched on
-# 10.07.2026" story was poisoned by SEQ metadata — no genuine after that date
-# carries DOCS-2035.
-TRANSITION_DATETIME = datetime.datetime(2026, 7, 10, 0, 0, 0)  # retained for stats
-NATIVE_TAIL = "991"
-FOREIGN_TAIL = "DOCS-2035"
-# Back-compat aliases used by serializer-family conjunctions.
-OLD_TAIL = NATIVE_TAIL
-NEW_TAIL = FOREIGN_TAIL
+# Jasper IB/Receipt switched the /Keywords third token on 10.07.2026.
+# Live originals after that date carry «DOCS-2035» (Receipt.pdf, 18.08.2026).
+# Treating DOCS-2035 as always-fake was a corpus-cutoff error: the older
+# n=128 sample ended before the bank switch.
+TRANSITION_DATETIME = datetime.datetime(2026, 7, 10, 0, 0, 0)
+OLD_TAIL = "991"
+NEW_TAIL = "DOCS-2035"
+NATIVE_TAIL = OLD_TAIL
+FOREIGN_TAIL = NEW_TAIL
 
 
 @dataclass
@@ -78,16 +76,26 @@ def _keywords_tail(keywords: str) -> str:
     return parts[-1] if parts else ""
 
 
+def _expected_tail(when: datetime.datetime) -> str:
+    return NEW_TAIL if when >= TRANSITION_DATETIME else OLD_TAIL
+
+
 def check_keywords_generation(
     pdf_bytes: bytes,
     *,
     creation_date: str = "",
+    printed_datetime: datetime.datetime | None = None,
 ) -> KeywordsGenerationResult:
     """
     Для /reports/IB/Receipt:
-    - third token «991» — штатный Jasper/OpenPDF (0 FP на корпусе оригиналов);
-    - «DOCS-2035» — чужой generation token SEQ/serializer families → HARD;
-    - прочие хвосты — telemetry only (не novelty-atlas whitelist).
+    - до 10.07.2026 third token «991»;
+    - с 10.07.2026 third token «DOCS-2035»;
+    - токен обязан совпасть и с /CreationDate|/Keywords date, и с
+      напечатанной датой операции: SEQ поднимает Keywords на 11.08 +
+      DOCS-2035, оставляя лицо 28.05 (10_my.pdf). На 270 Jasper-оригиналах
+      пары «операция до 10.07 + DOCS-2035» нет;
+    - смешанная пара любая дата↔токен → HARD;
+    - прочие хвосты и неизвестная дата при штатном токене — telemetry.
     """
     out = KeywordsGenerationResult()
     if not _is_ib_receipt_profile(pdf_bytes):
@@ -113,20 +121,51 @@ def check_keywords_generation(
         out.stats["formed_at"] = out.formed_at
         out.stats["after_transition"] = out.after_transition
 
-    if out.tail == FOREIGN_TAIL or out.tail.endswith(FOREIGN_TAIL):
-        out.mismatch = True
-        out.detail = (
-            f"/Keywords third token «{out.tail}» — чужой generation marker "
-            f"(SEQ/serializer); у нативных Jasper IB/Receipt оригинал всегда "
-            f"«{NATIVE_TAIL}», токен «{FOREIGN_TAIL}» в корпусе оригиналов "
-            f"не встречается"
+    if printed_datetime is not None:
+        out.stats["printed_at"] = printed_datetime.isoformat(sep=" ")
+        out.stats["printed_after_transition"] = (
+            printed_datetime >= TRANSITION_DATETIME
         )
-        out.stats["generation"] = "foreign_docs2035"
+
+    is_old = out.tail == OLD_TAIL or out.tail.endswith(OLD_TAIL)
+    is_new = out.tail == NEW_TAIL or out.tail.endswith(NEW_TAIL)
+    if not is_old and not is_new:
+        out.stats["generation"] = "unknown_tail"
         return out
 
-    if out.tail == NATIVE_TAIL or out.tail.endswith(NATIVE_TAIL):
+    got = NEW_TAIL if is_new else OLD_TAIL
+    mismatches: list[str] = []
+    expected_formed = ""
+    expected_printed = ""
+
+    if formed is not None:
+        expected_formed = _expected_tail(formed)
+        if got != expected_formed:
+            mismatches.append(
+                f"даты /Keywords|/CreationDate {formed.strftime('%d.%m.%Y')}"
+            )
+
+    if printed_datetime is not None:
+        expected_printed = _expected_tail(printed_datetime)
+        if got != expected_printed:
+            mismatches.append(
+                f"напечатанной даты операции "
+                f"{printed_datetime.strftime('%d.%m.%Y')}"
+            )
+
+    if not mismatches:
         out.stats["generation"] = "native_ok"
         return out
 
-    out.stats["generation"] = "unknown_tail"
+    out.mismatch = True
+    out.stats["generation"] = "date_token_mismatch"
+    if expected_formed:
+        out.stats["expected_tail"] = expected_formed
+    if expected_printed:
+        out.stats["expected_printed_tail"] = expected_printed
+    out.detail = (
+        f"/Keywords third token «{out.tail}» не совпадает с поколением "
+        f"{' и '.join(mismatches)}: до 10.07.2026 ожидается "
+        f"«{OLD_TAIL}», с 10.07.2026 — «{NEW_TAIL}»"
+    )
     return out

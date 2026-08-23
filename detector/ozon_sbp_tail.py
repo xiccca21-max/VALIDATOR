@@ -1,8 +1,8 @@
 """Ozon SBP tail structure, clock collapse, provenance.
 
-Unknown tail combos are DIAGNOSTIC; decisive only with clock collapse.
-A previous full-tail ban on 0B10180011810101 was retired: live bank
-originals (e.g. ozonbank_document_20260721190357) use the same family.
+Unknown tail combos are DIAGNOSTIC. KNOWN only for the confirmed 830901
+generator family (B1 + 0011 + 830901). The previous full-tail ban on
+0B10180011810101 was retired: live bank originals use that family.
 """
 
 from __future__ import annotations
@@ -14,6 +14,13 @@ from datetime import datetime, timedelta
 from .ozon_profiles import FAMILY_SBP_IN, FAMILY_SBP_OUT
 
 _SBP_FULL_RE = re.compile(r"^[AB][0-9A-Z]{31}$")
+
+# Confirmed Aug 2026 generator family (Telegram attachment_e7cb… / da16690a…).
+# Grammar: 0 + B1 + slot(3) + 0011 + 830901. Slot varies (010, 012, …).
+# 0/34 on чеки/озон чекии. Must not match live 810101 (B1/018).
+KNOWN_FAKE_SBP_830901_RE = re.compile(
+    r"^[AB][0-9]{10}[0-9A-Z]{5}0B1[0-9]{3}0011830901$"
+)
 
 _PDF_DATE_RE = re.compile(
     r"^D:(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})"
@@ -147,13 +154,16 @@ def is_known_fake_sbp_family(
     producer: str,
     pdf_bytes: bytes,
 ) -> bool:
-    """Retired: full-tail 0B10180011810101 appears on live bank originals.
+    """KNOWN only for the 830901 generator family, not unknown tails in general.
 
-    Kept as a no-op so call sites stay stable; do not reintroduce a tail-only
-    KNOWN ban without a stronger generator-specific signal.
+    The previous 810101 full-tail ban FPed a live original. 830901 is absent
+    from the genuine Skia corpus and shared by confirmed fakes.
     """
-    _ = (operation_id, family, producer, pdf_bytes)
-    return False
+    if family not in (FAMILY_SBP_OUT, FAMILY_SBP_IN):
+        return False
+    if not is_exact_m105_pdf14(producer, pdf_bytes):
+        return False
+    return bool(KNOWN_FAKE_SBP_830901_RE.fullmatch(operation_id or ""))
 
 
 def generator_epoch(producer: str) -> str:
@@ -316,8 +326,30 @@ def validate_ozon_sbp_tail_provenance(
     if not operation_id or family not in (FAMILY_SBP_OUT, FAMILY_SBP_IN):
         return out
 
-    # Unknown tail (DIAG) + clock collapse (DIAG) → composite HARD if both
-    # (retired: OZON_KNOWN_FAKE_SBP_TAIL_FAMILY / K-OZON-SBP-GEN-20260719-001)
+    if is_known_fake_sbp_family(
+        operation_id, family=family, producer=producer, pdf_bytes=pdf_bytes,
+    ):
+        slot = parts.slot if parts else "?"
+        tail = parts.full_tail if parts else operation_id[11:]
+        out.flags.append(TailFlag(
+            code="OZON_KNOWN_FAKE_SBP_TAIL_FAMILY",
+            detail=(
+                f"подтверждённое generator-семейство Ozon SBP: "
+                f"route=B1 slot={slot} block=0011 suffix=830901 "
+                f"(хвост {tail})"
+            ),
+            tier="KNOWN",
+            rule_id="K-OZON-SBP-GEN-830901-001",
+            group="sbp_tail_provenance",
+            expected="Ozon native suffix ≠ 830901 on B1/0011",
+            actual=tail,
+            raw_evidence=operation_id,
+        ))
+        out.stats["known_fake_830901"] = True
+        out.flags.extend(validate_filename_provenance(source_filename))
+        return out
+
+    # Unknown tail stays DIAGNOSTIC (810101 live-original lesson).
     tail_flags = validate_ozon_tail(operation_id, family, producer)
     clock_flags, clock_stats = validate_sbp_pdf_clocks(
         operation_id, creation_date=creation_date, mod_date=mod_date,

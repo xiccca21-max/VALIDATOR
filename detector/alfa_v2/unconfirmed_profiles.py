@@ -1,8 +1,8 @@
-"""Observe new Alfa SBP bank5/suffix profiles without blocking CLEAN.
+"""Observe new Alfa SBP core/tail profiles without blocking CLEAN.
 
-Unknown bank5/suffix pairs absent from the corpus are NOT decisive.
-Pipeline HARD checks still enforce timestamp, class, arithmetic, Quartz
-structure, fonts/glyphs, metadata linkage and edit absence. When those
+Unknown core/tail pairs absent from the corpus are NOT decisive.
+Pipeline HARD checks still enforce timestamp, structure, Quartz
+fonts/glyphs, metadata linkage and edit absence. When those
 pass, the document stays CLEAN and the new pair is recorded as
 ALFA_NEW_SBP_PROFILE_OBSERVED.
 """
@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from .sbp import extract_sbp_id, load_generated_atlas, _route_segments
+from .sbp import canonical_segments, extract_sbp_id, load_generated_atlas
 from .types import AlfaFlag
 
 RULE_ID = "K-ALFA-NEW-SBP-PROFILE-001"
@@ -34,30 +34,37 @@ class CheckResult:
     manual_review: bool = False  # never True — new profiles are observational
 
 
-def _flag(bank5: str, suffix: str) -> AlfaFlag:
+def _flag(core: str, tail: str) -> AlfaFlag:
     return AlfaFlag(
         code=CODE,
-        detail=f"bank5={bank5} suffix={suffix}",
+        detail=f"core={core} tail={tail}",
         tier="DIAGNOSTIC",
         group="new_sbp_profile",
         rule_id=RULE_ID,
     )
 
 
-def _known_bank5_suffix() -> set[tuple[str, str]]:
+def _pair_from_item(item: dict[str, Any]) -> tuple[str, str] | None:
+    core = str(item.get("core") or item.get("bank5") or "")
+    tail = str(item.get("tail") or "")
+    suffix = str(item.get("suffix") or "")
+    if not tail and len(suffix) == 5:
+        tail = suffix
+    elif not tail and len(suffix) == 6 and core and suffix.startswith(core[-1:]):
+        # Legacy overlapping suffix [26:32] = core[-1] + tail.
+        tail = suffix[1:]
+    if len(core) == 5 and len(tail) == 5:
+        return core, tail
+    return None
+
+
+def _known_core_tail() -> set[tuple[str, str]]:
     atlas = load_generated_atlas()
-    known: set[tuple[str, str]] = set()
-    for key in atlas.linked_route_markers:
-        # linked key: (control, class, slot, bank5, suffix)
-        if len(key) == 5:
-            known.add((key[3], key[4]))
-    # Also derive from cores×tails when suffix layout overlaps bank5 tail digit.
+    known: set[tuple[str, str]] = set(atlas.core_tails)
     for core in atlas.cores:
         for tail in atlas.tails:
-            # Historical corpus used core[22:27] + tail[27:32]; reconstructed
-            # suffix is core[-1] + tail when lengths match the live layout.
             if len(core) == 5 and len(tail) == 5:
-                known.add((core, core[-1] + tail))
+                known.add((core, tail))
     return known
 
 
@@ -72,8 +79,8 @@ def _load_observations() -> dict[str, Any]:
     return {"schema": "alfa-new-sbp-profile-observations", "version": "1", "profiles": []}
 
 
-def _persist_observation(bank5: str, suffix: str, *, file_hash: str = "") -> bool:
-    """Append bank5/suffix if not yet stored. Returns True when newly saved."""
+def _persist_observation(core: str, tail: str, *, file_hash: str = "") -> bool:
+    """Append core/tail if not yet stored. Returns True when newly saved."""
     with _LOCK:
         data = _load_observations()
         profiles = data.setdefault("profiles", [])
@@ -81,11 +88,12 @@ def _persist_observation(bank5: str, suffix: str, *, file_hash: str = "") -> boo
             profiles = []
             data["profiles"] = profiles
         for item in profiles:
-            if (
-                isinstance(item, dict)
-                and item.get("bank5") == bank5
-                and item.get("suffix") == suffix
-            ):
+            if not isinstance(item, dict):
+                continue
+            pair = _pair_from_item(item)
+            if pair == (core, tail):
+                item["core"] = core
+                item["tail"] = tail
                 item["last_seen_utc"] = datetime.now(timezone.utc).strftime(
                     "%Y-%m-%dT%H:%M:%SZ"
                 )
@@ -103,8 +111,8 @@ def _persist_observation(bank5: str, suffix: str, *, file_hash: str = "") -> boo
                 return False
 
         profiles.append({
-            "bank5": bank5,
-            "suffix": suffix,
+            "core": core,
+            "tail": tail,
             "first_seen_utc": datetime.now(timezone.utc).strftime(
                 "%Y-%m-%dT%H:%M:%SZ"
             ),
@@ -113,7 +121,7 @@ def _persist_observation(bank5: str, suffix: str, *, file_hash: str = "") -> boo
             ),
             "sightings": 1,
             "example_file_hash": file_hash or "",
-            "note": "corpus through 2026-06-29 had bank5∈{00116,00117} only",
+            "note": "corpus through 2026-06-29 had core∈{00116,00117} only",
         })
         try:
             _OBS_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -134,7 +142,7 @@ def check_new_sbp_profile(
     creation_date: str = "",
     file_hash: str = "",
 ) -> CheckResult:
-    """Record unknown bank5/suffix; never escalate to MANUAL/HARD alone."""
+    """Record unknown core/tail; never escalate to MANUAL/HARD alone."""
     del pdf_bytes, producer, creation_date  # kept for stages call-site compat
     out = CheckResult()
     opid = extract_sbp_id(text) or ""
@@ -142,29 +150,30 @@ def check_new_sbp_profile(
         out.stats["new_sbp_profile"] = False
         return out
 
-    segs = _route_segments(opid)
-    bank5 = segs.get("bank5", "")
-    suffix = segs.get("suffix", "")
+    segs = canonical_segments(opid)
+    core = segs.get("core", "")
+    tail = segs.get("tail", "")
     out.stats.update({
-        "sbp_bank5": bank5,
-        "sbp_suffix": suffix,
+        "sbp_core": core,
+        "sbp_tail": tail,
+        "sbp_channel": segs.get("channel", ""),
         "sbp_id": opid,
     })
 
-    if not bank5 or not suffix:
+    if not core or not tail:
         out.stats["new_sbp_profile"] = False
         return out
 
-    known = _known_bank5_suffix()
-    is_new = (bank5, suffix) not in known
-    out.stats["known_bank5_suffix"] = not is_new
+    known = _known_core_tail()
+    is_new = (core, tail) not in known
+    out.stats["known_core_tail"] = not is_new
     out.stats["new_sbp_profile"] = is_new
     if not is_new:
         return out
 
-    saved = _persist_observation(bank5, suffix, file_hash=file_hash)
+    saved = _persist_observation(core, tail, file_hash=file_hash)
     out.stats["observation_persisted"] = saved
-    out.flags.append(_flag(bank5, suffix))
+    out.flags.append(_flag(core, tail))
     return out
 
 

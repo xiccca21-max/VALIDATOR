@@ -15,28 +15,63 @@
       "bank5": "00118",
       "suffix": "810901",
       "first_seen_utc": "2026-07-30T10:47:29Z",
-      "last_seen_utc": "2026-08-13T00:50:22Z",
-      "sightings": 71,
+      "last_seen_utc": "2026-08-15T01:01:14Z",
+      "sightings": 308,
       "example_file_hash": "d36a413251734e8f17913e4af2772f358e3614f06ac2802ec9219faf86bce2d7",
-      "note": "corpus through 2026-06-29 had bank5∈{00116,00117} only"
+      "note": "corpus through 2026-06-29 had bank5∈{00116,00117} only",
+      "core": "00118",
+      "tail": "10901"
     },
     {
       "bank5": "00118",
       "suffix": "820705",
       "first_seen_utc": "2026-07-31T21:23:46Z",
-      "last_seen_utc": "2026-08-13T00:50:23Z",
-      "sightings": 69,
+      "last_seen_utc": "2026-08-15T00:59:40Z",
+      "sightings": 74,
       "example_file_hash": "df7f8fbadbf9a7663aa52b9ee3ad37aadf878db861741b717150afe1d17f279a",
-      "note": "corpus through 2026-06-29 had bank5∈{00116,00117} only"
+      "note": "corpus through 2026-06-29 had bank5∈{00116,00117} only",
+      "core": "00118",
+      "tail": "20705"
     },
     {
       "bank5": "00118",
       "suffix": "821301",
       "first_seen_utc": "2026-08-13T10:00:29Z",
-      "last_seen_utc": "2026-08-13T10:00:29Z",
-      "sightings": 1,
+      "last_seen_utc": "2026-08-21T01:54:24Z",
+      "sightings": 120,
       "example_file_hash": "307547f1a503240d7ca3d3fd3b119a7431dc0e484965b8e69e671deaee513839",
-      "note": "corpus through 2026-06-29 had bank5∈{00116,00117} only"
+      "note": "corpus through 2026-06-29 had bank5∈{00116,00117} only",
+      "core": "00118",
+      "tail": "21301"
+    },
+    {
+      "bank5": "11790",
+      "suffix": "050201",
+      "first_seen_utc": "2026-08-13T16:42:17Z",
+      "last_seen_utc": "2026-08-15T00:59:44Z",
+      "sightings": 5,
+      "example_file_hash": "4c09a457963211ca77afc923d549bf07ce1416209c270c3c7a933b45d4054eed",
+      "note": "corpus through 2026-06-29 had bank5∈{00116,00117} only",
+      "core": "11790",
+      "tail": "50201"
+    },
+    {
+      "core": "00118",
+      "tail": "30701",
+      "first_seen_utc": "2026-08-15T19:15:48Z",
+      "last_seen_utc": "2026-08-21T01:54:04Z",
+      "sightings": 41,
+      "example_file_hash": "8e363797baac90e7b40ec66eeab0b6c30db9c7402638c6da595174fbd9fadc86",
+      "note": "corpus through 2026-06-29 had core∈{00116,00117} only"
+    },
+    {
+      "core": "00118",
+      "tail": "30901",
+      "first_seen_utc": "2026-08-19T15:51:04Z",
+      "last_seen_utc": "2026-08-19T16:01:25Z",
+      "sightings": 11,
+      "example_file_hash": "9b614fe525d1940859bcca746fa92c712dad30dd178c3eb553f8d9c7ada2c9d2",
+      "note": "corpus through 2026-06-29 had core∈{00116,00117} only"
     }
   ]
 }

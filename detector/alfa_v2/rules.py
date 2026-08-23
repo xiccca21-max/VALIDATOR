@@ -62,7 +62,9 @@ HARD_CODES: frozenset[str] = frozenset({
     "ALFA_SBP_ID_STRUCTURE_INVALID",
     "ALFA_SBP_ID_CALENDAR_CONFLICT",
     "ALFA_SBP_ID_TIME_ORDER_CONFLICT",
-    "ALFA_SBP_LINKED_TUPLE_CONFLICT",
+    "ALFA_FIELD_VALUE_BINDING_CONFLICT",
+    # ALFA_SBP_LINKED_TUPLE_CONFLICT removed — overlapping T-Bank-style
+    # route_marker[14]/suffix[26:32] is a false parse of Alfa SBP.
     # ALFA_SBP_ATLAS_LINK_MISMATCH demoted — incomplete link atlas / novelty
     "ALFA_FIELD_SET_METHOD_CONFLICT",
     "ALFA_AMOUNT_ARITHMETIC_MISMATCH",
@@ -123,6 +125,8 @@ SUPPORTING_GROUPS: dict[str, str] = {
     "STREAM_FILTER_ANOMALY": "B1_serializer_container",
     "ALFA_SERIALIZER_PROFILE_SHIFT": "B1_serializer_container",
     "ALFA_CONTAINER_PROFILE_SHIFT": "B1_serializer_container",
+    # Emitted explicitly as MANUAL for a four-layer unconfirmed Quartz profile.
+    "ALFA_QUARTZ_UNCONFIRMED_COMPOSITE_PROFILE": "B1_serializer_container",
     # B2 — metadata profile.
     "FOREIGN_PRODUCER": "B2_metadata_profile",
     "PDF_MODDATE_EDITED": "B2_metadata_profile",
@@ -162,6 +166,7 @@ IGNORED_CODES: frozenset[str] = frozenset({
     "ALFA_NEW_SBP_PROFILE_OBSERVED",
     "ALFA_OPERATION_ID_UNKNOWN",
     "ALFA_SBP_ATLAS_LINK_MISMATCH",
+    "ALFA_SBP_LINKED_TUPLE_CONFLICT",
     "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT",
     "ALFA_USED_GLYPH_METRIC_CONFLICT",
     "ALFA_PARTY_CONSONANT_RUN",

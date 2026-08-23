@@ -73,4 +73,37 @@ def test_external_ingest_scores_existing_files_only(tmp_path):
     report = ingest_folder(tmp_path, limit=5)
     assert report["scanned"] == 1
     assert report["evaluations"][0]["file"] == str(pdf_path)
+    assert "check_ms" in report["evaluations"][0]
+    assert report["evaluations"][0]["unique"] is True
     assert report["caught"] + report["missed"] + report["errors"] + report["unknown"] == 1
+
+
+def test_dashboard_trend_says_who_got_better():
+    from arena.dashboard_server import _trend
+
+    trend = _trend(
+        [
+            {"round": 1, "caught": 8, "missed": 0},
+            {"round": 2, "caught": 7, "missed": 1},
+        ]
+    )
+    assert trend["generator"] == "up"
+    assert trend["validator"] == "down"
+
+
+def test_russian_receipt_reason_uses_flag_text():
+    from arena.explain_ru import describe_receipt
+
+    row = describe_receipt(
+        path=r"C:\tmp\output\alfa_sbp\check.pdf",
+        bank="Альфа-Банк",
+        verdict="FAKE",
+        flags=[
+            "[ALFA_OPERATION_IDENTITY_CONFLICT] номер операции уже встречался в другом файле"
+        ],
+        caught=True,
+    )
+    assert row["bank"] == "Альфа-Банк"
+    assert row["submethod"] == "СБП"
+    assert row["result"] == "Пойман"
+    assert "номер операции" in row["why"]

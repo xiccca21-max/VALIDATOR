@@ -19,7 +19,7 @@ from ..corpus_profiles import (
     receipt_subtype_label,
 )
 from ..pdf_forensics import Weight, run_pdf_forensics
-from ..sbp_cipher import extract_sbp_opid
+from ..sbp_cipher import extract_receipt_datetime, extract_sbp_opid
 from ..tbank_deflate_profile import check_deflate_profile
 from ..tbank_font_cid_closure import check_font_cid_closure
 from ..tbank_glyph_atlas import check_tbank_glyph_atlas
@@ -48,6 +48,7 @@ from ..tbank_jasper_profile import claims_confirmed_tbank_profile
 from ..tbank_stream_integrity import check_stream_integrity
 from ..tbank_text_layout_fingerprint import check_tbank_layout_fingerprint
 from ..field_edge_alignment import check_tbank_value_right_edge
+from .sbp_competitor_hard import check_sbp_competitor_hard
 from ..structure import (
     content_skeleton_hash,
     content_stream_bytes,
@@ -432,6 +433,7 @@ def _stage_metadata(
     creation_date: str,
     producer: str = "",
     creator: str = "",
+    text: str = "",
 ) -> None:
     result.completed_checks.append("metadata_generation")
     lex = check_info_keywords_lex(pdf_bytes, producer=producer, creator=creator)
@@ -443,7 +445,14 @@ def _stage_metadata(
             tier="A",
             rule_id="K-TBANK-INFO-KEYWORDS-LEX-001",
         ))
-    kg = check_keywords_generation(pdf_bytes, creation_date=creation_date)
+    printed = (
+        extract_receipt_datetime(text, prefer_first_line=True) if text else None
+    )
+    kg = check_keywords_generation(
+        pdf_bytes,
+        creation_date=creation_date,
+        printed_datetime=printed,
+    )
     result.stats["keywords_generation"] = kg.stats
     if not kg.applies:
         return
@@ -863,6 +872,16 @@ def _stage_semantics(
     if pf:
         ingest_flag(result, pf)
 
+    competitor_hard = check_sbp_competitor_hard(pdf_bytes, text=text)
+    result.stats["sbp_competitor_hard"] = competitor_hard.stats
+    for code, detail in competitor_hard.flags:
+        ingest_flag(result, _v6_flag(
+            code,
+            detail,
+            tier="A",
+            rule_id="K-TBANK-SBP-COMPETITOR-HARD-001",
+        ))
+
     if channel == CHANNEL_SBP:
         from ..tbank_sbp_content import extract_sbp_opid_geometric
 
@@ -885,7 +904,6 @@ def _stage_semantics(
                 ),
                 rule_id=sf.rule_id,
             ))
-
         epoch_reuse = check_sbp_epoch_and_receipt_stem(opid or "", text)
         result.stats["sbp_epoch_reuse"] = epoch_reuse.stats
         for ef in epoch_reuse.flags:
@@ -1059,6 +1077,7 @@ def run_pipeline(pdf_bytes: bytes, file_hash: str) -> PipelineResult:
         creation_date=creation_date,
         producer=producer,
         creator=creator,
+        text=text,
     )
     _stage_semantics(
         pdf_bytes, text, result,

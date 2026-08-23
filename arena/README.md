@@ -57,5 +57,12 @@ To score files that already exist in its `output` folder:
 py -3.13 -m arena.ingest_external --limit 40
 ```
 
-A CLEAN result on those files is a validator miss. The defender may then patch
-the validator. The generator itself is left unchanged.
+## Cartoon dashboard
+
+Open the fight screen:
+
+```powershell
+py -3.13 -m arena.dashboard_server
+```
+
+It opens `http://127.0.0.1:8766/`. Use **Старт** / **Пауза**. The generator is not made stealthier; the screen shows who is catching more and who is slipping through.

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Битва валидатора и генератора</title>
+  <style>
+    :root {
+      --ink: #1b1633;
+      --paper: #fff7e6;
+      --ring: #3b2f73;
+      --val: #2f6bff;
+      --gen: #ff5a2f;
+      --good: #1f9d55;
+      --bad: #d7263d;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 20% 10%, #ffe38a 0 18%, transparent 19%),
+        radial-gradient(circle at 80% 8%, #ffb3a0 0 14%, transparent 15%),
+        linear-gradient(#7ec8ff, #b8f1c8 55%, #ffe7a3);
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 18px 16px 28px; }
+    h1 { margin: 0 0 6px; font-size: 34px; letter-spacing: 0.5px; }
+    .sub { margin: 0 0 16px; font-size: 16px; }
+    .panel {
+      background: var(--paper);
+      border: 4px solid var(--ink);
+      border-radius: 22px;
+      padding: 14px;
+    }
+    .controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    button {
+      border: 4px solid var(--ink);
+      border-radius: 999px;
+      padding: 10px 22px;
+      font: 700 18px/1 "Trebuchet MS", sans-serif;
+      cursor: pointer;
+    }
+    .start { background: #7dff8a; }
+    .pause { background: #ffd166; }
+    .ingest { background: #9fd3ff; }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
+    .status {
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 3px solid var(--ink);
+      background: #fff;
+    }
+    .status.on { background: #7dff8a; }
+    .arena {
+      margin-top: 16px;
+      background: #2b2158;
+      color: #fff;
+      border: 4px solid var(--ink);
+      border-radius: 28px;
+      padding: 18px 12px 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .round-badge {
+      position: absolute;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      background: #ffef5a;
+      color: var(--ink);
+      border: 4px solid var(--ink);
+      border-radius: 16px;
+      padding: 4px 14px;
+      font-weight: 800;
+      z-index: 2;
+    }
+    .fighters {
+      display: grid;
+      grid-template-columns: 1fr 120px 1fr;
+      align-items: end;
+      min-height: 280px;
+    }
+    .fighter { text-align: center; }
+    .name { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+    .bar {
+      height: 18px;
+      background: #1a1438;
+      border: 3px solid #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 0 24px 10px;
+    }
+    .bar > i { display: block; height: 100%; width: 0; transition: width 0.4s; }
+    .val .bar > i { background: #7dff8a; }
+    .gen .bar > i { background: #ff8a5a; }
+    .score { font-size: 28px; font-weight: 800; }
+    .char { width: 170px; height: 180px; margin: 0 auto; transition: transform 0.2s; }
+    .char.hit { transform: translateX(18px) rotate(8deg); }
+    .char.win { transform: translateX(-18px) scale(1.08); }
+    .gen .char.hit { transform: translateX(-18px) rotate(-8deg); }
+    .vs {
+      text-align: center;
+      font-size: 42px;
+      font-weight: 900;
+      color: #ffef5a;
+      text-shadow: 3px 3px 0 #000;
+    }
+    .flash {
+      position: absolute;
+      left: 50%;
+      top: 48%;
+      transform: translate(-50%, -50%) scale(0.2);
+      opacity: 0;
+      font-size: 38px;
+      font-weight: 900;
+      pointer-events: none;
+    }
+    .flash.show { animation: pop 0.7s ease-out; }
+    @keyframes pop {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+      30% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+      100% { opacity: 0; transform: translate(-50%, -80%) scale(1); }
+    }
+    .caption {
+      margin: 8px 16px 12px;
+      background: #fff;
+      color: var(--ink);
+      border: 4px solid var(--ink);
+      border-radius: 18px;
+      padding: 10px 14px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .receipts { margin-top: 14px; }
+    .receipts table { font-size: 13px; }
+    .receipts td { vertical-align: top; }
+    .receipts a { color: #1636c7; font-weight: 800; }
+    h2 { margin: 0 0 8px; font-size: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 6px 4px; border-bottom: 2px solid #ead9b2; font-size: 14px; }
+    .up { color: var(--good); font-weight: 800; }
+    .down { color: var(--bad); font-weight: 800; }
+    .same { color: #666; }
+    .log {
+      max-height: 220px;
+      overflow: auto;
+      background: #fffdf6;
+      border: 3px dashed var(--ink);
+      border-radius: 14px;
+      padding: 8px 10px;
+      font-size: 13px;
+    }
+    .miss { color: var(--bad); font-weight: 700; }
+    .ok { color: var(--good); font-weight: 700; }
+    .preview-wrap { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 14px; margin-top: 14px; }
+    .preview iframe { width: 100%; height: 520px; border: 4px solid var(--ink); border-radius: 16px; background: #fff; }
+    .receipts tr { cursor: pointer; }
+    .receipts tr.active { background: #ffe38a; }
+    @media (max-width: 800px) {
+      .fighters, .grid, .preview-wrap { grid-template-columns: 1fr; }
+      .vs { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Битва валидатора и генератора</h1>
+    <p class="sub">«Старт» создаёт новые маленькие тестовые PDF. «Проверить чеки» не рисует новые банковские чеки — берёт уже готовые файлы из папки генератора.</p>
+    <div class="panel">
+      <div class="controls">
+        <button class="start" id="start">Старт без конца</button>
+        <button class="pause" id="pause">Пауза</button>
+        <button class="ingest" id="ingest">Проверить чеки генератора</button>
+        <span class="status" id="status">Пауза</span>
+        <span id="progress"></span>
+      </div>
+    </div>
+
+    <div class="arena">
+      <div class="round-badge" id="round">Раунд 0</div>
+      <div class="flash" id="flash"></div>
+      <div class="fighters">
+        <div class="fighter val">
+          <div class="name">Валидатор</div>
+          <div class="bar"><i id="valBar"></i></div>
+          <div class="score" id="valScore">0</div>
+          <svg class="char" id="valChar" viewBox="0 0 170 180">
+            <circle cx="85" cy="70" r="42" fill="#7dff8a" stroke="#111" stroke-width="4"/>
+            <rect x="48" y="108" width="74" height="52" rx="18" fill="#2f6bff" stroke="#111" stroke-width="4"/>
+            <circle cx="70" cy="64" r="6" fill="#111"/>
+            <circle cx="100" cy="64" r="6" fill="#111"/>
+            <path d="M68 86 Q85 98 102 86" fill="none" stroke="#111" stroke-width="4"/>
+            <path d="M40 78 L18 58 L38 62" fill="none" stroke="#111" stroke-width="6"/>
+          </svg>
+        </div>
+        <div class="vs">VS</div>
+        <div class="fighter gen">
+          <div class="name">Генератор</div>
+          <div class="bar"><i id="genBar"></i></div>
+          <div class="score" id="genScore">0</div>
+          <svg class="char" id="genChar" viewBox="0 0 170 180">
+            <circle cx="85" cy="70" r="42" fill="#ffb347" stroke="#111" stroke-width="4"/>
+            <rect x="48" y="108" width="74" height="52" rx="18" fill="#ff5a2f" stroke="#111" stroke-width="4"/>
+            <circle cx="70" cy="64" r="6" fill="#111"/>
+            <circle cx="100" cy="64" r="6" fill="#111"/>
+            <path d="M70 90 Q85 80 100 90" fill="none" stroke="#111" stroke-width="4"/>
+            <path d="M130 78 L152 52 L132 64" fill="none" stroke="#111" stroke-width="6"/>
+          </svg>
+        </div>
+      </div>
+      <div class="caption" id="caption">Нажми Старт — начнётся новый раунд.</div>
+    </div>
+
+    <div class="grid">
+      <div class="panel">
+        <h2>Кто стал лучше</h2>
+        <p id="trend">Пока нет сравнения.</p>
+        <table>
+          <thead><tr><th>Раунд</th><th>Поймал валидатор</th><th>Пробил генератор</th></tr></thead>
+          <tbody id="history"></tbody>
+        </table>
+      </div>
+      <div class="panel">
+        <h2>Как проходит сейчас</h2>
+        <div class="log" id="hits"></div>
+        <h2 style="margin-top:12px">Журнал запуска</h2>
+        <div class="log" id="log"></div>
+      </div>
+    </div>
+
+    <div class="preview-wrap">
+      <div class="panel receipts">
+      <h2>Какие PDF сейчас в бою</h2>
+      <p id="receiptHint"></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Файл</th>
+            <th>Создан</th>
+            <th>Проверка</th>
+            <th>Новый?</th>
+            <th>Банк</th>
+            <th>Способ</th>
+            <th>Итог</th>
+            <th>Почему паль / почему прошёл</th>
+          </tr>
+        </thead>
+        <tbody id="receipts"></tbody>
+      </table>
+      </div>
+      <div class="panel">
+        <h2>Просмотр PDF</h2>
+        <p id="previewName">Кликни строку слева или кнопку «Открыть».</p>
+        <button type="button" id="openPdf">Открыть в программе</button>
+        <iframe id="preview" title="Просмотр PDF"></iframe>
+      </div>
+    </div>
+  </div>
+  <script>
+    const valChar = document.getElementById("valChar");
+    const genChar = document.getElementById("genChar");
+    const flash = document.getElementById("flash");
+    let lastKey = "";
+    let selectedId = "";
+    let lastReceipts = [];
+
+    function setBar(el, n, d) {
+      el.style.width = (d ? Math.round(100 * n / d) : 0) + "%";
+    }
+    function bounce(who, cls) {
+      who.classList.remove("hit", "win");
+      void who.offsetWidth;
+      who.classList.add(cls);
+      setTimeout(() => who.classList.remove(cls), 450);
+    }
+    function showFlash(text, color) {
+      flash.textContent = text;
+      flash.style.color = color;
+      flash.classList.remove("show");
+      void flash.offsetWidth;
+      flash.classList.add("show");
+    }
+    function render(data) {
+      const history = data.history || [];
+      const last = history[history.length - 1] || { caught: 0, missed: 0, round: 0 };
+      const total = (last.caught || 0) + (last.missed || 0);
+      document.getElementById("round").textContent = "Раунд " + (data.round || 0);
+      document.getElementById("valScore").textContent = last.caught || 0;
+      document.getElementById("genScore").textContent = last.missed || 0;
+      setBar(document.getElementById("valBar"), last.caught || 0, total);
+      setBar(document.getElementById("genBar"), last.missed || 0, total);
+      document.getElementById("caption").textContent = (data.trend && data.trend.caption) || "";
+      const status = document.getElementById("status");
+      const job = data.job || {};
+      status.textContent = data.running
+        ? (job.mode === "ingest" ? "Проверяются чеки" : "Идёт бой")
+        : "Пауза";
+      status.className = "status" + (data.running ? " on" : "");
+      const progress = document.getElementById("progress");
+      progress.textContent = data.running
+        ? (job.mode === "ingest"
+          ? ((job.progress_done || 0) + " из " + (job.progress_total || 20)
+            + (job.current_receipt ? " · " + job.current_receipt.name : ""))
+          : ("бесконечный бой · раунд " + (data.round || 0)))
+        : "";
+      document.getElementById("start").disabled = !!data.running;
+      document.getElementById("pause").disabled = !data.running;
+      document.getElementById("ingest").disabled = !!data.running;
+      document.getElementById("trend").innerHTML =
+        "Валидатор: <span class='" + data.trend.validator + "'>" + label(data.trend.validator) + "</span> · " +
+        "Генератор: <span class='" + data.trend.generator + "'>" + label(data.trend.generator) + "</span>";
+      document.getElementById("history").innerHTML = history.slice().reverse().map(r =>
+        "<tr><td>" + r.round + "</td><td class='ok'>" + r.caught + "</td><td class='miss'>" + r.missed + "</td></tr>"
+      ).join("");
+      const evals = ((data.latest && data.latest.evaluations) || []).slice(-8).reverse();
+      document.getElementById("hits").innerHTML = evals.map(e =>
+        "<div class='" + (e.caught ? "ok" : "miss") + "'>" +
+        (e.caught ? "Поймал: " : "Пропуск: ") + (e.signature || String(e.file || "").split(/[\\/]/).pop()) +
+        "</div>"
+      ).join("") || "Пока нет ударов.";
+      document.getElementById("log").innerHTML = ((data.job && data.job.log) || []).slice().reverse()
+        .map(x => "<div>" + x + "</div>").join("");
+      const receipts = data.receipts || [];
+      lastReceipts = receipts;
+      document.getElementById("receiptHint").textContent = (job.mode === "ingest")
+        ? "Это уже готовые PDF из папки генератора. Новые банковские чеки не рисуются."
+        : "Старт без конца создаёт новые тестовые PDF каждый раунд, пока не нажмёшь Паузу. Это не чеки банков.";
+      document.getElementById("receipts").innerHTML = receipts.map(r => {
+        const href = r.id ? ("/pdf/" + r.id) : (r.file ? ("/file?p=" + encodeURIComponent(r.file)) : "");
+        const name = href
+          ? ("<a href='" + href + "' target='_blank' rel='noreferrer'>" + esc(r.name) + "</a>")
+          : esc(r.name);
+        const when = r.check_ms ? (esc(r.checked_at || "") + " · " + r.check_ms + " мс") : esc(r.checked_at || "—");
+        return "<tr data-id='" + esc(r.id || "") + "' class='" + (r.caught ? "ok" : "miss") + (r.id && r.id === selectedId ? " active" : "") + "'>" +
+          "<td>" + name + "</td>" +
+          "<td>" + esc(r.file_mtime || "—") + "</td>" +
+          "<td>" + when + "</td>" +
+          "<td>" + esc(r.unique_label || r.origin_label || "—") + "</td>" +
+          "<td>" + esc(r.bank) + "</td>" +
+          "<td>" + esc(r.submethod) + "</td>" +
+          "<td>" + esc(r.result) + "</td>" +
+          "<td class='why'>" + esc(r.why) + "</td>" +
+          "</tr>";
+      }).join("") || "<tr><td colspan='8'>Нажми «Старт без конца».</td></tr>";
+      document.querySelectorAll("#receipts tr[data-id]").forEach(row => {
+        row.onclick = () => showPdf(row.getAttribute("data-id"));
+      });
+      if (!selectedId && receipts[0] && receipts[0].id) showPdf(receipts[0].id);
+      const key = (data.round || 0) + ":" + (last.caught || 0) + ":" + (last.missed || 0);
+      if (key !== lastKey && data.round) {
+        if ((last.missed || 0) > 0) {
+          bounce(valChar, "hit");
+          bounce(genChar, "win");
+          showFlash("ПРОБИЛ!", "#ffd166");
+        } else {
+          bounce(valChar, "win");
+          bounce(genChar, "hit");
+          showFlash("ПОЙМАЛ!", "#7dff8a");
+        }
+        lastKey = key;
+      }
+    }
+    function label(v) {
+      return v === "up" ? "лучше" : v === "down" ? "хуже" : "так же";
+    }
+    function esc(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+    function showPdf(id) {
+      if (!id) return;
+      selectedId = id;
+      const row = lastReceipts.find(item => item.id === id) || {};
+      document.getElementById("previewName").textContent = row.name || id;
+      document.getElementById("preview").src = "/pdf/" + id;
+      document.querySelectorAll("#receipts tr[data-id]").forEach(el => {
+        el.classList.toggle("active", el.getAttribute("data-id") === id);
+      });
+    }
+    document.getElementById("openPdf").onclick = () => {
+      if (!selectedId) return;
+      post("/api/open", { id: selectedId });
+    };
+    async function post(url, body) {
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body || {}),
+        });
+        const data = await res.json();
+        if (!res.ok || data.ok === false) {
+          document.getElementById("status").textContent = data.error || "ошибка запуска";
+        }
+      } catch (err) {
+        document.getElementById("status").textContent = "нет связи с экраном";
+      }
+      tick();
+    }
+    async function tick() {
+      const res = await fetch("/api/snapshot");
+      render(await res.json());
+    }
+    document.getElementById("start").onclick = () => {
+      document.getElementById("status").textContent = "Запускаю...";
+      document.getElementById("start").disabled = true;
+      post("/api/start", { mode: "arena", rounds: 1 });
+    };
+    document.getElementById("pause").onclick = () => post("/api/pause", {});
+    document.getElementById("ingest").onclick = () => {
+      document.getElementById("status").textContent = "Запускаю проверку...";
+      document.getElementById("ingest").disabled = true;
+      post("/api/start", { mode: "ingest" });
+    };
+    tick();
+    setInterval(tick, 1200);
+  </script>
+</body>
+</html>

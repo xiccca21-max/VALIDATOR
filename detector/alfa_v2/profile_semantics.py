@@ -443,6 +443,84 @@ def _next_value(lines: Sequence[str], index: int) -> str:
     return ""
 
 
+def validate_field_value_binding(
+    text: str,
+    method: str | None = None,
+) -> SemanticResult:
+    """Ensure SBP labels are followed by values of the expected type.
+
+    Oracle BI extracts each left-column label immediately before its value.
+    Checking global field presence alone misses clone/template shifts where a
+    date is painted under the debit label and every following value moves down
+    one semantic row.  Require two contradictions so a single extraction quirk
+    cannot decide the verdict.
+    """
+    method = method or classify_submethod(text)
+    result = SemanticResult()
+    if method != METHOD_SBP:
+        return result
+
+    lines = [
+        line.strip()
+        for line in (text or "").replace("\u202f", " ").replace("\xa0", " ").splitlines()
+        if line.strip()
+    ]
+    checks = (
+        (
+            ("списано с учетом комиссии", "списано с учётом комиссии"),
+            "денежная сумма",
+            lambda value: _money(value) is not None,
+        ),
+        (
+            ("дата и время перевода",),
+            "дата и время",
+            lambda value: _DATE_RE.search(value) is not None,
+        ),
+        (
+            ("номер операции",),
+            "16-символьный номер операции",
+            lambda value: _OPERATION_ID_RE.search(value.upper()) is not None,
+        ),
+    )
+    mismatches: list[dict[str, str]] = []
+    observations: list[dict[str, object]] = []
+    for index, line in enumerate(lines):
+        normalized = _norm(line)
+        for labels, expected, predicate in checks:
+            if not any(normalized.startswith(_norm(label)) for label in labels):
+                continue
+            value = _next_value(lines, index)
+            valid = bool(value and predicate(value))
+            observation = {
+                "label": line,
+                "value": value,
+                "expected": expected,
+                "valid": valid,
+            }
+            observations.append(observation)
+            if not valid:
+                mismatches.append({
+                    "label": line,
+                    "value": value,
+                    "expected": expected,
+                })
+            break
+
+    result.stats["field_value_bindings"] = observations
+    result.stats["field_value_binding_mismatch_count"] = len(mismatches)
+    if len(mismatches) >= 2:
+        detail = "; ".join(
+            f"{item['label']!r} → {item['value']!r}, ожидалось: {item['expected']}"
+            for item in mismatches
+        )
+        result.add(
+            "ALFA_FIELD_VALUE_BINDING_CONFLICT",
+            "значения сдвинуты относительно подписей полей: " + detail,
+            group="fields",
+        )
+    return result
+
+
 def _money(value: str) -> Decimal | None:
     match = _MONEY_RE.search(value or "")
     if not match:
@@ -882,6 +960,7 @@ def run_semantic_checks(
     parts: Iterable[SemanticResult] = (
         validate_field_contract(text, method),
         validate_operation_ids(text, method),
+        validate_field_value_binding(text, method),
         validate_amount_arithmetic(text),
         validate_amount_typography(text),
         validate_card_bins(text, method),

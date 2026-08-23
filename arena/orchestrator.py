@@ -203,6 +203,11 @@ def main() -> int:
         help="run bounded batches repeatedly; Ctrl+C stops the loop",
     )
     parser.add_argument("--interval-seconds", type=int, default=3600)
+    parser.add_argument(
+        "--until-pause",
+        action="store_true",
+        help="do not stop after clean rounds; keep going until killed",
+    )
     args = parser.parse_args()
 
     config = _load_config()
@@ -214,6 +219,8 @@ def main() -> int:
     try:
         while True:
             for _ in range(rounds):
+                next_round = int(state.get("round") or 0) + 1
+                print(f"round {next_round} starting...", flush=True)
                 validator_repo = Path(
                     state.get("validator_repo") or REPO_ROOT
                 )
@@ -226,15 +233,43 @@ def main() -> int:
                 print(
                     f"round={report['round']} mode={report['generator_mode']} "
                     f"caught={report['caught']} missed={report['missed']} "
-                    f"score={report['score']}"
+                    f"score={report['score']}",
+                    flush=True,
+                )
+                print(
+                    "ROUND::"
+                    + json.dumps(
+                        {
+                            "round": report["round"],
+                            "caught": report["caught"],
+                            "missed": report["missed"],
+                            "evaluations": [
+                                {
+                                    "file": item["file"],
+                                    "sha256": item.get("sha256"),
+                                    "caught": item["caught"],
+                                    "mutations": item.get("mutations") or [],
+                                    "signature": item.get("signature"),
+                                    "production_verdict": item.get("production_verdict"),
+                                    "observed_codes": item.get("observed_codes") or [],
+                                }
+                                for item in report["evaluations"]
+                            ],
+                        },
+                        ensure_ascii=True,
+                    ),
+                    flush=True,
                 )
                 clean_streak = clean_streak + 1 if report["missed"] == 0 else 0
-                if clean_streak >= int(config["stop_after_clean_rounds"]):
-                    print("stopped: no misses in consecutive rounds")
+                if (
+                    not args.until_pause
+                    and clean_streak >= int(config["stop_after_clean_rounds"])
+                ):
+                    print("stopped: no misses in consecutive rounds", flush=True)
                     return 0
             if not args.forever:
                 return 0
-            time.sleep(max(60, args.interval_seconds))
+            time.sleep(max(2, args.interval_seconds))
     except KeyboardInterrupt:
         print("stopped by user")
         return 130

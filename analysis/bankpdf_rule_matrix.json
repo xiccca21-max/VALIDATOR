@@ -1,0 +1,3992 @@
+{
+  "samples": 236,
+  "passes": 38,
+  "fails": 198,
+  "excluded_conflicting_sha": [
+    {
+      "pdf_sha": "531ee0b467ec9ab4296b38ee6b53a5bd4882e23002b5d1b31a201f032e27d9a6",
+      "events": [
+        {
+          "filename": "B1.pdf",
+          "verdict": "PASS",
+          "sent_at": "2026-08-14T19:52:23+00:00"
+        },
+        {
+          "filename": "B1_control.pdf",
+          "verdict": "FAIL",
+          "sent_at": "2026-08-14T20:08:14+00:00"
+        }
+      ]
+    }
+  ],
+  "ranking": [
+    {
+      "rule": "ALFA_REBUILD_EMITTER_FONT_LIFECYCLE_004",
+      "support": 11,
+      "pass_with": 0,
+      "fail_with": 11,
+      "fail_rate_with": 1.0,
+      "fail_rate_without": 0.8311111111111111,
+      "fail_rate_delta": 0.16888888888888887,
+      "fail_odds_ratio_smoothed": 4.722666666666667,
+      "perfect_fail_separator": true,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_REBUILD_FONT_EPOCH_PDF_TIME_CONFLICT_002",
+      "support": 11,
+      "pass_with": 0,
+      "fail_with": 11,
+      "fail_rate_with": 1.0,
+      "fail_rate_without": 0.8311111111111111,
+      "fail_rate_delta": 0.16888888888888887,
+      "fail_odds_ratio_smoothed": 4.722666666666667,
+      "perfect_fail_separator": true,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_REBUILD_TTF_HEAD_EPOCH_001",
+      "support": 11,
+      "pass_with": 0,
+      "fail_with": 11,
+      "fail_rate_with": 1.0,
+      "fail_rate_without": 0.8311111111111111,
+      "fail_rate_delta": 0.16888888888888887,
+      "fail_odds_ratio_smoothed": 4.722666666666667,
+      "perfect_fail_separator": true,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_REBUILD_TTF_MODIFIED_VARIABILITY_005",
+      "support": 11,
+      "pass_with": 0,
+      "fail_with": 11,
+      "fail_rate_with": 1.0,
+      "fail_rate_without": 0.8311111111111111,
+      "fail_rate_delta": 0.16888888888888887,
+      "fail_odds_ratio_smoothed": 4.722666666666667,
+      "perfect_fail_separator": true,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_DEBIT_ACCOUNT_SEQUENTIAL",
+      "support": 11,
+      "pass_with": 0,
+      "fail_with": 11,
+      "fail_rate_with": 1.0,
+      "fail_rate_without": 0.8311111111111111,
+      "fail_rate_delta": 0.16888888888888887,
+      "fail_odds_ratio_smoothed": 4.722666666666667,
+      "perfect_fail_separator": true,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_FONT_DESCRIPTOR_HEAD_BBOX_CONFLICT",
+      "support": 3,
+      "pass_with": 0,
+      "fail_with": 3,
+      "fail_rate_with": 1.0,
+      "fail_rate_without": 0.8369098712446352,
+      "fail_rate_delta": 0.16309012875536477,
+      "fail_odds_ratio_smoothed": 1.3785166240409208,
+      "perfect_fail_separator": true,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_USED_GLYPH_METRIC_CONFLICT",
+      "support": 3,
+      "pass_with": 0,
+      "fail_with": 3,
+      "fail_rate_with": 1.0,
+      "fail_rate_without": 0.8369098712446352,
+      "fail_rate_delta": 0.16309012875536477,
+      "fail_odds_ratio_smoothed": 1.3785166240409208,
+      "perfect_fail_separator": true,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+      "support": 223,
+      "pass_with": 33,
+      "fail_with": 190,
+      "fail_rate_with": 0.852017937219731,
+      "fail_rate_without": 0.6153846153846154,
+      "fail_rate_delta": 0.23663332183511554,
+      "fail_odds_ratio_smoothed": 3.6795434591747145,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_NEW_FONTFILE2_SHA",
+      "support": 218,
+      "pass_with": 33,
+      "fail_with": 185,
+      "fail_rate_with": 0.8486238532110092,
+      "fail_rate_without": 0.7222222222222222,
+      "fail_rate_delta": 0.12640163098878698,
+      "fail_odds_ratio_smoothed": 2.255942509673853,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_TEXT_LAYER_INCONSISTENT",
+      "support": 193,
+      "pass_with": 28,
+      "fail_with": 165,
+      "fail_rate_with": 0.8549222797927462,
+      "fail_rate_without": 0.7674418604651163,
+      "fail_rate_delta": 0.08748041932762984,
+      "fail_odds_ratio_smoothed": 1.8201099764336213,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+      "support": 214,
+      "pass_with": 33,
+      "fail_with": 181,
+      "fail_rate_with": 0.8457943925233645,
+      "fail_rate_without": 0.7727272727272727,
+      "fail_rate_delta": 0.07306711979609182,
+      "fail_odds_ratio_smoothed": 1.702771855010661,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT",
+      "support": 38,
+      "pass_with": 4,
+      "fail_with": 34,
+      "fail_rate_with": 0.8947368421052632,
+      "fail_rate_without": 0.8282828282828283,
+      "fail_rate_delta": 0.06645401382243488,
+      "fail_odds_ratio_smoothed": 1.6079027355623101,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+      "support": 19,
+      "pass_with": 2,
+      "fail_with": 17,
+      "fail_rate_with": 0.8947368421052632,
+      "fail_rate_without": 0.8341013824884793,
+      "fail_rate_delta": 0.06063545961678385,
+      "fail_odds_ratio_smoothed": 1.4077134986225894,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_NEW_SBP_PROFILE_OBSERVED",
+      "support": 71,
+      "pass_with": 10,
+      "fail_with": 61,
+      "fail_rate_with": 0.8591549295774648,
+      "fail_rate_without": 0.8303030303030303,
+      "fail_rate_delta": 0.028851899274434434,
+      "fail_odds_ratio_smoothed": 1.214025974025974,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_FILE_SIZE_STRONG_OUTLIER",
+      "support": 19,
+      "pass_with": 3,
+      "fail_with": 16,
+      "fail_rate_with": 0.8421052631578947,
+      "fail_rate_without": 0.8387096774193549,
+      "fail_rate_delta": 0.003395585738539819,
+      "fail_odds_ratio_smoothed": 0.9170254403131115,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_ORACLE_CONTENT_MIDGAP",
+      "support": 6,
+      "pass_with": 1,
+      "fail_with": 5,
+      "fail_rate_with": 0.8333333333333334,
+      "fail_rate_without": 0.8391304347826087,
+      "fail_rate_delta": -0.005797101449275366,
+      "fail_odds_ratio_smoothed": 0.710594315245478,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+      "support": 51,
+      "pass_with": 9,
+      "fail_with": 42,
+      "fail_rate_with": 0.8235294117647058,
+      "fail_rate_without": 0.8432432432432433,
+      "fail_rate_delta": -0.019713831478537447,
+      "fail_odds_ratio_smoothed": 0.8432823272238104,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+      "support": 198,
+      "pass_with": 33,
+      "fail_with": 165,
+      "fail_rate_with": 0.8333333333333334,
+      "fail_rate_without": 0.868421052631579,
+      "fail_rate_delta": -0.03508771929824561,
+      "fail_odds_ratio_smoothed": 0.8110937848073068,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+      "support": 93,
+      "pass_with": 17,
+      "fail_with": 76,
+      "fail_rate_with": 0.8172043010752689,
+      "fail_rate_without": 0.8531468531468531,
+      "fail_rate_delta": -0.035942552071584255,
+      "fail_odds_ratio_smoothed": 0.7672303206997084,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+      "support": 18,
+      "pass_with": 4,
+      "fail_with": 14,
+      "fail_rate_with": 0.7777777777777778,
+      "fail_rate_without": 0.8440366972477065,
+      "fail_rate_delta": -0.06625891946992868,
+      "fail_odds_ratio_smoothed": 0.6025293586269196,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+      "support": 18,
+      "pass_with": 4,
+      "fail_with": 14,
+      "fail_rate_with": 0.7777777777777778,
+      "fail_rate_without": 0.8440366972477065,
+      "fail_rate_delta": -0.06625891946992868,
+      "fail_odds_ratio_smoothed": 0.6025293586269196,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+      "support": 24,
+      "pass_with": 7,
+      "fail_with": 17,
+      "fail_rate_with": 0.7083333333333334,
+      "fail_rate_without": 0.8537735849056604,
+      "fail_rate_delta": -0.14544025157232698,
+      "fail_odds_ratio_smoothed": 0.4049586776859504,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_GLYPH_SLOT_TRANSPLANT",
+      "support": 233,
+      "pass_with": 38,
+      "fail_with": 195,
+      "fail_rate_with": 0.8369098712446352,
+      "fail_rate_without": 1.0,
+      "fail_rate_delta": -0.16309012875536477,
+      "fail_odds_ratio_smoothed": 0.725417439703154,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+      "support": 233,
+      "pass_with": 38,
+      "fail_with": 195,
+      "fail_rate_with": 0.8369098712446352,
+      "fail_rate_without": 1.0,
+      "fail_rate_delta": -0.16309012875536477,
+      "fail_odds_ratio_smoothed": 0.725417439703154,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_OPERATION_DATE_LINK_MISMATCH",
+      "support": 3,
+      "pass_with": 1,
+      "fail_with": 2,
+      "fail_rate_with": 0.6666666666666666,
+      "fail_rate_without": 0.8412017167381974,
+      "fail_rate_delta": -0.1745350500715308,
+      "fail_odds_ratio_smoothed": 0.31806615776081426,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    },
+    {
+      "rule": "ALFA_SBP_ID_TIME_ORDER_CONFLICT",
+      "support": 3,
+      "pass_with": 1,
+      "fail_with": 2,
+      "fail_rate_with": 0.6666666666666666,
+      "fail_rate_without": 0.8412017167381974,
+      "fail_rate_delta": -0.1745350500715308,
+      "fail_odds_ratio_smoothed": 0.31806615776081426,
+      "perfect_fail_separator": false,
+      "perfect_pass_separator": false
+    }
+  ],
+  "sample_rules": [
+    {
+      "pdf_sha": "bd46b3854a5567229c0f283fa9a5d5bcf73ea1964c7a850eedd06408772e8bab",
+      "filename": "_onlypdf_alfa_long.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "47d2d0f520fd10c6994a7b94ef1f880dbd45858136b6c54b26d843f2d2cdcc53",
+      "filename": "_bankpdf_alfa_env.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_REBUILD_EMITTER_FONT_LIFECYCLE_004",
+        "ALFA_REBUILD_FONT_EPOCH_PDF_TIME_CONFLICT_002",
+        "ALFA_REBUILD_SUBSET_SOURCE_IDENTITY_003",
+        "ALFA_REBUILD_TTF_HEAD_EPOCH_001",
+        "ALFA_REBUILD_TTF_MODIFIED_VARIABILITY_005",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "e42222df76e2b926430aa7278405e9126c7fe814bde0d304ff02838ab746e11d",
+      "filename": "_bankpdf_alfa_slot.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_DEBIT_ACCOUNT_SEQUENTIAL",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_REBUILD_EMITTER_FONT_LIFECYCLE_004",
+        "ALFA_REBUILD_FONT_EPOCH_PDF_TIME_CONFLICT_002",
+        "ALFA_REBUILD_SUBSET_SOURCE_IDENTITY_003",
+        "ALFA_REBUILD_TTF_HEAD_EPOCH_001",
+        "ALFA_REBUILD_TTF_MODIFIED_VARIABILITY_005",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "36b7154346b8123af8b9c5d37ed64b0cc4d4e166a3a39d4c5b99858ad6213e25",
+      "filename": "_bankpdf_from_pass_phone.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_DEBIT_ACCOUNT_SEQUENTIAL",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONT_DESCRIPTOR_HEAD_BBOX_CONFLICT",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_REBUILD_EMITTER_FONT_LIFECYCLE_004",
+        "ALFA_REBUILD_FONT_EPOCH_PDF_TIME_CONFLICT_002",
+        "ALFA_REBUILD_SUBSET_SOURCE_IDENTITY_003",
+        "ALFA_REBUILD_TTF_HEAD_EPOCH_001",
+        "ALFA_REBUILD_TTF_MODIFIED_VARIABILITY_005",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_METRIC_CONFLICT",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "4fb819ef6941eaf40632c9380fd9e2442aee544ebf8861bdc910b51e98730026",
+      "filename": "_bankpdf_alfa_firstseen.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_DEBIT_ACCOUNT_SEQUENTIAL",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_REBUILD_EMITTER_FONT_LIFECYCLE_004",
+        "ALFA_REBUILD_FONT_EPOCH_PDF_TIME_CONFLICT_002",
+        "ALFA_REBUILD_SUBSET_SOURCE_IDENTITY_003",
+        "ALFA_REBUILD_TTF_HEAD_EPOCH_001",
+        "ALFA_REBUILD_TTF_MODIFIED_VARIABILITY_005",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "b3f449c2544b0b67cd7a16b93c6fad2278d365f341210986701368a80bfe4bb1",
+      "filename": "_bankpdf_alfa_ng77.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_DEBIT_ACCOUNT_SEQUENTIAL",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_REBUILD_EMITTER_FONT_LIFECYCLE_004",
+        "ALFA_REBUILD_FONT_EPOCH_PDF_TIME_CONFLICT_002",
+        "ALFA_REBUILD_SUBSET_SOURCE_IDENTITY_003",
+        "ALFA_REBUILD_TTF_HEAD_EPOCH_001",
+        "ALFA_REBUILD_TTF_MODIFIED_VARIABILITY_005",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "f1b2ea206944b200605de8a66093571453ed173834f131f2ad831350e1f7d93f",
+      "filename": "_bankpdf_id_only.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_DEBIT_ACCOUNT_SEQUENTIAL",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONT_DESCRIPTOR_HEAD_BBOX_CONFLICT",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_REBUILD_EMITTER_FONT_LIFECYCLE_004",
+        "ALFA_REBUILD_FONT_EPOCH_PDF_TIME_CONFLICT_002",
+        "ALFA_REBUILD_SUBSET_SOURCE_IDENTITY_003",
+        "ALFA_REBUILD_TTF_HEAD_EPOCH_001",
+        "ALFA_REBUILD_TTF_MODIFIED_VARIABILITY_005",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_METRIC_CONFLICT",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "4ccc7a7c4e6125887d121cd224516fb8ac2533ff34764817e633af2e6165ef71",
+      "filename": "_bankpdf_img_repack.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_DEBIT_ACCOUNT_SEQUENTIAL",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONT_DESCRIPTOR_HEAD_BBOX_CONFLICT",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_MIXED_ZLIB_SERIALIZER_PROVENANCE",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_REBUILD_EMITTER_FONT_LIFECYCLE_004",
+        "ALFA_REBUILD_FONT_EPOCH_PDF_TIME_CONFLICT_002",
+        "ALFA_REBUILD_SUBSET_SOURCE_IDENTITY_003",
+        "ALFA_REBUILD_TTF_HEAD_EPOCH_001",
+        "ALFA_REBUILD_TTF_MODIFIED_VARIABILITY_005",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_METRIC_CONFLICT",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "9b1c021108a415be75a8c94a8f8643f59e99a745cf2c6c0020d17f6dae0cbe47",
+      "filename": "_bankpdf_real_orig.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "ca6471055570f1faf2888773fa834dbbdd56d9b86b203806531c94cafcbd54ec",
+      "filename": "_bankpdf_corpus2.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "f21b0d77c399c5f59bb766f5a10d62807d646a9f5cf034e3a1d3b9d4c9dd86bd",
+      "filename": "_bankpdf_newcs_newimg.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_DEBIT_ACCOUNT_SEQUENTIAL",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_MIXED_ZLIB_SERIALIZER_PROVENANCE",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_REBUILD_EMITTER_FONT_LIFECYCLE_004",
+        "ALFA_REBUILD_FONT_EPOCH_PDF_TIME_CONFLICT_002",
+        "ALFA_REBUILD_SUBSET_SOURCE_IDENTITY_003",
+        "ALFA_REBUILD_TTF_HEAD_EPOCH_001",
+        "ALFA_REBUILD_TTF_MODIFIED_VARIABILITY_005",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "ff4474cd4c83b581d949893eeb98ec014a18ef4bdd3ded34ae23698e9dee983e",
+      "filename": "_bankpdf_pixeltweak.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_DEBIT_ACCOUNT_SEQUENTIAL",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_OUTLINE_MISMATCH",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_REBUILD_EMITTER_FONT_LIFECYCLE_004",
+        "ALFA_REBUILD_FONT_EPOCH_PDF_TIME_CONFLICT_002",
+        "ALFA_REBUILD_SUBSET_SOURCE_IDENTITY_003",
+        "ALFA_REBUILD_TTF_HEAD_EPOCH_001",
+        "ALFA_REBUILD_TTF_MODIFIED_VARIABILITY_005",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "fe05899f24de76b99a21c0885c99cc0ade48034e88c3098e05ac915dcda3c180",
+      "filename": "_bankpdf_verb.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_DEBIT_ACCOUNT_SEQUENTIAL",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_REBUILD_EMITTER_FONT_LIFECYCLE_004",
+        "ALFA_REBUILD_FONT_EPOCH_PDF_TIME_CONFLICT_002",
+        "ALFA_REBUILD_SUBSET_SOURCE_IDENTITY_003",
+        "ALFA_REBUILD_TTF_HEAD_EPOCH_001",
+        "ALFA_REBUILD_TTF_MODIFIED_VARIABILITY_005",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "7f594c2ebeaed5c963ac41253550da3c09a8fe605876489a0033ff7a8de6fd09",
+      "filename": "_bankpdf_crlf_xref.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_DEBIT_ACCOUNT_SEQUENTIAL",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_REBUILD_EMITTER_FONT_LIFECYCLE_004",
+        "ALFA_REBUILD_FONT_EPOCH_PDF_TIME_CONFLICT_002",
+        "ALFA_REBUILD_SUBSET_SOURCE_IDENTITY_003",
+        "ALFA_REBUILD_TTF_HEAD_EPOCH_001",
+        "ALFA_REBUILD_TTF_MODIFIED_VARIABILITY_005",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "89363527a87d49b0f17694c81974b981d0515e8bf148747483651309bbe6d996",
+      "filename": "_bankpdf_keep_id_1digit.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CLONED_ORIGINAL_SHELL_CONTENT_REWRITE",
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "664c0a3d582d38d5814b8bdbb915de7cb39a33f2a26fe2f2a90121055120b6cf",
+      "filename": "_bankpdf_zapas_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "b2d68986df18668447c18e727b0f15e7d52724d69fae5dd7298e6ff8deb4167e",
+      "filename": "_bankpdf_zapas_02.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "881bd4f5e9364189dc4069b70fdecfd041f75fa30bfbe5bcea4a8bceea5ae86b",
+      "filename": "_bankpdf_zapas_03.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "5a62a14c8cd6dc7683ccf9d8e8ec031dfb7f5c180a0150d56d0bfdc028365ae5",
+      "filename": "_bankpdf_current_after_zapas.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "4582d92e79dbb68bfa48f9954279613b95b42b59affeb55bc8f7d22fdb2f908d",
+      "filename": "_bankpdf_full_med.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "8a6acba536cc0eb4d7093b570806328ca5a4debf033fa7d8883e66e0238e5f1c",
+      "filename": "_bankpdf_zapasport_med.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "49400212ef8d51c411dd95dc6b4e15fda9d8afa47c95f24e032b618e9879446e",
+      "filename": "_bankpdf_zapas_04.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "edc0f332a0d158305d0431ff774dc81197a150c309f89121434900efef14abc4",
+      "filename": "_bankpdf_botpath_med.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "c62100ffad5c5c8ea82e3d570e675d337216476e7a0848cd20dc64c52098f78c",
+      "filename": "_bankpdf_botpath_long.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "0deceb74db56096b5b3796164b22670bc407405add9fbfde21f78fe2bb243d7e",
+      "filename": "_bankpdf_fix_med.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "43dae93f4acc36d66415c72e381d01598380efc9c89f4140e6aba2230b043d63",
+      "filename": "_bankpdf_zapas_05.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "6a0dd73eb0ef4e7d66eda98109db6f08e86dcd5dde5c88ce88618e2f5947a73a",
+      "filename": "_bankpdf_zapas_06b.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "e61aecfc8ced5fd27e2cb561d9750f1bc505c87029ac05acd6faecdf10858e8f",
+      "filename": "_bankpdf_ws_07.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "ab344d42a3b5187a38fa074e52195eb0ed85e3434144521ca962cb5886c7dbfe",
+      "filename": "_bankpdf_ws_08.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "b2d77203b11187a8bb9de63a6dc3a875c250a3d23cec3db1a40ee7757aa0d633",
+      "filename": "_bankpdf_ws_09.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "6d49d88f0fe7ac1abd8ba2c5a2e2f94635228ceb9957ef46af005a0b10ea895b",
+      "filename": "_bankpdf_zapas_06a.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "c4752fb1e0d9b936fc07b9726b55db0d19a3ffdfdd6250edada2f4b18a83c1f4",
+      "filename": "_bankpdf_ws_11.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "0e25ffe11c8e3f0e1bd61269f57ee4d414fd09750bd7ffc50e54596acf7436c7",
+      "filename": "_bankpdf_clean_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "e56890f0fc196089024d325f42704ea6d5dcce106f6cdd352e92ead94cd24db3",
+      "filename": "_bankpdf_pass02shape.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "eb625fd33f1a05c40b9d32e95203893b1e2a6c95591c2fc2bab84e35c175e664",
+      "filename": "_bankpdf_pass02shape_02.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "477c3237d25aea57e22e999d1a7c10ebadd587d86a09e22184fa654bd9bdc7f3",
+      "filename": "_bankpdf_pass02shape_03.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "af18ad14fa369fd52c1e1dc4cedbcf600c4a5c5d4e3829cfbf452442014cec4b",
+      "filename": "five_01.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "d6375e0648bd19fefbc89aa6b687268d158a2cd11a1bf39fa1b48c2a32f504b4",
+      "filename": "five_02.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "8c0a7d0d9c2fc3c6b0b79767d1a828917d8e562e6f0f34c426562939f7ac3814",
+      "filename": "five_03_no_closure.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "0bbd5a0ef99e17abd3c9382f2fa59aaaef80f0989257c74c256954e7eaa2469d",
+      "filename": "five_03_from_five02_wide.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "e8b8d7184cc5a24d3543745448e178315cacc130ca803331cbbdb8dc8c67dae2",
+      "filename": "n1_phone_from_pass01.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "4d8f3199dc623ad0f7b6dfc53b8622b78c8188123321e0c2db66349d5a58f536",
+      "filename": "n2_account_from_pass01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "d298bb2dbae8ba2de69328351a479910377017127d022c824a1be9eb6b059a5c",
+      "filename": "n3_op_from_pass01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_DATE_LINK_MISMATCH",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "df2c530a4804f3fa0b634a6b209a331bcd9e54f6d4dbe774b7e5bbe9f0e6552d",
+      "filename": "n4_sbp_from_pass01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_SBP_ID_TIME_ORDER_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "3a303218b051f2fb3d375c6558f77e1c4a9d0c566c96ecc845f03a056f8cfd92",
+      "filename": "n5_op_acc_sbp_from_pass01.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_DATE_LINK_MISMATCH",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_SBP_ID_TIME_ORDER_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "e136a11ea6eaf2595644d5ba530a02fdc622b9b85f3d62b60c171819a980f2cd",
+      "filename": "n6_op_acc_from_pass01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_DATE_LINK_MISMATCH",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "2dfea6e312fa5d81b839ac64c69033e19a3a3fa4fb7f4ef59f09cfc0de284394",
+      "filename": "n7_acc_sbp_from_pass01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_SBP_ID_TIME_ORDER_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "347a4816363a210451cc61e0347d05e74e7a230403d8a3239cadf16b85263ddd",
+      "filename": "five_03.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "bf4730eb769d4bfdd555d514528001bd668da4e90ad7c19e0f438b305e64e5fa",
+      "filename": "five_04.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "6eae719d142087824bc245cc57249fcea8b1a52acba5a69b71a7455a41496de6",
+      "filename": "five_06.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_PHONE_DEF_NOT_MOBILE",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "7a7bc1b31f2186bc2ec9fc99022c837f8dddf1c52e3ef262d105326451af8b9b",
+      "filename": "five_07.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "96e2cb67c40e9f273f7fc4c10f4be6c5e9c489a96ce000ea283250055834a767",
+      "filename": "five_08.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_PHONE_DEF_NOT_MOBILE",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "71f33d6b667bfd960b29bdf2bf2182645bcd052f327cd4eb0b350710422697e9",
+      "filename": "five_09.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "a42e77e2b1eef93ced69098717fb033e14899e7033dbfe11de9ba056d291aa5c",
+      "filename": "five_11.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "e2393afe18bed66a6e50626b8b9bf97a311784bccf5117b2e4218baf0fd199a2",
+      "filename": "padd_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "c7bfb4bc6b0ce6447e56d3e016a810fddd4d22c1e289f72430378dd476c4f608",
+      "filename": "padd_keep_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "0415ab08a89033607b8269b96f449035dce9fe4c59985a1a061a92ae2d856967",
+      "filename": "00_orig.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "6172ce9716dfab981ef790fa7fda1842ed79226eb31dcf1e43af1401a1af2ab9",
+      "filename": "00_014153.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "687dfaf23689d88934607e43979e92d2435b6ad5c3653cf456701107f17327b4",
+      "filename": "01_014153_trailer.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "d397a2349b30dad80d54541eef645c70854323d1c441289248cc6fbdb486195b",
+      "filename": "00_pdf3.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "e290cf6c32f1df77839aaa12a43d5e78191c9db4e34ff3c4f02e629869cb615e",
+      "filename": "00_sbp_alfa2.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "e5f25aed924432cdc2091697d92e07ee3785e999b2bfe5f51a61b0aa72d61650",
+      "filename": "02_014153_amount1.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_UNDERSIZE",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "7021cfa31d0295503c4c4cbe09525ff9fa1bd514596cc74bc942c3ad7d45f76f",
+      "filename": "03_five01_amount1.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "d0d408e0a31141f798fd66ccaf5c25d8970b2f94c09cce1b1a3fc69c40f68a1d",
+      "filename": "04_five01_eofspace.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "7dd3b0f044e8203ad56cfab2b377ff4d7ee4951e78f5c23b41891a1ed1533c17",
+      "filename": "05_five01_producer.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "6eb7eb171ea54d7fc8c295d521401137897059032935ff0b855b58ceeccc0b55",
+      "filename": "native_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "857c8f5bbe2d70b5e3ce8aa6484db5101db8f7adae47eede7d9122e0e5f2601f",
+      "filename": "native_02.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "4b8a26daf4dabfae2bcc85c87e64afc8efc18e80c57b0f6bff7e357f27acbe9f",
+      "filename": "pass_zh_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "1d1155b034f50123aaf28fb3d352f9d333edfd56a65b162465f2308490dd3eca",
+      "filename": "pass_zh_p2.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "e4c40b2c832f136c809318c5796a8b09da2b6e4891a047423c757be288ecde55",
+      "filename": "pass_zhf_01.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "c2df2d998855769069efa63c0bd6692706325464417768c677b6e4193c77ab3b",
+      "filename": "pass_zhf_02.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "c66e6caf743bc2682aee0c2f0952389845587b63fa27ebe8407b463bd51227cd",
+      "filename": "pass_fzh_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "5f53b32ec4d4220518827e73c5998e74a6bf72dbf7f75c04e71f51623274b446",
+      "filename": "pass_zhf_n80.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_CONTENT_MIDGAP",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "62b6aa743bf1a253c9e3d1da1191116d87df2a11437fb07fc72c9e5d37eaea9b",
+      "filename": "pass_zhx_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "f358bb67f684e8563c45cfdb7b22f3b84077f1dd28414ef8268e8ef38d58321a",
+      "filename": "pass_zhf_reuse_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "2f948257878f76f8a69dfe47c95750bc3f767cd11e83ac4580906ad5184c1f3e",
+      "filename": "pass_a7_zh.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "074d67d9b20b4a889630f8674e1594d408a5e6a6c57f89bf43a85a52c045ed4e",
+      "filename": "pass_a7_zhf.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "1f73c366bd555624f1e1ca85c7e3ac9bdad2da86641b96166e8607f11c0a7bbf",
+      "filename": "pass_s7_zh.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "425e89b1ea5d19b30bc1e4da56883ef601fc36cf0600da144ee7c7f3f5767df0",
+      "filename": "pass_p2_zh.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "28155361d9550b7b8ef9089d1a9e2e54f1e1436f0932e56f2d6acc9f8ee1eb69",
+      "filename": "pass_psb_zh.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "4109e3c0426c2df887de6f65de03804f81ef82b09a924f37ece0c5d408c131a1",
+      "filename": "pass_gx_zh.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "7efa5ae9291a7f7b9a866f05d420e24db6f95cd068987a08f0b402ed8ec93388",
+      "filename": "pass_s7_f.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "6a0255d3583f75be9d4c27b8dadddadae77ffbab29e1129b2508d90f1924b0a8",
+      "filename": "inplace_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "6549c3c3de7792d395c78208c6128c24632059b9926b6cb16a797c1181f4cd72",
+      "filename": "csa_zh_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "9daa2a0d360d259aa525b3510d63dc95e5a82f1d6d4f5c0603024c58ccfedbd8",
+      "filename": "csa_f_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "d184a27518f21ee2647707954fcba75166946d47f5dd1a7de2ae4f00687acfb9",
+      "filename": "mathcsa_zh_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "fd992df4a79ab5897c98e45c5ead2c910d80b5d1ecbcb5904cccd697147e2cf6",
+      "filename": "origlike_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "74f5aa5cab32e7c3749fd71e57623b3183cdfc85f93e8aa303cb8f72c4d74952",
+      "filename": "streak_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "64ae87bddb871d4d731f34d260f8b5dedd20669dfe320591895fe1bbf7e5cb82",
+      "filename": "streak_02.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "f004fece40396da5a3d4b29c890e0c70ca3ebd050150f4c6e7f56c46ba6e569a",
+      "filename": "streak_03.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "f49b3ce997639277a2bd78bbe9af918fed276eef5b4d08c82305fb115e713a3b",
+      "filename": "streak_04.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "f86ccf3491c0cad12256f4982483bf27cb31b5423fa1dd257d8ed4b1c1a3e0bb",
+      "filename": "streak_05.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "0f13b85521f8816ce34c1dc31267bda5fc859d863f09d4aa2d3c4ce165575eb0",
+      "filename": "streak_08.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "4c09a457963211ca77afc923d549bf07ce1416209c270c3c7a933b45d4054eed",
+      "filename": "streak_09.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_SBP_ID_STRUCTURE_INVALID",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "b0eaede1e817200ccaea6206483e5a9e9bd064e0ea6e47c2a25370fc2d4dc946",
+      "filename": "streak_10.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "3d577ce78555985ec9ba4379d0254feed3da1ccbfacfe6f464f2cf5ba0c77370",
+      "filename": "ablate_amount.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "9b3e0f5e4e50997b3cf97abd3e97eef65fba056be22c5c863d3d89d6f70e504b",
+      "filename": "ablate_ff2.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "65a23d172f8281cba54b112638f913eb18ad10ae34c91b646830becb7fb712a7",
+      "filename": "streak_12.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "cdb314c0956d8e30dbb8c19472f7b3c6ade9ea7f0504f659b360a40c5d2ea74e",
+      "filename": "03_no_fio_nbsp.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_STRONG_OUTLIER",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "89ed5dcad6373d1442d0c25262a2f3c58b4bfa7b5c8581011b3657e5e90c42cc",
+      "filename": "05_fio_nbsp.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "0db4339c33847f5a3b570c552edf2152f56732239fd76a8be094f17642581435",
+      "filename": "05_fio_op_nbsp.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "497fd2fcf6afa5de2865fa4b8a3e32eb9e02f8667be5dda47f0d58373d1c97de",
+      "filename": "streak_13.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "987a53552a72172b075acbd9fde04f1378a4888e173a368e2b03c1fb43c9c05b",
+      "filename": "streak_14.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "bfea14922f3528387759896ee081dc9dd89c4cc0bac7be3af6a823b2f649389f",
+      "filename": "streak_15.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_STRONG_OUTLIER",
+        "ALFA_FONTFILE2_LENGTH1_MISMATCH",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "a761025299ae4180281e7893cdb31d5b784614f3324cd2e357b9f39c07789112",
+      "filename": "streak_16.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "01e540d07548a2b6c90f47a7fcfee00a8079717ed488283ba52a32c0b52e7c03",
+      "filename": "streak_17.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "bd624f4f01f46e6c35b2b8fe952683d08dde3eb82b342ab5a26149f1fd8b07a0",
+      "filename": "streak_18.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "82f76efbcf356e956689e8356be364ca56acd25ee971d5bbfdbed7bd457b7558",
+      "filename": "streak_19.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "c70dea1ac3dca060472380a6e882b6e4f649a220a0274f94e34e3283c7f7a1dd",
+      "filename": "streak_20.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "8df9c8c3e2c903a8d0a48747bdfe78d236261dd27aa10ce815f73988a75bcd54",
+      "filename": "streak_21.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "1edc770118805a4974a7c6afc0b7f6a128c65b56a4ead3fec54e9c1e11e00408",
+      "filename": "streak_22.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "22809dfbb8a84846779730f34adc9f0d5ac41c37eaf7eb1568a366c648ebb14a",
+      "filename": "streak_23.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "40af43f06abc145e8dd65e28abeb6ad85dd4a1061c3819ec8af957aeb3dc4317",
+      "filename": "streak_25.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "763e1cb1322a96fb6acf95e063ba8c92ede79e772d2b2ad54e16f91e3c9ac60f",
+      "filename": "streak_26.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "99726024251579efb17d86d3a58fa25dadbd3ae46441bb1a3e640500637a75f7",
+      "filename": "streak_27.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "61dcf3fc16eea43100d4036271966b43a7714997f8a577f30386d21ba21ab2c7",
+      "filename": "Квитанция.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "8720a8c2db76dce6eb5d61b961aeaad72011a6921355bf5a3e4662d9de6c9718",
+      "filename": "Документ.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "d2bd6ffed3558745670d08c48f347963a701b349ffaa230d8e84bd65a6848a09",
+      "filename": "Выписка.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "ff482abc75c11481502bef885956449a5dd336139d8191bad9255c338a2f5121",
+      "filename": "checker_native_01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "2b22444769e185bb7c46c657fd813ed10a0de2515f171eb38777a87628df3f38",
+      "filename": "clone_alfa2.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "bd9802a2a0787128c2f50208c19ed929a73a083e3ceb028e10c09f03e2e92e56",
+      "filename": "control_id.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "22b3ccc3fe2b603f29d2f7671f6d92640041435aa56199ae87e9725cbe5db7ca",
+      "filename": "control_prefix.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "ed4b7589e21f6337be3d9891e89759adbf24c39411ed5273616c097daf234e33",
+      "filename": "control_both.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "c38e34c3a4a3ef780a3fdb8c3e3f90e20d852364500be72c0a7a64257576be5d",
+      "filename": "control_known_prefix.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "037e0fa75f32d0ee312d411aa6a908b78e59a9dd04f88af5215f4978f28db8fc",
+      "filename": "prefix_kedbko.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "2b2ee47b5bdac93ea37431ed97a2c33cb5a1310dd2154290480569595a3c29c9",
+      "filename": "alfa_sbp_040426.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_DEBIT_ACCOUNT_SEQUENTIAL",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "8e0b8932d9cd2d37bda1cc3013c12ba2ba7c63777b7aea8ee9a14639ce023e28",
+      "filename": "pass_repack_sguvpm.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "b208fb79daa56e8eabb3c2de49ea527730f827b203646ba1749d10edca1cc5d0",
+      "filename": "gaz_glyph_fix.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "c009bf7f47b2175a56e6ad2d9bd58cfaad33dde7b2ac287f88dda3fd8cafc8dd",
+      "filename": "pass_sguvpm_face.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "a185951e03159548c09d396acb484f5412d5f850e033a6f9f8fb8ae074f5e1a4",
+      "filename": "pass_middle_nul.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "d0ebb4ce475df9c392a4c5586bf97976e25fb7d7576df8c35014eb7e7baeb85f",
+      "filename": "01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "cce389c97a25243f9a5a822d013b9fb5e24e08a33dbd29ec64f048857058788b",
+      "filename": "02.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "8821c711758c6c16a504e91c1b3393548438843c3017efea9cd47dda05b084cc",
+      "filename": "03.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "38cc57a8214781aba9d114c1d5c91dc2502de40cd28a861060525785e351e3f6",
+      "filename": "04.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "06a8a8052f9fc7e0106658a687d709a8ef319e697319736c03cf6e9ec0cf4724",
+      "filename": "05.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "69ba136ce8148dbe0fa31eb323d8324e76876ed4fc9a60f3b2a1b1a33f16a9f3",
+      "filename": "06.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "6b9ec292cefbb6867de206b92cfc555caafe3212d5ae5bfa5f8986d217cfaf64",
+      "filename": "07.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "5eb6cac0aefb9f420aae5849d6f74a2b12d4c1371b95fc00fedf7ebc905306a2",
+      "filename": "08.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "7242411bf27f7bb5b00dc4f6c0e4d9ea890a503df43769ecd01edcf4ee3b1148",
+      "filename": "09.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "498d94baf6c47a1361ce12e18b5f846aae6e7730ef627e8989127172311a5e7a",
+      "filename": "10.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "e899cebe9091c4d9dc222de240764c1a6974a41119f3e108f9ed4675bcf1dca4",
+      "filename": "01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "de32b56ac0acfb81f8ed686e20304661267a82402c8e3054ee56647940d93272",
+      "filename": "02.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "cda11211ce82e2c6ae45716b3b35cf87d1cecc9d1eca48b198d0ead6bebfa305",
+      "filename": "03.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "b4f6ba97f1112612d0cc3eb7d370d8d60d32ebedc9b2a8a437744bb21a857429",
+      "filename": "04.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "31217cee4d042cde0ac096304c8eff827c1e5d664e53a7a757b9ab71aa43cdb5",
+      "filename": "05.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "dc146c8025478b585490648a1a43089e49fcf6f44bb4861b7171aec3794ef62a",
+      "filename": "06.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_CONTENT_MIDGAP",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "967b97192095d12ff2e820aad9160ef41d27bdf03b2dc420c6b1075d12d622c6",
+      "filename": "07.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "ff018d49fcd0b5d0ffa640d53dc2f8a85b56792f270de4e6e84237676af219e8",
+      "filename": "08.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "1c7833ce7707eda6ef82eef008a0dde59e051608f0abef7de95e50fe4c7ee32b",
+      "filename": "09.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_CONTENT_MIDGAP",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "cdb44da87cd208ae7f1dcbc8c1fa9d4635169afd1c8d61160c6836cd0f6bbf9a",
+      "filename": "10.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "8d3a43ea448d1d4c5b2575977dc8fb115343f68d535b43330f8e7d8acf1e44d1",
+      "filename": "02_sber.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "133662b734c648cc3bf1e012cffa15b79912b2f1f38d5ac2b5d27063cca1cb09",
+      "filename": "02_ab_amount.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "7399138ea8fc6e8eb33dacaddeb46ca2ea551af90d728756785330173cef6d63",
+      "filename": "02_ab_phone.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "26f65eaaf9dafed0491456e74d588565f2e8a29f6c76ff4b2107cdcb990d726c",
+      "filename": "01_700.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_CONTENT_MIDGAP",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "fd944ba745aed42998e433777faa41852461b112171214fb9ebc28f973ab8e68",
+      "filename": "02_3370.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "cc54c27aaf4946c89f531691267c550215f369c4e287fb849e1fabe34b1265c3",
+      "filename": "03_5714.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "8e8fc8cce65d79c2f3bf18ad6f4e886422b2ce7a06c1bb7fe93dd07ca52dfb7e",
+      "filename": "04_10000.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "eab005b93aae0edb981afada26db4ba331f0099d0ae401c5a54cff4dba95b20f",
+      "filename": "05_12450.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "d870f4e3251aa7f35329903b580510d66de8498439706b510072ae57844a594d",
+      "filename": "06_14900.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "9129ea728f9f3440dbe5dae1b2c0473407dd1a0a3f3e73330b5e8150a766b028",
+      "filename": "08_75689.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "4ec62a6787bd49bce760ee1e2687d559129e1fa613f4339109262f337fa2b3c2",
+      "filename": "09_147300.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "43362fafbcda3a6af9a2cab93ea7e686e385a368e2dacea1ffd836a17ee8ce52",
+      "filename": "10_250000.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "a20566e7097edbd207e61629ff0dd5d4ebd071f0100d0b5aa436eed6aba2537a",
+      "filename": "alfa_sbp_132612.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "2c9e021d6c0bc85b9bc81deb96bf2494894bc6bca4edc87bd249b9c8e8738eeb",
+      "filename": "22.pdf",
+      "verdict": "FAIL",
+      "rules": []
+    },
+    {
+      "pdf_sha": "8c921d2057e0019fe21d1941815522fb844720a33a33d8e5d682bea1c75c60fd",
+      "filename": "400.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_CONTENT_MIDGAP",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "e6068cc7e8d6e2f9520c9f676ef312cd8ee7e29cf5fcfa368856ab7e557079f0",
+      "filename": "4000.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "90124e693ba56445e8f3f265040e1a6c8a1536a78fef3d2857c44649842867ac",
+      "filename": "40000.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "1117b0d1c1ed354ce35e13cda8ffb41b43082815be94b13a3cb8074596fac1c5",
+      "filename": "3550 тинь 3596.pdf",
+      "verdict": "FAIL",
+      "rules": []
+    },
+    {
+      "pdf_sha": "220ec572a0162420e4838e3654ee9a89549b4409b4e8ef99eefab722c46c3ede",
+      "filename": "7148326Pbb0pVRbOCnHBfRnc9OQCGNpzmhjGZc5VMuMTep4N7Y.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FILE_SIZE_UNDERSIZE",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FLATE_PROFILE",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_PROFILE_CROSS_LAYER_CONFLICT",
+        "ALFA_STATIC_ASSET_DRIFT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "daa647c2d4bfee706f75eecd0ac4e000dfb8b5cb68e624d588aa7e3c289e1478",
+      "filename": "receipt_hx3ys1l8v7rn5ugqeo8qkzje4hkcq91q.pdf",
+      "verdict": "FAIL",
+      "rules": []
+    },
+    {
+      "pdf_sha": "42d85f74555201d535db7581e54075f5d19be19de37d13a5e0f01f3ddebc91e7",
+      "filename": "bp_02_anton_4000.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "9a9f8960eccfa279b1f64c21663c3e10ecf5f2731b12285f7ffc61f209de8244",
+      "filename": "bp_04_roman_4500.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "d5c55adc0f4d474e79754006397824edab05ddc22f7722fc8f24734e8412af9f",
+      "filename": "bp_06_alina_14500.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "9992aef9eae2cafa51be6ad3427da458c36308cfdb74ee246e642e5dbd2bc018",
+      "filename": "bp_07_darya_sber_4000.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "9ea7f6cec6890e04bc2bd4bdcfa76b98de46f2f676693f81885efd7ff4f56d83",
+      "filename": "bp_08_viktor_today.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "bcd8cd941a1d7bab9a6b6f095c7fcfc0d158aa60994670c17d67e637a58a1ea0",
+      "filename": "bp_10_oleg_22may.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "f13127d4b61555950f1ac27247c3c3fac0574b323a352706d7882e27d60ef609",
+      "filename": "bp_11_today_3370_tbank.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_CONTENT_MIDGAP",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "2f3bd92e830179ca144e5d79a8eb0789a808e6bee7f5a34f8316e941d379474d",
+      "filename": "bp_14_today_4000.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "cced7f8b0337e56e69a40248839dd0559ac47923b87bb6fe87179b3246dd5f51",
+      "filename": "bp_15_aug1_4000.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "3c4cd4ea54efaab62294c9de1bf05aae8f8812bf827afedceb38ea735b140b6d",
+      "filename": "bp_16_today_reorder.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "170c5e9b0d2608789371132d1ef4c8d74818aab9942aa93eeb999cd7dad08e47",
+      "filename": "bp_17_clone_date1408.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "6f87a09bc70369fef31f4c9b47b98dfbe8b9acf89343c1e9b4cd778640a64fa1",
+      "filename": "bp_18_clone_amt_phone.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "06e4ec6324aecab895b8c592d828ce21739064e5e92b0e443c987f77fce42a2a",
+      "filename": "bp_19_kirill_1408_75689.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "0d28f94caad373b1aa895c84b805ddc2749f41f3cd631a237e13c9779b8aaf0f",
+      "filename": "bp_19_allpass_shape_1408.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "242ac160df040e68102aa32f726ce664902f1577abb34215d5d52cb87179edf9",
+      "filename": "bp_20_gleb_1408_75689.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "2d34aa7fa369cbe786558ac0edff700e222ceed3bab4d42e34d92767e982be2a",
+      "filename": "bp_23_pavelb_1408_75689.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "2b029ea06a9556f95b4e5cd646021d64fe1e9cd3a2789868073a1905523034c7",
+      "filename": "bp_24_stepan_1408_3370.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "4c358ee01916ac80699f8c77a81eed80de3339284a4978fb44f948cae4797ac0",
+      "filename": "bp_25_marat_22may_4200.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "b13b47dea9d75cdbbb11803a225094181ad9e3dfa1ab23f2663dc52ef54bd07c",
+      "filename": "bp_26_inga_sber_25000.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "5b99072fd072697dbb35738f9060a304948a55395b22b22e1d4e166517a73dcc",
+      "filename": "bp25_ab01_amount.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "8647ec0e80a1074e4aeacf807182dd6a7af3d50e5191e67d6bc44cc6b3e7e71d",
+      "filename": "bp25_ab02_fio.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "cae59b2ca544f30cd28f7520ca708d5e6bea634875fb4df1d3f4b3dfe875176d",
+      "filename": "bp25_ab03_phone.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "7317b3818a6fc7b3a6b060d0f741dbb823707266f1bfa09119ce6cc0f145ba13",
+      "filename": "bp25_ab04_account.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "b459b798ae14544c2a3a98e571497d355a88fa5d1b5513eabdb170ed00495d67",
+      "filename": "bp25_ab05_op.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "5c9ef494fede8c3120bb9e13022035cef5f7c3e12a85b76567384f00f0bff34b",
+      "filename": "bp25_ab06_sbp.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "deadce9e5b6865468683aaa8f4a8210ddb2d87ccf2355d1154289bf773d874f3",
+      "filename": "bp25_ab07_date.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_NEW_SBP_PROFILE_OBSERVED",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "6db9eedee0a88bd31705e5ba1744d66f31b44aeee50057754cb7cf79fe9b547d",
+      "filename": "bp25_ab08_bank.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "4953881e01fe99fe8a474ad29c1fcda625a896ea9654ff828837a21372c20bfe",
+      "filename": "bp25_ab09_sber_control.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "5a8f5b2a5468be16beac45b380392cbf89dfaf8cf2cce7451c59d4182605eec0",
+      "filename": "bp25_ab10_sber_amount.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "1135814727489d9a75b2044ea10d05ad4594fde918f5772fdb838278fbd81dcd",
+      "filename": "bp25_ab11_sber_new_account.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "e20eedb911c5fbf2865d54dc052ec24ee9b7f4fd9a1ada04353ebf7989c18edd",
+      "filename": "bp25_ab12_new_phone.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "de91c290e3a22fb9414b2d60850e913ef43dc6d149d66a39bc98e28af5d51c6f",
+      "filename": "bp25_ab13_new_recipient.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "efe60e8b31cc0ef9952d42fd366dd785ceca7692c8384d1f818a29f8a73218ab",
+      "filename": "bp25_ab14_sber_new_date.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "263e63d65748a5da5267c89be32d00670df95d1a7eadcf24069c3b0bef5809d1",
+      "filename": "bp25_ab15_ozon_burned_time.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "03d57a7e00d3d85163525491c168de25847fbf4a8ff19738e45f46ffc77912d4",
+      "filename": "alfa_sbp_181937.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "b7674f96de180fd6301508103f93dd2d789c01e5c4325834452c49bb295d2259",
+      "filename": "C1.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "128997ceba1b6e75b32a848cce69a366c56bc36e9346a2b886669d16d12874ff",
+      "filename": "C2.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "3596fa909ff4224f2e97f4b90678c7ef12512b8d77d442ac9421f68ab537760f",
+      "filename": "N1.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "6abe0cc15dcc32c761d60113f14b7dc3c59299fc158af885cc8556f4543b9c4a",
+      "filename": "C4.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "20eb9498debb0b4208472f3973823a39cfbe23b111d169fc6456417f993135be",
+      "filename": "N2.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "444985ff961e5cce2c21eef47a6bd4aa0d2a178deec49513cce9e63a26899212",
+      "filename": "C5.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "c7a80bb64908a4a7e2c038d1265821569fbb304c35c5fb0e112f52d0096fc7d6",
+      "filename": "B1.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "2cf8f76575f2ba9b47b8a968520f64ba33b9ed071de73ddedea670bd7ff971f7",
+      "filename": "C6.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "2b44a04187296d0ae7cc2fb0894347503312ec884b6c09302e18e78b32b9d00c",
+      "filename": "A1.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH",
+        "ALFA_USED_GLYPH_OUTLINE_ATLAS_CONFLICT"
+      ]
+    },
+    {
+      "pdf_sha": "92e459a330d00ef62e82b192cb3e1dc57d213c2be9f753e6b3f43ebd795205ef",
+      "filename": "C7.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "812514eefa83c0b3c16c914075cd5f98645765c54a1bcaf403812a80dd800f07",
+      "filename": "R01.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "cc1dc401c27a644f16d7ebeccb43e4316826b4c41b7fe7cd36f09e99d7c25201",
+      "filename": "R02.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "4016875d6b3a5daaa1ceacf5fe13406c8235b32917afc0bcd94ca884aeaaddf1",
+      "filename": "R03.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "1eb6f6395a5daa1d48231350f8d405ebb82863c642fe4bda016acc90672bf3e3",
+      "filename": "R04.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "1f26be5b83a1206c7151c245d964107efa2d0c0024496ca1da90724e14744913",
+      "filename": "R05.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "e279e8bcf8301d0deccc5cebde29e41c94a655825a148bc4dd8ee54a5ff368c2",
+      "filename": "R06.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "008ff879d200c38e5c05f56bb8d554f161598dff148ec0b819f4c3c3e3d79048",
+      "filename": "R07.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "aafb1766f50a2d58b31ab67feeee44c1ca43668621e39ba9962bf440e0701fa5",
+      "filename": "R08.pdf",
+      "verdict": "PASS",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "e89ec8a079d7192cf569eaabbfd6dd24b8489534a836c3bd73532c2303a75d08",
+      "filename": "R09.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "cc779a33560a6732fbb101e6f8a23b05a483b8bc4ab368b2079b9082698e90cf",
+      "filename": "R10.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "ffac25b1efa05235b9b12502499794d96afe4eec2248bb56b3f608b328686c59",
+      "filename": "A1.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "8d91eeaf5b05f3aed4bbb6d9fe92292d52f5cb29b7aa3d96a88251f065e8a1e2",
+      "filename": "A2.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "605e9a2634ea1addb460c9dc10d08dd7da22cdf216d0c7e5ba4eea09a4ac04c6",
+      "filename": "B2.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "8c764ad475786f6ef5dd91c84beeb997afc0fd0029c9003bc8740b4a57d918f4",
+      "filename": "C1.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "43347f231cd49b5f0ce8b0b8db6a8e956ab5cb9e33191047862a13c000d0876b",
+      "filename": "C2.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "3569f914a5083395d075367186501167c420283974aa406516ea3d828cb66851",
+      "filename": "D1.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "be5082e42a1cff8b957f3ebfa59cdad64f3f7760b38fefe31cd0a1bcd851f194",
+      "filename": "D2.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "91ae628325fa09e67c5ca8cb604c2db82d3c5334a5bb443a970b79ed8a5d8168",
+      "filename": "H1.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "fa705e924ea375066ba2d64ccf367fc6843d0eb12c5fd7b49393eee66ee4c3a5",
+      "filename": "H2.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "2793fece57a5febfdbf445e6f1a0129240b9199adb636c964264e3b382e75999",
+      "filename": "H3.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    },
+    {
+      "pdf_sha": "34992c5f2202202410e3b5fcdfc182611e37f8dfec860f5e9ddc0be76f31e85a",
+      "filename": "H4.pdf",
+      "verdict": "FAIL",
+      "rules": [
+        "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
+        "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+        "ALFA_GLYPH_SLOT_TRANSPLANT",
+        "ALFA_NEW_FONTFILE2_SHA",
+        "ALFA_OPERATION_IDENTITY_CONFLICT",
+        "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+        "ALFA_TEXT_LAYER_INCONSISTENT",
+        "ALFA_TEXT_RENDER_PARITY_MISMATCH"
+      ]
+    }
+  ]
+}

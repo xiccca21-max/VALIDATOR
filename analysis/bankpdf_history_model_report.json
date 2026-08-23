@@ -1,0 +1,703 @@
+{
+  "all_usable_submissions": 249,
+  "excluded_cached_reuse_passes": 8,
+  "usable_submissions": 241,
+  "passes": 42,
+  "fails": 199,
+  "all_fail_baseline": {
+    "accuracy": 0.8257261410788381,
+    "balanced_accuracy": 0.5,
+    "average_precision": 0.17427385892116182
+  },
+  "static_features_grouped_cv": {
+    "accuracy": 0.6224066390041494,
+    "balanced_accuracy": 0.49898301028954295,
+    "roc_auc": 0.47224216319693707,
+    "average_precision": 0.16669493649033917,
+    "pass_precision": 0.17333333333333334,
+    "pass_recall": 0.30952380952380953,
+    "pass_f1": 0.2222222222222222,
+    "confusion_matrix": [
+      [
+        137,
+        62
+      ],
+      [
+        29,
+        13
+      ]
+    ],
+    "folds": [
+      {
+        "accuracy": 0.5869565217391305,
+        "balanced_accuracy": 0.40476190476190477,
+        "roc_auc": 0.30036630036630035,
+        "average_precision": 0.12260423248795342,
+        "pass_precision": 0.07142857142857142,
+        "pass_recall": 0.14285714285714285,
+        "pass_f1": 0.09523809523809523,
+        "confusion_matrix": [
+          [
+            26,
+            13
+          ],
+          [
+            6,
+            1
+          ]
+        ],
+        "test_size": 46,
+        "test_passes": 7
+      },
+      {
+        "accuracy": 0.7446808510638298,
+        "balanced_accuracy": 0.747093023255814,
+        "roc_auc": 0.7151162790697675,
+        "average_precision": 0.2201923076923077,
+        "pass_precision": 0.21428571428571427,
+        "pass_recall": 0.75,
+        "pass_f1": 0.3333333333333333,
+        "confusion_matrix": [
+          [
+            32,
+            11
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "test_size": 47,
+        "test_passes": 4
+      },
+      {
+        "accuracy": 0.6122448979591837,
+        "balanced_accuracy": 0.5041666666666667,
+        "roc_auc": 0.5333333333333333,
+        "average_precision": 0.2264231497564831,
+        "pass_precision": 0.1875,
+        "pass_recall": 0.3333333333333333,
+        "pass_f1": 0.24,
+        "confusion_matrix": [
+          [
+            27,
+            13
+          ],
+          [
+            6,
+            3
+          ]
+        ],
+        "test_size": 49,
+        "test_passes": 9
+      },
+      {
+        "accuracy": 0.5714285714285714,
+        "balanced_accuracy": 0.49760765550239233,
+        "roc_auc": 0.5502392344497608,
+        "average_precision": 0.272146095290956,
+        "pass_precision": 0.2222222222222222,
+        "pass_recall": 0.36363636363636365,
+        "pass_f1": 0.27586206896551724,
+        "confusion_matrix": [
+          [
+            24,
+            14
+          ],
+          [
+            7,
+            4
+          ]
+        ],
+        "test_size": 49,
+        "test_passes": 11
+      },
+      {
+        "accuracy": 0.6,
+        "balanced_accuracy": 0.44988344988344986,
+        "roc_auc": 0.4079254079254079,
+        "average_precision": 0.20458681668482093,
+        "pass_precision": 0.15384615384615385,
+        "pass_recall": 0.18181818181818182,
+        "pass_f1": 0.16666666666666666,
+        "confusion_matrix": [
+          [
+            28,
+            11
+          ],
+          [
+            9,
+            2
+          ]
+        ],
+        "test_size": 50,
+        "test_passes": 11
+      }
+    ]
+  },
+  "static_plus_history_grouped_cv": {
+    "accuracy": 0.6307053941908713,
+    "balanced_accuracy": 0.5134003350083752,
+    "roc_auc": 0.5244077530509691,
+    "average_precision": 0.1880862622042364,
+    "pass_precision": 0.18666666666666668,
+    "pass_recall": 0.3333333333333333,
+    "pass_f1": 0.23931623931623933,
+    "confusion_matrix": [
+      [
+        138,
+        61
+      ],
+      [
+        28,
+        14
+      ]
+    ],
+    "folds": [
+      {
+        "accuracy": 0.5869565217391305,
+        "balanced_accuracy": 0.40476190476190477,
+        "roc_auc": 0.36996336996337,
+        "average_precision": 0.14082655826558266,
+        "pass_precision": 0.07142857142857142,
+        "pass_recall": 0.14285714285714285,
+        "pass_f1": 0.09523809523809523,
+        "confusion_matrix": [
+          [
+            26,
+            13
+          ],
+          [
+            6,
+            1
+          ]
+        ],
+        "test_size": 46,
+        "test_passes": 7
+      },
+      {
+        "accuracy": 0.7021276595744681,
+        "balanced_accuracy": 0.8372093023255813,
+        "roc_auc": 0.7790697674418605,
+        "average_precision": 0.20036630036630035,
+        "pass_precision": 0.2222222222222222,
+        "pass_recall": 1.0,
+        "pass_f1": 0.36363636363636365,
+        "confusion_matrix": [
+          [
+            29,
+            14
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "test_size": 47,
+        "test_passes": 4
+      },
+      {
+        "accuracy": 0.6122448979591837,
+        "balanced_accuracy": 0.4611111111111111,
+        "roc_auc": 0.5027777777777778,
+        "average_precision": 0.28489026139888207,
+        "pass_precision": 0.14285714285714285,
+        "pass_recall": 0.2222222222222222,
+        "pass_f1": 0.17391304347826086,
+        "confusion_matrix": [
+          [
+            28,
+            12
+          ],
+          [
+            7,
+            2
+          ]
+        ],
+        "test_size": 49,
+        "test_passes": 9
+      },
+      {
+        "accuracy": 0.673469387755102,
+        "balanced_accuracy": 0.5956937799043062,
+        "roc_auc": 0.5933014354066986,
+        "average_precision": 0.31879856796019224,
+        "pass_precision": 0.3333333333333333,
+        "pass_recall": 0.45454545454545453,
+        "pass_f1": 0.38461538461538464,
+        "confusion_matrix": [
+          [
+            28,
+            10
+          ],
+          [
+            6,
+            5
+          ]
+        ],
+        "test_size": 49,
+        "test_passes": 11
+      },
+      {
+        "accuracy": 0.58,
+        "balanced_accuracy": 0.4370629370629371,
+        "roc_auc": 0.5151515151515151,
+        "average_precision": 0.23835861839361638,
+        "pass_precision": 0.14285714285714285,
+        "pass_recall": 0.18181818181818182,
+        "pass_f1": 0.16,
+        "confusion_matrix": [
+          [
+            27,
+            12
+          ],
+          [
+            9,
+            2
+          ]
+        ],
+        "test_size": 50,
+        "test_passes": 11
+      }
+    ]
+  },
+  "static_features_temporal_test": {
+    "accuracy": 0.3561643835616438,
+    "balanced_accuracy": 0.5373263888888888,
+    "roc_auc": 0.4409722222222222,
+    "average_precision": 0.11358677230770253,
+    "pass_precision": 0.1346153846153846,
+    "pass_recall": 0.7777777777777778,
+    "pass_f1": 0.22950819672131148,
+    "confusion_matrix": [
+      [
+        19,
+        45
+      ],
+      [
+        2,
+        7
+      ]
+    ],
+    "train_size": 168,
+    "train_passes": 33,
+    "test_size": 73,
+    "test_passes": 9,
+    "split_at": "2026-08-14T13:55:44+00:00"
+  },
+  "static_plus_history_temporal_test": {
+    "accuracy": 0.5205479452054794,
+    "balanced_accuracy": 0.5833333333333333,
+    "roc_auc": 0.5694444444444444,
+    "average_precision": 0.15479906514924247,
+    "pass_precision": 0.15789473684210525,
+    "pass_recall": 0.6666666666666666,
+    "pass_f1": 0.2553191489361702,
+    "confusion_matrix": [
+      [
+        32,
+        32
+      ],
+      [
+        3,
+        6
+      ]
+    ],
+    "train_size": 168,
+    "train_passes": 33,
+    "test_size": 73,
+    "test_passes": 9,
+    "split_at": "2026-08-14T13:55:44+00:00"
+  },
+  "pass_rate_by_previous_verdict": [
+    {
+      "value": "FAIL",
+      "total": 196,
+      "passes": 34,
+      "fails": 162,
+      "pass_rate": 0.17346938775510204
+    },
+    {
+      "value": "PASS",
+      "total": 44,
+      "passes": 8,
+      "fails": 36,
+      "pass_rate": 0.18181818181818182
+    },
+    {
+      "value": "",
+      "total": 1,
+      "passes": 0,
+      "fails": 1,
+      "pass_rate": 0.0
+    }
+  ],
+  "pass_rate_by_prior_same_pdf_count": [
+    {
+      "value": "",
+      "total": 234,
+      "passes": 38,
+      "fails": 196,
+      "pass_rate": 0.1623931623931624
+    },
+    {
+      "value": "1",
+      "total": 4,
+      "passes": 2,
+      "fails": 2,
+      "pass_rate": 0.5
+    },
+    {
+      "value": "2",
+      "total": 2,
+      "passes": 2,
+      "fails": 0,
+      "pass_rate": 1.0
+    },
+    {
+      "value": "4",
+      "total": 1,
+      "passes": 0,
+      "fails": 1,
+      "pass_rate": 0.0
+    }
+  ],
+  "pass_rate_by_prior_same_font_count": [
+    {
+      "value": "",
+      "total": 188,
+      "passes": 31,
+      "fails": 157,
+      "pass_rate": 0.16489361702127658
+    },
+    {
+      "value": "1",
+      "total": 22,
+      "passes": 5,
+      "fails": 17,
+      "pass_rate": 0.22727272727272727
+    },
+    {
+      "value": "2",
+      "total": 12,
+      "passes": 1,
+      "fails": 11,
+      "pass_rate": 0.08333333333333333
+    },
+    {
+      "value": "4",
+      "total": 4,
+      "passes": 1,
+      "fails": 3,
+      "pass_rate": 0.25
+    },
+    {
+      "value": "3",
+      "total": 3,
+      "passes": 1,
+      "fails": 2,
+      "pass_rate": 0.3333333333333333
+    },
+    {
+      "value": "5",
+      "total": 2,
+      "passes": 0,
+      "fails": 2,
+      "pass_rate": 0.0
+    },
+    {
+      "value": "6",
+      "total": 2,
+      "passes": 0,
+      "fails": 2,
+      "pass_rate": 0.0
+    },
+    {
+      "value": "7",
+      "total": 2,
+      "passes": 2,
+      "fails": 0,
+      "pass_rate": 1.0
+    },
+    {
+      "value": "10",
+      "total": 1,
+      "passes": 1,
+      "fails": 0,
+      "pass_rate": 1.0
+    },
+    {
+      "value": "11",
+      "total": 1,
+      "passes": 0,
+      "fails": 1,
+      "pass_rate": 0.0
+    },
+    {
+      "value": "12",
+      "total": 1,
+      "passes": 0,
+      "fails": 1,
+      "pass_rate": 0.0
+    },
+    {
+      "value": "13",
+      "total": 1,
+      "passes": 0,
+      "fails": 1,
+      "pass_rate": 0.0
+    },
+    {
+      "value": "8",
+      "total": 1,
+      "passes": 0,
+      "fails": 1,
+      "pass_rate": 0.0
+    },
+    {
+      "value": "9",
+      "total": 1,
+      "passes": 0,
+      "fails": 1,
+      "pass_rate": 0.0
+    }
+  ],
+  "pass_rate_by_bank": [
+    {
+      "value": "Т-Банк",
+      "total": 79,
+      "passes": 14,
+      "fails": 65,
+      "pass_rate": 0.17721518987341772
+    },
+    {
+      "value": "Озон Банк",
+      "total": 39,
+      "passes": 5,
+      "fails": 34,
+      "pass_rate": 0.1282051282051282
+    },
+    {
+      "value": "Сбербанк",
+      "total": 36,
+      "passes": 8,
+      "fails": 28,
+      "pass_rate": 0.2222222222222222
+    },
+    {
+      "value": "ВТБ",
+      "total": 32,
+      "passes": 8,
+      "fails": 24,
+      "pass_rate": 0.25
+    },
+    {
+      "value": "Озон Банк (Ozon)",
+      "total": 22,
+      "passes": 2,
+      "fails": 20,
+      "pass_rate": 0.09090909090909091
+    },
+    {
+      "value": "Газпромбанк",
+      "total": 8,
+      "passes": 1,
+      "fails": 7,
+      "pass_rate": 0.125
+    },
+    {
+      "value": "ПСБ",
+      "total": 6,
+      "passes": 2,
+      "fails": 4,
+      "pass_rate": 0.3333333333333333
+    },
+    {
+      "value": "Россельхозбанк",
+      "total": 6,
+      "passes": 2,
+      "fails": 4,
+      "pass_rate": 0.3333333333333333
+    },
+    {
+      "value": "",
+      "total": 3,
+      "passes": 0,
+      "fails": 3,
+      "pass_rate": 0.0
+    },
+    {
+      "value": "Точка Ба",
+      "total": 3,
+      "passes": 0,
+      "fails": 3,
+      "pass_rate": 0.0
+    },
+    {
+      "value": "Банк ВТБ",
+      "total": 2,
+      "passes": 0,
+      "fails": 2,
+      "pass_rate": 0.0
+    },
+    {
+      "value": "Точка Банк",
+      "total": 2,
+      "passes": 0,
+      "fails": 2,
+      "pass_rate": 0.0
+    },
+    {
+      "value": "АкБарс Банк",
+      "total": 1,
+      "passes": 0,
+      "fails": 1,
+      "pass_rate": 0.0
+    },
+    {
+      "value": "Райффайзен Банк",
+      "total": 1,
+      "passes": 0,
+      "fails": 1,
+      "pass_rate": 0.0
+    },
+    {
+      "value": "Совкомбанк",
+      "total": 1,
+      "passes": 0,
+      "fails": 1,
+      "pass_rate": 0.0
+    }
+  ],
+  "gap_bins": [
+    {
+      "range": "(-inf,10]",
+      "total": 51,
+      "passes": 10,
+      "pass_rate": 0.19607843137254902
+    },
+    {
+      "range": "(10,20]",
+      "total": 8,
+      "passes": 3,
+      "pass_rate": 0.375
+    },
+    {
+      "range": "(20,30]",
+      "total": 25,
+      "passes": 5,
+      "pass_rate": 0.2
+    },
+    {
+      "range": "(30,60]",
+      "total": 31,
+      "passes": 5,
+      "pass_rate": 0.16129032258064516
+    },
+    {
+      "range": "(60,300]",
+      "total": 57,
+      "passes": 7,
+      "pass_rate": 0.12280701754385964
+    },
+    {
+      "range": "(300,1800]",
+      "total": 52,
+      "passes": 10,
+      "pass_rate": 0.19230769230769232
+    },
+    {
+      "range": "(1800,inf]",
+      "total": 16,
+      "passes": 2,
+      "pass_rate": 0.125
+    }
+  ],
+  "sbp_lag_bins": [
+    {
+      "range": "(-inf,0]",
+      "total": 1,
+      "passes": 0,
+      "pass_rate": 0.0
+    },
+    {
+      "range": "(0,15]",
+      "total": 25,
+      "passes": 5,
+      "pass_rate": 0.2
+    },
+    {
+      "range": "(15,30]",
+      "total": 21,
+      "passes": 1,
+      "pass_rate": 0.047619047619047616
+    },
+    {
+      "range": "(30,60]",
+      "total": 70,
+      "passes": 9,
+      "pass_rate": 0.12857142857142856
+    },
+    {
+      "range": "(60,120]",
+      "total": 107,
+      "passes": 20,
+      "pass_rate": 0.18691588785046728
+    },
+    {
+      "range": "(120,300]",
+      "total": 3,
+      "passes": 2,
+      "pass_rate": 0.6666666666666666
+    },
+    {
+      "range": "(3600,inf]",
+      "total": 10,
+      "passes": 5,
+      "pass_rate": 0.5
+    }
+  ],
+  "duplicate_pdf_sequences": [
+    {
+      "pdf_sha": "af18ad14fa369fd52c1e1dc4cedbcf600c4a5c5d4e3829cfbf452442014cec4b",
+      "submissions": 3,
+      "sequence": "PPP",
+      "filenames": [
+        "five_01.pdf",
+        "five_01.pdf",
+        "five_01.pdf"
+      ],
+      "times": [
+        "2026-08-13T11:17:48+00:00",
+        "2026-08-13T11:46:40+00:00",
+        "2026-08-13T12:55:22+00:00"
+      ]
+    },
+    {
+      "pdf_sha": "531ee0b467ec9ab4296b38ee6b53a5bd4882e23002b5d1b31a201f032e27d9a6",
+      "submissions": 2,
+      "sequence": "PF",
+      "filenames": [
+        "B1.pdf",
+        "B1_control.pdf"
+      ],
+      "times": [
+        "2026-08-14T19:52:23+00:00",
+        "2026-08-14T20:08:14+00:00"
+      ]
+    },
+    {
+      "pdf_sha": "b2d68986df18668447c18e727b0f15e7d52724d69fae5dd7298e6ff8deb4167e",
+      "submissions": 2,
+      "sequence": "PP",
+      "filenames": [
+        "_bankpdf_zapas_02.pdf",
+        "_bankpdf_zapas_02.pdf"
+      ],
+      "times": [
+        "2026-08-13T09:43:49+00:00",
+        "2026-08-13T10:22:58+00:00"
+      ]
+    }
+  ]
+}

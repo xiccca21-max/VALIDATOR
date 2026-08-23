@@ -21,6 +21,7 @@ from .content import check_content
 from .file_size import check_file_size
 from .fonts import check_fonts
 from .identity import extract_and_check_identity
+from .known_signatures import KNOWN_FAKE_FILE_SHA256
 from .profile_semantics import (
     EmitterEvidence,
     classify_submethod,
@@ -195,6 +196,15 @@ def run_pipeline(pdf_bytes: bytes, file_hash: str) -> PipelineResult:
     ):
         result.not_alfa_receipt = True
         return result
+    if file_hash.lower() in KNOWN_FAKE_FILE_SHA256:
+        ingest_flag(
+            result,
+            _flag(
+                "ALFA_KNOWN_FAKE_SIGNATURE",
+                "SHA-256 совпал с подтверждённой подделкой Alfa Quartz/iOS",
+                tier="KNOWN",
+            ),
+        )
 
     evidence = _emitter_evidence(pdf_bytes, metadata)
     method = classify_submethod(text)
@@ -343,9 +353,39 @@ def run_pipeline(pdf_bytes: bytes, file_hash: str) -> PipelineResult:
         file_hash=file_hash,
     )
     result.stats["new_sbp_profile"] = new_sbp.stats
-    # Unknown bank5/suffix is observational only — never forces MANUAL/UNKNOWN.
+    # Unknown core/tail is observational only — never forces MANUAL/UNKNOWN.
     for flag in new_sbp.flags:
         ingest_flag(result, flag)
+
+    quartz_composite_novelty = (
+        result.generator_path == "quartz_ios"
+        and bool(new_sbp.stats.get("new_sbp_profile"))
+        and any(
+            flag.code == "ALFA_CONTENT_DECODED_EXACT_UNKNOWN"
+            for flag in content.flags
+        )
+        and any(
+            flag.code == "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN"
+            for flag in fonts.flags
+        )
+        and bool(
+            fs.stats.get("file_size", 0) < fs.stats.get("size_atlas", {}).get("min", 0)
+            or fs.stats.get("file_size", 0) > fs.stats.get("size_atlas", {}).get("max", 0)
+        )
+    )
+    if quartz_composite_novelty:
+        ingest_flag(
+            result,
+            _flag(
+                "ALFA_QUARTZ_UNCONFIRMED_COMPOSITE_PROFILE",
+                (
+                    "неподтверждённый Quartz/iOS профиль одновременно вне "
+                    "корпуса по размеру PDF, content stream, FontFile2 и SBP core/tail"
+                ),
+                tier="MANUAL",
+                group="quartz_composite_profile",
+            ),
+        )
 
     result.stats["content_decoded_length"] = len(content_stream_bytes(pdf_bytes) or b"")
     result.completed_checks.append("complete")

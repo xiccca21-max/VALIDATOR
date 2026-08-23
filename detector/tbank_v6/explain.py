@@ -308,8 +308,9 @@ _WHY_NOT_VARIABILITY: dict[str, str] = {
         "след SEQ text-object. Обход: один stroke-блок как у банка"
     ),
     "TBANK_KEYWORDS_GENERATION_MISMATCH": (
-        "у нативных Jasper IB/Receipt /Keywords third token всегда «991»; "
-        "«DOCS-2035» — чужой SEQ/serializer generation marker (0 в корпусе оригиналов)"
+        "у Jasper IB/Receipt /Keywords third token привязан и к дате PDF, "
+        "и к напечатанной дате операции: до 10.07.2026 «991», с 10.07.2026 "
+        "«DOCS-2035»; смешанная пара (в т.ч. лицо до 10.07 + DOCS-2035) — подделка"
     ),
     "TBANK_INFO_KEYWORDS_LEX_MISMATCH": (
         "Jasper/OpenPDF сериализует /Keywords( без пробела перед «(»; "
@@ -359,6 +360,11 @@ _WHY_NOT_VARIABILITY: dict[str, str] = {
     "SBP_LINKED_TUPLE_CROSS_CLASS": (
         "блок route_marker+control+slot+suffix взят из другого class/bank5 профиля "
         "(например B1-связка на G1-ID) — типичный splice grammar при подделке"
+    ),
+    "TBANK_SBP_TUPLE_GLYF_RESIDUE_SIGNATURE": (
+        "для связки SBP-ID 1|6|0|G1|004|00117|770901 встраивается характерный "
+        "FontFile2 glyf-residue след (too much glyph data), отсутствующий в "
+        "проверенных оригиналах корпуса"
     ),
     "SBP_TBANK_BANK5_MISMATCH": (
         "bank5 вне исторического набора Т-Банка 00116/00117 — tier B "
@@ -533,6 +539,7 @@ _OBJECT_HINT: dict[str, str] = {
     "SBP_CONTROL_TRIPLE_MISMATCH": "Field: СБП ID (control link)",
     "SBP_LINKED_TUPLE_CONFLICT": "Field: СБП ID (full linked tuple)",
     "SBP_LINKED_TUPLE_CROSS_CLASS": "Field: СБП ID (cross-class grammar splice)",
+    "TBANK_SBP_TUPLE_GLYF_RESIDUE_SIGNATURE": "Field+Font: SBP tuple + FontFile2 glyf residue",
     "SBP_TBANK_BANK5_MISMATCH": "Field: СБП ID (issuer bank5)",
     "TBANK_DEBIT_ACCOUNT_PREFIX": "Field: Счет списания (account prefix)",
     "KNOWN_FAKE_SBP_GRAMMAR_COMBINATION": "Field: СБП ID (route_marker+grammar)",
