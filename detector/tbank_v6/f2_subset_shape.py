@@ -2,10 +2,10 @@
 """F2 (TinkoffSans-Medium) glyf length checks.
 
 1) Height×glyf exact whitelist — diagnostic/IGNORE only (novelty atlas).
-2) F1 nonempty-hmtx → F2 glyf co-generation — HARD. Jasper emits Regular and
-   Medium together; a known F1 metric kit paired with a foreign Medium glyf
-   length is SEQ transplant (e.g. 190154: hmtx twin expects F2=866, got 1008).
-   Unknown F1 kits do not fire → future genuines safe.
+2) F1 nonempty-hmtx → F2 glyf co-generation — IGNORE. Known F1 kits pair with
+   new genuine Medium lengths (Receipt 15: hmtx 23b7d7… expected 856, got 1044).
+3) Height-451 midgap — HARD only when the F2.glyf length is also absent from
+   the global genuine union (SEQ phone 1130; 1144 is native Medium elsewhere).
 """
 
 from __future__ import annotations
@@ -32,7 +32,7 @@ _F2_GLYF_EXACT_BY_HEIGHT: dict[int, tuple[frozenset[int], int]] = {
         866, 904, 974, 992, 1012, 1096, 1144, 1214, 1226, 1228, 1242, 1248,
         1260, 1264, 1282, 1322, 1506, 1530, 1680,
     }), 40),
-    451: (frozenset({866, 992, 1008, 1096, 1106, 1226, 1232}), 12),
+    451: (frozenset({866, 992, 1008, 1096, 1106, 1144, 1226, 1232}), 12),
     471: (frozenset({856, 992, 1094, 1096, 1232, 1720, 1932}), 8),
     519: (frozenset({
         812, 822, 856, 904, 934, 954, 988, 992, 1008, 1012, 1046, 1062, 1094,
@@ -42,6 +42,13 @@ _F2_GLYF_EXACT_BY_HEIGHT: dict[int, tuple[frozenset[int], int]] = {
     539: (frozenset({904, 954, 974, 1062, 1144, 1232}), 8),
 }
 _MIN_ATLAS = 8
+
+# F2.glyf lengths seen on any genuine OpenPDF height. Height-451 "holes"
+# between sampled sizes are not empty: 1144 is native Medium at 431/519/539
+# (Receipt 11). SEQ phone 1130 is not in this union.
+_F2_GLYF_ANY_HEIGHT: frozenset[int] = frozenset(
+    size for sizes, _n in _F2_GLYF_EXACT_BY_HEIGHT.values() for size in sizes
+)
 
 
 @dataclass
@@ -159,12 +166,33 @@ def check_f2_subset_shape(pdf_bytes: bytes) -> CheckResult:
                     f"F1 nonempty-hmtx sha16={hmtx_sha} в корпусе парный с "
                     f"F2.glyf∈{sorted(allowed_f2)}, получено F2.glyf={glyf} — "
                     f"Medium subset с чужого kit при том же Regular metric "
-                    f"fingerprint (SEQ F1/F2 co-generation break)"
+                    f"fingerprint (SEQ F1/F2 co-generation break) "
+                    f"(IGNORED: known F1 kit can pair with a new genuine Medium)"
                 ),
-                tier="A",
+                tier="IGNORE",
                 group="B5_font_rebuilder",
                 rule_id="TBANK_F1_HMTX_F2_GLYF_COGEN_MISMATCH",
             ))
+
+    # Height 451 sampled F2.glyf skipped 1106→1226, but 1144 is a native
+    # Medium size on other heights. Only HARD if the length is also absent
+    # from the global genuine union (SEQ phone 1130; not Receipt 11 / 1144).
+    if (
+        height == 451
+        and glyf is not None
+        and 1106 < glyf < 1226
+        and glyf not in _F2_GLYF_ANY_HEIGHT
+    ):
+        out.flags.append(V6Flag(
+            code="TBANK_F2_GLYF_HEIGHT_MIDGAP",
+            detail=(
+                f"F2 glyf={glyf} B — в зазоре height=451 между Medium 1106 и "
+                f"1226 и нет ни на одном genuine height (SEQ phone 1130)"
+            ),
+            tier="A",
+            group="B5_font_rebuilder",
+            rule_id="TBANK_F2_GLYF_HEIGHT_MIDGAP",
+        ))
 
     # --- Height exact whitelist (IGNORE / novelty) ---
     if height is None:

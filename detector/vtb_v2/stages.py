@@ -13,7 +13,11 @@ from ..structure import (
     validate_pdf_structure,
     xref_integrity,
 )
+from ..nbsp_padding import CODE as NBSP_CODE
+from ..nbsp_padding import find_trailing_nbsp_padding, padding_detail
 from ..vtb_profiles import detect_generator_path
+from .account_sbp import check_account_sbp_profile
+from .field_binding import check_field_value_binding
 from .sbp import extract_sbp_opid, validate_sbp_id
 from .shell_profile import check_sbp_shell_profile
 from .signatures import check_known_signatures
@@ -26,6 +30,7 @@ from .subtypes import (
 )
 from .types import PipelineResult, VtbFlag
 from .verdict import ingest_flag
+from .rules import SUBTYPE_SBP, SUBTYPE_SBP_ACCOUNT
 
 _MAX_BYTES = 8_000_000
 _DIAG_STRUCTURE = frozenset({
@@ -50,16 +55,16 @@ def _pdf_text(pdf_bytes: bytes) -> str:
         return ""
 
 
-def _pdf_metadata(pdf_bytes: bytes) -> tuple[str, str]:
+def _pdf_metadata(pdf_bytes: bytes) -> tuple[str, str, str]:
     if not fitz:
-        return "", ""
+        return "", "", ""
     try:
         doc = fitz.open(stream=pdf_bytes, filetype="pdf")
         m = doc.metadata or {}
         doc.close()
-        return m.get("producer") or "", m.get("creator") or ""
+        return m.get("producer") or "", m.get("creator") or "", m.get("creationDate") or ""
     except Exception:
-        return "", ""
+        return "", "", ""
 
 
 def _ingest(result: PipelineResult, flags: list[VtbFlag]) -> None:
@@ -85,10 +90,11 @@ def run_pipeline(pdf_bytes: bytes, file_hash: str) -> PipelineResult:
             return result
 
         text = _pdf_text(pdf_bytes)
-        producer, creator = _pdf_metadata(pdf_bytes)
+        producer, creator, creation_date = _pdf_metadata(pdf_bytes)
         result.generator_path = detect_generator_path(producer, creator)
         result.stats["producer"] = producer
         result.stats["creator"] = creator
+        result.stats["creation_date"] = creation_date
         result.stats["text_len"] = len(text or "")
 
         # Routing before scoring
@@ -154,13 +160,26 @@ def run_pipeline(pdf_bytes: bytes, file_hash: str) -> PipelineResult:
             text, subtype=subtype, profile_version=result.profile_version,
         ))
         _ingest(result, check_required_fields_diagnostic(text, subtype))
+        _ingest(result, check_field_value_binding(text))
+        nbsp_hits = find_trailing_nbsp_padding(text)
+        if nbsp_hits:
+            ingest_flag(result, VtbFlag(
+                NBSP_CODE, padding_detail(nbsp_hits),
+                tier="HARD", group="fields", rule_id=NBSP_CODE,
+            ))
 
         # SBP parser + known linked/tail
         sbp_known = False
-        if subtype == "vtb_sbp_outgoing" or extract_sbp_opid(text):
+        if subtype in {SUBTYPE_SBP, SUBTYPE_SBP_ACCOUNT} or extract_sbp_opid(text):
             result.completed_checks.append("sbp_id")
             opid = extract_sbp_opid(text)
-            sbp = validate_sbp_id(opid, text)
+            op_dt = None
+            if subtype == SUBTYPE_SBP_ACCOUNT and creation_date:
+                from ..bank_spec_engine import _pdf_creation_as_msk
+                op_dt = _pdf_creation_as_msk(creation_date)
+            sbp = validate_sbp_id(
+                opid, text, subtype=subtype, operation_dt=op_dt,
+            )
             result.stats["sbp"] = sbp.stats
             sbp_known = sbp.known_fake_hit
             _ingest(result, sbp.flags)
@@ -186,11 +205,24 @@ def run_pipeline(pdf_bytes: bytes, file_hash: str) -> PipelineResult:
         result.stats["shell_profile"] = shell.stats
         _ingest(result, shell.flags)
 
-        # openhtmltopdf producer alone is never HARD
+        result.completed_checks.append("account_sbp")
+        account = check_account_sbp_profile(
+            pdf_bytes, text, producer=producer, subtype=subtype,
+        )
+        result.stats["account_sbp"] = account.stats
+        _ingest(result, account.flags)
+
+        # Native generator path is diagnostic only.
         if "openhtmltopdf" in (producer or "").lower():
             ingest_flag(result, VtbFlag(
                 "VTB_GENERATOR_PATH",
                 "Producer openhtmltopdf.com — штатный путь ВТБ",
+                tier="DIAGNOSTIC",
+            ))
+        elif (producer or "").lower().startswith("openpdf 2."):
+            ingest_flag(result, VtbFlag(
+                "VTB_GENERATOR_PATH",
+                "Producer OpenPDF 2.x — штатный путь СБП на счёт ВТБ",
                 tier="DIAGNOSTIC",
             ))
 

@@ -8,6 +8,7 @@ from datetime import datetime
 
 BANK_KEYS = (
     "wbbank", "otp", "psb", "bchpb", "raif", "rocket", "sovkom", "uralsib", "yandex",
+    "mts", "yoomoney", "rsbank", "tochka",
 )
 
 SPEC_IDS = {
@@ -20,6 +21,10 @@ SPEC_IDS = {
     "sovkom": "SOVCOMBANK",
     "uralsib": "URALSIB",
     "yandex": "YANDEX_BANK",
+    "mts": "MTS_DENGI",
+    "yoomoney": "YOOMONEY",
+    "rsbank": "RUSSIAN_STANDARD",
+    "tochka": "TOCHKA",
 }
 
 _DATE_RE = re.compile(
@@ -39,6 +44,15 @@ _DATE_RE_RU = re.compile(
     r"(января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря)\s+"
     r"(\d{4})\s+года(?:\s+в)?\s+(\d{1,2}):(\d{2})",
     re.IGNORECASE,
+)
+_DATE_RE_RU_BARE = re.compile(
+    r"(\d{1,2})\s+"
+    r"(января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря)\s+"
+    r"(\d{4})\s+(\d{1,2}):(\d{2})(?::(\d{2}))?",
+    re.IGNORECASE,
+)
+_DATE_RE_DMY_HM = re.compile(
+    r"(\d{2})\.(\d{2})\.(\d{4})\s+(\d{2}):(\d{2})(?::(\d{2}))?",
 )
 _SBP_ID_RE = re.compile(r"^[A-Z0-9]{32}$")
 _AMOUNT_RE = re.compile(
@@ -68,6 +82,10 @@ BANK_CONTRACTS: dict[str, BankContract] = {
     "sovkom": BankContract("sovkom", "SOVCOMBANK", "Совкомбанк", False, -120, 120),
     "uralsib": BankContract("uralsib", "URALSIB", "Уралсиб", True, 0, 60),
     "yandex": BankContract("yandex", "YANDEX_BANK", "Яндекс Банк", True, 0, 60),
+    "mts": BankContract("mts", "MTS_DENGI", "МТС Деньги", True, -120, 120),
+    "yoomoney": BankContract("yoomoney", "YOOMONEY", "ЮMoney", False, -120, 120),
+    "rsbank": BankContract("rsbank", "RUSSIAN_STANDARD", "Русский Стандарт", True, -120, 120),
+    "tochka": BankContract("tochka", "TOCHKA", "Точка Банк", True, -120, 120),
 }
 
 
@@ -96,6 +114,27 @@ def detect_issuer(text: str, producer: str, creator: str, pdf_bytes: bytes) -> s
     pr = (producer or "").lower()
     cr = (creator or "").lower()
     blob = f"{pr} {cr}"
+
+    if cr.strip() == "dbo-print-forms" or (
+        "код транзакции" in low and "код операции сбп" in low
+    ):
+        return "mts"
+
+    if "номер кошелька" in low or b"FactorIO-Regular" in (pdf_bytes or b""):
+        return "yoomoney"
+
+    if (
+        "банк в кармане" in low
+        or ("044525151" in (text or "").replace(" ", "") and "чек операции" in low)
+    ):
+        return "rsbank"
+
+    if (
+        "банк точка" in low
+        or b"TTNormsTochka" in (pdf_bytes or b"")
+        or ("044525104" in (text or "").replace(" ", "") and "исходящий перевод через сбп" in low)
+    ):
+        return "tochka"
 
     if "вб банк" in low and ("jasperreports library version 7" in cr or "openpdf" in pr):
         return "wbbank"
@@ -169,6 +208,8 @@ def detect_issuer(text: str, producer: str, creator: str, pdf_bytes: bytes) -> s
 
 def classify_method(text: str, bank_key: str) -> str:
     low = _norm(text)
+    if bank_key == "yoomoney":
+        return "CARD_TRANSFER"
     if bank_key == "sovkom" or "по номеру карты" in low:
         return "CARD_TRANSFER"
     if "перевод по номеру телефона" in low or "рублевый перевод по номеру телефона" in low:
@@ -192,6 +233,27 @@ def method_label(code: str) -> str:
 
 def parse_operation_datetime(text: str, bank_key: str = "") -> datetime | None:
     raw = (text or "").replace("\xa0", " ").replace("\u202f", " ")
+    if bank_key == "tochka":
+        m = _DATE_RE_RU_BARE.search(raw)
+        if m:
+            d = int(m.group(1))
+            mo = _RU_MONTHS[m.group(2).lower()]
+            y, h, mi = int(m.group(3)), int(m.group(4)), int(m.group(5))
+            sec = int(m.group(6) or 0)
+            try:
+                return datetime(y, mo, d, h, mi, sec)
+            except ValueError:
+                pass
+    if bank_key in ("mts", "rsbank", "yoomoney"):
+        m = _DATE_RE.search(raw) or _DATE_RE2.search(raw) or _DATE_RE_DMY_HM.search(raw)
+        if m:
+            g = m.groups()
+            d, mo, y, h, mi = map(int, g[:5])
+            sec = int(g[5]) if len(g) > 5 and g[5] else 0
+            try:
+                return datetime(y, mo, d, h, mi, sec)
+            except ValueError:
+                pass
     if bank_key == "yandex":
         m = re.search(
             r"дата и время операции мск\s*(\d{2})\.(\d{2})\.(\d{4})\s+в\s+(\d{2}):(\d{2})",
@@ -269,8 +331,8 @@ def extract_sbp_opid(text: str) -> str | None:
     low = compact.lower()
     for marker in (
         "номероперациивсбп", "идентификатороперациивсбп",
-        "idоперациисбп", "идентификатороперации",
-        "номероперации",
+        "idоперациисбп", "кодоперациисбп", "идентификатороперации",
+        "номероперации", "кодоперации",
     ):
         idx = low.find(marker)
         if idx >= 0:

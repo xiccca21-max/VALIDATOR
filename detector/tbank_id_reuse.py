@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import re
 import sqlite3
 import time
@@ -17,6 +18,7 @@ from .tbank_receipt_format import _extract_receipt_number
 
 RULE_ID = "K-TBANK-ID-REUSE-001"
 HARD_CODE = "TBANK_TRAILER_ID_REUSED"
+CANONICAL_MISMATCH_CODE = "TBANK_TRAILER_ID_CANONICAL_CONTENT_MISMATCH"
 
 _DB_PATH = Path(__file__).with_name("tbank_id_reuse.db")
 _ID_PAIR_RE = re.compile(
@@ -24,6 +26,44 @@ _ID_PAIR_RE = re.compile(
     rb"|/ID\s*\[\s*\(([^)]+)\)\s*\(([^)]+)\)\s*\]",
 )
 _STORE_LIMIT = 2000
+_CANONICAL_PATH = Path(__file__).with_name("tbank_trailer_canonical.json")
+_CANONICAL_FALLBACK: dict[tuple[str, str], str] = {
+    (
+        "bd9984ed1d7404c034bd0908bf4ebe83",
+        "0a5198225dd4bbe2104dba77fb303617",
+    ): "738cc81237f5fe271d1612568f348381a81b9a58f6e275cb1f2a51d3fb1e2eff",
+}
+
+
+def _load_canonical_id_content() -> dict[tuple[str, str], str]:
+    """Load confirmed /ID→content bindings; unknown future IDs stay allowed."""
+    try:
+        raw = json.loads(_CANONICAL_PATH.read_text(encoding="utf-8"))
+        out: dict[tuple[str, str], str] = {}
+        for key, content_sha in raw.items():
+            id0, id1 = str(key).split(":", 1)
+            if (
+                len(id0) == 32
+                and len(id1) == 32
+                and len(str(content_sha)) == 64
+            ):
+                out[(id0.lower(), id1.lower())] = str(content_sha).lower()
+        return out or dict(_CANONICAL_FALLBACK)
+    except Exception:
+        return dict(_CANONICAL_FALLBACK)
+
+
+# A trailer pair is the PDF document identity. Competitor files copy pairs
+# from confirmed originals while replacing /Contents. Bind known identities
+# to canonical content; never reject an unknown pair merely for being new.
+_CANONICAL_ID_CONTENT_SHA256 = _load_canonical_id_content()
+_CANONICAL_ID0_CONTENT_SHA256: dict[str, str] = {}
+for (_canonical_id0, _canonical_id1), _canonical_sha in (
+    _CANONICAL_ID_CONTENT_SHA256.items()
+):
+    _previous_sha = _CANONICAL_ID0_CONTENT_SHA256.get(_canonical_id0)
+    if _previous_sha is None or _previous_sha == _canonical_sha:
+        _CANONICAL_ID0_CONTENT_SHA256[_canonical_id0] = _canonical_sha
 
 
 @dataclass
@@ -106,6 +146,28 @@ def check_trailer_id_reuse(
         "receipt_no": receipt_no,
         "opid": opid[:16] if opid else "",
     })
+
+    canonical_content_sha = _CANONICAL_ID_CONTENT_SHA256.get((id0, id1))
+    canonical_scope = "pair"
+    if canonical_content_sha is None:
+        # PDF /ID[0] is the permanent document identifier; /ID[1] may be
+        # rewritten on modification. Changing only ID[1] must not sever the
+        # original identity-to-content binding.
+        canonical_content_sha = _CANONICAL_ID0_CONTENT_SHA256.get(id0)
+        canonical_scope = "permanent_id0"
+    if canonical_content_sha and content_sha != canonical_content_sha:
+        out.flags.append(HardFlag(
+            code=CANONICAL_MISMATCH_CODE,
+            detail=(
+                f"trailer /ID[0]=<{id0[:8]}…> ({canonical_scope}) принадлежит "
+                "каноническому оригиналу, но SHA-256 decoded /Contents "
+                f"{content_sha[:16]}… вместо {canonical_content_sha[:16]}…"
+            ),
+            rule_id="K-TBANK-ID-CANONICAL-001",
+        ))
+        out.stats["canonical_content_sha"] = canonical_content_sha[:16]
+        out.stats["canonical_content_match"] = False
+        out.stats["canonical_scope"] = canonical_scope
 
     con = _con()
     try:

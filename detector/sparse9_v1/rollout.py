@@ -24,6 +24,10 @@ _BANK_ENV = {
     "sovkom": "SPARSE9_SOVCOM_V1_ROLLOUT",
     "uralsib": "SPARSE9_URALSIB_V1_ROLLOUT",
     "yandex": "SPARSE9_YANDEX_V1_ROLLOUT",
+    "mts": "SPARSE9_MTS_V1_ROLLOUT",
+    "yoomoney": "SPARSE9_YOOMONEY_V1_ROLLOUT",
+    "rsbank": "SPARSE9_RSBANK_V1_ROLLOUT",
+    "tochka": "SPARSE9_TOCHKA_V1_ROLLOUT",
 }
 
 

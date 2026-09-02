@@ -24,6 +24,13 @@ HARD_CODES: frozenset[str] = frozenset({
     "STREAM_LENGTH_MISMATCH",
     "VTB_SBP_WIDTHS_RUNS_TOO_FEW",
     "VTB_OPENHTML_SFNT_ORDER_MISMATCH",
+    "VTB_ACCOUNT_SBP_PRODUCER_MISMATCH",
+    "VTB_ACCOUNT_SBP_FONT_MISMATCH",
+    "VTB_ACCOUNT_SBP_SFNT_MISMATCH",
+    "VTB_ACCOUNT_SBP_PAGE_MISMATCH",
+    "VTB_ACCOUNT_SBP_AMOUNT_MISMATCH",
+    "VTB_FIELD_VALUE_BINDING_CONFLICT",
+    "TEXT_TRAILING_NBSP_PADDING",
 })
 
 KNOWN_FAKE_CODES: frozenset[str] = frozenset({
@@ -47,12 +54,14 @@ SUPPORTING_GROUPS: dict[str, str] = {
 }
 
 SUBTYPE_SBP = "vtb_sbp_outgoing"
+SUBTYPE_SBP_ACCOUNT = "vtb_sbp_to_account"
 SUBTYPE_CARD = "vtb_card_transfer"
 SUBTYPE_PHONE = "vtb_internal_phone"
 SUBTYPE_UNKNOWN = "vtb_unknown_coherent"
 
 SUBTYPE_LABELS: dict[str, str] = {
     SUBTYPE_SBP: "Исходящий перевод СБП",
+    SUBTYPE_SBP_ACCOUNT: "Перевод на счёт в другом банке через СБП",
     SUBTYPE_CARD: "Денежный перевод / Перевод на карту",
     SUBTYPE_PHONE: "По номеру телефона клиенту ВТБ",
     SUBTYPE_UNKNOWN: "Неизвестный целостный профиль ВТБ",

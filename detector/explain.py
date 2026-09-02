@@ -8,6 +8,9 @@ import re
 
 # Код флага → короткое объяснение простым языком
 _REASON_BY_CODE: dict[str, str] = {
+    "ANALYSIS_NOT_COMPLETED": (
+        "Проверка не завершилась из-за технической ошибки. Пришлите PDF ещё раз."
+    ),
     "F1_W_LENGTH_NOT_MATCHING_NEIGHBOR_CLUSTER": (
         "Таблица ширин основного шрифта записана иначе, чем в настоящих чеках Т-Банка"
     ),
@@ -208,6 +211,15 @@ _REASON_BY_CODE: dict[str, str] = {
         "Значения в чеке Альфа сдвинуты относительно подписей полей: "
         "например, под суммой списания стоит дата, а под датой — номер операции"
     ),
+    "VTB_FIELD_VALUE_BINDING_CONFLICT": (
+        "Значения в чеке ВТБ сдвинуты относительно подписей полей: "
+        "дата оказалась на сумме, ФИО — на номере операции СБП"
+    ),
+    "TEXT_TRAILING_NBSP_PADDING": (
+        "В ФИО, сообщении или «Сформирована» дописаны лишние неразрывные пробелы "
+        "(2 и больше) — след подгонки длины текстового слоя под чужой шаблон. "
+        "У оригиналов таких пробелов 0 или ровно один"
+    ),
     "ALFA_KNOWN_FAKE_SIGNATURE": (
         "Файл полностью совпал с подтверждённой подделкой чека Альфа-Банка"
     ),
@@ -249,9 +261,51 @@ _REASON_BY_CODE: dict[str, str] = {
         "Подпись поля (например «Телефон получателя») повреждена — "
         "буквы заменены на чужие символы"
     ),
+    "SBP_REFERENCE_NON_NUMERIC": (
+        "В трёхзначный внутренний reference-блок СБП-ID попала буква; "
+        "у оригинального формата этот блок строго числовой"
+    ),
+    "SBP_PROFILE_EPOCH_EXPIRED": (
+        "Дата операции не соответствует эпохе маршрута внутри СБП-ID: "
+        "использован уже заменённый банковский профиль"
+    ),
+    "SBP_PROFILE_EPOCH_SLOT_CONFLICT": (
+        "В СБП-ID стоит слот маршрута от другой календарной эпохи "
+        "(июньский чек с августовским B1013 или наоборот)"
+    ),
+    "SBP_PROFILE_EPOCH_SUFFIX_CONFLICT": (
+        "В новом банковском профиле СБП-ID оставлен suffix от устаревшей эпохи"
+    ),
+    "SBP_PROFILE_SUFFIX_OWNER_CONFLICT": (
+        "Suffix СБП-ID пересажен к чужой связке class, slot и управляющих полей"
+    ),
+    "TBANK_FONT_GLYF_TRAILING_DATA": (
+        "Встроенный TinkoffSans физически повреждён: после объявленной границы "
+        "таблицы glyf остались лишние данные"
+    ),
     "TBANK_SBP_TUPLE_GLYF_RESIDUE_SIGNATURE": (
         "СБП-ID и шрифтовая сборка файла совпали с известным техническим следом "
         "поддельного генератора"
+    ),
+    "TBANK_SBP_G1_SLOT018_BINDING_CONFLICT": (
+        "Внутри СБП-ID нарушена фиксированная связка маршрута G1/00117 "
+        "slot 018: control не соответствует route_marker"
+    ),
+    "TBANK_TRAILER_ID_CANONICAL_CONTENT_MISMATCH": (
+        "PDF использует идентификатор подтверждённого оригинала, но внутренний "
+        "поток содержимого заменён"
+    ),
+    "TBANK_COMPETITOR_NOVELTY_COMBO_001": (
+        "Совпала комбо из 4 редких техследов (контент + F1-шрифт), которая не "
+        "встречается в корпусе оригиналов Т-Банка"
+    ),
+    "TBANK_COMPETITOR_TUPLE_791103_COMBO_002": (
+        "Совпала точечная комбо для SBP-серии 791103: tuple-ID + 2 структурных "
+        "следа + длина контент-потока (4405/4408)"
+    ),
+    "TBANK_COMPETITOR_TUPLE_018_NATIVE_COMBO_004": (
+        "Для SBP-маршрута slot 018 одновременно совпали четыре независимых "
+        "следа пересборки контента и встроенных шрифтов"
     ),
     "TBANK_CONTENT_SKELETON_EXACT_UNKNOWN": (
         "Внутренняя раскладка текстового слоя PDF не совпадает "
@@ -260,6 +314,99 @@ _REASON_BY_CODE: dict[str, str] = {
     "ALFA_CONTENT_BODY_EXACT_UNKNOWN": (
         "Содержимое PDF Альфа пересобрано — тело страницы не совпадает "
         "с корпусом оригиналов, даже если размер похож"
+    ),
+    "YANDEX_CREATION_DATE_FORMAT": (
+        "Служебная дата создания PDF записана не в формате банковского OpenPDF"
+    ),
+    "YANDEX_YSTEXT_FULLFONT_METRICS": (
+        "Встроенный шрифт YSText пересобран — не совпадает с банковской метрикой"
+    ),
+    "YANDEX_CREATION_TIME_MISMATCH": (
+        "Время создания PDF не совпадает со временем операции на чеке Яндекс Банка"
+    ),
+    "YANDEX_KNOWN_FILE_SIGNATURE": (
+        "Этот файл совпал с уже известной поддельной квитанцией Яндекс Банка"
+    ),
+    "MTS_PRODUCER_MISMATCH": (
+        "PDF МТС Деньги собран не банковским dbo-print-forms / OpenPDF"
+    ),
+    "MTS_FONT_MISMATCH": (
+        "Шрифты чека МТС Деньги не совпадают с банковским MTSSans"
+    ),
+    "MTS_PAGE_MISMATCH": (
+        "Формат страницы не похож на чек МТС Деньги"
+    ),
+    "MTS_CREATION_DATE_FORMAT": (
+        "Служебная дата создания PDF записана не в формате банковского OpenPDF"
+    ),
+    "MTS_FIELDSET_MISMATCH": (
+        "Набор полей на чеке не совпадает с квитанцией МТС Деньги"
+    ),
+    "YOOMONEY_PRODUCER_MISMATCH": (
+        "PDF ЮMoney собран не банковским Jasper 6.12"
+    ),
+    "YOOMONEY_FONT_MISMATCH": (
+        "Шрифты чека ЮMoney не совпадают с банковским FactorIO"
+    ),
+    "YOOMONEY_PAGE_MISMATCH": (
+        "Формат страницы не похож на чек ЮMoney"
+    ),
+    "YOOMONEY_CREATION_DATE_FORMAT": (
+        "Служебная дата создания PDF ЮMoney записана не в банковском формате"
+    ),
+    "YOOMONEY_FIELDSET_MISMATCH": (
+        "Набор полей на чеке не совпадает с квитанцией ЮMoney"
+    ),
+    "RSBANK_PRODUCER_MISMATCH": (
+        "PDF Русского Стандарта собран не банковским OpenPDF / JasperReports"
+    ),
+    "RSBANK_FONT_MISMATCH": (
+        "Шрифты чека Русского Стандарта не совпадают с банковскими Calibri/Times"
+    ),
+    "RSBANK_PAGE_MISMATCH": (
+        "Формат страницы не похож на чек Русского Стандарта"
+    ),
+    "RSBANK_CREATION_DATE_FORMAT": (
+        "Служебная дата создания PDF Русского Стандарта записана не в банковском формате"
+    ),
+    "RSBANK_ISSUER_BIK_MISMATCH": (
+        "В чеке нет банковских реквизитов эмитента Русский Стандарт"
+    ),
+    "RSBANK_FIELDSET_MISMATCH": (
+        "Набор полей на чеке не совпадает с квитанцией Русского Стандарта"
+    ),
+    "TOCHKA_PRODUCER_MISMATCH": (
+        "PDF Точки собран не банковским Jasper OpenPDF"
+    ),
+    "TOCHKA_FONT_MISMATCH": (
+        "Шрифты чека Точки не совпадают с банковским TTNormsTochka"
+    ),
+    "TOCHKA_PAGE_MISMATCH": (
+        "Формат страницы не похож на чек Точки"
+    ),
+    "TOCHKA_CREATION_DATE_FORMAT": (
+        "Служебная дата создания PDF Точки записана не в банковском формате"
+    ),
+    "TOCHKA_ISSUER_BIK_MISMATCH": (
+        "В чеке нет банковских реквизитов эмитента Точка"
+    ),
+    "TOCHKA_FIELDSET_MISMATCH": (
+        "Набор полей на чеке не совпадает с квитанцией Точки"
+    ),
+    "VTB_ACCOUNT_SBP_PRODUCER_MISMATCH": (
+        "PDF перевода ВТБ на счёт собран не банковским OpenPDF"
+    ),
+    "VTB_ACCOUNT_SBP_FONT_MISMATCH": (
+        "Шрифты чека ВТБ на счёт не совпадают с банковским Arial"
+    ),
+    "VTB_ACCOUNT_SBP_SFNT_MISMATCH": (
+        "Встроенный шрифт чека ВТБ пересобран — сняты служебные таблицы Arial"
+    ),
+    "VTB_ACCOUNT_SBP_PAGE_MISMATCH": (
+        "Формат страницы не похож на чек ВТБ «перевод на счёт через СБП»"
+    ),
+    "VTB_ACCOUNT_SBP_AMOUNT_MISMATCH": (
+        "Сумма на чеке ВТБ не сходится с зачислением и комиссией"
     ),
 }
 
@@ -329,6 +476,11 @@ def build_user_explanation(result: dict, *, max_reasons: int = 6) -> dict:
         summary = "Подделка не обнаружена"
         recommendation = ""
 
+    analysis_failed = any("ANALYSIS_NOT_COMPLETED" in str(flag) for flag in flags)
+    if analysis_failed:
+        summary = "Проверка не завершена"
+        recommendation = "Это не вердикт о подделке. Пришлите тот же PDF ещё раз."
+
     seen: set[str] = set()
     reasons: list[str] = []
 
@@ -340,7 +492,7 @@ def build_user_explanation(result: dict, *, max_reasons: int = 6) -> dict:
         if len(reasons) >= max_reasons:
             break
 
-    if not reasons and score >= 60:
+    if not reasons and score >= 60 and not analysis_failed:
         reasons.append("PDF не соответствует профилю оригинальных квитанций банка")
 
     return {

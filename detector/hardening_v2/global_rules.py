@@ -8,6 +8,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from ..global_text_glyph_render import run_global_text_glyph_render
+from ..nbsp_padding import CODE as NBSP_CODE
+from ..nbsp_padding import find_trailing_nbsp_padding, padding_detail
 from ..structure import (
     validate_active_content,
     validate_incremental_updates,
@@ -253,6 +255,11 @@ def run_global_rules(
     res.stats["status"] = st.stats
     if st.conflict:
         _add_hard(res, "G-STATUS-002", "STATUS_INTERNAL_CONFLICT", st.conflict_detail)
+
+    _mark(res, "G-SEM-NBSP-001")
+    nbsp_hits = find_trailing_nbsp_padding(text)
+    if nbsp_hits:
+        _add_hard(res, "G-SEM-NBSP-001", NBSP_CODE, padding_detail(nbsp_hits))
 
     for rid in _all_rule_ids():
         _mark(res, rid)

@@ -12,6 +12,8 @@ from ..sber_profiles import (
     parse_operation_datetime,
 )
 from ..sber_sbp_cipher import validate_legacy_document, validate_sber_sbp_cipher
+from ..nbsp_padding import CODE as NBSP_CODE
+from ..nbsp_padding import find_trailing_nbsp_padding, padding_detail
 from .atlas import known_sbp_markers, known_sbp_tail_prefixes
 from .profile_gates import profile_allows_rule
 from .types import SberFlag
@@ -90,6 +92,10 @@ def check_semantic_tuples(
         field_flags = _check_fio_phone_artifacts(text or "")
         out.flags.extend(field_flags.flags)
         out.stats.update(field_flags.stats)
+
+        nbsp_hits = find_trailing_nbsp_padding(text or "")
+        if nbsp_hits:
+            out.flags.append(_f(NBSP_CODE, padding_detail(nbsp_hits), group="fields"))
 
         # Jasper «Чек по операции» genuines never pad the date line with
         # leading/trailing ASCII spaces (corpus n=40: 0). SEQ shells emit

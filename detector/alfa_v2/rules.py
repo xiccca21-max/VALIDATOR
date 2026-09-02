@@ -44,13 +44,13 @@ HARD_CODES: frozenset[str] = frozenset({
     "ALFA_STATIC_ASSET_PARTIAL_REPLACEMENT",
     "ALFA_STATIC_ASSET_STAMP_MISSING",
     "ALFA_FILE_SIZE_UNDERSIZE",
-    # Oracle BI corpus ≤59087 (n=30). SEQ shells 59118–59796 → oversize HARD.
-    "ALFA_FILE_SIZE_STRONG_OUTLIER",
+    # ALFA_FILE_SIZE_STRONG_OUTLIER demoted — genuine Oracle SBP with fee/debit
+    # block is 59229 B, inside the old SEQ 59118–59796 band. Oversize ≠ 0-FP.
     # Quartz/iOS genuines: decoded /Contents ≥5012 (n≥27). SEQ phone shells ~4786–4802.
     "ALFA_CONTENT_SIZE_STRONG_OUTLIER",
     # Quartz phone==5012 or SBP≥6004; SEQ pads midgap 5061–5065.
     "ALFA_QUARTZ_CONTENT_MIDGAP",
-    # Oracle card∈{3413,4152} / SBP[5091,5542]; SEQ pads midgaps / overshoots.
+    # Oracle card∈{3413,4152} / phone≈4200 / SBP[5091,5542]; SEQ pads card midgaps.
     "ALFA_ORACLE_CONTENT_MIDGAP",
     # ALFA_CONTENT_DECODED_EXACT_UNKNOWN / BODY / FONTFILE2_SIZE_EXACT demoted —
     # finite corpus whitelists (n≈30); future genuines get new lengths/bodies/sizes.
@@ -71,7 +71,9 @@ HARD_CODES: frozenset[str] = frozenset({
     "ALFA_AMOUNT_TYPOGRAPHY_ANOMALY",
     # Amount RUR missing trailing NBSP while fee RUR keeps it (length-fit SEQ).
     "ALFA_RUR_TRAILING_NBSP_ASYMMETRY",
-    "ALFA_CARD_BIN_INVALID",
+    "TEXT_TRAILING_NBSP_PADDING",
+    # ALFA_CARD_BIN_INVALID removed — recipient card can be Visa/MC of another
+    # bank (e.g. 427938); MIR-only was a corpus accident, not an emitter law.
     "ALFA_CARD_LAST4_ABAB",
     "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
     "ALFA_PHONE_DEF_NOT_MOBILE",
@@ -93,6 +95,7 @@ HARD_CODES: frozenset[str] = frozenset({
     "ALFA_FONT_TABLE_INTEGRITY_VIOLATION",
     "ALFA_BROKEN_UNICODE_MAPPING",
     "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
+    "ALFA_ORACLE_SBP_HMTX_UNIQ_ADVANCES",
     "ALFA_FONT_DESCRIPTOR_HEAD_BBOX_CONFLICT",
     "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
     # Used-glyph atlas conflicts + size envelopes demoted — incomplete corpus
@@ -186,6 +189,10 @@ IGNORED_CODES: frozenset[str] = frozenset({
     "ALFA_CONTENT_DECODED_EXACT_UNKNOWN",
     "ALFA_CONTENT_BODY_EXACT_UNKNOWN",
     "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
+    # Hole 21132–21682 caught live Oracle SBP packs (21370), not only SEQ 21202/21250.
+    "ALFA_ORACLE_FF2_SIZE_MIDGAP",
+    "ALFA_CARD_BIN_INVALID",
+    "ALFA_FILE_SIZE_STRONG_OUTLIER",
     "ALFA_LAYERED_PROFILE_FORGERY",
     "ALFA_REASSEMBLY_FORGERY",
     "ALFA_FONT_RENDER_FORGERY",

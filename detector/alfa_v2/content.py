@@ -16,6 +16,7 @@ except ImportError:  # optional analyzer; absence must not manufacture evidence
     fitz = None
 
 from .pdfutil import objects, refs, stream_role
+from .profile_semantics import METHOD_PHONE, classify_submethod
 from .streams import identify_emitter
 from .types import ForensicResult
 
@@ -25,7 +26,7 @@ RULE_GROUP = "alfa_v2.content"
 # Exact max decoded /Contents lengths (чеки corpus). SEQ sits in envelope
 # gaps (e.g. Oracle 3417–3423 / 5158+; Quartz 5061–5063).
 _ORACLE_CONTENT_DECODED_EXACT: frozenset[int] = frozenset({
-    3413, 4152, 5091, 5095, 5099, 5103, 5111, 5115, 5139, 5151, 5542,
+    3413, 4152, 4200, 5091, 5095, 5099, 5103, 5111, 5115, 5139, 5151, 5542,
 })
 _QUARTZ_CONTENT_DECODED_EXACT: frozenset[int] = frozenset({
     5012, 6004, 6125, 6134, 6160, 6166, 6174, 6175, 6183, 6191, 6195, 6204,
@@ -37,8 +38,9 @@ _QUARTZ_CONTENT_DECODED_EXACT: frozenset[int] = frozenset({
 _ORACLE_CONTENT_BODY_SHA16: frozenset[str] = frozenset({
     "0cda9895f9416e74", "1d557eac95fb416d", "2e3275575c57f046", "441a9abbcf272cf3",
     "529814492d0aa773", "610a246b31c889f3", "677e0451e758e453", "810f3b9964a2bcb2",
-    "837d18f279670717", "9838608702e61777", "bb41bd894be997c1", "cdb3de2a385054f9",
-    "ce92930fdfd3a102", "d637ebba9cdd20c5", "dfcb60239bb820cf", "fab33714b19ba142",
+    "837d18f279670717", "9838608702e61777", "9b8082ce77f0177c", "bb41bd894be997c1",
+    "cdb3de2a385054f9", "ce92930fdfd3a102", "d637ebba9cdd20c5", "dfcb60239bb820cf",
+    "fab33714b19ba142",
 })
 _QUARTZ_CONTENT_BODY_SHA16: frozenset[str] = frozenset({
     "0497443b3467d020", "068f7f9ac11fd271", "0a6ce1d26706e879", "0ae11970faab3d8f",
@@ -219,7 +221,26 @@ def _norm_text(text: str) -> str:
     return re.sub(r"\s+", "", "".join(ch for ch in text if ch.isprintable())).casefold()
 
 
-def check_content(pdf: bytes, *, producer: str = "") -> ForensicResult:
+def oracle_decoded_in_midgap(max_dec: int, method: str = "") -> bool:
+    """Whether Oracle decoded /Contents length sits in a SEQ-pad gap.
+
+    Atlas n=16 had only card ∈ {3413, 4152} and SBP ∈ [5091, 5542]. SEQ card
+    shells pad 3545/3689 between the two card sizes. Oracle phone (intrabank
+    «клиенту Альфа-Банка») was missing from that atlas: observed 4200 B with
+    live Tahoma hinting. Message-optional phone layouts can sit anywhere
+    between card and SBP, so phone is not a midgap fake.
+    """
+    card_lo, card_hi = 3413, 4152
+    sbp_lo = 5091
+    if max_dec <= 0:
+        return False
+    in_gap = card_lo < max_dec < card_hi or card_hi < max_dec < sbp_lo
+    if not in_gap:
+        return False
+    return method != METHOD_PHONE
+
+
+def check_content(pdf: bytes, *, producer: str = "", method: str = "") -> ForensicResult:
     result = ForensicResult()
     streams = _content_objects(pdf)
     box = _page_box(pdf)
@@ -233,6 +254,11 @@ def check_content(pdf: bytes, *, producer: str = "") -> ForensicResult:
     # Quartz/iOS genuines: phone content == 5012 B or SBP ≥6004 (n=27).
     # SEQ undersize shells ~4759–4790; SEQ phone rebuilds pad into midgap 5061–5065.
     emitter = identify_emitter(pdf, producer)
+    if not method:
+        fitz_preview = _fitz_text(pdf)
+        if fitz_preview:
+            method = classify_submethod(fitz_preview)
+    result.stats["content_method"] = method
     if emitter == "quartz" and max_dec > 0:
         atlas_min = 5012
         hard_lo = atlas_min - 100  # 4912; SEQ max observed 4779
@@ -263,7 +289,7 @@ def check_content(pdf: bytes, *, producer: str = "") -> ForensicResult:
                 },
             )
 
-    # Oracle BI genuines (n=16): card content ∈ {3413, 4152}, SBP ∈ [5091, 5542].
+    # Oracle BI: card ∈ {3413, 4152}, phone ≈4200 (intrabank), SBP ∈ [5091, 5542].
     # SEQ card shells pad midgap 3545/3689; SBP rebuilds overshoot to ~5932.
     if emitter == "oracle" and max_dec > 0:
         card_lo, card_hi = 3413, 4152
@@ -276,8 +302,9 @@ def check_content(pdf: bytes, *, producer: str = "") -> ForensicResult:
             "sbp_hi": sbp_hi,
             "hard_hi": hard_hi,
             "max_dec": max_dec,
+            "method": method,
         }
-        if card_lo < max_dec < card_hi or card_hi < max_dec < sbp_lo:
+        if oracle_decoded_in_midgap(max_dec, method):
             result.add(
                 "ALFA_ORACLE_CONTENT_MIDGAP",
                 (
@@ -291,6 +318,7 @@ def check_content(pdf: bytes, *, producer: str = "") -> ForensicResult:
                     "card_lo": card_lo,
                     "card_hi": card_hi,
                     "sbp_lo": sbp_lo,
+                    "method": method,
                 },
             )
         elif max_dec > hard_hi:

@@ -1,4 +1,4 @@
-"""Exact known-fake signatures for sparse9 (OTP clone kits)."""
+"""Exact known-fake signatures for sparse9 (OTP / Yandex clone kits)."""
 
 from __future__ import annotations
 
@@ -14,4 +14,9 @@ OTP_KNOWN_FAKE_SBP_IDS: frozenset[str] = frozenset({
 # Shared clone-kit NSPK tail (also seen on VTB transfer_receipt …0011821301).
 OTP_KNOWN_FAKE_SBP_TAILS: frozenset[str] = frozenset({
     "0011821301",
+})
+
+# SEQ Yandex OpenPDF: locale CreationDate + recomputed YSText-Regular maxp.
+YANDEX_KNOWN_FAKE_FILE_SHA256: frozenset[str] = frozenset({
+    "91453ff5970d7be3c5771439313b78d65d15b01db626d360ff787eabb3dfcc25",
 })

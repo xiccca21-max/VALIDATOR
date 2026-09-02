@@ -96,8 +96,9 @@ def _build_profiles() -> list[BankProfile]:
         markers=(
             "банк втб", "втб (пао)", "исходящий перевод сбп",
             "перевод на карту", "по номеру телефона клиенту втб",
+            "перевод на счет другому лицу", "перевод на счёт другому лицу",
         ),
-        producers=("openhtmltopdf",),
+        producers=("openhtmltopdf", "openpdf"),
         min_score=0.45,
     ))
 
@@ -175,11 +176,40 @@ def _build_profiles() -> list[BankProfile]:
         producers=("openpdf", "jasperreports"),
         min_score=0.45,
     ))
+    profiles.append(BankProfile(
+        key="mts",
+        name="МТС Деньги",
+        markers=("код транзакции", "код операции сбп", "счет списания"),
+        producers=("openpdf", "jaspersoft"),
+        min_score=0.45,
+    ))
+    profiles.append(BankProfile(
+        key="yoomoney",
+        name="ЮMoney",
+        markers=("номер кошелька", "перевод завершен", "юmoney"),
+        producers=("itext 2.1.7", "jasperreports"),
+        min_score=0.45,
+    ))
+    profiles.append(BankProfile(
+        key="rsbank",
+        name="Русский Стандарт",
+        markers=("банк в кармане", "чек операции", "044525151"),
+        producers=("openpdf", "jasperreports"),
+        min_score=0.45,
+    ))
+    profiles.append(BankProfile(
+        key="tochka",
+        name="Точка Банк",
+        markers=("банк точка", "исходящий перевод через сбп", "044525104"),
+        producers=("openpdf", "jasperreports"),
+        min_score=0.45,
+    ))
 
     for key, bank in corpus.items():
         if key in (
             "tbank", "alfa", "sber", "ozon", "vtb", "gazprombank",
             "wbbank", "otp", "psb", "bchpb", "raif", "rocket", "sovkom", "uralsib", "yandex",
+            "mts", "yoomoney", "rsbank", "tochka",
         ):
             continue
         profiles.append(BankProfile(
@@ -275,6 +305,24 @@ def _score(text: str, producer: str, profile: BankProfile) -> float:
         sender = t.split("банк отправителя", 1)[-1][:80]
         if "яндекс" in sender:
             return 1.0
+    if profile.key == "mts" and "код транзакции" in t and "код операции сбп" in t:
+        return 1.0
+    if profile.key == "yoomoney" and "номер кошелька" in t:
+        return 1.0
+    if profile.key == "rsbank" and "банк в кармане" in t and "чек операции" in t:
+        return 1.0
+    if profile.key == "tochka" and "банк точка" in t:
+        return 1.0
+    if profile.key == "raif" and "справка по операции" in t and "райффайзенбанк" in t:
+        return 1.0
+    if profile.key == "vtb":
+        if (
+            "перевод на счет другому лицу" in t
+            or "перевод на счёт другому лицу" in t
+        ) and "сбп" in t and "банк втб" in t:
+            return 1.0
+        if "исполнено" in t and "банк втб" in t and "044525745" in t.replace(" ", ""):
+            return 1.0
     # Уникальные producer → банк (надёжный сигнал)
     exclusive = (
         ("oracle bi publisher", "alfa"),
@@ -295,6 +343,7 @@ def _score(text: str, producer: str, profile: BankProfile) -> float:
                     or "mailbox@gazprombank.ru" in t
                     or "банк дом.рф" in t
                     or "дом.рф" in t
+                    or "номер кошелька" in t
                 )
                 sber_brand = (
                     "сбербанк" in t
@@ -342,13 +391,22 @@ def _score(text: str, producer: str, profile: BankProfile) -> float:
     return hits / total if total else 0.0
 
 
-def identify(text: str, producer: str) -> tuple[dict | None, float]:
+def identify(
+    text: str, producer: str, creator: str = "", pdf_bytes: bytes = b"",
+) -> tuple[dict | None, float]:
     best: BankProfile | None = None
     best_score = 0.0
     scores: dict[str, float] = {}
     by_key: dict[str, BankProfile] = {}
+    cr = (creator or "").lower()
     for p in get_profiles():
         s = _score(text, producer, p)
+        if p.key == "mts" and "dbo-print-forms" in cr:
+            s = 1.0
+        if p.key == "yoomoney" and (
+            b"FactorIO-Regular" in (pdf_bytes or b"") or "номер кошелька" in _norm_text(text)
+        ):
+            s = max(s, 1.0)
         scores[p.key] = s
         by_key[p.key] = p
         if s > best_score:
@@ -362,6 +420,12 @@ def identify(text: str, producer: str) -> tuple[dict | None, float]:
         and ("gazprombank.ru" in t or "mailbox@gazprombank.ru" in t)
     ):
         best, best_score = gpb, max(scores.get("gazprombank", 0), 1.0)
+    # Distinctive sparse issuers beat shared OpenPDF / iText 2.1.7 producers.
+    for key in ("yoomoney", "mts", "tochka", "rsbank", "raif"):
+        prof = by_key.get(key)
+        if prof and scores.get(key, 0) >= 0.95:
+            best, best_score = prof, max(scores.get(key, 0), 1.0)
+            break
     if best and best_score >= best.min_score:
         return {"key": best.key, "name": best.name}, best_score
     return None, best_score
@@ -373,11 +437,12 @@ def analyze(pdf_bytes: bytes, file_hash: str = "") -> dict:
     try:
         doc = fitz.open(stream=pdf_bytes, filetype="pdf")
         producer = (doc.metadata.get("producer", "") or "")
+        creator = (doc.metadata.get("creator", "") or "")
         text = "".join(p.get_text() for p in doc)
         doc.close()
     except Exception:
-        producer, text = "", ""
-    prof, _ = identify(text, producer)
+        producer, creator, text = "", "", ""
+    prof, _ = identify(text, producer, creator, pdf_bytes)
     if prof:
         return analyze_for(prof["key"], pdf_bytes, file_hash)
     from .generic_bank import analyze as generic_analyze
@@ -417,14 +482,23 @@ def analyze_for(key: str, pdf_bytes: bytes, file_hash: str = "") -> dict:
 
 def format_banks_list_html() -> str:
     """Список банков без пояснений."""
-    corpus = _load_bank_meta()
-    lines: list[str] = ["• <b>Т-Банк</b>"]
-    tier2_order = (
-        "alfa", "sber", "vtb", "gazprombank", "psb", "raif",
-        "ozon", "otp", "uralsib", "yandex", "sovkom", "rocket", "bchpb",
+    order = (
+        "tbank", "alfa", "sber", "vtb", "gazprombank", "ozon",
+        "psb", "raif", "otp", "uralsib", "yandex", "sovkom", "rocket",
+        "bchpb", "wbbank", "mts", "yoomoney", "rsbank", "tochka",
     )
-    for key in tier2_order:
-        bank = corpus.get(key)
-        if bank:
-            lines.append(f"• <b>{bank['name']}</b>")
+    by_key = {p.key: p for p in get_profiles()}
+    seen: set[str] = set()
+    lines: list[str] = []
+    for key in order:
+        prof = by_key.get(key)
+        if not prof or prof.name in seen:
+            continue
+        seen.add(prof.name)
+        lines.append(f"• <b>{prof.name}</b>")
+    for prof in get_profiles():
+        if prof.key == "alfa_ios" or prof.name in seen:
+            continue
+        seen.add(prof.name)
+        lines.append(f"• <b>{prof.name}</b>")
     return "\n".join(lines)

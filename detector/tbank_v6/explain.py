@@ -119,7 +119,7 @@ _WHY_NOT_VARIABILITY: dict[str, str] = {
     ),
     "TBANK_F2_GLYF_DIGIT_CARD_FAT": (
         "размер F2.glyf должен соответствовать числу уникальных digit-outlines в ToUnicode: "
-        "на genuines card2≤992, card3≤1320, card4≤1554, card5≤1636. SEQ после копирования "
+        "на genuines card2≤992, card3≤1320, card4≤1554, card5≤1654. SEQ после копирования "
         "F2.head всё ещё тащит synthetic-fat Medium (card3@1560+). Не смена суммы сама по себе. "
         "Обход с целым визуалом: subset Medium glyf под реально используемые цифры"
     ),
@@ -127,13 +127,16 @@ _WHY_NOT_VARIABILITY: dict[str, str] = {
         "DIAGNOSTIC/IGNORE: точный whitelist F2.glyf×height — novelty atlas "
         "(finite n≠all future genuines). Не использовать как HARD."
     ),
+    "TBANK_F2_GLYF_HEIGHT_MIDGAP": (
+        "на height=451 F2.glyf в интервале (1106, 1226) и этого размера нет ни "
+        "на одном genuine height. 1144 — нативный Medium (431/519/539), не midgap. "
+        "SEQ phone сажает 1130. Не смена суммы. "
+        "Обход с целым визуалом: нативный Medium subset этого height"
+    ),
     "TBANK_F1_HMTX_F2_GLYF_COGEN_MISMATCH": (
-        "Jasper/OpenPDF эмитит F1 Regular и F2 Medium одним subsetter-прогоном: "
-        "анонимный multiset hmtx-advance nonempty-глифов F1 (sha16) однозначно "
-        "задаёт допустимые длины F2.glyf в корпусе (n=128). SEQ часто оставляет "
-        "F1 metric kit близнеца и подсаживает чужой Medium (напр. hmtx→866, "
-        "а F2.glyf=1008 с phone/SBP-донора). Не смена суммы/ID. "
-        "Обход с целым визуалом: нативная пара F1+F2 одного subsetter run"
+        "DIAGNOSTIC/IGNORE: известный F1 hmtx-kit может на genuines париться с "
+        "новым F2.glyf (Receipt 15: kit 23b7d7… в атласе 856, факт 1044). "
+        "Не использовать как HARD."
     ),
     "TBANK_BASEFONT_SUBSET_TAG_PAYLOAD_MISMATCH": (
         "OpenPDF пишет уникальный 6-буквенный subset-prefix в /BaseFont на каждый "
@@ -143,18 +146,15 @@ _WHY_NOT_VARIABILITY: dict[str, str] = {
         "identity co-generation. Обход: нативный OpenPDF subset с новыми prefix"
     ),
     "TBANK_F1_GLYF_SHAPE_ENVELOPE_MISMATCH": (
-        "у Jasper SBP на фиксированной длине F1.glyf допустим только набор shape "
-        "(composite/nonempty/simple/cmap) с genuines (n=56; редкие длины 12328/13002 "
-        "имеют 2 варианта). SEQ копирует donor glyf_len и оболочки таблиц, но "
-        "подменяет inventory букв → shape вне allowed-set. "
-        "Обход с целым визуалом: пересобрать F1.glyf/loca так, чтобы длина и shape "
-        "совпадали с нативным Jasper subset под этот текст"
+        "DIAGNOSTIC/IGNORE: finite glyf_len→shape atlas. Genuine SBP can share "
+        "F1.glyf length with a different cmap (Receipt 15: 12560 cmap 67 vs "
+        "recorded 68). Same class as TWIN_SHAPE. Не использовать как HARD."
     ),
     "TBANK_F1_GLYF_SIZE_MULTISET_MISMATCH": (
-        "при фиксированной F1.glyf_len анонимный multiset длин nonempty-глифов "
-        "(sorted byte-lengths) на genuines стабилен (иногда при разных GID-set). "
-        "SEQ подгоняет shape counts под donor, но размеры outline'ов другие. "
-        "Обход с целым визуалом: нативный Jasper subset под тот же набор символов"
+        "DIAGNOSTIC/IGNORE: finite glyf_len→size-multiset atlas. Genuine SBP "
+        "can share F1.glyf length with a different nonempty-outline set "
+        "(новые чеки: 12784 / sha16 not in n=56 atlas). Same class as "
+        "SHAPE_ENVELOPE. Не использовать как HARD."
     ),
     "TBANK_SFNT_TABLE_ORDER_MISMATCH": (
         "Jasper/OpenPDF пишет SFNT directory в фиксированном порядке "
@@ -327,6 +327,11 @@ _WHY_NOT_VARIABILITY: dict[str, str] = {
     "TBANK_TRAILER_ID_REUSED": (
         "одна пара trailer /ID не может порождать документы с разным содержимым"
     ),
+    "TBANK_TRAILER_ID_CANONICAL_CONTENT_MISMATCH": (
+        "пара trailer /ID уже принадлежит подтверждённому оригиналу, но decoded "
+        "/Contents отличается от его канонического SHA-256 — скопирован контейнер "
+        "PDF с заменённым содержимым"
+    ),
     "TBANK_FILE_SIZE_STRONG_OUTLIER": (
         "вес PDF сильно вне корпуса оригиналов (~58–61KB). Небольшой разброс "
         "ФИО/суммы не даёт +2–3KB сверх max; сильный сдвиг — другой serializer"
@@ -361,10 +366,71 @@ _WHY_NOT_VARIABILITY: dict[str, str] = {
         "блок route_marker+control+slot+suffix взят из другого class/bank5 профиля "
         "(например B1-связка на G1-ID) — типичный splice grammar при подделке"
     ),
+    "SBP_REFERENCE_NON_NUMERIC": (
+        "самостоятельный HARD: трёхзначный reference-блок ID[11:14] содержит "
+        "букву. У 60/60 проверенных оригинальных T-Банк SBP-ID он строго decimal; "
+        "tuple, шрифт и atlas для решения не используются."
+    ),
+    "SBP_PROFILE_EPOCH_EXPIRED": (
+        "самостоятельный bank-specific HARD: маршрут G1/00117/791103 уже не "
+        "соответствует дате операции после 01.08.2026. Августовские оригиналы "
+        "перешли на bank5=00118; это проверка внутренней эпохи СБП-ID."
+    ),
+    "SBP_PROFILE_EPOCH_SLOT_CONFLICT": (
+        "самостоятельный bank-specific HARD: слот B1/013 жив у Т-Банка в "
+        "марте–мае; июнь–август 2026 его не используют (июнь A+G100x/B+G101x, "
+        "август B+00118). SEQ ставил августовский B1013 на июньские даты."
+    ),
+    "SBP_PROFILE_EPOCH_SUFFIX_CONFLICT": (
+        "самостоятельный bank-specific HARD: генератор заменил bank5 на 00118, "
+        "но оставил graft-suffix 891103 от старой ветки. Такая августовская "
+        "связка не соответствует внутренней эпохе СБП-ID."
+    ),
+    "SBP_PROFILE_SUFFIX_OWNER_CONFLICT": (
+        "самостоятельный bank-specific HARD: настоящий suffix нового профиля "
+        "пересажен к чужому class/slot/marker/control. Проверяется внутренняя "
+        "принадлежность suffix, а не комбинация внешних сигналов."
+    ),
+    "TBANK_SBP_G1_SLOT018_BINDING_CONFLICT": (
+        "маршрут G1/00117 slot=018 suffix=791103 имеет связанные пары "
+        "control/route_marker только H/0 и S/1. Произвольные A/G/B с markers 2–9 "
+        "нарушают внутреннюю маршрутизацию СБП-ID; это не размерный/font atlas."
+    ),
+    "TBANK_FONT_GLYF_TRAILING_DATA": (
+        "самостоятельный HARD: FontFile2 TinkoffSans физически повреждён — за "
+        "объявленной границей glyf остаются лишние байты. SBP tuple, длина и "
+        "atlas не используются; известная benign-ветка 405 исключена."
+    ),
     "TBANK_SBP_TUPLE_GLYF_RESIDUE_SIGNATURE": (
-        "для связки SBP-ID 1|6|0|G1|004|00117|770901 встраивается характерный "
-        "FontFile2 glyf-residue след (too much glyph data), отсутствующий в "
-        "проверенных оригиналах корпуса"
+        "целевые связки SBP-ID сами по себе могут быть живыми у банка; "
+        "HARD только вместе с физическим FontFile2 glyf-residue (too much glyph data), "
+        "не 405-byte benign. Пустой warn не считается — FP на сбп1.pdf."
+    ),
+    "TBANK_COMPETITOR_NOVELTY_COMBO_001": (
+        "одновременное попадание в 4 независимых atlas-признака "
+        "(content_len + F1 twin shape + F1 shape envelope + F1 size multiset) "
+        "для одной квитанции. По текущему корпусу оригиналов Т-Банка эта комбо "
+        "не встречается и является устойчивым маркером конкурентного ребилда."
+    ),
+    "TBANK_COMPETITOR_TUPLE_791103_COMBO_002": (
+        "для серии SBP tuple 0|5|0|G1|014|00117|791103 одновременно выполняются "
+        "два независимых структурных следа (content skeleton unknown + F2 glyf×height unknown) "
+        "и характерная длина content 4405/4408. В проверенном корпусе оригиналов "
+        "этой комбинации не найдено."
+    ),
+    "TBANK_COMPETITOR_TUPLE_017_791103_COMBO_003": (
+        "для серии SBP tuple 1|D|0|G1|017|00117|791103 (и sibling 3|B|0|G1|017|00117|791103) "
+        "одновременно выполняются "
+        "два независимых следа пересборки (content skeleton exact unknown + "
+        "F1 glyf×cmap exact unknown). В текущем корпусе оригиналов Т-Банка "
+        "такая комбинация не встречается."
+    ),
+    "TBANK_COMPETITOR_TUPLE_018_NATIVE_COMBO_004": (
+        "для нативной маршрутной пары slot 018 недостаточно одного нового "
+        "размера: HARD требует одновременно неизвестные content skeleton, "
+        "F1 glyf×cmap и F2 glyf×height при content_len 4405/4432/4436; для нового "
+        "content_len=4432 дополнительно требуется exact-length novelty. "
+        "На 133 оригиналах комбинация не встречается."
     ),
     "SBP_TBANK_BANK5_MISMATCH": (
         "bank5 вне исторического набора Т-Банка 00116/00117 — tier B "
@@ -445,6 +511,15 @@ _WHY_NOT_VARIABILITY: dict[str, str] = {
     "ANALYSIS_NOT_COMPLETED": (
         "незавершённый анализ не доказывает пересборку — только технический сбой"
     ),
+    "TBANK_STATIC_LABEL_CORRUPTED": (
+        "JRXML печатает «Перевод» / «Телефон получателя» фиксированными CID; "
+        "Latin homoglyph в ToUnicode (Перевiд, þелефон) — сломанный CMap, "
+        "не новое ФИО. Банку пришлось бы сменить шаблон квитанции"
+    ),
+    "TBANK_DATE_LINE_CORRUPTED": (
+        "первая строка IB/Receipt всегда DD.MM.YYYY (133/133 OpenPDF); "
+        "кракозябры вместо даты — ToUnicode/CID, не новый формат отчёта"
+    ),
 }
 
 _OBJECT_HINT: dict[str, str] = {
@@ -469,6 +544,7 @@ _OBJECT_HINT: dict[str, str] = {
     "TBANK_F2_GLYF_LOCA_PADDING": "Font: F2 glyf↔loca padding",
     "TBANK_F2_GLYF_DIGIT_CARD_FAT": "Font: F2 glyf digit-card fat",
     "TBANK_F2_GLYF_HEIGHT_EXACT_UNKNOWN": "Font: F2 glyf vs MediaBox height (ignored)",
+    "TBANK_F2_GLYF_HEIGHT_MIDGAP": "Font: F2 glyf height-451 midgap",
     "TBANK_F1_HMTX_F2_GLYF_COGEN_MISMATCH": "Font: F1 hmtx ↔ F2 glyf co-generation",
     "TBANK_BASEFONT_SUBSET_TAG_PAYLOAD_MISMATCH": "Font: BaseFont tag ↔ FF2 co-generation",
     "TBANK_F1_GLYF_SHAPE_ENVELOPE_MISMATCH": "Font: F1 glyf shape envelope",
@@ -498,9 +574,11 @@ _OBJECT_HINT: dict[str, str] = {
     "TBANK_PHONE_DEF_NOT_MOBILE": "Field: phone DEF not mobile 9xx",
     "TBANK_RECIPIENT_LEADING_WHITESPACE": "Field: Получатель leading spaces",
     "TBANK_TEXT_TRAILING_WHITESPACE": "Field: trailing ASCII spaces in text",
+    "TEXT_TRAILING_NBSP_PADDING": "Field: trailing NBSP content-stream pad",
     "TBANK_SUPPORT_CONTACT_SPACING": "Field: Служба поддержки contact line",
     "TBANK_SUPPORT_CONTACT_CORRUPTED": "Field: Служба поддержки fb@tbank.ru missing/garbled",
     "TBANK_STATIC_LABEL_CORRUPTED": "Field: static label ToUnicode corrupted",
+    "TBANK_DATE_LINE_CORRUPTED": "Field: first-line operation date ToUnicode",
     "UNUSED_CID_PRESENT": "Font: unused CMap symbols",
     "CMAP_EXTRA_SYMBOLS": "Font: CMap template leftovers",
     "TBANK_PARTY_NAME_CONSONANT_RUN": "Field: Отправитель/Получатель",
@@ -539,12 +617,17 @@ _OBJECT_HINT: dict[str, str] = {
     "SBP_CONTROL_TRIPLE_MISMATCH": "Field: СБП ID (control link)",
     "SBP_LINKED_TUPLE_CONFLICT": "Field: СБП ID (full linked tuple)",
     "SBP_LINKED_TUPLE_CROSS_CLASS": "Field: СБП ID (cross-class grammar splice)",
+    "TBANK_FONT_GLYF_TRAILING_DATA": "FontFile2: standalone malformed glyf trailing data",
     "TBANK_SBP_TUPLE_GLYF_RESIDUE_SIGNATURE": "Field+Font: SBP tuple + FontFile2 glyf residue",
+    "TBANK_COMPETITOR_NOVELTY_COMBO_001": "Provenance: competitor novelty combo x4",
+    "TBANK_COMPETITOR_TUPLE_791103_COMBO_002": "Provenance: competitor tuple+structure combo",
+    "TBANK_COMPETITOR_TUPLE_017_791103_COMBO_003": "Provenance: competitor tuple+structure combo",
     "SBP_TBANK_BANK5_MISMATCH": "Field: СБП ID (issuer bank5)",
     "TBANK_DEBIT_ACCOUNT_PREFIX": "Field: Счет списания (account prefix)",
     "KNOWN_FAKE_SBP_GRAMMAR_COMBINATION": "Field: СБП ID (route_marker+grammar)",
     "SBP_PROFILE_EMPIRICAL": "Field: СБП ID (empirical profile)",
     "SBP_PROFILE_EPOCH_MISMATCH": "Field: СБП ID (profile epoch)",
+    "SBP_PROFILE_EPOCH_SLOT_CONFLICT": "Field: СБП ID (epoch slot B1013)",
     "SBP_PROFILE_EPOCH_TOO_EARLY": "Field: СБП ID (epoch too early)",
     "TBANK_F1_HEAD_MODIFIED_EPOCH": "Font: F1 head.modified epoch",
     "TBANK_F2_HEAD_MODIFIED_EPOCH": "Font: F2 head.modified epoch",

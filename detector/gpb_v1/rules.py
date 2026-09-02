@@ -94,6 +94,8 @@ HARD_CODES: frozenset[str] = frozenset({
 
     "GPB_SBP_ID_TIMESTAMP",
 
+    "TEXT_TRAILING_NBSP_PADDING",
+
     "GPB_PARSER_PARITY_MISMATCH",
 
     "OPERATION_ID_REUSED",

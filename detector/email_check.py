@@ -62,12 +62,20 @@ BANK_EMAIL_DOMAINS: dict[str, str] = {
     "uralsib.ru": "uralsib",
     "yandex.ru": "yandex",
     "bank.yandex.ru": "yandex",
+    "mtsdengi.ru": "mts",
+    "mtsbank.ru": "mts",
+    "yoomoney.ru": "yoomoney",
+    "tochka.com": "tochka",
+    "tochka.ru": "tochka",
+    "rsb.ru": "rsbank",
 }
 
 BANK_NAMES: dict[str, str] = {
     "tbank": "Т-Банк", "sber": "Сбербанк", "alfa": "Альфа-Банк", "vtb": "ВТБ",
     "gazprom": "Газпромбанк", "ozon": "Озон Банк", "raif": "Райффайзенбанк",
     "psb": "ПСБ", "otp": "ОТП Банк", "uralsib": "Уралсиб", "yandex": "Яндекс Банк",
+    "mts": "МТС Деньги", "yoomoney": "ЮMoney", "rsbank": "Русский Стандарт",
+    "tochka": "Точка Банк",
 }
 
 _DKIM_D_RE = re.compile(rb"[;\s]d=([^;\s]+)", re.I)

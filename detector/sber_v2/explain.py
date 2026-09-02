@@ -46,6 +46,16 @@ _WHY_NOT_VARIABILITY: dict[str, str] = {
         "path в content-stream, не «новый шаблон банка». "
         "Обход с целым визуалом: копировать нативный q/Q nesting donor-чека"
     ),
+    "SBER_CONTENT_TM_DECIMAL_OVERFLOW": (
+        "iText 2.1.7 / Jasper пишет identity Tm только с 0 или 2 знаками "
+        "после точки; ≥3 знака (65.390) — чужой float-serializer, не новая "
+        "ширина ФИО. Обход с целым визуалом: эмитить Tm как iText (макс. 2 знака)"
+    ),
+    "SBER_CONTENT_TM_TEMPLATE_Y_TRUNCATED": (
+        "шаблонный ряд Jasper *.74 (615.74 / 711.74) обрезан до *.7 — это "
+        "печать float, не сдвиг вёрстки. "
+        "Обход с целым визуалом: писать канонический 2-знаковый token донора"
+    ),
     "SBER_KNOWN_FAKE_FONTFILE2": (
         "это не «новый банковский subset»: sha16 FontFile2 уже зафиксирован "
         "на подтверждённых генераторных SEQ-фейках. У живых оригиналов Сбера "
@@ -111,6 +121,8 @@ _OBJECT_HINT: dict[str, str] = {
     "SBER_INTERNAL_GLYF_COMPOSITE_FLOOR": "Font: internal composite floor",
     "SBER_KNOWN_FAKE_SIGNATURE": "Document: known-fake atlas hit",
     "SBER_CONTENT_SKELETON_DRIFT": "Content stream: operator skeleton",
+    "SBER_CONTENT_TM_DECIMAL_OVERFLOW": "Content stream: Tm float spelling",
+    "SBER_CONTENT_TM_TEMPLATE_Y_TRUNCATED": "Content stream: template Tm.y token",
     "SBER_SBP_EMPIRICAL_PROFILE": "Field: СБП operation id tail",
     "SBER_FONT_LAYER_CONTAMINATION": "Font layer forensics",
 }

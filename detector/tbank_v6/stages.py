@@ -112,6 +112,81 @@ _MODDATE_RE = re.compile(
     rb"/ModDate\s*\(([^)]*)\)|/ModDate\s*<([^>]*)>"
 )
 
+_COMPETITOR_COMBO_CODE = "TBANK_COMPETITOR_NOVELTY_COMBO_001"
+_COMPETITOR_COMBO_REQUIRED = frozenset({
+    "TBANK_CONTENT_LEN_EXACT_UNKNOWN",
+    "TBANK_F1_TWIN_SHAPE_MISMATCH",
+    "TBANK_F1_GLYF_SHAPE_ENVELOPE_MISMATCH",
+    "TBANK_F1_GLYF_SIZE_MULTISET_MISMATCH",
+})
+_COMPETITOR_791103_COMBO_CODE = "TBANK_COMPETITOR_TUPLE_791103_COMBO_002"
+_COMPETITOR_791103_PAIR = frozenset({
+    "TBANK_CONTENT_SKELETON_EXACT_UNKNOWN",
+    "TBANK_F2_GLYF_HEIGHT_EXACT_UNKNOWN",
+})
+_COMPETITOR_791103_CONTENT_LENS = frozenset({4405, 4408})
+_COMPETITOR_791103_TUPLE = {
+    "route_marker": "0",
+    "control": "5",
+    "separator": "0",
+    "class": "G1",
+    "slot": "014",
+    "bank5": "00117",
+    "suffix": "791103",
+}
+_COMPETITOR_017_COMBO_CODE = "TBANK_COMPETITOR_TUPLE_017_791103_COMBO_003"
+_COMPETITOR_017_REQUIRED = frozenset({
+    "TBANK_CONTENT_SKELETON_EXACT_UNKNOWN",
+    "TBANK_F1_GLYF_CMAP_EXACT_UNKNOWN",
+})
+_COMPETITOR_017_TUPLES = (
+    {
+        "route_marker": "1",
+        "control": "D",
+        "separator": "0",
+        "class": "G1",
+        "slot": "017",
+        "bank5": "00117",
+        "suffix": "791103",
+    },
+    {
+        "route_marker": "3",
+        "control": "B",
+        "separator": "0",
+        "class": "G1",
+        "slot": "017",
+        "bank5": "00117",
+        "suffix": "791103",
+    },
+)
+_COMPETITOR_018_NATIVE_CODE = "TBANK_COMPETITOR_TUPLE_018_NATIVE_COMBO_004"
+_COMPETITOR_018_NATIVE_COMMON_REQUIRED = frozenset({
+    "TBANK_CONTENT_SKELETON_EXACT_UNKNOWN",
+    "TBANK_F1_GLYF_CMAP_EXACT_UNKNOWN",
+    "TBANK_F2_GLYF_HEIGHT_EXACT_UNKNOWN",
+})
+_COMPETITOR_018_NATIVE_TUPLES = (
+    {
+        "route_marker": "0",
+        "control": "H",
+        "separator": "0",
+        "class": "G1",
+        "slot": "018",
+        "bank5": "00117",
+        "suffix": "791103",
+    },
+    {
+        "route_marker": "1",
+        "control": "S",
+        "separator": "0",
+        "class": "G1",
+        "slot": "018",
+        "bank5": "00117",
+        "suffix": "791103",
+    },
+)
+_COMPETITOR_018_NATIVE_CONTENT_LENS = frozenset({4405, 4432, 4436})
+
 
 def _pdf_text(pdf_bytes: bytes) -> str:
     if not fitz:
@@ -186,13 +261,13 @@ def _v6_flag(
     tier: str | None = None,
     rule_id: str = "",
 ) -> V6Flag:
-    if tier is None:
+    if code in IGNORED_CODES:
+        tier = "IGNORE"
+    elif tier is None:
         if code in HARD_CODES:
             tier = "A"
         elif code in SUPPORTING_GROUPS:
             tier = "B"
-        elif code in IGNORED_CODES:
-            tier = "IGNORE"
         else:
             tier = "A"
     group = SUPPORTING_GROUPS.get(code, "")
@@ -223,6 +298,185 @@ def _v6_flag(
     return V6Flag(
         code=code, detail=detail, tier=tier, group=group,
         rule_id=rule_id or code,
+    )
+
+
+def _observed_codes(result: PipelineResult) -> set[str]:
+    seen = {f.code for f in result.hard_flags}
+    seen.update(f.code for f in result.known_fake_flags)
+    seen.update(f.code for f in result.supporting_flags)
+    for note in result.ignored_observations:
+        if note.startswith("[") and "]" in note:
+            seen.add(note[1:note.index("]")])
+    return seen
+
+
+def _apply_competitor_combo_hard(result: PipelineResult) -> None:
+    seen = _observed_codes(result)
+    hit = sorted(_COMPETITOR_COMBO_REQUIRED & seen)
+    result.stats["competitor_combo_novelty"] = {
+        "required": sorted(_COMPETITOR_COMBO_REQUIRED),
+        "hit": hit,
+        "matched": len(hit) == len(_COMPETITOR_COMBO_REQUIRED),
+    }
+    if len(hit) != len(_COMPETITOR_COMBO_REQUIRED):
+        return
+    sbp_fields = ((result.stats.get("sbp_content") or {}).get("sbp_link_fields") or {})
+    reassembly = result.stats.get("reassembly_family_v3") or {}
+    content = result.stats.get("content_profile_check") or {}
+    detail = (
+        "комбо конкурентного ребилда: одновременно "
+        + ", ".join(hit)
+        + f"; content_len={content.get('content_decoded_len')}, "
+          f"F1.glyf={reassembly.get('f1_glyf_len')}, "
+          f"F2.glyf={reassembly.get('f2_glyf_len')}, "
+          f"bank5={sbp_fields.get('bank5') or '—'}, "
+          f"suffix={sbp_fields.get('suffix') or '—'}"
+    )
+    ingest_flag(
+        result,
+        _v6_flag(
+            _COMPETITOR_COMBO_CODE,
+            detail,
+            tier="A",
+            rule_id="K-TBANK-COMPETITOR-COMBO-001",
+        ),
+    )
+
+
+def _apply_competitor_791103_combo_hard(result: PipelineResult) -> None:
+    seen = _observed_codes(result)
+    hit = sorted(_COMPETITOR_791103_PAIR & seen)
+    sbp_fields = ((result.stats.get("sbp_content") or {}).get("sbp_link_fields") or {})
+    content = result.stats.get("content_profile_check") or {}
+    content_len = content.get("content_decoded_len")
+    tuple_match = all(str(sbp_fields.get(k) or "") == v for k, v in _COMPETITOR_791103_TUPLE.items())
+    len_match = content_len in _COMPETITOR_791103_CONTENT_LENS
+    result.stats["competitor_combo_791103"] = {
+        "required_pair": sorted(_COMPETITOR_791103_PAIR),
+        "hit_pair": hit,
+        "tuple_required": dict(_COMPETITOR_791103_TUPLE),
+        "tuple_actual": {k: str(sbp_fields.get(k) or "") for k in _COMPETITOR_791103_TUPLE},
+        "content_len": content_len,
+        "allowed_content_len": sorted(_COMPETITOR_791103_CONTENT_LENS),
+        "matched": len(hit) == len(_COMPETITOR_791103_PAIR) and tuple_match and len_match,
+    }
+    if len(hit) != len(_COMPETITOR_791103_PAIR) or not tuple_match or not len_match:
+        return
+    detail = (
+        "комбо конкурентного SBP-сериала 791103: tuple 0|5|0|G1|014|00117|791103 + "
+        "одновременные TBANK_CONTENT_SKELETON_EXACT_UNKNOWN и "
+        f"TBANK_F2_GLYF_HEIGHT_EXACT_UNKNOWN при content_len={content_len}"
+    )
+    ingest_flag(
+        result,
+        _v6_flag(
+            _COMPETITOR_791103_COMBO_CODE,
+            detail,
+            tier="A",
+            rule_id="K-TBANK-COMPETITOR-791103-COMBO-002",
+        ),
+    )
+
+
+def _apply_competitor_017_combo_hard(result: PipelineResult) -> None:
+    seen = _observed_codes(result)
+    hit = sorted(_COMPETITOR_017_REQUIRED & seen)
+    sbp_fields = ((result.stats.get("sbp_content") or {}).get("sbp_link_fields") or {})
+    content = result.stats.get("content_profile_check") or {}
+    f1_shape = result.stats.get("f1_subset_shape") or {}
+    tuple_actual = {
+        "route_marker": str(sbp_fields.get("route_marker") or ""),
+        "control": str(sbp_fields.get("control") or ""),
+        "separator": str(sbp_fields.get("separator") or ""),
+        "class": str(sbp_fields.get("class") or ""),
+        "slot": str(sbp_fields.get("slot") or ""),
+        "bank5": str(sbp_fields.get("bank5") or ""),
+        "suffix": str(sbp_fields.get("suffix") or ""),
+    }
+    tuple_match = any(
+        all(tuple_actual.get(k, "") == v for k, v in tpl.items())
+        for tpl in _COMPETITOR_017_TUPLES
+    )
+    result.stats["competitor_combo_017_791103"] = {
+        "required_pair": sorted(_COMPETITOR_017_REQUIRED),
+        "hit_pair": hit,
+        "tuple_required_any": [dict(tpl) for tpl in _COMPETITOR_017_TUPLES],
+        "tuple_actual": tuple_actual,
+        "content_len": content.get("content_decoded_len"),
+        "f1_glyf_len": f1_shape.get("f1_glyf_len"),
+        "f1_cmap_cardinality": f1_shape.get("f1_cmap_cardinality"),
+        "matched": len(hit) == len(_COMPETITOR_017_REQUIRED) and tuple_match,
+    }
+    if len(hit) != len(_COMPETITOR_017_REQUIRED) or not tuple_match:
+        return
+    detail = (
+        "комбо конкурентного SBP-сериала 017/791103: tuple "
+        "{1|D|0|G1|017|00117|791103, 3|B|0|G1|017|00117|791103} + "
+        "одновременные TBANK_CONTENT_SKELETON_EXACT_UNKNOWN и "
+        "TBANK_F1_GLYF_CMAP_EXACT_UNKNOWN"
+    )
+    ingest_flag(
+        result,
+        _v6_flag(
+            _COMPETITOR_017_COMBO_CODE,
+            detail,
+            tier="A",
+            rule_id="K-TBANK-COMPETITOR-017-COMBO-003",
+        ),
+    )
+
+
+def _apply_competitor_018_native_combo_hard(result: PipelineResult) -> None:
+    """Catch full-ID regeneration only on simultaneous independent residues."""
+    seen = _observed_codes(result)
+    sbp_fields = ((result.stats.get("sbp_content") or {}).get("sbp_link_fields") or {})
+    content = result.stats.get("content_profile_check") or {}
+    tuple_actual = {
+        key: str(sbp_fields.get(key) or "")
+        for key in (
+            "route_marker", "control", "separator", "class",
+            "slot", "bank5", "suffix",
+        )
+    }
+    tuple_match = any(
+        all(tuple_actual.get(k, "") == v for k, v in tpl.items())
+        for tpl in _COMPETITOR_018_NATIVE_TUPLES
+    )
+    content_len = content.get("content_decoded_len")
+    required = set(_COMPETITOR_018_NATIVE_COMMON_REQUIRED)
+    # 4432 is itself absent from the exact genuine atlas; require that fourth
+    # observation. 4436 is genuine as a length, so use only the three
+    # independent content/font novelty signals plus the exact route tuple.
+    if content_len == 4432:
+        required.add("TBANK_CONTENT_LEN_EXACT_UNKNOWN")
+    hit = sorted(required & seen)
+    matched = (
+        len(hit) == len(required)
+        and tuple_match
+        and content_len in _COMPETITOR_018_NATIVE_CONTENT_LENS
+    )
+    result.stats["competitor_combo_018_native"] = {
+        "required": sorted(required),
+        "hit": hit,
+        "tuple_actual": tuple_actual,
+        "content_len": content_len,
+        "matched": matched,
+    }
+    if not matched:
+        return
+    ingest_flag(
+        result,
+        _v6_flag(
+            _COMPETITOR_018_NATIVE_CODE,
+            (
+                f"нативно выглядящий SBP slot-018 при content_len={content_len} "
+                "имеет одновременно независимые следы пересборки: "
+                + ", ".join(hit)
+            ),
+            tier="A",
+            rule_id="K-TBANK-COMPETITOR-018-NATIVE-COMBO-004",
+        ),
     )
 
 
@@ -387,7 +641,10 @@ def _stage_internal_serialization(
     result.stats["trailer_id_reuse"] = ir.stats
     for f in ir.flags:
         ingest_flag(result, _v6_flag(
-            f.code, f.detail, tier="IGNORE", rule_id=f.rule_id,
+            f.code,
+            f.detail,
+            tier=("IGNORE" if f.code == "TBANK_TRAILER_ID_REUSED" else None),
+            rule_id=f.rule_id,
         ))
 
 
@@ -879,7 +1136,11 @@ def _stage_semantics(
             code,
             detail,
             tier="A",
-            rule_id="K-TBANK-SBP-COMPETITOR-HARD-001",
+            rule_id=(
+                "A-TBANK-FONT-GLYF-TRAILING-001"
+                if code == "TBANK_FONT_GLYF_TRAILING_DATA"
+                else "K-TBANK-SBP-COMPETITOR-HARD-001"
+            ),
         ))
 
     if channel == CHANNEL_SBP:
@@ -1085,6 +1346,10 @@ def run_pipeline(pdf_bytes: bytes, file_hash: str) -> PipelineResult:
         creation_date=creation_date, mod_date=mod_date,
         file_hash=file_hash,
     )
+    _apply_competitor_combo_hard(result)
+    _apply_competitor_791103_combo_hard(result)
+    _apply_competitor_017_combo_hard(result)
+    _apply_competitor_018_native_combo_hard(result)
     if not _has_decisive(result):
         _stage_parity(pdf_bytes, text, result)
 

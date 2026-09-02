@@ -10,6 +10,9 @@ inside the coarse envelope still break these shape invariants.
 Genuine subsets also write glyf exactly to loca[-1]; SEQ often leaves
 non-zero trailing junk after the last glyph offset (same length as a twin
 corpus glyf, different bytes).
+
+Glyf↔cmap OUTLIER is HARD only for far transplants (~400 B beyond the
+sampled cmap bucket). Per-cmap min–max itself is a novelty atlas.
 """
 
 from __future__ import annotations
@@ -163,7 +166,7 @@ _CMAP_HEIGHT_N: dict[int, int] = {
 # Card OpenPDF h=471: genuines n=14 all have ≥10 F1 composites.
 _CARD_COMPOSITE_FLOOR = 10
 _CARD_COMPOSITE_HEIGHT = 471
-_GLYF_SLACK = 32
+_GLYF_SLACK = 400
 _MIN_ATLAS = 4
 # Zero-span buckets (lo==hi) are deterministic subset sizes — allow n≥2.
 _MIN_ATLAS_ZERO_SPAN = 2
@@ -470,8 +473,9 @@ def check_f1_subset_shape(pdf_bytes: bytes) -> CheckResult:
 
     # --- glyf↔cmap envelope (all heights with atlas n≥min) ---
     # Exact allowlist stays diagnostic/IGNORED (finite whitelist novelty).
-    # Envelope OUTLIER is HARD: SEQ card transplants sit far outside band
-    # (e.g. h=471 cmap=62 glyf=11948 vs atlas 11302–11342).
+    # HARD only for far transplants: SEQ card sits ~600 B outside the cmap
+    # bucket (h=471 cmap=62 glyf=11948 vs 11302–11342). Genuine names can
+    # overshoot the sampled max by ~100–200 B (Receipt 13: 12950 vs 12816).
     buckets = _GLYF_BY_HEIGHT_CMAP.get(height) or {}
     env = buckets.get(shape["cmap_n"]) if shape["cmap_n"] > 0 else None
     if env:

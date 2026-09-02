@@ -94,8 +94,29 @@ async def _tg_send_document(chat_id: int, fname: str, fdata: bytes,
     await asyncio.to_thread(lambda: urllib.request.urlopen(req, timeout=30).read())
 
 
+_TG_CAPTION_LIMIT = 1024
+
+
+def _join_auth_and_pdf(auth: str, pdf_caption: str) -> str:
+    extra = (pdf_caption or "").strip("\n")
+    if not extra:
+        return auth
+    return auth.rstrip() + "\n" + extra
+
+
+def _fit_caption(text: str, limit: int = _TG_CAPTION_LIMIT) -> str:
+    """Keep a single Telegram document caption; never split into a second message."""
+    if len(text) <= limit:
+        return text
+    cut = text[: limit - 1]
+    nl = cut.rfind("\n")
+    if nl >= limit // 2:
+        cut = cut[:nl]
+    return cut + "…"
+
+
 def _format_auth(res: dict) -> str:
-    """Email-authenticity summary (sent as the leading text message)."""
+    """Email-authenticity summary (DKIM/SPF) — prepended to the PDF caption."""
     lines = ["📧 <b>Проверка чека по почте</b>", ""]
 
     # Best available address for display: From, else Return-Path
@@ -326,19 +347,24 @@ class Handler:
             if chat_id is None:
                 continue
             try:
-                await _tg_send(chat_id, _format_auth(res))
-                # Forward the receipt itself as a separate file with its details.
-                for fname, pdf in res["pdfs"]:
-                    caption = _format_caption(
+                auth = _format_auth(res)
+                pdfs = res.get("pdfs") or []
+                if not pdfs:
+                    await _tg_send(chat_id, auth)
+                    continue
+                for i, (fname, pdf) in enumerate(pdfs):
+                    pdf_cap = _format_caption(
                         fname, pdf, chat_id,
                         mail_authentic=bool(res.get("authentic")),
                     )
-                    if len(caption) <= 1000:
-                        await _tg_send_document(chat_id, fname, pdf, caption)
-                    else:
-                        await _tg_send_document(chat_id, fname, pdf,
-                                                f"📄 <b>{fname}</b>")
-                        await _tg_send(chat_id, caption)
+                    caption = (
+                        _join_auth_and_pdf(auth, pdf_cap)
+                        if i == 0
+                        else (pdf_cap.strip() or f"📄 <b>{fname}</b>")
+                    )
+                    await _tg_send_document(
+                        chat_id, fname, pdf, _fit_caption(caption),
+                    )
             except Exception as e:
                 log.warning("tg send failed for %s: %s", chat_id, e)
 

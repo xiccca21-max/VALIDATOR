@@ -29,6 +29,8 @@ from ..ozon_sbp_tail import validate_ozon_sbp_tail_provenance
 from ..ozon_serializer_mix import check_ozon_serializer_mix
 from ..ozon_skia_packing import check_ozon_skia_packing
 from ..pdf_forensics import Weight, run_pdf_forensics
+from ..nbsp_padding import CODE as NBSP_CODE
+from ..nbsp_padding import find_trailing_nbsp_padding, padding_detail
 from ..structure import (
     content_stream_bytes,
     validate_active_content,
@@ -417,6 +419,13 @@ def _stage_semantics(
     tc = _text_controls(text)
     if tc:
         ingest_flag(result, tc)
+
+    nbsp_hits = find_trailing_nbsp_padding(text)
+    if nbsp_hits:
+        ingest_flag(result, _flag(
+            NBSP_CODE, padding_detail(nbsp_hits),
+            tier="HARD", group="semantic", rule_id="OZ-SEM-NBSP-001",
+        ))
 
     bad, detail = check_total_arithmetic(text)
     if bad:

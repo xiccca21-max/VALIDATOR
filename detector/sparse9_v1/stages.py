@@ -24,9 +24,20 @@ from ..sparse9_known import (
     OTP_KNOWN_FAKE_FILE_SHA256,
     OTP_KNOWN_FAKE_SBP_IDS,
     OTP_KNOWN_FAKE_SBP_TAILS,
+    YANDEX_KNOWN_FAKE_FILE_SHA256,
 )
 from ..sparse9_sbp_cipher import validate_sparse9_sbp_cipher
+from ..sparse9_yandex_openpdf import check_yandex_openpdf_invariants
+from ..sparse9_new_issuers import (
+    check_mts_invariants,
+    check_rsbank_invariants,
+    check_tochka_invariants,
+    check_yoomoney_invariants,
+)
 from ..raif_content_cid0 import RULE_ID as RAIF_CID0_RULE, check_raif_content_cid0
+from ..bank_channels import detect_channel
+from ..nbsp_padding import CODE as NBSP_CODE
+from ..nbsp_padding import find_trailing_nbsp_padding, padding_detail
 from ..structure import (
     content_stream_bytes,
     find_streams,
@@ -146,6 +157,10 @@ def _detect_generator(producer: str, creator: str) -> str:
     blob = f"{producer} {creator}".lower()
     if "jasperreports library version 7" in blob:
         return "jasper7_openpdf"
+    if "dbo-print-forms" in blob:
+        return "dbo_print_forms"
+    if "jasperreports library version 6.12" in blob:
+        return "jasper612_itext"
     if "jasperreports library version 6.21" in blob:
         return "jasper621_openpdf"
     if "quartz pdfcontext" in blob:
@@ -303,7 +318,7 @@ def _stage_content_ast(
             bank_key=bank_key,
             producer=producer,
             text=text,
-            channel="sbp",
+            channel=detect_channel(text, bank_key),
         )
         result.stats["raif_content_cid0"] = cid0.stats
         for cf in cid0.flags:
@@ -314,7 +329,7 @@ def _stage_content_ast(
 
 def _stage_fonts(pdf_bytes: bytes, bank_key: str, result: PipelineResult) -> None:
     result.completed_checks.append("fonts_cmap_glyph")
-    tier = "jasper" if bank_key in ("wbbank", "yandex") else "generic"
+    tier = "jasper" if bank_key in ("wbbank", "yandex", "mts", "yoomoney") else "generic"
     forensic = run_pdf_forensics(pdf_bytes, bank=bank_key, tier=tier)
     result.stats["forensics"] = forensic.stats
     for f in forensic.flags:
@@ -327,9 +342,9 @@ def _stage_fonts(pdf_bytes: bytes, bank_key: str, result: PipelineResult) -> Non
             ))
             continue
         if f.code in _FONT_HARD and f.weight == Weight.HIGH:
-            if bank_key == "sovkom" and f.code == "MISSING_FONT_OBJECT":
+            if bank_key in ("sovkom", "tochka", "mts") and f.code == "MISSING_FONT_OBJECT":
                 ingest_flag(result, _flag(
-                    f.code, f.detail + " — Flying Saucer PDF2 profile",
+                    f.code, f.detail + " — Resources в object-stream / PDF2",
                     tier="DIAGNOSTIC", rule_id="MB-FONT-012",
                 ))
                 continue
@@ -390,6 +405,13 @@ def _stage_semantics(
             tier="HARD", rule_id="MB-FONT-009",
         ))
 
+    nbsp_hits = find_trailing_nbsp_padding(text)
+    if nbsp_hits:
+        ingest_flag(result, _flag(
+            NBSP_CODE, padding_detail(nbsp_hits),
+            tier="HARD", rule_id="MB-SEM-NBSP-001", group="fields",
+        ))
+
     bad, detail = check_total_arithmetic(text)
     if bad:
         ingest_flag(result, _flag(
@@ -441,6 +463,54 @@ def _stage_semantics(
                 f"SBP tail «{opid[22:32]}» — хвост известного clone-kit (bank5+suffix)",
                 tier="KNOWN",
                 rule_id="K-OTP-SBP-TAIL-001",
+            ))
+
+    if expected_bank == "yandex":
+        if file_hash and file_hash.lower() in YANDEX_KNOWN_FAKE_FILE_SHA256:
+            ingest_flag(result, _flag(
+                "YANDEX_KNOWN_FILE_SIGNATURE",
+                f"file SHA-256 совпал с известной фейковой серией ({file_hash[:16]}…)",
+                tier="KNOWN",
+                rule_id="K-YANDEX-FILE-001",
+            ))
+        yandex_inv = check_yandex_openpdf_invariants(pdf_bytes)
+        result.stats["yandex_openpdf"] = yandex_inv.stats
+        for yf in yandex_inv.flags:
+            ingest_flag(result, _flag(
+                yf.code, yf.detail, tier="HARD", rule_id=yf.rule_id or yf.code,
+            ))
+        from ..bank_spec_engine import _pdf_creation_as_msk, _yandex_operation_time_msk
+        op_msk = _yandex_operation_time_msk(text)
+        created_msk = _pdf_creation_as_msk(creation_date)
+        if op_msk and created_msk:
+            delta = abs(
+                (created_msk.replace(second=0, microsecond=0) - op_msk).total_seconds()
+            )
+            result.stats["yandex_creation_delta_sec"] = int(delta)
+            if delta > 120:
+                ingest_flag(result, _flag(
+                    "YANDEX_CREATION_TIME_MISMATCH",
+                    f"время создания PDF {created_msk:%d.%m.%Y %H:%M:%S} МСК "
+                    f"не совпадает с временем операции {op_msk:%d.%m.%Y %H:%M} МСК",
+                    tier="HARD",
+                    rule_id="K-YANDEX-CREATIONTIME-001",
+                ))
+
+    _issuer_checkers = {
+        "mts": check_mts_invariants,
+        "yoomoney": check_yoomoney_invariants,
+        "rsbank": check_rsbank_invariants,
+        "tochka": check_tochka_invariants,
+    }
+    checker = _issuer_checkers.get(expected_bank)
+    if checker:
+        inv = checker(
+            pdf_bytes, producer=producer, creator=creator, text=text,
+        )
+        result.stats[f"{expected_bank}_invariants"] = inv.stats
+        for nf in inv.flags:
+            ingest_flag(result, _flag(
+                nf.code, nf.detail, tier="HARD", rule_id=nf.rule_id or nf.code,
             ))
 
     # Sovkom card originals have no NSPK id; phone/SBP clones often paste a

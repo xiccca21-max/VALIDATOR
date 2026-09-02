@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import re
-
 from dataclasses import dataclass, field
 
 from .ozon_profiles import (
@@ -11,12 +9,6 @@ from .ozon_profiles import (
     is_skia_chromium_profile,
 )
 from .ozon_sbp_cipher import validate_ozon_sbp_cipher
-
-# T-Bank Jasper/OpenPDF route block. Confirmed Ozon Skia forgeries (sbp.pdf /
-# sbp1.pdf / фейк1) splice G100/G101 into the tail; clean Ozon originals use
-# routes 00/B1 only. Marker 1791103 is an optional stronger T-Bank pin.
-_TBANK_TAIL_BLOCK_RE = re.compile(r"G10[01]")
-_TBANK_TAIL_MARKER = "1791103"
 
 
 @dataclass
@@ -49,28 +41,6 @@ class OzonSbpResult:
         ))
 
 
-def _check_cross_bank_tail(opid: str, res: OzonSbpResult) -> None:
-    tail = opid[11:32]
-    res.stats["sbp_tail"] = tail
-    block_m = _TBANK_TAIL_BLOCK_RE.search(tail)
-    has_marker = _TBANK_TAIL_MARKER in tail
-    if not block_m:
-        return
-    block = block_m.group(0)
-    res.stats["cross_bank_g10_block"] = block
-    res.stats["cross_bank_tbank_marker"] = has_marker
-    extra = f" + {_TBANK_TAIL_MARKER}" if has_marker else ""
-    res.add(
-        "OZON_SBP_ID_CROSS_BANK_TAIL",
-        f"хвост СБП-ID содержит блок T-Bank Jasper-профиля "
-        f"({block}{extra}) при заявленном Ozon/Skia чеке; "
-        f"у Ozon наблюдаются route 00/B1, не G100/G101; tail={tail}",
-        rule_id="K-OZON-SBP-CROSS-BANK-001",
-        expected="Ozon SBP route ∈ {00, B1}",
-        actual=tail,
-    )
-
-
 def validate_ozon_sbp_receipt(
     opid: str,
     text: str,
@@ -99,8 +69,5 @@ def validate_ozon_sbp_receipt(
     out.stats["cipher"] = cipher.stats
     for cf in cipher.flags:
         out.add(cf.code, cf.detail, rule_id=cf.rule_id)
-
-    if opid and skia and len(opid) == 32:
-        _check_cross_bank_tail(opid, out)
 
     return out

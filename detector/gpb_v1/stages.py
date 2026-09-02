@@ -24,6 +24,8 @@ from ..gpb_profiles import (
 )
 from ..gpb_sbp_cipher import validate_gpb_sbp_cipher
 from ..gpb_sfnt_shell import check_gpb_sfnt_shell
+from ..nbsp_padding import CODE as NBSP_CODE
+from ..nbsp_padding import find_trailing_nbsp_padding, padding_detail
 from ..pdf_forensics import Weight, run_pdf_forensics
 from ..structure import (
     content_stream_bytes,
@@ -262,6 +264,13 @@ def _stage_semantics(
     controls = sorted({n for ch, n in _BAD_CONTROLS.items() if ch in text})
     if controls:
         ingest_flag(result, _flag("TEXT_LAYER_INCONSISTENT", f"controls: {controls}", tier="HARD", rule_id="GPB-SEM-001"))
+
+    nbsp_hits = find_trailing_nbsp_padding(text)
+    if nbsp_hits:
+        ingest_flag(result, _flag(
+            NBSP_CODE, padding_detail(nbsp_hits),
+            tier="HARD", group="fields", rule_id="GPB-SEM-NBSP-001",
+        ))
 
     bad, detail = check_total_arithmetic(text)
     if bad:

@@ -21,7 +21,6 @@ from .content import check_content
 from .file_size import check_file_size
 from .fonts import check_fonts
 from .identity import extract_and_check_identity
-from .known_signatures import KNOWN_FAKE_FILE_SHA256
 from .profile_semantics import (
     EmitterEvidence,
     classify_submethod,
@@ -38,6 +37,11 @@ from .streams import check_streams
 from .types import AlfaFlag, PipelineResult
 from .unconfirmed_profiles import check_new_sbp_profile
 from .verdict import ingest_flag
+
+try:
+    from .known_signatures import KNOWN_FAKE_FILE_SHA256
+except ImportError:  # missing sidecar must not take down the whole Alfa engine
+    KNOWN_FAKE_FILE_SHA256 = frozenset()
 
 
 _MAX_BYTES = 8_000_000
@@ -201,7 +205,7 @@ def run_pipeline(pdf_bytes: bytes, file_hash: str) -> PipelineResult:
             result,
             _flag(
                 "ALFA_KNOWN_FAKE_SIGNATURE",
-                "SHA-256 совпал с подтверждённой подделкой Alfa Quartz/iOS",
+                "SHA-256 совпал с подтверждённой подделкой Альфа-Банка",
                 tier="KNOWN",
             ),
         )
@@ -296,6 +300,7 @@ def run_pipeline(pdf_bytes: bytes, file_hash: str) -> PipelineResult:
     content = check_content(
         pdf_bytes,
         producer=str(metadata.get("producer") or ""),
+        method=method,
     )
     result.stats["content"] = content.stats
     _ingest_external(result, content)
@@ -320,6 +325,7 @@ def run_pipeline(pdf_bytes: bytes, file_hash: str) -> PipelineResult:
         result.analysis_complete = False
 
     result.completed_checks.append("cross_document_identity")
+    already_fake = bool(result.known_fake_flags or result.hard_flags)
     amounts = parse_amounts(text)
     operation_dt = extract_operation_datetime(text)
     operation_ids = extract_operation_ids(text)
@@ -338,6 +344,7 @@ def run_pipeline(pdf_bytes: bytes, file_hash: str) -> PipelineResult:
                 else ""
             ),
         },
+        store=not already_fake,
     )
     result.stats["identity"] = identity.stats.as_dict()
     if identity.conflict:

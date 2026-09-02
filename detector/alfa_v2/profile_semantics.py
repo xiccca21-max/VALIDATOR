@@ -13,6 +13,9 @@ from datetime import datetime
 from decimal import Decimal, InvalidOperation
 from typing import Iterable, Mapping, Sequence
 
+from ..nbsp_padding import CODE as NBSP_CODE
+from ..nbsp_padding import find_trailing_nbsp_padding, padding_detail
+
 METHOD_SBP = "sbp"
 METHOD_CARD = "card"
 METHOD_PHONE = "phone"
@@ -612,19 +615,6 @@ _BARE_AMOUNT_RE = re.compile(r"(?<!\d)\d{4,}[\s\u00a0\u202f]*RUR", re.IGNORECASE
 _RUR_PAD_RE = re.compile(r"RUR(?:\u00a0|\u202f){2,}", re.IGNORECASE)
 _MASKED_CARD_RE = re.compile(r"(?<!\d)(\d{6})\*{4,8}(\d{4})(?!\d)")
 
-
-def _payment_bin_ok(bin6: str) -> bool:
-    """Alfa card-receipt BINs in the genuine corpus are MIR 2200xx only.
-
-    Loose Visa/MC ranges previously accepted SEQ junk like 234567 / 456789
-    (they fall inside Mastercard 2-series / Visa '4…').
-    """
-    if not (bin6.isdigit() and len(bin6) == 6):
-        return False
-    n = int(bin6)
-    return 220_000 <= n <= 220_499  # MIR
-
-
 _RUR_TOKEN_RE = re.compile(
     r"(\d(?:[\d\u00a0\u202f]*\d)?)\u00a0RUR(\u00a0|\u202f)?",
 )
@@ -671,23 +661,17 @@ def validate_amount_typography(text: str) -> SemanticResult:
 
 
 def validate_card_bins(text: str, method: str | None = None) -> SemanticResult:
-    """SEQ card templates use sequential junk BINs (789012…); genuines use MIR/Visa/MC."""
+    """SEQ card templates reuse ABAB last4 (6161/5050…). BIN brand is not a tell:
+
+    genuine Alfa card-to-card receipts routinely show a foreign Visa/MC
+    recipient (e.g. 427938) next to the sender MIR 2200xx.
+    """
     result = SemanticResult()
     method = method or classify_submethod(text)
     if method != METHOD_CARD:
         return result
     cards = _MASKED_CARD_RE.findall(text or "")
     result.stats["masked_cards"] = [f"{b}******{t}" for b, t in cards]
-    bad = [b for b, _t in cards if not _payment_bin_ok(b)]
-    if bad:
-        result.add(
-            "ALFA_CARD_BIN_INVALID",
-            (
-                f"BIN карты {bad[0]} вне MIR 2200xx (эталон Альфа card-квитанций) — "
-                f"признак synthetic card template, не банк-эмиттер"
-            ),
-            group="fields",
-        )
     # SEQ card tails reuse ABAB last4 (6161/5050/3838…). Absent from genuines.
     abab = [
         tail
@@ -799,6 +783,9 @@ def _extract_recipient_raw_line(text: str) -> str:
 def validate_field_artifacts(text: str) -> SemanticResult:
     """Structural field tells of SEQ reassembly — not novelty / atlas pins."""
     result = SemanticResult()
+    nbsp_hits = find_trailing_nbsp_padding(text or "")
+    if nbsp_hits:
+        result.add(NBSP_CODE, padding_detail(nbsp_hits), group="fields")
     raw = (text or "").replace("\xa0", " ").replace("\u202f", " ")
 
     phone = _PHONE_RE.search(raw)

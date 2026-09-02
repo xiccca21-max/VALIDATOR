@@ -30,6 +30,81 @@ _QQ_ALLOWED_BY_PROFILE: dict[str, frozenset[tuple[int, int]]] = {
     "sber_internal_jasper": _SBER_INTERNAL_QQ_ALLOWED,
 }
 
+# iText 2.1.7 / Jasper 6.18 identity Tm: operands are integers or 2-decimal
+# tokens. 3+ fractional digits = foreign serializer (Python/Java default float).
+_JASPER_TM_PROFILES = frozenset({
+    "sber_internal_jasper",
+    "sbp_outgoing",
+    "sbp_request",
+})
+_TM_IDENTITY_RE = re.compile(
+    rb"1 0 0 1 ([+\-]?\d+(?:\.\d+)?) ([+\-]?\d+(?:\.\d+)?) Tm"
+)
+# Fixed Jasper template rows (*.74). Genuines always emit the 2-decimal token;
+# SEQ truncates to *.7 (615.7 / 711.7 on the proton-pass set).
+_JASPER_TEMPLATE_Y_CANON = frozenset({
+    "204.74", "238.74", "296.74", "304.74", "330.74", "345.74",
+    "364.74", "385.74", "398.74", "434.74", "456.74", "475.74",
+    "490.74", "524.74", "558.74", "565.74", "601.74", "604.74",
+    "615.74", "632.74", "643.74", "697.74", "711.74", "728.74",
+})
+_JASPER_TEMPLATE_Y_TRUNC = frozenset(
+    canon[:-1] for canon in _JASPER_TEMPLATE_Y_CANON
+)
+_STRING_RE = re.compile(rb"\((?:\\.|[^\\)])*\)")
+_HEXSTR_RE = re.compile(rb"<[0-9A-Fa-f\s]+>")
+
+
+def _frac_digits(token: bytes) -> int:
+    if b"." not in token:
+        return 0
+    return len(token.split(b".", 1)[1])
+
+
+def _content_without_strings(content: bytes) -> bytes:
+    return _HEXSTR_RE.sub(b"<>", _STRING_RE.sub(b"()", content))
+
+
+def audit_jasper_tm_serialization(
+    content: bytes,
+    profile_id: str,
+) -> list[SberFlag]:
+    """HARD: Jasper Tm number spelling that iText 2.1.7 never emits."""
+    if profile_id not in _JASPER_TM_PROFILES or not content:
+        return []
+    flags: list[SberFlag] = []
+    stripped = _content_without_strings(content)
+    overflow: list[str] = []
+    truncated: list[str] = []
+    for x, y in _TM_IDENTITY_RE.findall(stripped):
+        if _frac_digits(x) >= 3 or _frac_digits(y) >= 3:
+            overflow.append(f"{x.decode()} {y.decode()}")
+        y_s = y.decode()
+        if y_s in _JASPER_TEMPLATE_Y_TRUNC:
+            truncated.append(y_s)
+    if overflow:
+        shown = ", ".join(overflow[:4])
+        extra = f" (+{len(overflow) - 4})" if len(overflow) > 4 else ""
+        flags.append(_f(
+            "SBER_CONTENT_TM_DECIMAL_OVERFLOW",
+            (
+                f"Tm с ≥3 знаками после точки ({shown}{extra}) — "
+                f"iText 2.1.7/Jasper пишет 0 или 2 знака, не 3"
+            ),
+            group="visibility",
+        ))
+    if truncated:
+        uniq = ", ".join(sorted(set(truncated)))
+        flags.append(_f(
+            "SBER_CONTENT_TM_TEMPLATE_Y_TRUNCATED",
+            (
+                f"Tm.y={uniq} — обрезка корпусного шаблонного ряда *.74 "
+                f"(Jasper всегда пишет 2 знака, напр. 615.74 / 711.74)"
+            ),
+            group="visibility",
+        ))
+    return flags
+
 
 @dataclass
 class CheckResult:
@@ -111,6 +186,10 @@ def check_content_grammar(
                 f"padding-комментарии в content stream ({len(pad_comments)})",
                 group="visibility",
             ))
+
+        tm_flags = audit_jasper_tm_serialization(content, profile_id)
+        out.flags.extend(tm_flags)
+        out.stats["tm_serialization_hard"] = [f.code for f in tm_flags]
 
         skeleton = content_skeleton_hash(pdf_bytes)
         out.stats["content_skeleton"] = skeleton

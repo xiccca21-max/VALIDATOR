@@ -190,9 +190,9 @@ def _normal_amount(value: object) -> str:
     number = re.sub(r"\s", "", match.group(1)).replace(",", ".")
     if "." in number:
         number = number.rstrip("0").rstrip(".")
-    currency = _CURRENCY_RE.search(raw)
-    currency_value = "RUB" if currency else ""
-    return f"{number} {currency_value}".strip()
+    # Currency token is not identity-critical: parse_amounts yields "4000"
+    # while text extract yields "4000 RUB" for the same receipt.
+    return number
 
 
 def _normal_date(value: object) -> str:
@@ -476,12 +476,15 @@ def check_identity(
     data_path: str | Path | None = None,
     max_rows: int = _DEFAULT_MAX_ROWS,
     retention_days: int = _DEFAULT_RETENTION_DAYS,
+    store: bool = True,
 ) -> IdentityResult:
     """Check and store an identity observation.
 
-    A hard conflict requires an equal operation/SBP identifier, a different
-    critical signature, and a different file key.  Thus regenerated PDFs with
-    unchanged critical fields remain clean, regardless of their PDF hashes.
+    First-seen signature for an identifier is canonical. A later file with
+    different critical fields is HARD; it is not stored, so re-checking the
+    original does not turn FAKE. Regenerated PDFs with the same fields stay
+    clean. Pass store=False for files already decided FAKE (known SHA / HARD)
+    so they cannot poison the first-seen slot.
     """
     stats = IdentityStats()
     result = IdentityResult(identity=identity, stats=stats)
@@ -519,15 +522,19 @@ def check_identity(
             _ensure_schema(connection)
             for identifier_type, identifier_value in identifiers:
                 rows = connection.execute(
-                    f"SELECT critical_signature, file_key FROM {_TABLE} "
-                    "WHERE identifier_type=? AND identifier_value=?",
+                    f"SELECT critical_signature, file_key, first_seen FROM {_TABLE} "
+                    "WHERE identifier_type=? AND identifier_value=? "
+                    "ORDER BY first_seen ASC, rowid ASC",
                     (identifier_type, identifier_value),
                 ).fetchall()
                 stats.prior_observations += len(rows)
-                if any(
-                    old_signature != signature and old_file_key != file_key
-                    for old_signature, old_file_key in rows
-                ):
+                canonical = rows[0] if rows else None
+                disagrees_canonical = bool(
+                    canonical
+                    and canonical[0] != signature
+                    and canonical[1] != file_key
+                )
+                if disagrees_canonical:
                     result.flags.append(IdentityFlag(
                         code=HARD_CODE,
                         detail=(
@@ -537,6 +544,11 @@ def check_identity(
                         identifier_type=identifier_type,
                         identifier_value=identifier_value,
                     ))
+
+                # Conflicting newcomers are not stored — otherwise the original
+                # turns FAKE on the next check against the clone we just wrote.
+                if disagrees_canonical or not store:
+                    continue
 
                 cursor = connection.execute(
                     f"INSERT INTO {_TABLE}("
@@ -588,6 +600,7 @@ def extract_and_check_identity(
     data_path: str | Path | None = None,
     max_rows: int = _DEFAULT_MAX_ROWS,
     retention_days: int = _DEFAULT_RETENTION_DAYS,
+    store: bool = True,
 ) -> IdentityResult:
     """Convenience API for future Alfa v2 pipeline stages."""
     identity = extract_identity(text, submethod=submethod, parsed=parsed)
@@ -598,4 +611,5 @@ def extract_and_check_identity(
         data_path=data_path,
         max_rows=max_rows,
         retention_days=retention_days,
+        store=store,
     )

@@ -21,6 +21,10 @@ _OTP_BANK5_ALLOWED: frozenset[str] = frozenset({"00117"})
 # PSB issuer member core on native PSB SBP genuines (чеки/Промсвязьбанк).
 _PSB_BANK5_ALLOWED: frozenset[str] = frozenset({"00117"})
 
+# Shared NSPK core on native MTS / RS / Tochka SBP genuines (n=1–2).
+# 00107/00116/00117 on these issuers is a pasted foreign id (T-Bank/Raif kits).
+_NEW_SBP_BANK5_ALLOWED: frozenset[str] = frozenset({"00118"})
+
 
 @dataclass
 class CipherFlag:
@@ -102,6 +106,14 @@ def validate_sparse9_sbp_cipher(opid: str, text: str, bank_key: str) -> CipherRe
             f"ядро bank5 «{bank5}» не из нативных PSB SBP (ожидается 00117) — "
             f"чужой NSPK-код на квитанции эмитента ПСБ",
             rule_id="MB-SBP-002-PSB-BANK5",
+        )
+        return res
+    if bank_key in ("mts", "rsbank", "tochka") and bank5 not in _NEW_SBP_BANK5_ALLOWED:
+        res.add(
+            "MB_SBP_ID_STRUCTURE",
+            f"ядро bank5 «{bank5}» не из нативных {bank_key} SBP (ожидается 00118) — "
+            f"чужой NSPK-код на квитанции эмитента",
+            rule_id=f"MB-SBP-002-{bank_key.upper()}-BANK5",
         )
         return res
 

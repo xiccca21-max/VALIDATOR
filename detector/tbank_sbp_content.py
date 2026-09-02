@@ -345,7 +345,37 @@ def _check_ascii_structure(opid: str, res: SbpCheckResult) -> bool:
             rule_id="K-TBANK-SBP-CONTENT-002",
         )
         return False
-    return True
+    # NSPK reference core is a decimal 000..999 value. Across all 60 genuine
+    # T-Bank SBP IDs this field is numeric; competitor clones leak route/control
+    # letters into its final position (90A, 57A, 34O, 86A).
+    structure_ok = True
+    if not opid[11:14].isdigit():
+        res.add(
+            "SBP_REFERENCE_NON_NUMERIC",
+            (
+                f"reference ID[11:14]={opid[11:14]!r} содержит букву — "
+                "внутренний reference-блок НСПК должен состоять из трёх цифр"
+            ),
+            rule_id="A-TBANK-SBP-REFERENCE-NUMERIC-001",
+            expected="000..999",
+            actual=opid[11:14],
+            tier="A",
+        )
+        structure_ok = False
+    # NSPK temporal core: ID[14] is the route_marker and is always a digit on
+    # genuine T-Bank Jasper IDs (0/60 OpenPDF SBP). A letter here is a
+    # generator splice, not a new issuer (00118 stays allowed at bank5).
+    if not opid[14].isdigit():
+        res.add(
+            "SBP_CIPHER_STRUCTURE",
+            f"позиция 15 СБП-ID должна быть цифрой (там «{opid[14]}») — "
+            f"route_marker в ядре НСПК, не алфавит class/bank5",
+            rule_id="K-TBANK-SBP-CONTENT-002",
+            expected="digit",
+            actual=opid[14],
+        )
+        structure_ok = False
+    return structure_ok
 
 
 def _check_timestamp_exact(opid: str, text: str, res: SbpCheckResult) -> None:
@@ -434,6 +464,97 @@ def _check_timestamp_exact(opid: str, text: str, res: SbpCheckResult) -> None:
             rule_id="K-TBANK-SBP-TIME-001",
             expected="Δ≤1s MSK",
             actual=f"{delta}s",
+        )
+
+
+def _check_profile_epoch_expiry(opid: str, text: str, res: SbpCheckResult) -> None:
+    """Reject the retired June/July NSPK route when stamped as an August operation."""
+    dt = extract_receipt_datetime(text, prefer_first_line=True)
+    if not dt:
+        return
+    sb_class = opid[17:19]
+    route_marker = opid[14]
+    control = opid[15]
+    slot = opid[19:22]
+    bank5 = opid[22:27]
+    suffix = opid[26:32]
+    if (
+        sb_class == "G1"
+        and bank5 == "00117"
+        and suffix == "791103"
+        and dt.date() >= datetime.date(2026, 8, 1)
+    ):
+        res.add(
+            "SBP_PROFILE_EPOCH_EXPIRED",
+            (
+                f"маршрут G1/00117/791103 относится к июньско-июльской эпохе, "
+                f"но операция датирована {dt:%d.%m.%Y}; августовский оригинальный "
+                "профиль уже использует bank5=00118"
+            ),
+            rule_id="A-TBANK-SBP-PROFILE-EPOCH-EXPIRED-001",
+            expected="до 01.08.2026 для G1/00117/791103",
+            actual=dt.strftime("%d.%m.%Y"),
+            tier="A",
+        )
+    # June–August 2026 genuines never use the March–May B1/013 slot
+    # (corpus: March/May B1013 n=2; June B1013 n=0; August uses 00118).
+    # SEQ defaulted this August-looking graft onto June receipts.
+    if (
+        sb_class == "B1"
+        and slot == "013"
+        and dt.year == 2026
+        and dt.month in (6, 7, 8)
+    ):
+        res.add(
+            "SBP_PROFILE_EPOCH_SLOT_CONFLICT",
+            (
+                f"маршрут B1/013 на операции {dt:%d.%m.%Y} — слот 013 у Т-Банка "
+                "живой в марте–мае (00117); июньские оригиналы A+G100x / B+G101x, "
+                "августовские B+00118, не B1013"
+            ),
+            rule_id="A-TBANK-SBP-PROFILE-EPOCH-SLOT-001",
+            expected="июнь G100x/G101x или август 00118",
+            actual=f"B1/{slot}/{bank5}/{dt:%m.%Y}",
+            tier="A",
+        )
+    if (
+        sb_class == "G1"
+        and slot == "002"
+        and bank5 == "00118"
+        and suffix == "891103"
+        and dt.year == 2026
+        and dt.month == 8
+    ):
+        res.add(
+            "SBP_PROFILE_EPOCH_SUFFIX_CONFLICT",
+            (
+                "августовский G1/00118 использует graft-suffix 891103 от "
+                "устаревшей ветки 791103; оригинальные августовские suffix-эпохи "
+                "для bank5=00118: 820705, 821301, 831501"
+            ),
+            rule_id="A-TBANK-SBP-PROFILE-EPOCH-SUFFIX-001",
+            expected="августовская suffix-эпоха 00118",
+            actual=f"G1/{slot}/{bank5}/{suffix}",
+            tier="A",
+        )
+    if (
+        bank5 == "00118"
+        and suffix == "821301"
+        and dt.year == 2026
+        and dt.month == 8
+        and (sb_class, slot, route_marker, control) != ("B1", "014", "0", "Y")
+    ):
+        res.add(
+            "SBP_PROFILE_SUFFIX_OWNER_CONFLICT",
+            (
+                "suffix 821301 профиля 00118 принадлежит B1/slot014 с парой "
+                f"marker/control=0/Y, но указан {sb_class}/slot{slot} "
+                f"с парой {route_marker}/{control}"
+            ),
+            rule_id="A-TBANK-SBP-SUFFIX-OWNER-001",
+            expected="B1/014/0/Y",
+            actual=f"{sb_class}/{slot}/{route_marker}/{control}",
+            tier="A",
         )
 
 
@@ -784,10 +905,12 @@ def _check_sbp_profile_empirical(opid: str, res: SbpCheckResult) -> None:
         "suffix_bad": suffix_bad,
     }
 
+    # Check a known slot/suffix route even when marker itself is outside the
+    # profile alphabet; otherwise arbitrary 2..9 markers bypass the binding.
+    _check_empirical_slot_suffix_binding(
+        control, route_marker, slot, suffix, sb_class, bank5, res,
+    )
     if not marker_bad and not suffix_bad:
-        _check_empirical_slot_suffix_binding(
-            control, route_marker, slot, suffix, sb_class, bank5, res,
-        )
         return
 
     parts: list[str] = []
@@ -861,6 +984,29 @@ def _check_empirical_slot_suffix_binding(
         return False
 
     allowed_fmt = sorted(f"{c}/{m}" for c, m in allowed_pairs)
+    # G1/00117 slot=018/791103 is a stable NSPK route binding, not a
+    # document-shape atlas: confirmed originals use only H/0 or S/1.
+    # The live competitor series rotates arbitrary marker/control pairs while
+    # keeping this exact route identity. Keep this separate from the generic
+    # empirical conflict, which remains diagnostic for less-established keys.
+    if (
+        sb_class == "G1"
+        and bank5 == "00117"
+        and slot == "018"
+        and suffix == "791103"
+    ):
+        res.add(
+            "TBANK_SBP_G1_SLOT018_BINDING_CONFLICT",
+            (
+                f"control/route_marker=({control!r},{route_marker!r}) нарушает "
+                f"маршрутную связку {allowed_fmt} для "
+                "G1/00117 slot=018 suffix=791103"
+            ),
+            rule_id="K-TBANK-SBP-G1-SLOT018-BINDING-001",
+            expected=f"(control,route)∈{allowed_fmt}",
+            actual=f"control={control}, route_marker={route_marker}",
+            tier="A",
+        )
     res.add(
         "SBP_LINKED_TUPLE_CONFLICT",
         (
@@ -923,6 +1069,7 @@ def validate_tbank_sbp_id(
         return out
 
     _check_timestamp_exact(opid, text, out)
+    _check_profile_epoch_expiry(opid, text, out)
 
     # HARD linked tuples — all SBP receipts, before empirical / Jasper gate.
     _check_known_linked_tuples(opid, out)

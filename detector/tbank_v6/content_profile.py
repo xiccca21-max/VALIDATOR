@@ -15,6 +15,8 @@ import re
 import zlib
 from dataclasses import dataclass, field
 
+from ..nbsp_padding import CODE as NBSP_CODE
+from ..nbsp_padding import find_trailing_nbsp_padding, padding_detail
 from ..structure import content_skeleton_hash
 from .types import V6Flag
 
@@ -820,6 +822,19 @@ def check_content_profile(pdf_bytes: bytes) -> CheckResult:
                 rule_id="TBANK_TEXT_TRAILING_WHITESPACE",
             ))
 
+        nbsp_hits = find_trailing_nbsp_padding(text)
+        out.stats["text_trailing_nbsp_runs"] = [
+            (hit.field, hit.count) for hit in nbsp_hits[:6]
+        ]
+        if nbsp_hits:
+            out.flags.append(V6Flag(
+                code=NBSP_CODE,
+                detail=padding_detail(nbsp_hits),
+                tier="A",
+                group="B4_text_layout",
+                rule_id=NBSP_CODE,
+            ))
+
         amt_pads = re.findall(r"\n( {2,})(\d[\d\s.,]*\s*i)\b", text)
         # also Итого\n<spaces><amount>
         itogo = re.search(r"Итого\n( {2,})([^\n]+)", text)
@@ -913,8 +928,8 @@ def check_content_profile(pdf_bytes: bytes) -> CheckResult:
                     rule_id="TBANK_PHONE_SUBSCRIBER_UNIFORM",
                 ))
 
-        # Card channel: SEQ last4 ladders 2345/4567… — absent from «На карту»
-        # OpenPDF genuines (n=26).
+        # Card channel: SEQ last4 ladders 2345/4567. Diagnostic only —
+        # genuines also have 3456 (Новая папка). Not HARD.
         if channel == "card":
             cards = re.findall(r"(\d{6})\*+(\d{4})", text)
             out.stats["card_last4"] = [last4 for _, last4 in cards]
@@ -1022,6 +1037,54 @@ def check_content_profile(pdf_bytes: bytes) -> CheckResult:
                 group="B4_text_layout",
                 rule_id="TBANK_SUPPORT_CONTACT_CORRUPTED",
             ))
+
+        # Static JRXML labels. OpenPDF ToUnicode for template strings is exact
+        # (133/133 genuines). SEQ that remaps CID→Latin (Перевiд) keeps the
+        # visual but breaks the text layer. Missing «Перевод» on a receipt
+        # that still has Итого/Статус/Квитанция is that generator break.
+        receiptish = sum(
+            1 for tok in ("Итого", "Статус", "Квитанция") if tok in text
+        )
+        if receiptish >= 2:
+            first_line = next(
+                (ln.strip() for ln in text.splitlines() if ln.strip()),
+                "",
+            )
+            out.stats["date_line"] = first_line[:48]
+            if not re.match(r"^\d{2}\.\d{2}\.\d{4}\b", first_line):
+                out.flags.append(V6Flag(
+                    code="TBANK_DATE_LINE_CORRUPTED",
+                    detail=(
+                        f"первая строка «{first_line}» не дата DD.MM.YYYY — "
+                        f"Jasper IB/Receipt всегда печатает дату операции первой "
+                        f"строкой; кракозябры = сломанный ToUnicode/CID"
+                    ),
+                    tier="A",
+                    group="B4_text_layout",
+                    rule_id="TBANK_DATE_LINE_CORRUPTED",
+                ))
+            if "Перевод" not in text:
+                garbled = next(
+                    (
+                        ln.strip() for ln in text.splitlines()
+                        if "перев" in ln.casefold() or "ерев" in ln.casefold()
+                    ),
+                    "",
+                )
+                out.flags.append(V6Flag(
+                    code="TBANK_STATIC_LABEL_CORRUPTED",
+                    detail=(
+                        f"нет эталонного лейбла «Перевод»"
+                        + (
+                            f"; вместо него {garbled!r}"
+                            if garbled else ""
+                        )
+                        + " — JRXML/ToUnicode сломан (SEQ glyph-slot)"
+                    ),
+                    tier="A",
+                    group="B4_text_layout",
+                    rule_id="TBANK_STATIC_LABEL_CORRUPTED",
+                ))
 
         # Static label «Телефон получателя» — genuines never mojibake the T
         # (SEQ → «þелефон получателя» when transplanting Latin/Þ into slot).

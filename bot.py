@@ -10,6 +10,7 @@ import os
 import pathlib
 import re
 import datetime
+import time
 from io import BytesIO
 
 import fitz
@@ -34,18 +35,11 @@ from detector import analytics
 from detector.explain import build_user_explanation
 import blocklist
 from campaign.config import (
-    STATUS_ACCEPTED,
-    STATUS_DUPLICATE,
-    STATUS_FAKE,
-    STATUS_REJECTED,
-    STATUS_REVERSED,
-    STATUS_UNSUPPORTED,
     campaign_is_active,
     format_money_kopecks,
     is_campaign_admin,
 )
 from campaign import service as campaign_service
-from campaign import texts as campaign_texts
 
 BLOCKED_TEXT = "⛔ <b>Доступ запрещён.</b>"
 
@@ -214,38 +208,13 @@ def _main_keyboard(user_id: int = 0, username: str | None = None) -> ReplyKeyboa
     return ReplyKeyboardMarkup(keyboard=rows, resize_keyboard=True)
 
 
-def _profile_inline_kb() -> InlineKeyboardMarkup:
-    return InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text="📄 Мои чеки по акции", callback_data="camp:my_checks")],
-        [InlineKeyboardButton(text="📋 Правила акции", callback_data="camp:rules")],
-    ])
-
-
-def _checks_inline_kb(rows: list) -> InlineKeyboardMarkup | None:
-    buttons = [[InlineKeyboardButton(text=f"#{r['id']}", callback_data=f"camp:check:{r['id']}")]
-               for r in rows[:12]]
-    return InlineKeyboardMarkup(inline_keyboard=buttons) if buttons else None
-
-
-async def _campaign_notify_user(user_id: int, camp: dict) -> None:
-    if not camp or camp.get("skipped") or not camp.get("notify"):
-        return
-    try:
-        status = camp.get("status")
-        if status == STATUS_ACCEPTED:
-            snap = campaign_service.profile_snapshot(user_id)
-            await bot.send_message(user_id, campaign_texts.notify_accepted(snap), parse_mode="HTML")
-        elif status in (STATUS_REJECTED, STATUS_DUPLICATE, STATUS_FAKE, STATUS_UNSUPPORTED):
-            reason = camp.get("reason_text") or "не соответствует условиям акции"
-            await bot.send_message(user_id, campaign_texts.notify_rejected(reason), parse_mode="HTML")
-        elif status == STATUS_REVERSED:
-            await bot.send_message(
-                user_id,
-                campaign_texts.notify_reversed(camp.get("reason_text") or ""),
-                parse_mode="HTML",
-            )
-    except Exception:
-        logging.exception("campaign notify failed user_id=%s", user_id)
+def _profile_text(user_id: int, username: str | None) -> str:
+    uname = f"@{username}" if username else "—"
+    return (
+        f"👤 <b>Мой профиль</b>\n\n"
+        f"ID: <code>{user_id}</code>\n"
+        f"Username: {uname}"
+    )
 
 
 def _today() -> str:
@@ -1317,6 +1286,7 @@ async def handle_document(msg: Message):
 
     # Ответ реплаем на сообщение с чеком
     status_msg = await msg.reply("⏳ Проверяю...")
+    t0 = time.perf_counter()
 
     try:
         file = await _tg_call("get_file", lambda: bot.get_file(doc.file_id))
@@ -1327,6 +1297,7 @@ async def handle_document(msg: Message):
             return buf.getvalue()
 
         pdf_bytes = await _tg_call("download_file", _download)
+        t_download = time.perf_counter()
 
         # Gate 2: magic bytes — real PDF starts with "%PDF-"
         if not pdf_bytes.startswith(b"%PDF-"):
@@ -1334,6 +1305,7 @@ async def handle_document(msg: Message):
             return
 
         bank, result, is_tbank = await asyncio.to_thread(route_bank, pdf_bytes)
+        t_route = time.perf_counter()
 
         uname = msg.from_user.username if msg.from_user else None
         uid = msg.from_user.id if msg.from_user else 0
@@ -1342,6 +1314,7 @@ async def handle_document(msg: Message):
         # T-Bank's "00117" id format, so only apply it there; the known-fake hash
         # database is bank-agnostic and always runs.
         parsed_fields = None
+        rtext = ""
         try:
             pdoc = fitz.open(stream=pdf_bytes, filetype="pdf")
             rtext = "".join(p.get_text() for p in pdoc)
@@ -1354,8 +1327,12 @@ async def handle_document(msg: Message):
                 rep = reputation.check_known_fake(pdf_bytes, rtext)
         except Exception:
             logging.exception("reputation check failed")
-            rep = {"score": 0, "flags": [], "opid": None,
-                   "file_hash": reputation.file_hash(pdf_bytes)}
+            # Still apply static/user known-fake registry if full check crashed.
+            try:
+                rep = reputation.check_known_fake(pdf_bytes, rtext)
+            except Exception:
+                rep = {"score": 0, "flags": [], "opid": None,
+                       "file_hash": reputation.file_hash(pdf_bytes)}
 
         result["score"] += rep["score"]
         result["flags"] += rep["flags"]
@@ -1408,15 +1385,29 @@ async def handle_document(msg: Message):
         else:
             btn = InlineKeyboardButton(text="🚩 Это фейк", callback_data=f"fake:{token}")
         kb = InlineKeyboardMarkup(inline_keyboard=[[btn]])
-        await _archive_checked_pdf(
-            msg,
-            doc,
-            pdf_bytes,
-            bank=bank,
-            result=result,
-            file_hash=rep["file_hash"],
-        )
         await _edit_status_text(status_msg, text, parse_mode="HTML", reply_markup=kb)
+        t_reply = time.perf_counter()
+
+        # Archive is secondary; do not delay the user-facing result.
+        asyncio.create_task(
+            _archive_checked_pdf(
+                msg,
+                doc,
+                pdf_bytes,
+                bank=bank,
+                result=result,
+                file_hash=rep["file_hash"],
+            )
+        )
+        logging.info(
+            "check_timing uid=%s file=%s download=%.2fs route=%.2fs reply=%.2fs total=%.2fs",
+            uid,
+            doc.file_name,
+            t_download - t0,
+            t_route - t_download,
+            t_reply - t_route,
+            t_reply - t0,
+        )
 
         if not is_group and campaign_is_active():
             try:
@@ -1527,7 +1518,7 @@ async def pre_checkout(query):
 
 
 
-# ── Campaign user UI ──────────────────────────────────────────────────────────
+# ── Profile ───────────────────────────────────────────────────────────────────
 
 @dp.message(Command("profile"), F.chat.type == "private")
 @dp.message(F.text == "👤 Мой профиль", F.chat.type == "private")
@@ -1536,76 +1527,30 @@ async def btn_my_profile(msg: Message):
         return
     uid = msg.from_user.id
     uname = msg.from_user.username
-    snap = campaign_service.profile_snapshot(uid)
     await msg.answer(
-        campaign_texts.profile_text(uid, uname, snap),
+        _profile_text(uid, uname),
         parse_mode="HTML",
         reply_markup=_main_keyboard(uid, uname),
     )
-    await msg.answer(
-        "Действия:",
-        reply_markup=_profile_inline_kb(),
-    )
-
 
 
 @dp.message(F.text == "💰 Моя статистика", F.chat.type == "private")
 async def btn_stale_stats(msg: Message):
-    """Old reply-keyboard cache may still show this button — refresh menu."""
+    """Old reply-keyboard cache may still show the campaign button."""
     if await _require_subscription(msg):
         return
     uid = msg.from_user.id
     uname = msg.from_user.username
-    snap = campaign_service.profile_snapshot(uid)
     await msg.answer(
-        campaign_texts.profile_text(uid, uname, snap),
-        parse_mode="HTML",
-        reply_markup=_profile_inline_kb(),
-    )
-    await msg.answer(
-        "Клавиатура обновлена.",
+        "Акция завершена. Клавиатура обновлена.",
         reply_markup=_main_keyboard(uid, uname),
     )
 
 
-@dp.callback_query(F.data == "camp:stats")
-async def cb_camp_stats(cb: CallbackQuery):
-    snap = campaign_service.profile_snapshot(cb.from_user.id)
-    await cb.message.answer(campaign_texts.stats_text(snap), parse_mode="HTML")
-    await cb.answer()
-
-
-@dp.callback_query(F.data == "camp:rules")
-async def cb_camp_rules(cb: CallbackQuery):
-    await cb.message.answer(campaign_texts.rules_text(), parse_mode="HTML")
-    await cb.answer()
-
-
-@dp.callback_query(F.data == "camp:my_checks")
-async def cb_camp_my_checks(cb: CallbackQuery):
-    rows = campaign_service.recent_checks(cb.from_user.id, 15)
-    kb = _checks_inline_kb(rows)
-    await cb.message.answer(
-        campaign_texts.checks_list_text(rows),
-        parse_mode="HTML",
-        reply_markup=kb,
-    )
-    await cb.answer()
-
-
+@dp.callback_query(F.data.in_({"camp:stats", "camp:rules", "camp:my_checks"}))
 @dp.callback_query(F.data.startswith("camp:check:"))
-async def cb_camp_check_detail(cb: CallbackQuery):
-    try:
-        check_id = int(cb.data.split(":")[-1])
-    except ValueError:
-        await cb.answer("Некорректный id", show_alert=True)
-        return
-    row = campaign_service.get_check(check_id)
-    if not row or int(row.get("user_id") or 0) != cb.from_user.id:
-        await cb.answer("Чек не найден", show_alert=True)
-        return
-    await cb.message.answer(campaign_texts.check_detail_text(row), parse_mode="HTML")
-    await cb.answer()
+async def cb_camp_gone(cb: CallbackQuery):
+    await cb.answer("Акция завершена.", show_alert=True)
 
 
 def _require_campaign_admin(msg: Message) -> bool:
@@ -1680,19 +1625,18 @@ async def cmd_accept_check(msg: Message):
     if not out.get("ok"):
         await msg.answer(f"Ошибка: {out.get('error')}")
         return
-    await msg.answer(f"OK accepted #{out['check_id']}")
-    if not out.get("ok"):
-        await msg.answer(f"Ошибка: {out.get('error')}")
-        return
-    await msg.answer(f"OK {out['status']} #{out['check_id']}")
-    if not out.get("ok"):
-        await msg.answer(f"Ошибка: {out.get('error')}")
-        return
-    await msg.answer(f"OK {out['status']} #{out['check_id']}")
-    if not out.get("ok"):
-        await msg.answer(f"Ошибка: {out.get('error')}")
-        return
-    await msg.answer(f"OK balance={format_money_kopecks(out['balance'])} user={uid}")
+    uid = out.get("user_id")
+    reward = format_money_kopecks(int(out.get("reward_kopecks") or 0))
+    bal_txt = "—"
+    if uid is not None:
+        view = campaign_service.user_admin_view(str(uid))
+        if view:
+            bal_txt = format_money_kopecks(int(view.get("balance") or 0))
+    await msg.answer(
+        f"OK accepted #{out.get('check_id')} "
+        f"status={out.get('status', 'accepted')} "
+        f"reward={reward} user={uid} balance={bal_txt}"
+    )
 
 
 @dp.message(Command("campaign_balances"))

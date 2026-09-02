@@ -1,16 +1,18 @@
 """Hard competitor-matching SBP assembly fingerprint.
 
 Rule intent:
-- target linked tuple 1|6|0|G1|004|00117|770901
-- plus FontFile2 glyf overrun warning on embedded TinkoffSans-Regular
-- excluding known benign 405-byte variant
+- detect a malformed FontFile2 glyf payload on embedded TinkoffSans
+- treat that physical defect as standalone proof, independent of SBP fields
+- exclude the known benign 405-byte variant
 """
 
 from __future__ import annotations
 
 import contextlib
 import io
+import logging
 import re
+import threading
 from dataclasses import dataclass, field
 
 from fontTools.ttLib import TTFont
@@ -21,7 +23,18 @@ from ..tbank_sbp_content import extract_sbp_opid_geometric
 
 _WARN_RE = re.compile(r"too much glyph data: (\d+) excess bytes")
 _TARGET_TUPLE = "1|6|0|G1|004|00117|770901"
+_TARGET_TUPLES = frozenset({
+    _TARGET_TUPLE,
+    "1|0|0|G1|002|00117|791103",
+    "0|1|0|G1|005|00117|770901",
+    # Genuine slot-018 receipts use these route tuples with well-formed glyf.
+    # The competitor's native-looking follow-up kept H/0 but retained physical
+    # TTF residue (115 excess bytes), so the tuple is only a gate, never proof.
+    "0|H|0|G1|018|00117|791103",
+    "1|S|0|G1|018|00117|791103",
+})
 _BENIGN_WARN_VALUES = frozenset({405})
+STANDALONE_GLYF_CODE = "TBANK_FONT_GLYF_TRAILING_DATA"
 
 
 @dataclass
@@ -58,6 +71,17 @@ def _sbp_tuple7(pdf_bytes: bytes, text: str, sbp_stats: dict) -> str:
 
 def _collect_glyf_warn_values(pdf_bytes: bytes) -> list[int]:
     vals: list[int] = []
+    log_messages: list[str] = []
+    owner_thread = threading.get_ident()
+
+    class _CurrentThreadHandler(logging.Handler):
+        def emit(self, record: logging.LogRecord) -> None:
+            if record.thread == owner_thread:
+                log_messages.append(record.getMessage())
+
+    glyf_logger = logging.getLogger("fontTools.ttLib.tables._g_l_y_f")
+    handler = _CurrentThreadHandler()
+    glyf_logger.addHandler(handler)
     for item in extract_fontfile2_stream_blobs(pdf_bytes):
         name = str(item.get("font_name") or "")
         if "TinkoffSans-" not in name:
@@ -66,18 +90,43 @@ def _collect_glyf_warn_values(pdf_bytes: bytes) -> list[int]:
         if not isinstance(ttf, (bytes, bytearray)):
             continue
         buf = io.StringIO()
-        with contextlib.redirect_stderr(buf):
-            tt = TTFont(io.BytesIO(ttf))
-            if "glyf" not in tt:
-                continue
-            glyf = tt["glyf"]
-            for gname in tt.getGlyphOrder():
-                try:
-                    _ = glyf[gname].isComposite()
-                except Exception:
+        try:
+            with contextlib.redirect_stderr(buf):
+                tt = TTFont(io.BytesIO(ttf))
+                if "glyf" not in tt:
                     continue
-        vals.extend(int(v) for v in _WARN_RE.findall(buf.getvalue()))
+                glyf = tt["glyf"]
+                for gname in tt.getGlyphOrder():
+                    try:
+                        _ = glyf[gname].isComposite()
+                    except Exception:
+                        continue
+            vals.extend(int(v) for v in _WARN_RE.findall(buf.getvalue()))
+        finally:
+            try:
+                tt.close()
+            except Exception:
+                pass
+    glyf_logger.removeHandler(handler)
+    vals.extend(int(v) for v in _WARN_RE.findall("\n".join(log_messages)))
     return vals
+
+
+def _residue_match(tuple7: str, warn_values: list[int]) -> bool:
+    """Tuple alone is common on genuines (00117/G1). Need a real glyf overrun.
+
+    Empty warn list used to fire as matched (`not has_only_benign` on []),
+    which FAKE'd OpenPDF originals like чеки/т банк/сбп1.pdf.
+    """
+    if tuple7 not in _TARGET_TUPLES or not warn_values:
+        return False
+    uniq = set(warn_values)
+    return not uniq.issubset(_BENIGN_WARN_VALUES)
+
+
+def _nonbenign_residue_match(warn_values: list[int]) -> bool:
+    """A malformed TinkoffSans glyf payload is proof without an SBP tuple."""
+    return bool(warn_values) and not set(warn_values).issubset(_BENIGN_WARN_VALUES)
 
 
 def check_sbp_competitor_hard(
@@ -87,16 +136,13 @@ def check_sbp_competitor_hard(
 ) -> CompetitorHardResult:
     out = CompetitorHardResult()
     tuple7 = _sbp_tuple7(pdf_bytes, text, sbp_stats or {})
-    warn_values: list[int] = []
-    if tuple7 == _TARGET_TUPLE:
-        warn_values = _collect_glyf_warn_values(pdf_bytes)
+    warn_values = _collect_glyf_warn_values(pdf_bytes)
     uniq_values = sorted(set(warn_values))
-    has_warn = bool(warn_values)
-    has_only_benign = bool(uniq_values) and set(uniq_values).issubset(_BENIGN_WARN_VALUES)
-    matched = tuple7 == _TARGET_TUPLE and not has_only_benign
+    matched = _nonbenign_residue_match(warn_values)
     out.stats = {
         "tuple7": tuple7,
         "target_tuple7": _TARGET_TUPLE,
+        "target_tuples": sorted(_TARGET_TUPLES),
         "warn_count": len(warn_values),
         "warn_values": uniq_values,
         "benign_warn_values": sorted(_BENIGN_WARN_VALUES),
@@ -104,11 +150,10 @@ def check_sbp_competitor_hard(
     }
     if matched:
         out.flags.append((
-            "TBANK_SBP_TUPLE_GLYF_RESIDUE_SIGNATURE",
+            STANDALONE_GLYF_CODE,
             (
-                "SBP linked tuple 1|6|0|G1|004|00117|770901 совпал с "
-                f"FontFile2 glyph residue warn={uniq_values or ['not_observed']} "
-                "(исключена benign-ветка 405)"
+                "встроенный TinkoffSans содержит физический хвост за границей "
+                f"таблицы glyf: warn={uniq_values}; benign-ветка 405 исключена"
             ),
         ))
     return out

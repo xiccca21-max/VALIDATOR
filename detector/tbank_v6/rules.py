@@ -50,8 +50,11 @@ HARD_CODES: frozenset[str] = frozenset({
     # TBANK_F2_GLYF_HEIGHT_EXACT_UNKNOWN demoted — novelty exact-size atlas
     # (finite whitelist of F2 glyf lengths by MediaBox height); future genuines
     # with new Medium subsets at known heights FP. Not reassembly proof.
-    # F1 nonempty-hmtx kit → F2 glyf co-generation (known kit + foreign Medium).
-    "TBANK_F1_HMTX_F2_GLYF_COGEN_MISMATCH",
+    # TBANK_F1_HMTX_F2_GLYF_COGEN_MISMATCH demoted — known F1 hmtx kits pair
+    # with new genuine Medium lengths (Receipt 15: expected 856, got 1044).
+    # Height 451 midgap: only F2.glyf absent from the global genuine union
+    # (SEQ phone 1130; 1144 is native Medium on other heights).
+    "TBANK_F2_GLYF_HEIGHT_MIDGAP",
     # OpenPDF BaseFont subset-tag ↔ FontFile2 identity (frozen tag, foreign FF2).
     "TBANK_BASEFONT_SUBSET_TAG_PAYLOAD_MISMATCH",
     # TBANK_F1_GLYF_CMAP_EXACT_UNKNOWN / CONTENT_LEN_EXACT_UNKNOWN /
@@ -101,10 +104,22 @@ HARD_CODES: frozenset[str] = frozenset({
     "SBP_CIPHER_STRUCTURE",
     "SBP_CIPHER_TIMESTAMP",
     "SBP_CIPHER_REFERENCE",
+    "SBP_REFERENCE_NON_NUMERIC",
+    "SBP_PROFILE_EPOCH_EXPIRED",
+    "SBP_PROFILE_EPOCH_SLOT_CONFLICT",
+    "SBP_PROFILE_EPOCH_SUFFIX_CONFLICT",
+    "SBP_PROFILE_SUFFIX_OWNER_CONFLICT",
     "SBP_ROUTE_FIELD_CONTAMINATION",
     "SBP_CONTROL_TRIPLE_MISMATCH",
     "SBP_LINKED_TUPLE_CROSS_CLASS",
+    "TBANK_SBP_G1_SLOT018_BINDING_CONFLICT",
+    "TBANK_TRAILER_ID_CANONICAL_CONTENT_MISMATCH",
+    "TBANK_FONT_GLYF_TRAILING_DATA",
     "TBANK_SBP_TUPLE_GLYF_RESIDUE_SIGNATURE",
+    "TBANK_COMPETITOR_NOVELTY_COMBO_001",
+    "TBANK_COMPETITOR_TUPLE_791103_COMBO_002",
+    "TBANK_COMPETITOR_TUPLE_017_791103_COMBO_003",
+    "TBANK_COMPETITOR_TUPLE_018_NATIVE_COMBO_004",
     "SBP_PROFILE_EPOCH_TOO_EARLY",
     "TBANK_DEBIT_ACCOUNT_PREFIX",
     # SBP_GRAMMAR_SUFFIX_PROFILE demoted — incomplete suffix atlas / novelty
@@ -151,8 +166,8 @@ HARD_CODES: frozenset[str] = frozenset({
     "TBANK_F1_HMTX_ENVELOPE_MISMATCH",
     "TBANK_F2_GLYF_LOCA_PADDING",
     "TBANK_F2_GLYF_DIGIT_CARD_FAT",
-    "TBANK_F1_GLYF_SHAPE_ENVELOPE_MISMATCH",
-    "TBANK_F1_GLYF_SIZE_MULTISET_MISMATCH",
+    # TBANK_F1_GLYF_SHAPE_ENVELOPE_MISMATCH / SIZE_MULTISET demoted — finite
+    # glyf_len atlas FP on genuines (Receipt 15 shape; новые чеки 12784 size).
     # Jasper/OpenPDF emitter invariants (serializer + FontFile2 laws)
     "TBANK_SFNT_TABLE_ORDER_MISMATCH",
     "TBANK_GLYF_ZERO_CONTOUR_STUB",
@@ -202,6 +217,7 @@ HARD_CODES: frozenset[str] = frozenset({
     "TBANK_SENDER_LEADING_WHITESPACE",
     "TBANK_RECIPIENT_LEADING_WHITESPACE",
     "TBANK_TEXT_TRAILING_WHITESPACE",
+    "TEXT_TRAILING_NBSP_PADDING",
     "TBANK_AMOUNT_LEADING_WHITESPACE",
     # Channel text on a *known foreign* shell height (unknown heights skip).
     "TBANK_CHANNEL_MEDIABOX_MISMATCH",
@@ -210,15 +226,16 @@ HARD_CODES: frozenset[str] = frozenset({
     # Phone / SBP recipient must be mobile DEF 9xx when phone field present.
     "TBANK_PHONE_DEF_NOT_MOBILE",
     "TBANK_PHONE_SUBSCRIBER_UNIFORM",
-    "TBANK_CARD_LAST4_SEQUENTIAL",
     "TBANK_CARD_MASK_NULL_TEMPLATE",
     "TBANK_DATETIME_ZERO_SECONDS",
     # Support contact line spacing / exact grammar.
     "TBANK_SUPPORT_CONTACT_SPACING",
     # Missing/garbled «Служба поддержки fb@tbank.ru» (SEQ ToUnicode strip).
     "TBANK_SUPPORT_CONTACT_CORRUPTED",
-    # Static field label mojibake (e.g. «þелефон получателя»).
+    # Static field label mojibake (e.g. «þелефон получателя» / «Перевiд»).
     "TBANK_STATIC_LABEL_CORRUPTED",
+    # First text line is always DD.MM.YYYY on Jasper IB/Receipt (n=133).
+    "TBANK_DATE_LINE_CORRUPTED",
     # OpenPDF: unused CMap leftovers (template glyphs not in text).
     "UNUSED_CID_PRESENT",
     "CMAP_EXTRA_SYMBOLS",
@@ -302,6 +319,13 @@ IGNORED_CODES: frozenset[str] = frozenset({
     "TBANK_CONTENT_LEN_EXACT_UNKNOWN",
     "TBANK_F1_CMAP_CARDINALITY_UNKNOWN",
     "TBANK_F1_TWIN_SHAPE_MISMATCH",
+    "TBANK_F1_GLYF_SHAPE_ENVELOPE_MISMATCH",
+    # Finite glyf_len → glyph-size-multiset atlas; genuines share length with
+    # a different outline set (новые чеки F1.glyf=12784).
+    "TBANK_F1_GLYF_SIZE_MULTISET_MISMATCH",
+    # Ascending last4 (3456/4567) occurs on real «На карту» cards.
+    "TBANK_CARD_LAST4_SEQUENTIAL",
+    "TBANK_F1_HMTX_F2_GLYF_COGEN_MISMATCH",
     # Same (h,cmap,glyf) can map to multiple genuine FontFile2 digests; atlas
     # often has allowed_n=1 → FP on real twins outside the recorded sha.
     "TBANK_F1_FF2_SHA_TWIN_MISMATCH",

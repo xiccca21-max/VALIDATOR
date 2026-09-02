@@ -74,12 +74,13 @@ def route(pdf_bytes: bytes) -> tuple[str, dict, bool]:
     try:
         doc = fitz.open(stream=pdf_bytes, filetype="pdf")
         producer = (doc.metadata.get("producer", "") or "")
+        creator = (doc.metadata.get("creator", "") or "")
         text = "".join(p.get_text() for p in doc)
         doc.close()
     except Exception:
-        producer, text = "", ""
+        producer, creator, text = "", "", ""
 
-    prof, _ = profiles.identify(text, producer)
+    prof, _ = profiles.identify(text, producer, creator, pdf_bytes)
     bank_name = prof["name"] if prof else "Неизвестный банк"
     bank_key = prof["key"] if prof else ""
     is_tbank = bool(prof and prof["key"] == "tbank")

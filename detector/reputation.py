@@ -55,6 +55,25 @@ KNOWN_FAKE_BY_SHA256: dict[str, dict[str, str]] = {
         "bank": "tbank",
         "code": "TBANK_KNOWN_FILE_PHONE_SHELL_14",
     },
+    # SEQ T-Bank phone height=451, F2.glyf=1130 in 1106–1226 hole.
+    "6d4d5eacd3fd13c97742f8f9c05454a6ffca59ae9bcf90d87788b2c8e252edec": {
+        "bank": "tbank",
+        "code": "TBANK_KNOWN_FILE_PHONE_F2_MIDGAP_1130",
+    },
+    # SEQ Alfa Oracle SBP (alfa_sbp_142944 / 143126), FF2 in 21132–21682 hole.
+    "4feebd6e1219e32f10463e3d57ef54d1d461aabbcb76fad07966474e4050f01f": {
+        "bank": "alfa",
+        "code": "ALFA_KNOWN_FILE_SBP_FF2_MIDGAP_142944",
+    },
+    "c94364a434ae05915735428e909b27da0bfd33da80814e9b633f8caa44afc8ec": {
+        "bank": "alfa",
+        "code": "ALFA_KNOWN_FILE_SBP_FF2_MIDGAP_143126",
+    },
+    # SEQ Yandex Jasper/OpenPDF: locale /CreationDate + YSText-Regular maxp 915.
+    "91453ff5970d7be3c5771439313b78d65d15b01db626d360ff787eabb3dfcc25": {
+        "bank": "yandex",
+        "code": "YANDEX_KNOWN_FILE_CREATIONDATE_MAXP",
+    },
     # Sovkom Flying Saucer clone kit (OpenPDF 3.0.5 + foreign A62/00118 SBP id).
     "69587935b25c0bc9ed6c0f37eb85cabecb5a5b14b9a33eaf25ba04fc82c4becd": {
         "bank": "sovkom",

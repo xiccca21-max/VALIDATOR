@@ -1,7 +1,8 @@
 """
 Sparse 9 banks — v1.0 future-safe shared MB-core validator.
 
-Banks: wbbank, otp, psb, bchpb, raif, rocket, sovkom, uralsib, yandex.
+Banks: wbbank, otp, psb, bchpb, raif, rocket, sovkom, uralsib, yandex,
+mts, yoomoney, rsbank, tochka.
 """
 
 from __future__ import annotations

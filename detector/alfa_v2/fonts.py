@@ -424,11 +424,21 @@ def check_fonts(pdf: bytes, *, producer: str = "") -> ForensicResult:
     subset_prefixes: list[str] = []
     observations: list[dict[str, Any]] = []
 
+    # Oracle SBP Tahoma pack (decoded ≥20570, n=14): unique positive hmtx
+    # advances are 42–45. SEQ CLEAN-miss alfa_sbp_114100 keeps hinting/csum
+    # but drops the width vocabulary to 41. Card Oracle packs (16300/16792)
+    # sit at 30–32 and must stay outside this floor.
+    _ORACLE_SBP_FF2_MIN = 20_570
+    _ORACLE_SBP_HMTX_UNIQ_MIN = 42
+
     # Exact FontFile2 decoded sizes (чеки). Envelope let SEQ slip; exact set
-    # catches mid-gap sizes. 16300/16792 removed — SEQ rebuilds without hinting
-    # (PADD+glyf…), not live Oracle Tahoma (≥20570 on clean corpus n=14).
+    # is observational only (ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN is IGNORE).
+    # 16300/16792 removed — SEQ rebuilds without hinting (PADD+glyf…), not live
+    # Oracle Tahoma. 19654 = Oracle phone subset (intrabank, live cvt/fpgm/prep);
+    # SBP packs stay ≥20570. 21370 is a live Oracle SBP pack in the old
+    # 21132–21682 hole — ALFA_ORACLE_FF2_SIZE_MIDGAP was dropped (FP on genuines).
     _ORACLE_FF2_EXACT = frozenset({
-        20570, 20850, 20882, 20944, 21058, 21132, 21682, 21808,
+        19654, 20570, 20850, 20882, 20944, 21058, 21132, 21370, 21682, 21808,
         22248, 22356, 22582,
     })
     _QUARTZ_FF2_EXACT = frozenset({
@@ -757,6 +767,35 @@ def check_fonts(pdf: bytes, *, producer: str = "") -> ForensicResult:
             "calculated_bbox": [round(v, 4) for v in calculated_bbox],
         }
         result.stats.setdefault("ttf_head", {})[font_name] = report_head
+
+        pos_adv = {
+            int(advance)
+            for advance, _lsb in tt["hmtx"].metrics.values()
+            if int(advance) > 0
+        }
+        uniq_adv = len(pos_adv)
+        result.stats.setdefault("hmtx_uniq_advances", []).append(uniq_adv)
+        if (
+            emitter == "oracle"
+            and len(ff2) >= _ORACLE_SBP_FF2_MIN
+            and uniq_adv < _ORACLE_SBP_HMTX_UNIQ_MIN
+        ):
+            result.add(
+                "ALFA_ORACLE_SBP_HMTX_UNIQ_ADVANCES",
+                (
+                    f"/{font_name} unique positive hmtx advances={uniq_adv} "
+                    f"< {_ORACLE_SBP_HMTX_UNIQ_MIN} при FontFile2={len(ff2)} B "
+                    f"(Oracle SBP Tahoma n=14: 42–45) — пересобранный width "
+                    f"vocabulary, не короче ФИО"
+                ),
+                tier="HARD",
+                group=RULE_GROUP,
+                evidence={
+                    "hmtx_uniq_advances": uniq_adv,
+                    "ff2_decoded": len(ff2),
+                    "floor": _ORACLE_SBP_HMTX_UNIQ_MIN,
+                },
+            )
 
         if oracle_profile:
             if int(head.flags) != 27 or int(head.indexToLocFormat) != 1:

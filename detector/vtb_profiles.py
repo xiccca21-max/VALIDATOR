@@ -30,11 +30,16 @@ def detect_generator_path(producer: str, creator: str = "") -> str:
     blob = f"{producer} {creator}".lower()
     if any(m in blob for m in _OPENHTML_MARKERS):
         return "openhtmltopdf"
+    if "openpdf" in blob:
+        return "openpdf"
     return "unknown_coherent"
 
 
 def classify_family(text: str) -> str:
     low = _norm(text)
+    if "перевод на счет другому лицу" in low or "перевод на счёт другому лицу" in low:
+        if "сбп" in low:
+            return FAMILY_SBP_OUT
     if "исходящий перевод сбп" in low:
         return FAMILY_SBP_OUT
     if "денежный перевод" in low and "перевод на карту" in low:
@@ -55,6 +60,7 @@ def is_vtb_receipt(text: str, pdf_bytes: bytes) -> bool:
     if any(m in low for m in (
         "банк втб", "втб (пао)", "исходящий перевод сбп",
         "перевод на карту", "по номеру телефона клиенту втб",
+        "перевод на счет другому лицу", "перевод на счёт другому лицу",
     )):
         return True
     return b"openhtmltopdf" in pdf_bytes.lower()

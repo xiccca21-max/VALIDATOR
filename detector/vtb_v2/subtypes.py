@@ -11,6 +11,7 @@ from .rules import (
     SUBTYPE_LABELS,
     SUBTYPE_PHONE,
     SUBTYPE_SBP,
+    SUBTYPE_SBP_ACCOUNT,
     SUBTYPE_UNKNOWN,
     VTB_BANK_ALIASES,
 )
@@ -41,6 +42,8 @@ def is_vtb_receipt(text: str, pdf_bytes: bytes) -> bool:
         "исходящий перевод сбп",
         "перевод на карту",
         "по номеру телефона клиенту втб",
+        "перевод на счет другому лицу",
+        "перевод на счёт другому лицу",
         "денежный перевод",
     )):
         return True
@@ -51,6 +54,12 @@ def is_vtb_receipt(text: str, pdf_bytes: bytes) -> bool:
 
 def classify_subtype(text: str) -> str:
     low = _low(text)
+    # OpenPDF 2.x account-SBP (A4 / Arial) — distinct from openhtml «Исходящий перевод СБП».
+    if (
+        "перевод на счет другому лицу" in low
+        or "перевод на счёт другому лицу" in low
+    ) and "сбп" in low:
+        return SUBTYPE_SBP_ACCOUNT
     if "исходящий перевод сбп" in low:
         return SUBTYPE_SBP
     # Official card title is two lines; forgeries often drop «Денежный перевод».
@@ -83,6 +92,10 @@ def field_presence(text: str) -> dict[str, bool]:
         "receiver_bank": _has_label(low, "банк получателя"),
         "sbp_id": _has_label(low, "id операции в сбп", "id операции"),
         "amount": _has_label(low, "сумма операции"),
+        "credit_amount": _has_label(low, "сумма зачисления"),
+        "phone_number": _has_label(low, "номер телефона"),
+        "executed_stamp": _has_label(low, "исполнено"),
+        "transfer_type": _has_label(low, "тип перевода"),
         "card_number": _has_label(low, "номер карты"),
         "receiver_card": _has_label(low, "карта получателя"),
         "receiver_account": _has_label(low, "счет получателя", "счёт получателя"),
@@ -106,6 +119,10 @@ _REQUIRED: dict[str, tuple[str, ...]] = {
         "status", "op_date", "debit_account", "receiver", "receiver_phone",
         "receiver_account", "sender", "amount",
     ),
+    SUBTYPE_SBP_ACCOUNT: (
+        "status", "debit_account", "receiver_account", "receiver",
+        "receiver_bank", "sbp_id", "credit_amount", "executed_stamp",
+    ),
 }
 
 _FORBIDDEN: dict[str, tuple[str, ...]] = {
@@ -116,6 +133,8 @@ _FORBIDDEN: dict[str, tuple[str, ...]] = {
         "commission", "amount_with_commission",
     ),
     SUBTYPE_PHONE: ("sbp_id", "receiver_bank", "receiver_card"),
+    # Account-SBP is a different generator: full receiver account, no payer-name block.
+    SUBTYPE_SBP_ACCOUNT: ("receiver_card", "payer_name", "money_transfer_title"),
 }
 
 
@@ -204,6 +223,22 @@ def check_method_hard_rules(
     low = _low(text)
     receiver_bank = extract_receiver_bank(text)
     bank_is_vtb = is_vtb_bank(receiver_bank)
+
+    if (
+        profile_rule_enabled(profile_version, "VTB_METHOD_SBP_TO_SELF_BANK")
+        and subtype == SUBTYPE_SBP_ACCOUNT
+        and bank_is_vtb
+    ):
+        flags.append(VtbFlag(
+            code="VTB_METHOD_SBP_TO_SELF_BANK",
+            detail=(
+                f"СБП на счёт в другом банке, но банк получателя "
+                f"«{receiver_bank}» нормализован как ВТБ — конфликт метода"
+            ),
+            tier="HARD",
+            group="semantic_method",
+            rule_id="VTB_METHOD_SBP_TO_SELF_BANK",
+        ))
 
     if (
         profile_rule_enabled(profile_version, "VTB_METHOD_SBP_TO_SELF_BANK")

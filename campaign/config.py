@@ -9,6 +9,8 @@ MSK = timezone(timedelta(hours=3))
 
 CAMPAIGN_ID = "originals_2026_07"
 CAMPAIGN_TITLE = "Сбор оригинальных чеков"
+# User-facing promo is off. Intake and money UI stay disabled.
+CAMPAIGN_ENABLED = False
 
 # Inclusive window in Moscow time
 CAMPAIGN_START = datetime(2026, 7, 19, 0, 0, 0, tzinfo=MSK)
@@ -41,6 +43,11 @@ SUPPORTED_BANKS = frozenset({
     "sovcombank",
     "rocketbank",
     "bchpb",
+    "wbbank",
+    "mts",
+    "yoomoney",
+    "rsbank",
+    "tochka",
 })
 
 # Map detector profile keys to campaign bank keys
@@ -63,6 +70,11 @@ BANK_KEY_ALIASES = {
     "rocket": "rocketbank",
     "rocketbank": "rocketbank",
     "bchpb": "bchpb",
+    "wbbank": "wbbank",
+    "mts": "mts",
+    "yoomoney": "yoomoney",
+    "rsbank": "rsbank",
+    "tochka": "tochka",
 }
 
 BANK_DISPLAY = {
@@ -79,6 +91,11 @@ BANK_DISPLAY = {
     "sovcombank": "Совкомбанк",
     "rocketbank": "Рокетбанк",
     "bchpb": "Банк Санкт-Петербург",
+    "wbbank": "ВБ Банк",
+    "mts": "МТС Деньги",
+    "yoomoney": "ЮMoney",
+    "rsbank": "Русский Стандарт",
+    "tochka": "Точка Банк",
 }
 
 STATUS_PENDING = "pending"
@@ -120,6 +137,8 @@ def now_msk() -> datetime:
 
 
 def campaign_is_active(at: datetime | None = None) -> bool:
+    if not CAMPAIGN_ENABLED:
+        return False
     ts = at or now_msk()
     if ts.tzinfo is None:
         ts = ts.replace(tzinfo=timezone.utc).astimezone(MSK)

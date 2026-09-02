@@ -83,11 +83,12 @@ def check_file_size(
         out.flags.append(AlfaFlag(
             code="ALFA_FILE_SIZE_STRONG_OUTLIER",
             detail=(
-                f"вес PDF {size} B — сильно тяжелее корпуса оригиналов Альфа "
-                f"({family}: эталон {a_min}–{a_max}; HARD-порог ≤{strong_hi})"
+                f"вес PDF {size} B — тяжелее узкого корпуса Альфа "
+                f"({family}: эталон {a_min}–{a_max}) — diagnostic, не HARD "
+                f"(genuine fee-receipt 59229 пересекает старый SEQ-диапазон)"
             ),
-            tier="A",
-            group="serializer_container",
+            tier="DIAGNOSTIC",
+            group="",
             rule_id="ALFA_FILE_SIZE_STRONG_OUTLIER",
         ))
     elif size < a_min or size > a_max:

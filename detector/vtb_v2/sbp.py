@@ -17,9 +17,11 @@ from .types import VtbFlag
 _SBP_RE = re.compile(r"^[AB][0-9A-Z]{31}$")
 _DATE_RE = re.compile(r"(\d{2})\.(\d{2})\.(\d{4}),?\s*(\d{2}):(\d{2})")
 
-# Native VTB openhtml SBP genuines (чеки/втб оригинал, n=13) — bank5 always 00117.
-# Clone kits paste foreign NSPK cores (e.g. 00118).
-_VTB_BANK5_ALLOWED: frozenset[str] = frozenset({"00117"})
+# Native VTB openhtml SBP genuines (чеки/втб оригинал) — bank5 always 00117.
+# OpenPDF 2.x «перевод на счёт в другом банке через СБП» uses 00118 (n=2).
+_VTB_BANK5_OPENHTML: frozenset[str] = frozenset({"00117"})
+_VTB_BANK5_ACCOUNT_SBP: frozenset[str] = frozenset({"00118"})
+_VTB_BANK5_ALLOWED: frozenset[str] = _VTB_BANK5_OPENHTML
 
 
 @dataclass
@@ -113,7 +115,13 @@ def _flag(code: str, detail: str, *, tier: str = "HARD", group: str = "") -> Vtb
     return VtbFlag(code=code, detail=detail, tier=tier, group=group, rule_id=code)
 
 
-def validate_sbp_id(opid: str | None, text: str = "") -> SbpCheckResult:
+def validate_sbp_id(
+    opid: str | None,
+    text: str = "",
+    *,
+    subtype: str = "",
+    operation_dt: datetime.datetime | None = None,
+) -> SbpCheckResult:
     res = SbpCheckResult()
     if not opid:
         res.flags.append(_flag("VTB_SBP_ID_MISSING", "не найден ID операции в СБП"))
@@ -173,16 +181,23 @@ def validate_sbp_id(opid: str | None, text: str = "") -> SbpCheckResult:
             f"блок ID[22:26]={parsed.block_0011!r} — ожидается 0011",
         ))
 
-    if parsed.bank5 not in _VTB_BANK5_ALLOWED:
+    from .rules import SUBTYPE_SBP_ACCOUNT
+    allowed_bank5 = (
+        _VTB_BANK5_ACCOUNT_SBP
+        if subtype == SUBTYPE_SBP_ACCOUNT
+        else _VTB_BANK5_OPENHTML
+    )
+    if parsed.bank5 not in allowed_bank5:
+        expected = "/".join(sorted(allowed_bank5))
         res.flags.append(_flag(
             "VTB_SBP_ID_STRUCTURE",
             (
                 f"ядро bank5 «{parsed.bank5}» не из нативных ВТБ SBP "
-                f"(ожидается 00117) — чужой NSPK-код на квитанции эмитента ВТБ"
+                f"(ожидается {expected}) — чужой NSPK-код на квитанции эмитента ВТБ"
             ),
         ))
 
-    dt = parse_operation_datetime(text)
+    dt = operation_dt or parse_operation_datetime(text)
     if dt:
         res.stats["receipt_datetime"] = dt.isoformat(sep=" ")
         year_digit_expected = str(dt.year % 10)
