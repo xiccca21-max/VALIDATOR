@@ -7,15 +7,15 @@ import asyncio
 import html
 import logging
 import os
-import pathlib
 import re
 import datetime
 import time
+from collections import OrderedDict
 from io import BytesIO
 
 import fitz
 from aiogram import Bot, Dispatcher, F, BaseMiddleware
-from aiogram.filters import CommandStart, Command
+from aiogram.filters import CommandStart, Command, Filter
 from aiogram.types import TelegramObject, Update
 from aiogram.types import (
     Message, Document, ReplyKeyboardMarkup, KeyboardButton,
@@ -24,7 +24,7 @@ from aiogram.types import (
     BotCommand, BotCommandScopeDefault, BotCommandScopeChat,
     MenuButtonCommands,
 )
-from aiogram.types import FSInputFile, BufferedInputFile
+from aiogram.types import BufferedInputFile
 from aiogram.exceptions import TelegramNetworkError
 from dotenv import load_dotenv
 
@@ -82,8 +82,32 @@ MAX_INFLIGHT_CHECKS_PER_USER = 3
 _user_inflight: dict[int, int] = {}
 _user_inflight_lock = asyncio.Lock()
 
-# token -> (file_hash, opid, parsed_fields, pdf_bytes, bank)
-_report_cache: dict[str, tuple[str, str | None, dict | None, bytes, str]] = {}
+# token -> (file_hash, opid, parsed_fields, pdf_bytes, bank_display_name, is_tbank)
+# Bounded LRU: entries carry the full PDF, so an unbounded dict leaks memory on
+# a long-running process. Oldest entries are evicted once the cap is reached.
+_REPORT_CACHE_MAX = 300
+_report_cache: OrderedDict[
+    str, tuple[str, str | None, dict | None, bytes, str, bool]
+] = OrderedDict()
+
+
+def _report_cache_put(token: str, entry) -> None:
+    _report_cache[token] = entry
+    _report_cache.move_to_end(token)
+    while len(_report_cache) > _REPORT_CACHE_MAX:
+        _report_cache.popitem(last=False)
+
+
+# Fire-and-forget background tasks must stay referenced until done, otherwise
+# the event loop may garbage-collect them mid-flight.
+_bg_tasks: set[asyncio.Task] = set()
+
+
+def _spawn_bg(coro) -> asyncio.Task:
+    task = asyncio.create_task(coro)
+    _bg_tasks.add(task)
+    task.add_done_callback(_bg_tasks.discard)
+    return task
 
 
 FAKE_THRESHOLD = 60
@@ -175,7 +199,7 @@ async def _require_subscription(msg: Message) -> bool:
     if await _is_subscribed(msg.from_user.id):
         return False
     kb = InlineKeyboardMarkup(inline_keyboard=[[
-        InlineKeyboardButton(text="📢 Подписаться", url=f"https://t.me/proton_newss"),
+        InlineKeyboardButton(text="📢 Подписаться", url="https://t.me/proton_newss"),
         InlineKeyboardButton(text="✅ Я подписался", callback_data="check_sub"),
     ]])
     await msg.answer(
@@ -204,8 +228,15 @@ def _main_keyboard(user_id: int = 0, username: str | None = None) -> ReplyKeyboa
         [KeyboardButton(text="👤 Мой профиль")],
     ]
     if _is_privileged_user(username, user_id):
-        rows.append([KeyboardButton(text="📊 Статистика")])
+        rows.append([KeyboardButton(text="📊 Статистика"), KeyboardButton(text="🛡 Админка")])
     return ReplyKeyboardMarkup(keyboard=rows, resize_keyboard=True)
+
+
+def _kb_for(msg: Message) -> ReplyKeyboardMarkup:
+    user = msg.from_user
+    if not user:
+        return MAIN_KEYBOARD
+    return _main_keyboard(user.id, user.username)
 
 
 def _profile_text(user_id: int, username: str | None) -> str:
@@ -398,9 +429,15 @@ class BlocklistMiddleware(BaseMiddleware):
         if user and _is_user_blocked(user.id, user.username):
             if isinstance(event, Update):
                 if event.message:
-                    await event.message.answer(BLOCKED_TEXT, parse_mode="HTML")
+                    await event.message.answer(
+                        _blocked_user_text(user.id, user.username),
+                        parse_mode="HTML",
+                    )
                 elif event.callback_query:
-                    await event.callback_query.answer("Доступ запрещён.", show_alert=True)
+                    await event.callback_query.answer(
+                        _blocked_user_plain(user.id, user.username)[:200],
+                        show_alert=True,
+                    )
                 elif event.pre_checkout_query:
                     await bot.answer_pre_checkout_query(
                         event.pre_checkout_query.id, ok=False,
@@ -933,24 +970,12 @@ def _format_result(pdf_bytes: bytes, result: dict, bank: str, is_tbank: bool,
             lines.append("⚠️ <b>Устаревший чек</b>")
         return "\n".join(lines)
 
-    is_sparse9_v1 = (
-        details.get("engine") == "sparse9_v1"
-        or bool(details.get("sparse9_v1_shadow"))
-    )
+    is_sparse9_v1 = details.get("engine") == "sparse9_v1"
     if is_sparse9_v1:
         expert = details.get("expert_report") or {}
-        if not expert.get("body_lines") and details.get("sparse9_v1_shadow"):
-            expert = (details["sparse9_v1_shadow"].get("v1_expert_report") or {})
         body_lines = expert.get("body_lines") or []
-        shadow = details.get("sparse9_v1_shadow") or {}
         if is_fake:
             lines = [f"❌ <b>{_html_safe(expert.get('summary', expl['summary']))}</b>", ""]
-            if shadow.get("mode") == "shadow":
-                lines.append(
-                    f"<i>Shadow v1: {_html_safe(str(shadow.get('v1_verdict')))} "
-                    f"| legacy: {_html_safe(str(shadow.get('legacy_verdict')))}</i>"
-                )
-                lines.append("")
             if body_lines:
                 lines += [_html_safe(ln) for ln in body_lines[1:]]
             elif flags:
@@ -1101,7 +1126,7 @@ async def btn_check(msg: Message):
         return
     await msg.answer(
         "Отправь PDF-файл чека — проверю подлинность.",
-        reply_markup=MAIN_KEYBOARD,
+        reply_markup=_kb_for(msg),
     )
 
 
@@ -1113,7 +1138,7 @@ async def btn_banks(msg: Message):
     await msg.answer(
         "🏦 <b>Проверяемые банки</b>\n\n" + body,
         parse_mode="HTML",
-        reply_markup=MAIN_KEYBOARD,
+        reply_markup=_kb_for(msg),
     )
 
 
@@ -1141,7 +1166,7 @@ async def btn_email(msg: Message):
             "Функция настраивается. Скоро здесь появятся ваши персональные "
             "адреса для проверки чеков по почте."
         )
-    await msg.answer(text, parse_mode="HTML", reply_markup=MAIN_KEYBOARD)
+    await msg.answer(text, parse_mode="HTML", reply_markup=_kb_for(msg))
 
 
 @dp.message(Command("support"), F.chat.type == "private")
@@ -1152,7 +1177,7 @@ async def btn_support(msg: Message):
         f"Пиши сюда: {SUPPORT_USERNAME}\n\n"
         "Ответим в течение нескольких часов.",
         parse_mode="HTML",
-        reply_markup=MAIN_KEYBOARD,
+        reply_markup=_kb_for(msg),
     )
 
 
@@ -1183,19 +1208,155 @@ async def cmd_balance(msg: Message):
     )
 
 
+def _blocked_user_plain(user_id: int, username: str | None) -> str:
+    reason = blocklist.block_reason(user_id, username)
+    if reason:
+        return "Вы заблокированы.\n\n" + reason
+    return "Вы заблокированы."
+
+
+def _blocked_user_text(user_id: int, username: str | None) -> str:
+    reason = blocklist.block_reason(user_id, username)
+    text = "⛔ <b>Вы заблокированы.</b>"
+    if reason:
+        text += "\n\n" + html.escape(reason)
+    return text
+
+
+_ADMIN_WAIT: dict[int, dict] = {}
+
+
+def _admin_menu_kb() -> InlineKeyboardMarkup:
+    return InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🚫 Заблокировать", callback_data="adm:block")],
+        [InlineKeyboardButton(text="✅ Разблокировать", callback_data="adm:unblock")],
+        [InlineKeyboardButton(text="📋 Список", callback_data="adm:list")],
+    ])
+
+
+def _parse_block_target(raw: str) -> tuple[int, str]:
+    target = (raw or "").strip()
+    if target.isdigit():
+        return int(target), ""
+    return 0, target
+
+
+class _AdminWizardFilter(Filter):
+    async def __call__(self, msg: Message) -> bool:
+        user = msg.from_user
+        if not user or not _is_privileged_user(user.username, user.id):
+            return False
+        return user.id in _ADMIN_WAIT
+
+
+@dp.message(_AdminWizardFilter())
+async def admin_wizard(msg: Message):
+    user = msg.from_user
+    state = _ADMIN_WAIT.get(user.id) or {}
+    text = (msg.text or "").strip()
+    if text.lower() in {"отмена", "/cancel", "отменить"}:
+        _ADMIN_WAIT.pop(user.id, None)
+        await msg.answer("Отменено.", reply_markup=_kb_for(msg))
+        return
+    if text == "🛡 Админка":
+        _ADMIN_WAIT.pop(user.id, None)
+        await msg.answer("Админка.", reply_markup=_admin_menu_kb())
+        return
+    if state.get("step") == "target":
+        if not text or text.startswith("/"):
+            await msg.answer("Пришли @username или id. Или напиши «отмена».")
+            return
+        uid, uname = _parse_block_target(text)
+        if state.get("mode") == "unblock":
+            _ADMIN_WAIT.pop(user.id, None)
+            if uid:
+                reply = blocklist.unblock_user(user_id=uid)
+            else:
+                reply = blocklist.unblock_user(username=uname)
+            await msg.answer(reply, reply_markup=_kb_for(msg))
+            return
+        _ADMIN_WAIT[user.id] = {"step": "reason", "user_id": uid, "username": uname}
+        who = f"id:{uid}" if uid else uname
+        await msg.answer(
+            f"Кого блокируем: {who}\n\n"
+            "Напиши причину. Этот текст человек увидит на любое сообщение боту.\n"
+            "Отмена — напиши «отмена».",
+        )
+        return
+    reason = text
+    if not reason:
+        await msg.answer("Причина пустая. Напиши текст или «отмена».")
+        return
+    _ADMIN_WAIT.pop(user.id, None)
+    reply = blocklist.block_user(
+        user_id=int(state.get("user_id") or 0),
+        username=state.get("username") or "",
+        reason=reason,
+    )
+    await msg.answer(reply, reply_markup=_kb_for(msg))
+
+
+@dp.message(Command("admin"), F.chat.type == "private")
+@dp.message(F.text == "🛡 Админка", F.chat.type == "private")
+async def btn_admin(msg: Message):
+    if not msg.from_user or not _is_privileged_user(msg.from_user.username, msg.from_user.id):
+        return
+    _ADMIN_WAIT.pop(msg.from_user.id, None)
+    await msg.answer(
+        "Админка.\nЗаблокировать человека и написать причину. "
+        "Он увидит этот текст на любое сообщение.",
+        reply_markup=_admin_menu_kb(),
+    )
+
+
+@dp.callback_query(F.data.startswith("adm:"))
+async def admin_callback(cb: CallbackQuery):
+    user = cb.from_user
+    if not user or not _is_privileged_user(user.username, user.id):
+        await cb.answer("Нет доступа.", show_alert=True)
+        return
+    action = (cb.data or "").split(":", 1)[1]
+    if action == "list":
+        await cb.answer()
+        if cb.message:
+            await cb.message.answer(blocklist.list_blocked())
+        return
+    if action == "block":
+        _ADMIN_WAIT[user.id] = {"step": "target", "mode": "block"}
+        await cb.answer()
+        if cb.message:
+            await cb.message.answer(
+                "Пришли @username или числовой id.\n"
+                "Дальше бот спросит причину.\n"
+                "Отмена — напиши «отмена».",
+            )
+        return
+    if action == "unblock":
+        _ADMIN_WAIT[user.id] = {"step": "target", "mode": "unblock"}
+        await cb.answer()
+        if cb.message:
+            await cb.message.answer("Кого разблокировать? Пришли @username или id.\nОтмена — «отмена».")
+        return
+    await cb.answer()
+
+
 @dp.message(Command("block"))
 async def cmd_block(msg: Message):
     if not msg.from_user or not _is_privileged_user(msg.from_user.username, msg.from_user.id):
         return
-    parts = (msg.text or "").split(maxsplit=1)
+    parts = (msg.text or "").split(maxsplit=2)
     if len(parts) < 2:
-        await msg.answer("Использование: <code>/block @username</code> или <code>/block 123456789</code>", parse_mode="HTML")
+        await msg.answer(
+            "Использование: <code>/block @username причина</code> или <code>/block 123456789 причина</code>",
+            parse_mode="HTML",
+        )
         return
     target = parts[1].strip()
+    reason = parts[2].strip() if len(parts) > 2 else ""
     if target.isdigit():
-        reply = blocklist.block_user(user_id=int(target))
+        reply = blocklist.block_user(user_id=int(target), reason=reason)
     else:
-        reply = blocklist.block_user(username=target)
+        reply = blocklist.block_user(username=target, reason=reason)
     await msg.answer(reply)
 
 
@@ -1250,7 +1411,7 @@ async def handle_stars_payment(msg: Message):
     await msg.answer(
         f"⭐ Оплата получена! Добавлено <b>{bonus}</b> проверок.",
         parse_mode="HTML",
-        reply_markup=MAIN_KEYBOARD,
+        reply_markup=_kb_for(msg),
     )
 
 
@@ -1308,7 +1469,6 @@ async def handle_document(msg: Message):
         t_route = time.perf_counter()
 
         uname = msg.from_user.username if msg.from_user else None
-        uid = msg.from_user.id if msg.from_user else 0
 
         # Reputation / crowdsourced layer. The SBP-id validation is calibrated to
         # T-Bank's "00117" id format, so only apply it there; the known-fake hash
@@ -1361,7 +1521,10 @@ async def handle_document(msg: Message):
 
         is_fake = result.get("verdict") == "ФЕЙК" or result["score"] >= FAKE_THRESHOLD
         token = rep["file_hash"][:16]
-        _report_cache[token] = (rep["file_hash"], rep["opid"], parsed_fields, pdf_bytes, bank or "")
+        _report_cache_put(
+            token,
+            (rep["file_hash"], rep["opid"], parsed_fields, pdf_bytes, bank or "", bool(is_tbank)),
+        )
 
         try:
             analytics.log_check(
@@ -1389,7 +1552,7 @@ async def handle_document(msg: Message):
         t_reply = time.perf_counter()
 
         # Archive is secondary; do not delay the user-facing result.
-        asyncio.create_task(
+        _spawn_bg(
             _archive_checked_pdf(
                 msg,
                 doc,
@@ -1411,7 +1574,7 @@ async def handle_document(msg: Message):
 
         if not is_group and campaign_is_active():
             try:
-                camp = campaign_service.process_upload(
+                campaign_service.process_upload(
                     user_id=uid,
                     username=uname,
                     pdf_bytes=pdf_bytes,
@@ -1422,7 +1585,7 @@ async def handle_document(msg: Message):
             except Exception:
                 logging.exception("campaign process_upload failed")
 
-    except TelegramNetworkError as e:
+    except TelegramNetworkError:
         logging.exception("Error analyzing PDF (telegram network)")
         try:
             await _edit_status_text(
@@ -1456,7 +1619,7 @@ async def report_fake_cb(cb: CallbackQuery):
         await cb.answer("Не удалось найти этот чек (бот перезапускался). "
                         "Отправь файл заново.", show_alert=True)
         return
-    fh, opid, parsed, _pdf, _bank = entry
+    fh, opid, parsed, _pdf, _bank, _is_tbank = entry
     newly = reputation.report_fake(fh, opid, cb.from_user.id)
     # Blacklist the receiver's payout requisites — the one thing a forger cannot
     # change. After this, every receipt to the same wallet is flagged, regardless
@@ -1486,11 +1649,12 @@ async def report_genuine_cb(cb: CallbackQuery):
             show_alert=True,
         )
         return
-    fh, opid, parsed, pdf_bytes, bank = entry
+    fh, opid, parsed, pdf_bytes, bank, is_tbank = entry
     enrolled = False
-    if bank == "tbank" and pdf_bytes:
+    # route() returns the display name («Т-Банк»), not the key — use the
+    # is_tbank flag captured at check time.
+    if is_tbank and pdf_bytes:
         try:
-            import fitz
             from detector.tbank_enroll import enroll_tbank_original
 
             text = fitz.open(stream=pdf_bytes, filetype="pdf")[0].get_text()
@@ -1718,6 +1882,7 @@ _PUBLIC_BOT_COMMANDS = [
 
 _ADMIN_BOT_COMMANDS = _PUBLIC_BOT_COMMANDS + [
     BotCommand(command="stats", description="📊 Статистика"),
+    BotCommand(command="admin", description="🛡 Админка"),
 ]
 
 
