@@ -902,6 +902,23 @@ def _f2_unique_digit_cardinality(f2: FontGraph | None) -> int:
     return len(digits)
 
 
+def _medium_ruble_without_alsrubl(
+    pdf_bytes: bytes, graphs: dict[str, FontGraph],
+) -> bool:
+    """New T-Bank receipts draw ₽ in TinkoffSans-Medium and have no ALSRubl.
+
+    Digit-card glyf ceilings and the v3 size conjunction were fit to the
+    older three-font receipts. A fatter amount (digits 8/3 instead of 0/5)
+    or two more Medium letters crosses those bands on this template.
+    """
+    f2 = graphs.get("F2")
+    if f2 is None:
+        return False
+    if not any(ch == "\u20bd" for ch in (f2.tounicode or {}).values()):
+        return False
+    return b"ALSRubl" not in (pdf_bytes or b"")
+
+
 def _f2_glyf_expanded(f2_glyf: int, digit_card: int) -> bool:
     """True for synthetic-fat F2.glyf vs digit vocabulary.
 
@@ -999,7 +1016,9 @@ def check_tbank_reassembly_family_v3(
         for role, g in graphs.items()
     }
 
-    if metrics["font_signature"] and metrics["stream_signature"]:
+    new_medium = _medium_ruble_without_alsrubl(pdf_bytes, graphs)
+    out.stats["medium_ruble_template"] = new_medium
+    if metrics["font_signature"] and metrics["stream_signature"] and not new_medium:
         detail = (
             "T-Bank SBP Jasper/OpenPDF shell contains the confirmed "
             "F1/F2 reconstructed-subset serialization family v3: "
@@ -1629,7 +1648,9 @@ def check_tbank_f1_maxp_recomputed_to_subset(
     out.stats["f2_unique_digit_card"] = digit_card
     out.stats["f2_glyf_len"] = f2_glyf_len
     out.stats["f2_glyf_fat_thr"] = fat_thr
-    if f2_glyf_len > fat_thr:
+    new_medium = _medium_ruble_without_alsrubl(pdf_bytes, graphs)
+    out.stats["medium_ruble_template"] = new_medium
+    if f2_glyf_len > fat_thr and not new_medium:
         out.flags.append(V3Flag(
             code=CODE_F2_DIGIT_FAT,
             detail=(

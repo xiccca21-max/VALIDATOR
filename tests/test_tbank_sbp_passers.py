@@ -49,6 +49,22 @@ def test_overfit_atlas_rules_are_not_hard():
     assert _F2_GLYF_FAT_BY_CARD[2] >= 1190
 
 
+def test_new_medium_ruble_template_is_not_the_old_size_family():
+    from detector.tbank_reassembly_family_v3 import (
+        FontGraph,
+        _medium_ruble_without_alsrubl,
+    )
+
+    fresh = FontGraph(role="F2")
+    fresh.tounicode = {310: "5", 388: "\u20bd"}
+    graphs = {"F2": fresh}
+    assert _medium_ruble_without_alsrubl(b"%PDF-1.4", graphs)
+    assert not _medium_ruble_without_alsrubl(b"ALSRubl", graphs)
+    old = FontGraph(role="F2")
+    old.tounicode = {305: "0", 310: "5"}
+    assert not _medium_ruble_without_alsrubl(b"%PDF-1.4", {"F2": old})
+
+
 def test_fake05_letter_route_marker_and_garbled_text():
     if not FAKE05.is_file():
         return
