@@ -162,8 +162,9 @@ _CMAP_HEIGHT_N: dict[int, int] = {
     411: 22, 431: 80, 451: 24, 471: 16, 519: 110, 539: 16,
 }
 
-# Card OpenPDF h=471: genuines n=14 all have ≥10 F1 composites.
-_CARD_COMPOSITE_FLOOR = 10
+# Card-to-Sber h=471 labels always store these nine letters as composites.
+# A tenth composite appears only when the name itself contains that letter.
+_CARD_LABEL_COMPOSITES = ("К", "О", "С", "а", "е", "о", "р", "с", "у")
 _CARD_COMPOSITE_HEIGHT = 471
 _GLYF_SLACK = 400
 _MIN_ATLAS = 4
@@ -420,24 +421,6 @@ def check_f1_subset_shape(pdf_bytes: bytes) -> CheckResult:
                     rule_id="TBANK_F1_TWIN_SHAPE_MISMATCH",
                 ))
 
-    # --- Card composite floor ---
-    if (
-        is_card
-        and height == _CARD_COMPOSITE_HEIGHT
-        and shape["composite_n"] < _CARD_COMPOSITE_FLOOR
-    ):
-        out.flags.append(V6Flag(
-            code="TBANK_F1_COMPOSITE_FLOOR",
-            detail=(
-                f"F1 composite glyphs={shape['composite_n']} < {_CARD_COMPOSITE_FLOOR} "
-                f"для card height={height} (корпус OpenPDF ≥{_CARD_COMPOSITE_FLOOR}, "
-                f"n=14) — subset без name-composite, типичный SEQ residual"
-            ),
-            tier="A",
-            group="B5_font_rebuilder",
-            rule_id="TBANK_F1_COMPOSITE_FLOOR",
-        ))
-
     # Card-to-Sber (height 471): live receipts have no drawn glyphs outside
     # the characters on the page and their composite parts. 7/7 genuines.
     if is_card and height == _CARD_COMPOSITE_HEIGHT and ff2:
@@ -470,6 +453,33 @@ def check_f1_subset_shape(pdf_bytes: bytes) -> CheckResult:
                         tier="A",
                         group="B5_font_rebuilder",
                         rule_id="TBANK_F1_CARD_UNUSED_DRAWING",
+                    ))
+                from fontTools.ttLib import TTFont
+                from io import BytesIO
+                tt = TTFont(BytesIO(g1.fontfile2_decoded))
+                order = tt.getGlyphOrder()
+                glyf = tt["glyf"]
+                composite_chars: set[str] = set()
+                for cid, chars in g1.tounicode.items():
+                    if not isinstance(cid, int) or cid >= len(order):
+                        continue
+                    contours = int(getattr(glyf[order[cid]], "numberOfContours", 0) or 0)
+                    if contours < 0 and chars:
+                        composite_chars.add(str(chars))
+                missing = [ch for ch in _CARD_LABEL_COMPOSITES if ch not in composite_chars]
+                out.stats["f1_card_label_composites_missing"] = missing
+                if missing:
+                    out.flags.append(V6Flag(
+                        code="TBANK_F1_COMPOSITE_FLOOR",
+                        detail=(
+                            "F1 height=471: на странице нет составных букв "
+                            + ", ".join(missing)
+                            + ". У живых переводов на карту Сбера эти девять букв "
+                            "подписей всегда составные (7/7)"
+                        ),
+                        tier="A",
+                        group="B5_font_rebuilder",
+                        rule_id="TBANK_F1_COMPOSITE_FLOOR",
                     ))
         except Exception:
             out.stats["f1_card_unused_drawings"] = "error"

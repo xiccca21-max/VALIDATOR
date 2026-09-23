@@ -605,7 +605,7 @@ _OBJECT_HINT: dict[str, str] = {
     "TBANK_CONTENT_OPERATOR_SKELETON_UNKNOWN": "Stream: /Contents operator skeleton",
     "TBANK_CLIENT_CONTENT_SIZE_OUTLIER": "Stream: Клиенту /Contents size",
     "TBANK_GLYPH_INK_OVERLAP": "Font: glyph ink overlap",
-    "TBANK_F1_COMPOSITE_FLOOR": "Font: F1 composite floor",
+    "TBANK_F1_COMPOSITE_FLOOR": "Font: F1 label composites on card-to-Sber",
     "TBANK_F1_GLYF_CMAP_OUTLIER": "Font: F1 glyf↔cmap shape",
     "TBANK_F1_GLYF_CMAP_EXACT_UNKNOWN": "Font: F1 glyf exact atlas",
     "TBANK_SBP_F1_GLYF_CMAP_UNKNOWN": "Font: SBP F1 glyf exact atlas",
