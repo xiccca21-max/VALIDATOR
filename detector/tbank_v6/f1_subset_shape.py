@@ -20,7 +20,6 @@ from __future__ import annotations
 import hashlib
 import re
 import struct
-import zlib
 from dataclasses import dataclass, field
 
 from .ff2_sha_atlas import FF2_SHA_BY_HEIGHT_CMAP_GLYF
@@ -259,11 +258,6 @@ def _parse_tounicode_cids(data: bytes) -> set[int]:
 
 def _f1_fontfile2_and_tounicode(pdf_bytes: bytes) -> tuple[bytes | None, bytes | None]:
     """Best-effort F1 FontFile2 decoded + ToUnicode decoded via name /F1."""
-    # Locate Type0 font named F1, then its DescendantFont → FontFile2 and ToUnicode.
-    m = re.search(
-        rb"/F1\s+(\d+)\s+\d+\s+R|/F1\s+#?[^\s/]*\s+.*?/Font\b",
-        pdf_bytes or b"",
-    )
     # Prefer object graph via resolve if available — keep this module light:
     # find first FontFile2 belonging to TinkoffSans-Regular descriptor near F1.
     try:
@@ -443,6 +437,42 @@ def check_f1_subset_shape(pdf_bytes: bytes) -> CheckResult:
             group="B5_font_rebuilder",
             rule_id="TBANK_F1_COMPOSITE_FLOOR",
         ))
+
+    # Card-to-Sber (height 471): live receipts have no drawn glyphs outside
+    # the characters on the page and their composite parts. 7/7 genuines.
+    if is_card and height == _CARD_COMPOSITE_HEIGHT and ff2:
+        try:
+            from detector.tbank_reassembly_family_v3 import (
+                _composite_closure,
+                _nonempty_gids,
+                extract_used_cids,
+                resolve_font_graph,
+            )
+            graphs = resolve_font_graph(pdf_bytes)
+            used = extract_used_cids(pdf_bytes)
+            g1 = graphs.get("F1")
+            if g1 and g1.fontfile2_decoded:
+                seeds = set(g1.tounicode) | used.get("F1", set())
+                unused = sorted(
+                    _nonempty_gids(g1.fontfile2_decoded) - _composite_closure(
+                        g1.fontfile2_decoded, seeds,
+                    ) - {0}
+                )
+                out.stats["f1_card_unused_drawings"] = unused
+                if unused:
+                    out.flags.append(V6Flag(
+                        code="TBANK_F1_CARD_UNUSED_DRAWING",
+                        detail=(
+                            f"F1 height=471: нарисованы буквы, которых нет на странице "
+                            f"и которые не входят в составные знаки: {unused[:12]}. "
+                            f"У живых переводов на карту Сбера таких рисунков нет (7/7)"
+                        ),
+                        tier="A",
+                        group="B5_font_rebuilder",
+                        rule_id="TBANK_F1_CARD_UNUSED_DRAWING",
+                    ))
+        except Exception:
+            out.stats["f1_card_unused_drawings"] = "error"
 
     # --- unknown cmap cardinality: SBP only (h=519, n=110) ---
     seen = _CMAP_SEEN_BY_HEIGHT.get(height)

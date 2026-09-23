@@ -8,7 +8,7 @@ from .explain import build_expert_report
 from .stages import run_pipeline
 from .verdict import compute_verdict
 
-VALIDATOR_VERSION = "6.5.6"
+VALIDATOR_VERSION = "6.5.7"
 
 
 def analyze(pdf_bytes: bytes, file_hash: str = "", *, privileged_user: bool = False) -> dict:

@@ -50,6 +50,9 @@ HARD_CODES: frozenset[str] = frozenset({
     # (finite n≠all future FF2 sizes); not competitor gate.
     "TBANK_F1_COMPOSITE_FLOOR",
     "TBANK_F1_GLYF_CMAP_OUTLIER",
+    # Card-to-Sber: drawn F1 glyphs that are not on the page and not
+    # composite parts. 7/7 height-471 genuines have none.
+    "TBANK_F1_CARD_UNUSED_DRAWING",
     # TBANK_F2_GLYF_HEIGHT_EXACT_UNKNOWN demoted — novelty exact-size atlas
     # (finite whitelist of F2 glyf lengths by MediaBox height); future genuines
     # with new Medium subsets at known heights FP. Not reassembly proof.
