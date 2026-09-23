@@ -175,10 +175,11 @@ _CANON_F2_HEAD_SHA16 = "d25ccb9e7b400baf"
 _CANON_F2_MAXP_SHA16 = "2568c57650fd61c4"
 _CANON_F1_HMTX_SHA16 = "f3a867ade9a406be"
 # Per unique-digit-cardinality F2.glyf ceilings (gated genuines max:
-# card2=992, card3=1320, card4=1554, card5=1654). Headroom kept.
+# card2=1190, card3=1320, card4=1554, card5=1654). Headroom kept.
 _F2_GLYF_FAT_BY_CARD = {
     1: 900,
-    2: 1100,
+    # card2 live receipt 23.09.2026 is 1190 with two amount digits.
+    2: 1190,
     3: 1450,
     # card4 genuines max 1554 (сбп2); SEQ post-head-copy @1562 must not pass.
     4: 1554,
@@ -904,7 +905,7 @@ def _f2_unique_digit_cardinality(f2: FontGraph | None) -> int:
 def _f2_glyf_expanded(f2_glyf: int, digit_card: int) -> bool:
     """True for synthetic-fat F2.glyf vs digit vocabulary.
 
-    Gated genuines: card2≤992, card3≤1320, card4≤1554, card5≤1654.
+    Gated genuines: card2≤1190, card3≤1320, card4≤1554, card5≤1654.
     SEQ after copying F2.head still ships Medium glyf far above those bands
     (e.g. card3 @1560–1630). Thresholds keep headroom; 0 FP on n=56.
     """

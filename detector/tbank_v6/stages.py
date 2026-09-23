@@ -899,11 +899,14 @@ def _stage_fonts(pdf_bytes: bytes, result: PipelineResult) -> None:
         elif f.weight == Weight.MEDIUM and f.code in SUPPORTING_GROUPS:
             ingest_flag(result, _v6_flag(f.code, f.detail, tier="B"))
 
+    # /F3 is the font resource name. Raw b"F3" also sits inside compressed
+    # TinkoffSans tables; a live phone receipt (23.09.2026, height 547)
+    # draws ₽ from Medium and has no ALSRubl at all.
     if b"ALSRubl" not in pdf_bytes and b"JSOLSA+ALSRubl" not in pdf_bytes:
-        if b"/Font" in pdf_bytes and b"F3" in pdf_bytes:
+        if b"/F3" in pdf_bytes:
             ingest_flag(result, _v6_flag(
                 "F3_NOT_ALSRUBL",
-                "отсутствует шрифт ALSRubl (F3) для знака рубля",
+                "шрифт F3 есть, но это не ALSRubl",
             ))
 
 

@@ -46,6 +46,7 @@ def test_overfit_atlas_rules_are_not_hard():
     assert "TBANK_F1_GLYF_SIZE_MULTISET_MISMATCH" not in HARD_CODES
     assert "TBANK_F1_GLYF_SIZE_MULTISET_MISMATCH" in IGNORED_CODES
     assert _F2_GLYF_FAT_BY_CARD[5] >= 1654
+    assert _F2_GLYF_FAT_BY_CARD[2] >= 1190
 
 
 def test_fake05_letter_route_marker_and_garbled_text():
