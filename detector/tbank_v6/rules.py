@@ -15,6 +15,9 @@ HARD_CODES: frozenset[str] = frozenset({
     "MULTIPLE_PDF_HEADERS",
     "TRAILER_INVALID",
     "XREF_OFFSET_INVALID",
+    # Catalog key order: genuine Jasper writes /Names before /Type/Catalog
+    # (133/133). Reverse order is a different serializer, same dictionary.
+    "TBANK_CATALOG_KEY_ORDER",
     "MULTIPLE_STARTXREF_PRESENT",
     "MULTIPLE_EOF_PRESENT",
     "MULTIPLE_XREF_PRESENT",

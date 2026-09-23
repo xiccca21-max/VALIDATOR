@@ -58,6 +58,7 @@ from ..structure import (
     validate_stream_compression,
     xref_integrity,
 )
+from .catalog_key_order import check_catalog_key_order
 from .file_size import check_file_size
 from .fontfile2_size import check_fontfile2_size
 from .f1_subset_shape import check_f1_subset_shape
@@ -1217,8 +1218,6 @@ def _stage_parity(pdf_bytes: bytes, text: str, result: PipelineResult) -> None:
         return
 
     if text and t2:
-        flat_a = re.sub(r"\s+", "", text)
-        flat_b = re.sub(r"\s+", "", t2)
         opid_a = extract_sbp_opid(text)
         opid_b = extract_sbp_opid(t2)
         if opid_a and opid_b and opid_a != opid_b:
@@ -1234,6 +1233,12 @@ def run_pipeline(pdf_bytes: bytes, file_hash: str) -> PipelineResult:
     _stage_intake(pdf_bytes, result)
     if not result.analysis_complete:
         return result
+
+    catalog_order = check_catalog_key_order(pdf_bytes)
+    result.stats["catalog_key_order"] = catalog_order.stats
+    for f in catalog_order.flags:
+        ingest_flag(result, f)
+    result.completed_checks.append("catalog_key_order")
 
     fs = check_file_size(pdf_bytes)
     result.stats["file_size_check"] = fs.stats

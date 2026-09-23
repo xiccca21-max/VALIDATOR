@@ -141,6 +141,30 @@ class CheckResult:
     analysis_ok: bool = True
 
 
+def sfnt_trailing_nonzero(font: bytes) -> int:
+    """Count nonzero bytes after the last declared SFNT table.
+
+    Live Sber FontFile2 programs end on the last table plus zero alignment.
+    Nonzero bytes past that point are length padding, not glyph data.
+    """
+    if len(font) < 12 or font[:4] not in (b"\x00\x01\x00\x00", b"OTTO", b"true"):
+        return 0
+    count = int.from_bytes(font[4:6], "big")
+    if count <= 0 or 12 + 16 * count > len(font):
+        return 0
+    end = 0
+    for index in range(count):
+        entry = 12 + 16 * index
+        offset = int.from_bytes(font[entry + 8:entry + 12], "big")
+        length = int.from_bytes(font[entry + 12:entry + 16], "big")
+        if offset < 0 or length < 0:
+            continue
+        end = max(end, offset + length)
+    if end <= 0 or end >= len(font):
+        return 0
+    return sum(1 for byte in font[end:] if byte)
+
+
 def _f(code: str, detail: str, *, tier: str = "HARD", group: str = "font") -> SberFlag:
     return SberFlag(code=code, detail=detail, tier=tier, group=group, rule_id=code)
 
@@ -201,6 +225,17 @@ def check_font_contamination(
                 dec = raw
             ff2_decs.append(len(dec))
             ff2_raws.append(len(raw))
+            trailing = sfnt_trailing_nonzero(dec)
+            out.stats["font_trailing_nonzero"] = trailing
+            if trailing:
+                out.flags.append(_f(
+                    "SBER_FONT_TRAILING_ENTROPY",
+                    (
+                        f"FontFile2 obj {onum}: после последней таблицы шрифта "
+                        f"{trailing} ненулевых байт. У живых чеков Сбера там "
+                        f"только нулевое выравнивание"
+                    ),
+                ))
             h16 = hashlib.sha256(dec).hexdigest()[:16]
             # Novelty FontFile2 sha blacklists disabled (genuine FP risk).
             # Keep diagnostic observation of atlas-unknown fonts only.

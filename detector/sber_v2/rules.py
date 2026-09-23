@@ -61,6 +61,8 @@ HARD_CODES: frozenset[str] = frozenset({
     "SBER_FONT_CID_CLOSURE_VIOLATION",
     "SBER_FONT_W_QUANTIZER_MISMATCH",
     "SBER_FONT_REVERSE_GLYPH_CLOSURE",
+    # Nonzero bytes after the last SFNT table. 22/22 genuines are zero-padded.
+    "SBER_FONT_TRAILING_ENTROPY",
     "SBER_FONT_GLYF_UNIQ_LENS",
     "SBER_FONT_GLYF_NONEMPTY_COUNT",
     # Ghost loca slots / hmtx vocabulary: always equal on sbp_outgoing genuines;

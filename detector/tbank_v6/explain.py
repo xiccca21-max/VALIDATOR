@@ -511,6 +511,11 @@ _WHY_NOT_VARIABILITY: dict[str, str] = {
     "ANALYSIS_NOT_COMPLETED": (
         "незавершённый анализ не доказывает пересборку — только технический сбой"
     ),
+    "TBANK_CATALOG_KEY_ORDER": (
+        "словарь Catalog у оригиналов Т-Банка всегда начинается с /Names, "
+        "и только потом идёт /Type/Catalog (133/133). Обратный порядок — "
+        "другая программа записи того же словаря, не новая форма квитанции"
+    ),
     "TBANK_STATIC_LABEL_CORRUPTED": (
         "JRXML печатает «Перевод» / «Телефон получателя» фиксированными CID; "
         "Latin homoglyph в ToUnicode (Перевiд, þелефон) — сломанный CMap, "
@@ -523,6 +528,7 @@ _WHY_NOT_VARIABILITY: dict[str, str] = {
 }
 
 _OBJECT_HINT: dict[str, str] = {
+    "TBANK_CATALOG_KEY_ORDER": "Container: Catalog /Names before /Type",
     "PDF_TTF_BBOX_CROSS_LAYER_MISMATCH": "Font: F1/F2",
     "STATIC_EDITABLE_DIGIT_SUBSET_F2": "Font: F2",
     "K-FONT-002": "Font: F2",

@@ -76,6 +76,11 @@ _WHY_NOT_VARIABILITY: dict[str, str] = {
     "SBER_FILE_SIZE_OUTLIER": (
         "вес PDF вне мягкого диапазона профиля — supporting, не solo-HARD"
     ),
+    "SBER_FONT_TRAILING_ENTROPY": (
+        "после последней таблицы шрифта лежат ненулевые байты. Живые чеки "
+        "Сбера заканчивают шрифт на таблице и нулях выравнивания (22/22). "
+        "Случайные байты дописывают, чтобы подогнать длину, это не новые буквы"
+    ),
     "SBER_FONT_REVERSE_GLYPH_CLOSURE": (
         "в FontFile2 есть nonempty glyph вне замыкания used CID+composites "
         "(orphan). Банковский subset держит только нужные глифы; orphan — "
@@ -116,6 +121,7 @@ _OBJECT_HINT: dict[str, str] = {
     "SBER_FILE_SIZE_STRONG_OUTLIER": "Container: PDF byte size vs profile",
     "SBER_FONTFILE2_SIZE_STRONG_OUTLIER": "Font: FontFile2 decoded byte size vs profile",
     "SBER_FILE_SIZE_OUTLIER": "Container: PDF byte size vs profile",
+    "SBER_FONT_TRAILING_ENTROPY": "Font: nonzero bytes after last SFNT table",
     "SBER_FONT_REVERSE_GLYPH_CLOSURE": "Font: glyf closure vs used CIDs",
     "SBER_INTERNAL_GLYF_NONEMPTY_FLOOR": "Font: internal nonempty floor",
     "SBER_INTERNAL_GLYF_COMPOSITE_FLOOR": "Font: internal composite floor",
