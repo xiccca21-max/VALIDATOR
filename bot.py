@@ -2009,7 +2009,11 @@ BOT_DESCRIPTION = (
     + "Бесплатно. Результаты носят информационный характер.\n"
     f"Поддержка: {SUPPORT_USERNAME}"
 )
-BOT_SHORT_DESCRIPTION = "Проверка банковских PDF-чеков на подлинность"
+BOT_SHORT_DESCRIPTION = (
+    "✅ Проверка банковских PDF-чеков на подлинность\n"
+    "🏦 19 банков, ответ за секунды\n"
+    "🔎 Проверено более 3 000 чеков"
+)
 
 
 async def _setup_bot_description() -> None:
