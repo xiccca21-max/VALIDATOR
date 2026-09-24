@@ -1,4 +1,4 @@
-import datetime
+﻿import datetime
 import pathlib
 import sys
 
@@ -61,7 +61,7 @@ def test_fake_card_hides_status_and_shows_history():
     card = ui.result_card(
         kind="fake", bank="Т-Банк", filename="x.pdf", checked_at=AT,
         parsed=parsed, text="Дата 05.08.2026 20:33",
-        history=["24.09.2026 22:41 — @username", "24.09.2026 23:10 — @another"],
+        history=["24.09.2026 22:41 - @username", "24.09.2026 23:10 - @another"],
     )
     assert card.startswith("<b>❌ Чек не прошёл проверку</b>")
     assert "Статус:" not in card
@@ -69,7 +69,7 @@ def test_fake_card_hides_status_and_shows_history():
     assert "Структура документа: <b>не соответствует банку</b>" in card
     assert "Признаков изменения: <b>есть</b>" in card
     assert card.endswith(
-        "<b>История</b>\n<blockquote>24.09.2026 22:41 — @username\n24.09.2026 23:10 — @another</blockquote>"
+        "<b>История</b>\n<blockquote>24.09.2026 22:41 - @username\n24.09.2026 23:10 - @another</blockquote>"
     )
 
 

@@ -1,5 +1,5 @@
 """
-PDF Checker Bot — Telegram bot for P2P traders.
+PDF Checker Bot - Telegram bot for P2P traders.
 Detects fake bank PDF receipts.
 """
 
@@ -67,7 +67,7 @@ else:
     bot = Bot(token=BOT_TOKEN)
 dp  = Dispatcher()
 
-FREE_CHECKS_PER_DAY = 999         # effectively unlimited — free for now
+FREE_CHECKS_PER_DAY = 999         # effectively unlimited - free for now
 STARS_PER_CHECK     = 1          # reserved for future monetization
 ADMIN_IDS: set[int] = set(
     int(x) for x in os.getenv("ADMIN_IDS", "").split(",") if x.strip().isdigit()
@@ -158,12 +158,12 @@ async def _archive_checked_pdf(
     uname_raw = (msg.from_user.username or "").lower() if msg.from_user else ""
     if uname_raw in ARCHIVE_SKIP_USERNAMES:
         return
-    verdict = result.get("verdict", "—")
+    verdict = result.get("verdict", "-")
     score = result.get("score", 0)
     uid = msg.from_user.id if msg.from_user else 0
     uname = f"@{msg.from_user.username}" if msg.from_user and msg.from_user.username else f"id:{uid}"
     flags = result.get("flags") or []
-    first_flag = flags[0] if flags else "—"
+    first_flag = flags[0] if flags else "-"
     caption = (
         "🗂 <b>Архив проверки</b>\n"
         f"👤 {uname}\n"
@@ -200,38 +200,51 @@ async def _require_subscription(msg: Message) -> bool:
     """Send subscription gate if user is not subscribed. Returns True if blocked."""
     if await _is_subscribed(msg.from_user.id):
         return False
-    kb = InlineKeyboardMarkup(inline_keyboard=[[
-        InlineKeyboardButton(text="📢 Подписаться", url="https://t.me/proton_newss"),
-        InlineKeyboardButton(text="✅ Я подписался", callback_data="check_sub"),
-    ]])
+    kb = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="Подписаться", url="https://t.me/proton_newss")],
+        [InlineKeyboardButton(text="Готово", callback_data="check_sub")],
+    ])
     await msg.answer(
-        "📢 <b>Для использования бота необходимо подписаться на наш канал.</b>\n\n"
-        "1. Нажми «Подписаться»\n"
-        "2. Нажми «Я подписался»",
+        "<b>Нужна подписка на канал</b>\n"
+        f"Бот бесплатный, взамен просим подписаться на {REQUIRED_CHANNEL}.\n\n"
+        "<i>Подпишитесь и нажмите «Готово»</i>",
         parse_mode="HTML",
         reply_markup=kb,
     )
     return True
 
-MAIN_KEYBOARD = ReplyKeyboardMarkup(
-    keyboard=[
-        [KeyboardButton(text="✅ Проверить чек"), KeyboardButton(text="🏦 Проверяемые банки")],
-        [KeyboardButton(text="📧 Почта"), KeyboardButton(text="💬 Поддержка")],
-        [KeyboardButton(text="👤 Мой профиль")],
-    ],
-    resize_keyboard=True,
-)
+BTN_CHECK = "📄 Проверить чек"
+BTN_BANKS = "🏦 Банки"
+BTN_MAIL = "✉️ Почта"
+BTN_SUPPORT = "💬 Поддержка"
+BTN_PROFILE = "👤 Профиль"
+# Labels from the previous keyboard; clients cache reply keyboards, so keep
+# answering to them until every user has pressed something new.
+_OLD_BTN_CHECK = "✅ Проверить чек"
+_OLD_BTN_BANKS = "🏦 Проверяемые банки"
+_OLD_BTN_MAIL = "📧 Почта"
+_OLD_BTN_PROFILE = "👤 Мой профиль"
 
 
 def _main_keyboard(user_id: int = 0, username: str | None = None) -> ReplyKeyboardMarkup:
     rows = [
-        [KeyboardButton(text="✅ Проверить чек"), KeyboardButton(text="🏦 Проверяемые банки")],
-        [KeyboardButton(text="📧 Почта"), KeyboardButton(text="💬 Поддержка")],
-        [KeyboardButton(text="👤 Мой профиль")],
+        [KeyboardButton(text=BTN_CHECK)],
+        [KeyboardButton(text=BTN_BANKS), KeyboardButton(text=BTN_MAIL)],
+        [KeyboardButton(text=BTN_SUPPORT), KeyboardButton(text=BTN_PROFILE)],
     ]
     if _is_privileged_user(username, user_id):
         rows.append([KeyboardButton(text="📊 Статистика"), KeyboardButton(text="🛡 Админка")])
     return ReplyKeyboardMarkup(keyboard=rows, resize_keyboard=True)
+
+
+MAIN_KEYBOARD = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text=BTN_CHECK)],
+        [KeyboardButton(text=BTN_BANKS), KeyboardButton(text=BTN_MAIL)],
+        [KeyboardButton(text=BTN_SUPPORT), KeyboardButton(text=BTN_PROFILE)],
+    ],
+    resize_keyboard=True,
+)
 
 
 def _kb_for(msg: Message) -> ReplyKeyboardMarkup:
@@ -241,13 +254,42 @@ def _kb_for(msg: Message) -> ReplyKeyboardMarkup:
     return _main_keyboard(user.id, user.username)
 
 
+def _user_stats(user_id: int) -> tuple[int, int, float | None]:
+    """(checks, fakes found, first_seen ts) from the analytics DB."""
+    try:
+        con = analytics._con()
+        try:
+            total = con.execute(
+                "SELECT COUNT(*) FROM checks WHERE user_id = ?", (user_id,)
+            ).fetchone()[0]
+            fakes = con.execute(
+                "SELECT COUNT(*) FROM checks WHERE user_id = ? AND verdict = 'ФЕЙК'",
+                (user_id,),
+            ).fetchone()[0]
+            row = con.execute(
+                "SELECT first_seen FROM users WHERE user_id = ?", (user_id,)
+            ).fetchone()
+            first = float(row[0]) if row and row[0] else None
+        finally:
+            con.close()
+        return int(total or 0), int(fakes or 0), first
+    except Exception:
+        logging.exception("user stats failed")
+        return 0, 0, None
+
+
 def _profile_text(user_id: int, username: str | None) -> str:
-    uname = f"@{username}" if username else "—"
-    return (
-        f"👤 <b>Мой профиль</b>\n\n"
-        f"ID: <code>{user_id}</code>\n"
-        f"Username: {uname}"
-    )
+    uname = f"@{username}" if username else "-"
+    total, fakes, first = _user_stats(user_id)
+    rows = [
+        f"ID: <code>{user_id}</code>",
+        f"Username: {_html_safe(uname)}",
+        f"Проверок: <b>{total}</b>",
+        f"Подделок найдено: <b>{fakes}</b>",
+    ]
+    if first:
+        rows.append(f"С нами с: {ui.human_date(first)}")
+    return "👤 <b>Профиль</b>\n<blockquote>" + "\n".join(rows) + "</blockquote>"
 
 
 def _today() -> str:
@@ -1049,7 +1091,7 @@ def _format_result(pdf_bytes: bytes, result: dict, bank: str, is_tbank: bool,
     if _operation_failed(status, result):
         lines.append(f"❌ <b>Перевод не выполнен (статус: {_html_safe(status)})</b>")
         lines.append("")
-        lines.append("<i>Операция не прошла — деньги не были переведены.</i>")
+        lines.append("<i>Операция не прошла - деньги не были переведены.</i>")
         return "\n".join(lines)
 
     lines.append(f"✅ <b>{_html_safe(display_title)}</b>")
@@ -1064,25 +1106,26 @@ def _format_result(pdf_bytes: bytes, result: dict, bank: str, is_tbank: bool,
 # ── Handlers ─────────────────────────────────────────────────────────────────
 
 WELCOME_CAPTION = (
-    "🔍 <b>PROTON</b> проверяет банковские чеки на подлинность.\n\n"
-    "Для проверки отправьте PDF-файл чека. "
-    "<b>Подделка</b> — файл изменён или не соответствует банковским чекам. "
-    "<b>Чисто</b> — признаков подделки нет (зачисление проверяйте в банке). "
-    "<b>Не распознан</b> — банк вне списка.\n\n"
-    "Также можно проверить письмо от банка — пришлите PDF, полученный на почту, через раздел 📧 Почта.\n\n"
-    "<b>Условия использования:</b>\n"
-    "1. Запрещено использовать бота для тестирования программ подделки чеков. При выявлении — блокировка.\n"
-    "2. Мы не несём ответственности за результаты проверок. Все результаты носят информационный характер и не гарантируют 100% точность.\n\n"
-    "Используя PROTON, вы подтверждаете согласие с правилами.\n\n"
-    "Техподдержка: @acterichee"
+    "<b>PROTON</b> - проверка банковских чеков на подлинность\n\n"
+    "<b>Как проверить</b>\n"
+    "<blockquote>1. Получите PDF-чек от контрагента\n"
+    "2. Отправьте файл сюда\n"
+    "3. Результат придёт через несколько секунд</blockquote>\n\n"
+    "Письмо от банка тоже можно проверить - раздел «Почта».\n\n"
+    "<blockquote expandable><b>Условия использования</b>\n"
+    "1. Запрещено использовать бота для тестирования программ подделки чеков. "
+    "При выявлении - блокировка.\n"
+    "2. Мы не несём ответственности за результаты проверок. Все результаты носят "
+    "информационный характер и не гарантируют 100% точность.\n"
+    "Используя PROTON, вы подтверждаете согласие с правилами.</blockquote>\n\n"
+    f"<i>Поддержка: {SUPPORT_USERNAME}</i>"
 )
 
 GROUP_INTRO = (
-    "🔍 <b>PROTON подключён к чату</b>\n\n"
-    "Теперь я <b>автоматически проверяю каждый PDF-чек</b>, отправленный сюда, "
-    "и отвечаю прямо под ним: оригинал, подделка или не распознан.\n\n"
-    "⚠️ Чтобы я видел все чеки, назначьте меня <b>администратором</b> чата.\n\n"
-    "Бесплатно. Вопросы: @acterichee"
+    "<b>PROTON подключён</b>\n"
+    "Каждый PDF-чек в этом чате будет проверен автоматически, ответ придёт под файлом.\n\n"
+    "<blockquote>Назначьте бота <b>администратором</b>, иначе он не увидит файлы</blockquote>\n\n"
+    f"<i>Бесплатно · {SUPPORT_USERNAME}</i>"
 )
 
 
@@ -1097,7 +1140,7 @@ async def check_sub_cb(cb: CallbackQuery):
         )
         await cb.answer()
     else:
-        await cb.answer("Ты ещё не подписан. Подпишись и попробуй снова.", show_alert=True)
+        await cb.answer("Подписка не найдена. Подпишитесь и нажмите «Готово» ещё раз.", show_alert=True)
 
 
 @dp.message(CommandStart())
@@ -1139,62 +1182,68 @@ async def on_added_to_chat(event: ChatMemberUpdated):
 
 
 @dp.message(Command("check"), F.chat.type == "private")
-@dp.message(F.text == "✅ Проверить чек", F.chat.type == "private")
+@dp.message(F.text.in_({BTN_CHECK, _OLD_BTN_CHECK}), F.chat.type == "private")
 async def btn_check(msg: Message):
     if await _require_subscription(msg):
         return
     await msg.answer(
-        "Отправь PDF-файл чека — проверю подлинность.",
+        "<b>Пришлите PDF-чек</b>\n"
+        "<blockquote>В приложении банка: чек → «Поделиться» → PDF\n"
+        "Скриншоты и фото не проверяются</blockquote>\n\n"
+        "<i>Письмо от банка - через раздел «Почта»</i>",
+        parse_mode="HTML",
         reply_markup=_kb_for(msg),
     )
 
 
 @dp.message(Command("banks"), F.chat.type == "private")
-@dp.message(F.text == "🏦 Проверяемые банки", F.chat.type == "private")
+@dp.message(F.text.in_({BTN_BANKS, _OLD_BTN_BANKS}), F.chat.type == "private")
 async def btn_banks(msg: Message):
     from detector.profiles import format_banks_list_html
     body = format_banks_list_html()
     await msg.answer(
-        "🏦 <b>Проверяемые банки</b>\n\n" + body,
+        "🏦 <b>Проверяемые банки</b>\n\n" + body + "\n\n"
+        "<i>Чек банка не из списка получит ответ «Банк не распознан»</i>",
         parse_mode="HTML",
         reply_markup=_kb_for(msg),
     )
 
 
 @dp.message(Command("mail"), F.chat.type == "private")
-@dp.message(F.text == "📧 Почта", F.chat.type == "private")
+@dp.message(F.text.in_({BTN_MAIL, _OLD_BTN_MAIL}), F.chat.type == "private")
 async def btn_email(msg: Message):
     from detector import mailbox
     addrs = mailbox.addresses_for(msg.chat.id, msg.from_user.username if msg.from_user else None)
     if addrs:
-        body = "\n".join(f"<code>{a}</code>" for a in addrs)
+        body = "\n".join(f"<code>{_html_safe(a)}</code>" for a in addrs)
+        addr_title = "Ваш адрес" if len(addrs) == 1 else "Ваши адреса"
         text = (
-            "📧 <b>Проверка чека по почте</b>\n\n"
-            "Это самая надёжная проверка: письмо отправляет <b>сам сервер банка</b>, "
-            "и мы криптографически подтверждаем подпись (DKIM) и отправителя (SPF). "
-            "Подделать это без ключей банка невозможно.\n\n"
-            "<b>Как проверить:</b>\n"
-            "Попросите контрагента в его банковском приложении выбрать "
-            "«отправить чек на e-mail» и указать <b>любой</b> из ваших адресов:\n\n"
-            f"{body}\n\n"
-            "Результат проверки придёт сюда автоматически."
+            "<b>Проверка по почте</b>\n"
+            "Самый надёжный способ: письмо отправляет сервер банка, "
+            "подпись проверяется криптографически.\n\n"
+            f"<b>{addr_title}</b>\n"
+            f"<blockquote>{body}</blockquote>\n\n"
+            "<b>Как проверить</b>\n"
+            "<blockquote>1. Контрагент в приложении банка: чек → «На e-mail»\n"
+            "2. Указывает ваш адрес\n"
+            "3. Результат приходит сюда сам</blockquote>"
         )
     else:
         text = (
-            "📧 <b>Проверка писем от банка</b>\n\n"
-            "Функция настраивается. Скоро здесь появятся ваши персональные "
-            "адреса для проверки чеков по почте."
+            "<b>Проверка по почте</b>\n"
+            "<i>Функция настраивается. Скоро здесь появится ваш персональный "
+            "адрес для проверки чеков из писем банка.</i>"
         )
     await msg.answer(text, parse_mode="HTML", reply_markup=_kb_for(msg))
 
 
 @dp.message(Command("support"), F.chat.type == "private")
-@dp.message(F.text == "💬 Поддержка", F.chat.type == "private")
+@dp.message(F.text == BTN_SUPPORT, F.chat.type == "private")
 async def btn_support(msg: Message):
     await msg.answer(
-        f"💬 <b>Поддержка</b>\n\n"
-        f"Пиши сюда: {SUPPORT_USERNAME}\n\n"
-        "Ответим в течение нескольких часов.",
+        "<b>Поддержка</b>\n"
+        f"Вопросы, сотрудничество и спорные чеки: {SUPPORT_USERNAME}\n\n"
+        "<i>К обращению приложите PDF, о котором идёт речь</i>",
         parse_mode="HTML",
         reply_markup=_kb_for(msg),
     )
@@ -1205,15 +1254,15 @@ async def cmd_help(msg: Message):
     from detector.profiles import format_banks_list_html
     banks = format_banks_list_html()
     await msg.answer(
-        "📋 <b>Как пользоваться:</b>\n\n"
-        "1. Получи PDF-чек от контрагента.\n"
-        "2. Отправь файл сюда.\n"
-        "3. Получи результат моментально.\n\n"
-        "📧 <b>Проверка по почте</b> — нажми «Почта» и попроси контрагента отправить чек "
-        "прямо из банковского приложения на твой адрес. Это самая надёжная проверка — "
-        "письмо шлёт сам банк, мы проверяем криптографическую подпись.\n\n"
-        f"<b>Поддерживаемые банки:</b>\n{banks}\n\n"
-        "🆓 Все проверки <b>бесплатны</b>.",
+        "<b>Как пользоваться</b>\n"
+        "<blockquote>1. Получите PDF-чек от контрагента\n"
+        "2. Отправьте файл сюда\n"
+        "3. Результат придёт через несколько секунд</blockquote>\n\n"
+        "<b>Проверка по почте</b>\n"
+        "Нажмите «Почта» и попросите контрагента отправить чек из приложения банка "
+        "на ваш адрес. Письмо шлёт сам банк, подпись проверяется криптографически.\n\n"
+        f"<b>Проверяемые банки</b>\n<blockquote expandable>{banks}</blockquote>\n\n"
+        "<i>Все проверки бесплатны</i>",
         parse_mode="HTML",
     )
 
@@ -1299,7 +1348,7 @@ async def admin_wizard(msg: Message):
         await msg.answer(
             f"Кого блокируем: {who}\n\n"
             "Напиши причину. Этот текст человек увидит на любое сообщение боту.\n"
-            "Отмена — напиши «отмена».",
+            "Отмена - напиши «отмена».",
         )
         return
     reason = text
@@ -1347,14 +1396,14 @@ async def admin_callback(cb: CallbackQuery):
             await cb.message.answer(
                 "Пришли @username или числовой id.\n"
                 "Дальше бот спросит причину.\n"
-                "Отмена — напиши «отмена».",
+                "Отмена - напиши «отмена».",
             )
         return
     if action == "unblock":
         _ADMIN_WAIT[user.id] = {"step": "target", "mode": "unblock"}
         await cb.answer()
         if cb.message:
-            await cb.message.answer("Кого разблокировать? Пришли @username или id.\nОтмена — «отмена».")
+            await cb.message.answer("Кого разблокировать? Пришли @username или id.\nОтмена - «отмена».")
         return
     await cb.answer()
 
@@ -1453,19 +1502,25 @@ async def handle_document(msg: Message):
     if not fname.endswith(".pdf") and mime != "application/pdf":
         # In groups, silently ignore non-PDF files (avoid spam on every attachment).
         if not is_group:
-            await msg.answer("⚠️ Принимаю только PDF-файлы. Отправь чек в формате .pdf")
+            await msg.answer(
+                "<b>Нужен PDF</b>\n"
+                "<i>Скриншоты и фото не проверяются. "
+                "Выгрузите чек из приложения банка в PDF.</i>",
+                parse_mode="HTML",
+            )
         return
 
     if not await _acquire_user_check_slot(uid):
         await msg.reply(
-            f"⏳ Одновременно можно проверять не больше "
-            f"{MAX_INFLIGHT_CHECKS_PER_USER} чеков.\n"
-            "Дождись результатов текущих проверок — потом отправь следующие."
+            "<b>Слишком много чеков сразу</b>\n"
+            f"<i>Не больше {MAX_INFLIGHT_CHECKS_PER_USER} одновременно. "
+            "Дождитесь результатов и отправьте следующие.</i>",
+            parse_mode="HTML",
         )
         return
 
     # Ответ реплаем на сообщение с чеком
-    status_msg = await msg.reply("⏳ Проверяю...")
+    status_msg = await msg.reply("⏳ Проверяю чек…")
     t0 = time.perf_counter()
 
     try:
@@ -1578,11 +1633,12 @@ async def handle_document(msg: Message):
         if _is_verbose_user(uname, uid) and history_lines:
             # Verbose (expert) layout is unchanged; append history as a plain block.
             text += "\n\n" + _html_safe(check_history.format_history(prior_checks))
-        if is_fake:
-            btn = InlineKeyboardButton(text="✅ Это оригинал", callback_data=f"genuine:{token}")
-        else:
-            btn = InlineKeyboardButton(text="🚩 Это фейк", callback_data=f"fake:{token}")
-        kb = InlineKeyboardMarkup(inline_keyboard=[[btn]])
+        # One neutral label for both directions; the callback still carries
+        # which way the report goes so the handlers stay unchanged.
+        report_cb = f"genuine:{token}" if is_fake else f"fake:{token}"
+        kb = InlineKeyboardMarkup(inline_keyboard=[[
+            InlineKeyboardButton(text="Сообщить об ошибке", callback_data=report_cb)
+        ]])
         await _edit_status_text(status_msg, text, parse_mode="HTML", reply_markup=kb)
         t_reply = time.perf_counter()
 
@@ -1625,8 +1681,9 @@ async def handle_document(msg: Message):
         try:
             await _edit_status_text(
                 status_msg,
-                "❌ Сбой связи с Telegram при скачивании файла. "
-                "Отправь PDF ещё раз через пару секунд.",
+                "<b>Не удалось скачать файл</b>\n"
+                "<i>Сбой связи с Telegram. Отправьте PDF ещё раз.</i>",
+                parse_mode="HTML",
             )
         except Exception:
             logging.exception("failed to edit network error status")
@@ -1636,10 +1693,16 @@ async def handle_document(msg: Message):
             # Keep user-facing text short; hide raw aiohttp/transport dumps.
             brief = str(e)
             if "ServerDisconnected" in brief or "TelegramNetworkError" in brief:
-                brief = "временный сбой сети — отправь файл ещё раз"
+                brief = "Временный сбой сети."
             elif len(brief) > 160:
                 brief = brief[:157] + "..."
-            await _edit_status_text(status_msg, f"❌ Ошибка при анализе: {brief}")
+            await _edit_status_text(
+                status_msg,
+                "<b>Проверка не удалась</b>\n"
+                f"<i>{_html_safe(brief)} Отправьте файл ещё раз; "
+                f"если повторится - напишите в поддержку {SUPPORT_USERNAME}.</i>",
+                parse_mode="HTML",
+            )
         except Exception:
             logging.exception("failed to edit error status")
     finally:
@@ -1652,7 +1715,7 @@ async def report_fake_cb(cb: CallbackQuery):
     entry = _report_cache.get(token)
     if not entry:
         await cb.answer("Не удалось найти этот чек (бот перезапускался). "
-                        "Отправь файл заново.", show_alert=True)
+                        "Отправьте файл заново.", show_alert=True)
         return
     fh, opid, parsed, _pdf, _bank, _is_tbank = entry
     newly = reputation.report_fake(fh, opid, cb.from_user.id)
@@ -1665,9 +1728,9 @@ async def report_fake_cb(cb: CallbackQuery):
         logging.exception("blacklist_requisites failed")
         req_added = 0
     if newly or req_added:
-        msg = "Спасибо! Чек добавлен в базу подделок — теперь он не пройдёт проверку ни у кого."
+        msg = "Спасибо! Чек добавлен в базу подделок - теперь он не пройдёт проверку ни у кого."
         if req_added:
-            msg += " Реквизиты получателя занесены в чёрный список — любые новые чеки на этот кошелёк будут помечены как фейк."
+            msg += " Реквизиты получателя занесены в чёрный список - любые новые чеки на этот кошелёк будут помечены как подделка."
         await cb.answer(msg, show_alert=True)
     else:
         await cb.answer("Этот чек уже был в базе подделок.", show_alert=True)
@@ -1680,7 +1743,7 @@ async def report_genuine_cb(cb: CallbackQuery):
     entry = _report_cache.get(token)
     if not entry:
         await cb.answer(
-            "Не удалось найти этот чек (бот перезапускался). Отправь файл заново.",
+            "Не удалось найти этот чек (бот перезапускался). Отправьте файл заново.",
             show_alert=True,
         )
         return
@@ -1700,7 +1763,7 @@ async def report_genuine_cb(cb: CallbackQuery):
     if enrolled:
         await cb.answer(
             "Записали как оригинал: шаблон сборки и отпечаток рендера добавлены в базу. "
-            "Перешли тот же PDF ещё раз — должен пройти.",
+            "Перешлите тот же PDF ещё раз - должен пройти.",
             show_alert=True,
         )
     else:
@@ -1720,7 +1783,7 @@ async def pre_checkout(query):
 # ── Profile ───────────────────────────────────────────────────────────────────
 
 @dp.message(Command("profile"), F.chat.type == "private")
-@dp.message(F.text == "👤 Мой профиль", F.chat.type == "private")
+@dp.message(F.text.in_({BTN_PROFILE, _OLD_BTN_PROFILE}), F.chat.type == "private")
 async def btn_my_profile(msg: Message):
     if await _require_subscription(msg):
         return
@@ -1764,7 +1827,7 @@ async def cmd_campaign_stats(msg: Message):
         return
     s = campaign_service.campaign_stats()
     st = s.get("by_status") or {}
-    banks = "\n".join(f"  {k}: {v}" for k, v in (s.get("by_bank_accepted") or [])[:20]) or "  —"
+    banks = "\n".join(f"  {k}: {v}" for k, v in (s.get("by_bank_accepted") or [])[:20]) or "  -"
     await msg.answer(
         "<b>/campaign_stats</b>\n"
         f"Участников: {s['participants']}\n"
@@ -1795,11 +1858,11 @@ async def cmd_campaign_user(msg: Message):
         await msg.answer("Пользователь не найден")
         return
     hist = "\n".join(
-        f"#{h['id']} {h['operation_type']} {h['amount_kopecks']} — {h['reason']}"
+        f"#{h['id']} {h['operation_type']} {h['amount_kopecks']} - {h['reason']}"
         for h in (view.get("ledger") or [])[:15]
-    ) or "—"
+    ) or "-"
     await msg.answer(
-        f"<b>User {view['user_id']}</b> @{view.get('username') or '—'}\n"
+        f"<b>User {view['user_id']}</b> @{view.get('username') or '-'}\n"
         f"Загрузок: {view['uploaded']}\n"
         f"Принято: {view['accepted']}\n"
         f"Фейков: {view['fake']}\n"
@@ -1826,7 +1889,7 @@ async def cmd_accept_check(msg: Message):
         return
     uid = out.get("user_id")
     reward = format_money_kopecks(int(out.get("reward_kopecks") or 0))
-    bal_txt = "—"
+    bal_txt = "-"
     if uid is not None:
         view = campaign_service.user_admin_view(str(uid))
         if view:
@@ -1846,7 +1909,7 @@ async def cmd_campaign_balances(msg: Message):
     lines = ["user_id | username | принято | баланс"]
     for r in rows:
         lines.append(
-            f"{r['user_id']} | @{r.get('username') or '—'} | "
+            f"{r['user_id']} | @{r.get('username') or '-'} | "
             f"{r.get('accepted', 0)} | {format_money_kopecks(int(r.get('balance') or 0))}"
         )
     text_out = "\n".join(lines)
@@ -1901,18 +1964,22 @@ async def cmd_payout_mark(msg: Message):
 async def fallback(msg: Message):
     if await _require_subscription(msg):
         return
-    await msg.answer("Отправь PDF-файл чека для проверки.")
+    await msg.answer(
+        "<b>Пришлите PDF-чек</b>\n<i>Текст и картинки я не проверяю</i>",
+        parse_mode="HTML",
+        reply_markup=_kb_for(msg),
+    )
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────
 
 # Same items as the reply keyboard (Menu button next to the input field).
 _PUBLIC_BOT_COMMANDS = [
-    BotCommand(command="check", description="✅ Проверить чек"),
-    BotCommand(command="banks", description="🏦 Проверяемые банки"),
-    BotCommand(command="mail", description="📧 Почта"),
-    BotCommand(command="support", description="💬 Поддержка"),
-    BotCommand(command="profile", description="👤 Мой профиль"),
+    BotCommand(command="check", description=BTN_CHECK),
+    BotCommand(command="banks", description=BTN_BANKS),
+    BotCommand(command="mail", description=BTN_MAIL),
+    BotCommand(command="support", description=BTN_SUPPORT),
+    BotCommand(command="profile", description=BTN_PROFILE),
 ]
 
 _ADMIN_BOT_COMMANDS = _PUBLIC_BOT_COMMANDS + [

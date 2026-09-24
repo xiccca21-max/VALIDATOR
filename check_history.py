@@ -165,7 +165,7 @@ def _when(ts: float) -> str:
 
 
 def history_lines(prior: list[dict]) -> list[str]:
-    """Lines like '24.09.2026 22:41 — @user' (oldest first, capped, hidden users dropped)."""
+    """Lines like '24.09.2026 22:41 - @user' (oldest first, capped, hidden users dropped)."""
     prior = [e for e in prior if not is_hidden(e.get("username"))]
     if not prior:
         return []
@@ -174,7 +174,7 @@ def history_lines(prior: list[dict]) -> list[str]:
     lines: list[str] = []
     if hidden > 0:
         lines.append(f"… и ещё {hidden} раз ранее")
-    lines += [f"{_when(e['checked_at'])} — {_who(e)}" for e in shown]
+    lines += [f"{_when(e['checked_at'])} - {_who(e)}" for e in shown]
     return lines
 
 

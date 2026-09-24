@@ -19,7 +19,7 @@ Card layout (Telegram HTML):
     ...</blockquote>
 
     <b>История</b>
-    <blockquote>24.09.2026 22:41 — @user</blockquote>
+    <blockquote>24.09.2026 22:41 - @user</blockquote>
 """
 
 from __future__ import annotations
@@ -85,6 +85,12 @@ def pretty_amount(raw: str | None) -> str | None:
     if frac:
         grouped += "," + (m.group(2) or "")
     return grouped + " ₽"
+
+
+def human_date(ts: float) -> str:
+    """Unix timestamp → '12 марта 2026' (MSK)."""
+    d = datetime.datetime.fromtimestamp(ts, tz=_MSK)
+    return f"{d.day} {_MONTHS_GEN[d.month - 1]} {d.year}"
 
 
 def receipt_datetime(text: str) -> str | None:
@@ -212,7 +218,7 @@ def result_card(
 
     kind: 'ok' | 'fake' | 'failed' | 'unknown_bank' | 'unknown_doc'.
     note: extra human line under the «Проверка» section (already plain text).
-    history: lines like '24.09.2026 22:41 — @user' (empty → section omitted).
+    history: lines like '24.09.2026 22:41 - @user' (empty → section omitted).
     """
     checked_at = checked_at or datetime.datetime.now(tz=_MSK)
     stamp = checked_at.astimezone(_MSK).strftime("%d.%m.%Y %H:%M")
@@ -259,7 +265,7 @@ def result_card(
     elif kind == "failed":
         tail.append("<i>Это не подтверждение оплаты</i>")
     elif kind == "unknown_bank":
-        tail.append("<i>Список банков — кнопка «Проверяемые банки»</i>")
+        tail.append("<i>Список банков - кнопка «Банки»</i>")
     if tail:
         blocks.append("\n".join(tail))
 
