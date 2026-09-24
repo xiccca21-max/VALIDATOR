@@ -34,6 +34,7 @@ from detector import reputation
 from detector import analytics
 from detector.explain import build_user_explanation
 import blocklist
+import check_history
 from campaign.config import (
     campaign_is_active,
     format_money_kopecks,
@@ -1519,6 +1520,17 @@ async def handle_document(msg: Message):
         except Exception:
             seen_before = False
 
+        # Who checked this receipt before (same file or same bank operation).
+        # Shown under the verdict only when there is prior history.
+        try:
+            prior_checks = check_history.record(
+                pdf_bytes, rtext, parsed_fields,
+                user_id=uid, username=uname, bank=bank or "",
+            )
+        except Exception:
+            logging.exception("check_history record failed")
+            prior_checks = []
+
         is_fake = result.get("verdict") == "ФЕЙК" or result["score"] >= FAKE_THRESHOLD
         token = rep["file_hash"][:16]
         _report_cache_put(
@@ -1543,6 +1555,9 @@ async def handle_document(msg: Message):
 
         text = _format_result(pdf_bytes, result, bank, is_tbank, seen_before,
                               username=uname, user_id=uid)
+        history_block = check_history.format_history(prior_checks)
+        if history_block:
+            text += "\n\n" + _html_safe(history_block)
         if is_fake:
             btn = InlineKeyboardButton(text="✅ Это оригинал", callback_data=f"genuine:{token}")
         else:
