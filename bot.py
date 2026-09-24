@@ -1988,8 +1988,31 @@ _ADMIN_BOT_COMMANDS = _PUBLIC_BOT_COMMANDS + [
 ]
 
 
+# "What can this bot do?" block under the cover in an empty chat (≤512 chars)
+# and the one-liner in the profile / share card (≤120 chars). Set on every
+# start so a foreign description (e.g. the PDF Forge generator text that once
+# ran on this token) never sticks.
+BOT_DESCRIPTION = (
+    "PROTON — проверка банковских PDF-чеков на подлинность.\n\n"
+    "Отправьте PDF-чек — результат придёт через несколько секунд. "
+    "Письмо от банка тоже можно проверить: раздел «Почта».\n\n"
+    "Результаты носят информационный характер. "
+    f"Поддержка: {SUPPORT_USERNAME}"
+)
+BOT_SHORT_DESCRIPTION = "Проверка банковских PDF-чеков на подлинность"
+
+
+async def _setup_bot_description() -> None:
+    try:
+        await bot.set_my_description(description=BOT_DESCRIPTION)
+        await bot.set_my_short_description(short_description=BOT_SHORT_DESCRIPTION)
+    except Exception:
+        logging.exception("set_my_description failed")
+
+
 async def _setup_bot_menu() -> None:
     """Blue Menu button = same actions as the bottom keyboard."""
+    await _setup_bot_description()
     await bot.set_my_commands(_PUBLIC_BOT_COMMANDS, scope=BotCommandScopeDefault())
     await bot.set_chat_menu_button(menu_button=MenuButtonCommands())
     for admin_id in ADMIN_IDS:
