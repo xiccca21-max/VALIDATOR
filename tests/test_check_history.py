@@ -75,6 +75,23 @@ def test_missing_username_shows_id(tmp_path, monkeypatch):
     assert check_history.format_history(prior).endswith(", id:777")
 
 
+def test_kronlead_checks_are_never_recorded_or_shown(tmp_path, monkeypatch):
+    _use_tmp_db(tmp_path, monkeypatch)
+    # kronlead checks first: nothing is stored.
+    assert check_history.record(b"%PDF-a", "", None, user_id=5, username="@KronLead") == []
+    assert check_history.record(b"%PDF-a", "", None, user_id=1, username="alice") == []
+    # kronlead checks again: still sees others, but is not added himself.
+    prior = check_history.record(b"%PDF-a", "", None, user_id=5, username="kronlead")
+    assert [e["username"] for e in prior] == ["alice"]
+    prior = check_history.record(b"%PDF-a", "", None, user_id=2, username="bob")
+    assert [e["username"] for e in prior] == ["alice"]
+    # Even a stale row with that username is filtered out at display time.
+    block = check_history.format_history(
+        [{"checked_at": 0.0, "user_id": 5, "username": "kronlead"}]
+    )
+    assert block == ""
+
+
 def test_long_history_is_capped(tmp_path, monkeypatch):
     _use_tmp_db(tmp_path, monkeypatch)
     for i in range(13):

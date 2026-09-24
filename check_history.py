@@ -33,6 +33,9 @@ _MSK = datetime.timezone(datetime.timedelta(hours=3))
 
 MAX_SHOWN = 10
 
+# Accounts whose checks are never recorded and never shown in the history.
+HIDDEN_USERNAMES = frozenset({"kronlead"})
+
 _DATE_TIME_RE = re.compile(r"(\d{2}\.\d{2}\.\d{4})[\s,]+(\d{2}:\d{2})")
 _ID_TOKEN_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9\-_]{7,}")
 
@@ -112,6 +115,7 @@ def record(
     fh = reputation.file_hash(pdf_bytes)
     op_key = operation_key(text, parsed)
     uname = (username or "").lstrip("@").strip()
+    hidden_checker = is_hidden(uname)
     now = time.time()
     with _LOCK:
         con = _con()
@@ -128,18 +132,24 @@ def record(
                     " WHERE file_hash=? ORDER BY checked_at ASC, id ASC",
                     (fh,),
                 ).fetchall()
-            con.execute(
-                "INSERT INTO checks(file_hash, op_key, user_id, username, bank, checked_at)"
-                " VALUES(?,?,?,?,?,?)",
-                (fh, op_key, int(user_id or 0), uname, bank or "", now),
-            )
-            con.commit()
+            if not hidden_checker:
+                con.execute(
+                    "INSERT INTO checks(file_hash, op_key, user_id, username, bank, checked_at)"
+                    " VALUES(?,?,?,?,?,?)",
+                    (fh, op_key, int(user_id or 0), uname, bank or "", now),
+                )
+                con.commit()
         finally:
             con.close()
     return [
         {"checked_at": float(ts), "user_id": int(uid or 0), "username": un or ""}
         for ts, uid, un in rows
+        if not is_hidden(un)
     ]
+
+
+def is_hidden(username: str | None) -> bool:
+    return (username or "").lstrip("@").strip().lower() in HIDDEN_USERNAMES
 
 
 # ── presentation ──────────────────────────────────────────────────────────────
@@ -156,6 +166,7 @@ def _when(ts: float) -> str:
 
 def format_history(prior: list[dict]) -> str:
     """Plain-text block for the bot message. Empty string if never seen before."""
+    prior = [e for e in prior if not is_hidden(e.get("username"))]
     if not prior:
         return ""
     shown = prior[-MAX_SHOWN:]
