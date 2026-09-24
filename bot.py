@@ -35,6 +35,7 @@ from detector import analytics
 from detector.explain import build_user_explanation
 import blocklist
 import check_history
+import ui
 from campaign.config import (
     campaign_is_active,
     format_money_kopecks,
@@ -303,6 +304,12 @@ def _operation_failed(status: str, result: dict | None = None) -> bool:
 
 def _receipt_body(pdf_bytes: bytes, bank: str, is_tbank: bool) -> tuple[str, str, str]:
     """Return (formatted_fields, title, status) for a genuine receipt of any bank."""
+    parsed, title = _receipt_parsed(pdf_bytes, bank, is_tbank)
+    return format_receipt(parsed), title, parsed.get("status", "")
+
+
+def _receipt_parsed(pdf_bytes: bytes, bank: str, is_tbank: bool) -> tuple[dict, str]:
+    """Structured receipt fields (bank-aware) plus a display title."""
     if is_tbank:
         parsed = parse_receipt(pdf_bytes)
         title = parsed.get("title") or f"Чек {bank}"
@@ -328,7 +335,7 @@ def _receipt_body(pdf_bytes: bytes, bank: str, is_tbank: bool) -> tuple[str, str
     )
     parsed["fields"] = fields
     parsed["recipient_bank_normalized"] = fields.get("recipient_bank_normalized") or ""
-    return format_receipt(parsed), title, parsed.get("status", "")
+    return parsed, title
 
 
 _DATE_RE = re.compile(r"\b(\d{2})\.(\d{2})\.(\d{4})\b")
@@ -640,7 +647,8 @@ async def _edit_status_text(status_msg, text: str, **kwargs):
 
 def _format_result(pdf_bytes: bytes, result: dict, bank: str, is_tbank: bool,
                    seen_before: bool, *, username: str | None = None,
-                   user_id: int = 0) -> str:
+                   user_id: int = 0, text: str = "", filename: str = "",
+                   history: list[str] | None = None) -> str:
     score = result["score"]
     flags = result["flags"]
     verbose = _is_verbose_user(username, user_id)
@@ -652,46 +660,56 @@ def _format_result(pdf_bytes: bytes, result: dict, bank: str, is_tbank: bool,
     expl = build_user_explanation(result)
 
     body, title, status = "", f"Чек {bank}", ""
+    parsed: dict | None = None
     if recognized or is_tbank:
         try:
-            body, title, status = _receipt_body(pdf_bytes, bank, is_tbank)
+            parsed, title = _receipt_parsed(pdf_bytes, bank, is_tbank)
+            body = format_receipt(parsed)
+            status = parsed.get("status", "")
         except Exception:
             pass
+    elif not is_unknown_doc:
+        try:
+            parsed = parse_generic(pdf_bytes, text)
+        except Exception:
+            parsed = None
 
     stale = _is_stale_receipt(pdf_bytes)
     if not verbose:
-        lines: list[str] = []
-        bank_tag = _verdict_bank_suffix(bank, recognized)
-        if body:
-            lines += [f"<code>{_html_safe(body)}</code>", ""]
+        if not text:
+            try:
+                pdoc = fitz.open(stream=pdf_bytes, filetype="pdf")
+                text = "".join(p.get_text() for p in pdoc)
+                pdoc.close()
+            except Exception:
+                text = ""
+        note = ""
         if is_unknown_doc:
-            msg = result.get("user_message") or result.get("summary") or "НЕИЗВЕСТНЫЙ ДОКУМЕНТ"
-            lines.append(f"⚪ <b>{_html_safe(msg.split(chr(10))[0])}</b>{bank_tag}")
-            extra = msg.split("\n", 1)
-            if len(extra) > 1:
-                lines.append(_html_safe(extra[1]))
+            kind = "unknown_doc"
+            note = (result.get("user_message") or result.get("summary") or "").strip()
         elif is_fake:
-            custom = (result.get("custom_message") or "").strip()
-            if custom:
-                lines.append(_html_safe(custom))
-            else:
-                lines.append(f"❌ <b>Подделка</b>{bank_tag}")
+            kind = "fake"
+            note = (result.get("custom_message") or "").strip()
         elif not recognized:
-            lines.append("❓ <b>Не распознан</b>")
+            kind = "unknown_bank"
         elif _operation_failed(status, result):
-            lines.append(f"❌ <b>Перевод не выполнен</b>{bank_tag}")
-            if status:
-                lines.append(
-                    f"Статус — «{_html_safe(status)}». "
-                    "Это не подтверждение оплаты."
-                )
+            kind = "failed"
         else:
-            lines.append(f"✅ <b>Оригинал</b>{bank_tag}")
-            if stale:
-                lines.append("⚠️ <b>Устаревший чек</b>")
-            if status_notice and not is_unknown_doc:
-                lines.append(_html_safe(status_notice))
-        return "\n".join(lines)
+            kind = "ok"
+            if status_notice:
+                note = status_notice
+        return ui.result_card(
+            kind=kind,
+            bank=bank if recognized else "",
+            filename=filename,
+            checked_at=datetime.datetime.now(tz=datetime.timezone.utc),
+            parsed=parsed,
+            text=text,
+            status=status,
+            stale=stale,
+            note=note,
+            history=history or [],
+        )
 
     # Подробный режим — только @kronlead
     details = result.get("details") or {}
@@ -1553,11 +1571,13 @@ async def handle_document(msg: Message):
         except Exception:
             logging.exception("analytics log_check failed")
 
+        history_lines = check_history.history_lines(prior_checks)
         text = _format_result(pdf_bytes, result, bank, is_tbank, seen_before,
-                              username=uname, user_id=uid)
-        history_block = check_history.format_history(prior_checks)
-        if history_block:
-            text += "\n\n" + _html_safe(history_block)
+                              username=uname, user_id=uid, text=rtext,
+                              filename=doc.file_name or "", history=history_lines)
+        if _is_verbose_user(uname, uid) and history_lines:
+            # Verbose (expert) layout is unchanged; append history as a plain block.
+            text += "\n\n" + _html_safe(check_history.format_history(prior_checks))
         if is_fake:
             btn = InlineKeyboardButton(text="✅ Это оригинал", callback_data=f"genuine:{token}")
         else:

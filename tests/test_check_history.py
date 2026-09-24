@@ -36,9 +36,10 @@ def test_same_file_second_time_lists_previous_checker(tmp_path, monkeypatch):
     block = check_history.format_history(prior)
     lines = block.split("\n")
     assert lines[0] == "Чек ранее проверялся:"
-    assert lines[1].startswith("- ") and lines[1].endswith(", @alice")
-    # "- dd.mm.yyyy hh:mm, @user"
-    assert len(lines[1].split(", ")[0]) == len("- 24.09.2026 22:41")
+    assert lines[1].startswith("- ") and lines[1].endswith(" — @alice")
+    # "- dd.mm.yyyy hh:mm — @user"
+    assert len(lines[1].split(" — ")[0]) == len("- 24.09.2026 22:41")
+    assert check_history.history_lines(prior)[0].endswith(" — @alice")
 
 
 def test_reexported_same_operation_matches_by_op_key(tmp_path, monkeypatch):
@@ -72,7 +73,7 @@ def test_missing_username_shows_id(tmp_path, monkeypatch):
     _use_tmp_db(tmp_path, monkeypatch)
     check_history.record(b"%PDF-a", "", None, user_id=777, username=None)
     prior = check_history.record(b"%PDF-a", "", None, user_id=1, username="bob")
-    assert check_history.format_history(prior).endswith(", id:777")
+    assert check_history.format_history(prior).endswith(" — id:777")
 
 
 def test_kronlead_checks_are_never_recorded_or_shown(tmp_path, monkeypatch):
@@ -102,4 +103,4 @@ def test_long_history_is_capped(tmp_path, monkeypatch):
     lines = block.split("\n")
     assert lines[1] == "- … и ещё 3 раз ранее"
     assert len(lines) == 2 + check_history.MAX_SHOWN
-    assert lines[-1].endswith(", @u12")
+    assert lines[-1].endswith(" — @u12")

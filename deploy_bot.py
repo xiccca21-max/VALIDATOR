@@ -14,7 +14,7 @@ BOT_DIR = cfg.BOT_DIR
 ssh = cfg.connect()
 sftp = ssh.open_sftp()
 
-for rel in ["bot.py", "check_history.py", "detector/explain.py"]:
+for rel in ["bot.py", "check_history.py", "ui.py", "detector/explain.py"]:
     local = os.path.join(HERE, rel.replace("/", os.sep))
     src = local
     if rel == "bot.py" and not os.path.isfile(src):

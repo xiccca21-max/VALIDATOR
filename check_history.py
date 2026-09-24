@@ -164,15 +164,23 @@ def _when(ts: float) -> str:
     return datetime.datetime.fromtimestamp(ts, tz=_MSK).strftime("%d.%m.%Y %H:%M")
 
 
-def format_history(prior: list[dict]) -> str:
-    """Plain-text block for the bot message. Empty string if never seen before."""
+def history_lines(prior: list[dict]) -> list[str]:
+    """Lines like '24.09.2026 22:41 — @user' (oldest first, capped, hidden users dropped)."""
     prior = [e for e in prior if not is_hidden(e.get("username"))]
     if not prior:
-        return ""
+        return []
     shown = prior[-MAX_SHOWN:]
     hidden = len(prior) - len(shown)
-    lines = ["Чек ранее проверялся:"]
+    lines: list[str] = []
     if hidden > 0:
-        lines.append(f"- … и ещё {hidden} раз ранее")
-    lines += [f"- {_when(e['checked_at'])}, {_who(e)}" for e in shown]
-    return "\n".join(lines)
+        lines.append(f"… и ещё {hidden} раз ранее")
+    lines += [f"{_when(e['checked_at'])} — {_who(e)}" for e in shown]
+    return lines
+
+
+def format_history(prior: list[dict]) -> str:
+    """Plain-text block for the bot message. Empty string if never seen before."""
+    lines = history_lines(prior)
+    if not lines:
+        return ""
+    return "\n".join(["Чек ранее проверялся:"] + [f"- {ln}" for ln in lines])
