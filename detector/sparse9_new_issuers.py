@@ -276,11 +276,16 @@ def check_yoomoney_invariants(
 
     wh = _page_wh(blob)
     out.stats["page_wh"] = wh
-    if wh is None or not (540 <= wh[0] <= 580 and 680 <= wh[1] <= 750):
+    # Two live templates: card ~560×713, phone/SBP ~560×861 (taller body).
+    w_ok = wh is not None and 540 <= wh[0] <= 580
+    h_ok = wh is not None and (
+        680 <= wh[1] <= 750 or 830 <= wh[1] <= 890
+    )
+    if not (w_ok and h_ok):
         shown = f"{wh[0]:.0f}×{wh[1]:.0f}" if wh else "—"
         _add(
             out, "YOOMONEY_PAGE_MISMATCH",
-            f"страница {shown} — чек ЮMoney ~560×713",
+            f"страница {shown} — чек ЮMoney ~560×713 (карта) или ~560×861 (телефон/СБП)",
             "K-YOOMONEY-PAGE-001",
         )
 
