@@ -447,7 +447,8 @@ Conflict operation identity across docs → `cross_document_identity_conflict` �
 | encoded local (UTC+3) lag ∉ [0, **3h5m**] или negative | HARD `ALFA_SBP_ID_TIME_ORDER_CONFLICT` |
 | atlas deterministic link mismatch | HARD `ALFA_SBP_ATLAS_LINK_MISMATCH` |
 | route_marker reuse conflict on linked key | HARD `ALFA_SBP_LINKED_TUPLE_CONFLICT` |
-| unknown marker/control/route/core/tail | Tier-B `ALFA_SBP_EMPIRICAL_PROFILE` (+ tail/separator codes) |
+| unknown marker/control | Tier-B `ALFA_SBP_EMPIRICAL_PROFILE` (+ tail/separator codes) |
+| unknown channel/core/tail/combination | IGNORE `ALFA_SBP_PROFILE_NOVELTY` — закрытый корпус до 2026-06-29; живой core 00118 с 2026-07 |
 | SBP ID отсутствует в тексте | IGNORE `ALFA_SBP_ID_MISSING` (не HARD) |
 
 `_MAX_COMPLETION_LAG = timedelta(hours=3, minutes=5)`.

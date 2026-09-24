@@ -285,12 +285,30 @@ parse_identifier = parse_sbp_id
 
 
 def _add_empirical(result: SbpResult, details: list[str]) -> None:
+    """Tier-B: unknown marker/control only (tiny, stable categorical fields)."""
     if details:
         result.add(
             "ALFA_SBP_EMPIRICAL_PROFILE",
             "; ".join(details),
             tier="B",
             group="B6_sbp_empirical",
+        )
+
+
+def _add_novelty(result: SbpResult, details: list[str]) -> None:
+    """DIAGNOSTIC: unknown channel/core/tail/combination never decide.
+
+    The atlas is a closed corpus (through 2026-06-29, core∈{00116,00117}).
+    Live Alfa switched to core 00118 in July 2026 and keeps adding tails
+    (10901, 20705, 21301, 30701, 30901, 31501, 40301 — ~1000 sightings),
+    so absence from the atlas is an emitter change, not evidence of forgery.
+    """
+    if details:
+        result.add(
+            "ALFA_SBP_PROFILE_NOVELTY",
+            "; ".join(details),
+            tier="DIAGNOSTIC",
+            group="sbp_novelty",
         )
 
 
@@ -304,9 +322,11 @@ def validate_sbp_id(
 ) -> SbpResult:
     """Validate deterministic structure/time and observe empirical slots.
 
-    Unknown marker/control/route/tail combinations are always Tier-B.  They
-    become hard only if an optional generated atlas explicitly declares a
-    deterministic ``marker|control|route -> allowed tails`` relation.
+    Only an unknown marker or control byte is Tier-B (supporting).  Unknown
+    channel/core/tail and unseen marker/control/route/tail combinations are
+    DIAGNOSTIC — recorded, never counted towards a verdict.  They become hard
+    only if an optional generated atlas explicitly declares a deterministic
+    ``marker|control|route -> allowed tails`` relation.
     """
     parsed = parse_sbp_id(identifier)
     result = SbpResult(stats={"identifier": parsed.raw, "length": len(parsed.raw)})
@@ -404,7 +424,28 @@ def validate_sbp_id(
             )
         lag = completion - encoded_local
         result.stats["completion_lag_seconds"] = lag.total_seconds()
-        # Seconds equality and a literal :00 carry no evidentiary meaning.
+        # SEQ SBP kits convert visible MSK → UTC and zero the seconds
+        # (encoded == floor_minute(visible − 3h)). Live Oracle/Quartz keep a
+        # live encoded second a few ticks before completion — never the
+        # minute-truncated visible instant. A literal :00 in isolation is
+        # not evidence (processing can land on a minute boundary); matching
+        # the exact timezone+floor formula is.
+        naive_utc = completion - timedelta(hours=3)
+        floored = naive_utc.replace(second=0, microsecond=0)
+        result.stats["encoded_utc_minute_floor"] = floored.isoformat(sep=" ")
+        if parsed.encoded_utc.replace(microsecond=0) == floored:
+            result.add(
+                "ALFA_SBP_ENCODED_TIME_SECONDS_STRIPPED",
+                (
+                    f"SBP-id encoded UTC {parsed.encoded_utc.strftime('%H:%M:%S')} "
+                    f"= visible MSK {completion.strftime('%H:%M:%S')} − 3h "
+                    f"truncated to the minute — generator dropped live seconds; "
+                    f"оригиналы Oracle/Quartz держат живую секунду в id, "
+                    f"не HH:MM:00 видимого мгновения"
+                ),
+            )
+        # Seconds equality and a literal :00 carry no evidentiary meaning
+        # for the lag window itself.
         if lag < timedelta(0):
             result.add(
                 "ALFA_SBP_ID_TIME_ORDER_CONFLICT",
@@ -421,26 +462,28 @@ def validate_sbp_id(
     result.stats["atlas_sources"] = list(atlas.sources)
     combination = (parsed.marker, parsed.control, parsed.route, parsed.tail)
     empirical: list[str] = []
+    novelty: list[str] = []
     if atlas.markers and parsed.marker not in atlas.markers:
         empirical.append(f"unknown marker {parsed.marker}")
     if atlas.controls and parsed.control not in atlas.controls:
         empirical.append(f"unknown control {parsed.control}")
+    # Channel/core/tail/combination novelty is observational only.  Never
+    # Tier-B/HARD from absence in the closed corpus ending 2026-06-29
+    # (historically core∈{00116,00117}); live emitters such as 00118/40301
+    # must not contribute to authenticity decisions at all.
     if atlas.routes and parsed.route not in atlas.routes:
-        empirical.append(f"unknown channel {parsed.route}")
-    # Unknown core/tail is observational only (Tier-B at most).
-    # Never HARD from absence in the closed corpus ending 2026-06-29
-    # (historically core∈{00116,00117}); new emitters such as 00118/810101
-    # must not decide authenticity alone.
+        novelty.append(f"unknown channel {parsed.route}")
     if atlas.cores and parsed.core not in atlas.cores:
-        empirical.append(f"unknown core {parsed.core}")
+        novelty.append(f"unknown core {parsed.core}")
     if atlas.tails and parsed.tail not in atlas.tails:
-        empirical.append(f"unknown tail {parsed.tail}")
+        novelty.append(f"unknown tail {parsed.tail}")
     if atlas.combinations and combination not in atlas.combinations:
-        empirical.append(
+        novelty.append(
             "unknown marker/control/route/tail combination "
             + "/".join(combination)
         )
     _add_empirical(result, empirical)
+    _add_novelty(result, novelty)
     result.stats["empirical_combination_observed"] = (
         combination in atlas.combinations if atlas.combinations else None
     )

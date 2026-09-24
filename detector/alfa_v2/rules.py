@@ -50,8 +50,44 @@ HARD_CODES: frozenset[str] = frozenset({
     "ALFA_CONTENT_SIZE_STRONG_OUTLIER",
     # Quartz phone==5012 or SBP≥6004; SEQ pads midgap 5061–5065.
     "ALFA_QUARTZ_CONTENT_MIDGAP",
-    # Oracle card∈{3413,4152} / phone≈4200 / SBP[5091,5542]; SEQ pads card midgaps.
-    "ALFA_ORACLE_CONTENT_MIDGAP",
+    # Space run glued to ET. 0/46 Alfa genuines. Not a length check:
+    # a pad that lands on 5012 bytes still has the run, and 5012 is allowed.
+    "ALFA_CONTENT_ET_SPACE_PAD",
+    # A "%" comment line in page content. 0/46 Alfa genuines. The flate
+    # nudge writes these lines; a percent sign inside a text string does not.
+    "ALFA_CONTENT_COMMENT_PAD",
+    # Two spaces before a dictionary >>. 0/46 Alfa genuines. One space is normal.
+    "ALFA_DICT_CLOSE_SPACE",
+    # Bytes after a finished zlib stream. 0/303 streams, 0/46 Alfa genuines.
+    "ALFA_FLATE_TRAILING_BYTES",
+    # A positioning number after the last glyph of a TJ array. 0/976 arrays, 0/46.
+    "ALFA_TJ_TRAILING_NUMBER",
+    # Newline between "[" and "<" in a TJ array. 0/467 opens, 0/46.
+    "ALFA_TJ_BRACKET_NL",
+    # Glued TJ tokens: >], [<, >digit, digit<. 0/46. The phone fitter
+    # deletes the newline that separated them.
+    "ALFA_TJ_GLUED",
+    # Hex letters of both cases in one content stream. 19 upper, 27 lower, 0 mixed.
+    "ALFA_HEX_MIXED_CASE",
+    # Spaces inside a width bracket [ 600 ]. Genuines are [473]. 0/46.
+    "ALFA_W_BRACKET_SPACE",
+    # Directory checksum != table bytes (head checksum ignores checkSumAdjustment).
+    # 0/46. The inplace glyph write changed the table and left the old sum.
+    "ALFA_FONT_TABLE_CHECKSUM",
+    # Simple glyph with an empty instruction length. 0/2705 glyphs, 0/46 files.
+    "ALFA_GLYPH_UNHINTED",
+    # hmtx LSB != glyf xMin on a drawn glyph. 0/46.
+    "ALFA_HMTX_LSB_MISMATCH",
+    # Extra NBSP at the end of a date. Minute dates: 0/46. Seconds dates
+    # never carry two (0/46). The length fitter appends it.
+    "ALFA_DATE_TRAILING_NBSP",
+    # Two NBSPs at the end of a C/Z operation id. 0/46. One is normal.
+    "ALFA_OP_DOUBLE_NBSP",
+    # Glyph cell longer than its outline by 2+ bytes. 0/46 Alfa genuines.
+    # One leftover byte is alignment.
+    "ALFA_GLYPH_SLOT_SLACK",
+    # ALFA_ORACLE_CONTENT_MIDGAP removed — finite card/SBP envelope (n=16)
+    # FPs live genuines in the hole (Документ (10).pdf = 5087 B).
     # ALFA_CONTENT_DECODED_EXACT_UNKNOWN / BODY / FONTFILE2_SIZE_EXACT demoted —
     # finite corpus whitelists (n≈30); future genuines get new lengths/bodies/sizes.
     "ALFA_CLONED_ORIGINAL_SHELL_CONTENT_REWRITE",
@@ -75,8 +111,12 @@ HARD_CODES: frozenset[str] = frozenset({
     # ALFA_CARD_BIN_INVALID removed — recipient card can be Visa/MC of another
     # bank (e.g. 427938); MIR-only was a corpus accident, not an emitter law.
     "ALFA_CARD_LAST4_ABAB",
+    # SBP-id encoded UTC is visible MSK−3h floored to the minute (seconds dropped).
+    "ALFA_SBP_ENCODED_TIME_SECONDS_STRIPPED",
     "ALFA_CONTENT_ET_WHITESPACE_ANOMALY",
     "ALFA_PHONE_DEF_NOT_MOBILE",
+    # Alfa always emits whitespace after DEF: «+7 (927) 489-03-91».
+    "ALFA_PHONE_DEF_SEPARATOR",
     "ALFA_MASKED_PHONE_DEF_NOT_MOBILE",
     "ALFA_PHONE_RECIPIENT_INITIALS",
     "ALFA_PHONE_NAME_UNMASKED",
@@ -95,7 +135,10 @@ HARD_CODES: frozenset[str] = frozenset({
     "ALFA_FONT_TABLE_INTEGRITY_VIOLATION",
     "ALFA_BROKEN_UNICODE_MAPPING",
     "ALFA_ORACLE_TTF_HEAD_MECHANICS_CONFLICT",
-    "ALFA_ORACLE_SBP_HMTX_UNIQ_ADVANCES",
+    # ALFA_ORACLE_SBP_HMTX_UNIQ_ADVANCES demoted — the unique-advance count
+    # tracks the receipt's character set (live genuine: 70 glyphs → 41).
+    # Replaced by the structural outline↔advance check against Tahoma.
+    "ALFA_ORACLE_HMTX_TAHOMA_ADVANCE_CONFLICT",
     "ALFA_FONT_DESCRIPTOR_HEAD_BBOX_CONFLICT",
     "ALFA_ORACLE_SFNT_HINTING_TABLES_MISSING",
     # Used-glyph atlas conflicts + size envelopes demoted — incomplete corpus
@@ -150,7 +193,8 @@ SUPPORTING_GROUPS: dict[str, str] = {
     "CONTENT_STREAM_PROFILE_MISMATCH": "B5_content_layout",
     "RIGHT_EDGE_ALIGNMENT_DRIFT": "B5_content_layout",
     "TEXT_OPERATOR_SEQUENCE_ANOMALY": "B5_content_layout",
-    # B6 — empirical SBP profile.
+    # B6 — empirical SBP profile (unknown marker/control only; channel/core/
+    # tail/combination novelty is ALFA_SBP_PROFILE_NOVELTY, ignored).
     "ALFA_SBP_EMPIRICAL_PROFILE": "B6_sbp_empirical",
     "ALFA_SBP_TAIL_UNKNOWN": "B6_sbp_empirical",
     "ALFA_SBP_SEPARATOR_DIGIT": "B6_sbp_empirical",
@@ -167,6 +211,8 @@ IGNORED_CODES: frozenset[str] = frozenset({
     "ALFA_ORACLE_ORPHANS",
     "ALFA_NEW_PROFILE",
     "ALFA_NEW_SBP_PROFILE_OBSERVED",
+    # Closed-corpus SBP atlas: live core 00118 + new tails since 2026-07.
+    "ALFA_SBP_PROFILE_NOVELTY",
     "ALFA_OPERATION_ID_UNKNOWN",
     "ALFA_SBP_ATLAS_LINK_MISMATCH",
     "ALFA_SBP_LINKED_TUPLE_CONFLICT",
@@ -191,6 +237,10 @@ IGNORED_CODES: frozenset[str] = frozenset({
     "ALFA_FONTFILE2_SIZE_EXACT_UNKNOWN",
     # Hole 21132–21682 caught live Oracle SBP packs (21370), not only SEQ 21202/21250.
     "ALFA_ORACLE_FF2_SIZE_MIDGAP",
+    # Card/SBP decoded-length hole (3413–5091) FPs genuines at 5087 B.
+    "ALFA_ORACLE_CONTENT_MIDGAP",
+    # Unique hmtx advance floor (42) FPs a live genuine at 41 (Документ.pdf, 70 glyphs).
+    "ALFA_ORACLE_SBP_HMTX_UNIQ_ADVANCES",
     "ALFA_CARD_BIN_INVALID",
     "ALFA_FILE_SIZE_STRONG_OUTLIER",
     "ALFA_LAYERED_PROFILE_FORGERY",

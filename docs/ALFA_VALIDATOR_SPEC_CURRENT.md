@@ -495,7 +495,7 @@ Overlapping T-Bank slicing `[14]`, `[17:19]`, `[26:32]` к Альфа-ID не
 
 ### 18.3. Supporting
 
-- `ALFA_SBP_EMPIRICAL_PROFILE`;
+- `ALFA_SBP_EMPIRICAL_PROFILE` (только unknown marker/control; unknown channel/core/tail/combination — IGNORE `ALFA_SBP_PROFILE_NOVELTY`);
 - `ALFA_SBP_TAIL_UNKNOWN`;
 - `ALFA_SBP_SEPARATOR_DIGIT`.
 
