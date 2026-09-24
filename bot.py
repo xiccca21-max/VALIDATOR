@@ -1992,15 +1992,21 @@ _ADMIN_BOT_COMMANDS = _PUBLIC_BOT_COMMANDS + [
 # and the one-liner in the profile / share card (≤120 chars). Set on every
 # start so a foreign description (e.g. the PDF Forge generator text that once
 # ran on this token) never sticks.
+# Telegram strips empty lines from the description, so a braille blank
+# (U+2800) is used as a visible spacer line.
+_DESC_GAP = "\u2800\n"
 BOT_DESCRIPTION = (
     "PROTON. Проверка банковских чеков на подлинность\n"
-    "\n"
-    "📄 Пришлите PDF из приложения банка\n"
-    "✅ Ответ за секунды: оригинал или подделка\n"
+    + _DESC_GAP
+    + "📄 Пришлите PDF-чек из приложения банка\n"
+    "⚡ Ответ за несколько секунд\n"
+    "✅ Оригинал или ❌ подделка, без лишних слов\n"
     "🏦 19 банков: Т-Банк, Сбер, Альфа, ВТБ, Озон и другие\n"
     "✉️ Проверка писем от банка по подписи сервера\n"
-    "\n"
-    "Бесплатно. Результаты носят информационный характер.\n"
+    + _DESC_GAP
+    + "🔎 Проверено более 3 000 чеков\n"
+    + _DESC_GAP
+    + "Бесплатно. Результаты носят информационный характер.\n"
     f"Поддержка: {SUPPORT_USERNAME}"
 )
 BOT_SHORT_DESCRIPTION = "Проверка банковских PDF-чеков на подлинность"
