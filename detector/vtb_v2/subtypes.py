@@ -127,10 +127,10 @@ _REQUIRED: dict[str, tuple[str, ...]] = {
 
 _FORBIDDEN: dict[str, tuple[str, ...]] = {
     SUBTYPE_SBP: ("receiver_card", "receiver_account"),
-    # Official card profile has no commission block and no SBP/phone fields.
+    # Card profile has no SBP/phone fields. Commission is a real bank
+    # field when a fee is charged — do not treat it as a method collision.
     SUBTYPE_CARD: (
         "sbp_id", "receiver_phone", "receiver_account",
-        "commission", "amount_with_commission",
     ),
     SUBTYPE_PHONE: ("sbp_id", "receiver_bank", "receiver_card"),
     # Account-SBP is a different generator: full receiver account, no payer-name block.
