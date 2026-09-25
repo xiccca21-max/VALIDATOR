@@ -260,8 +260,6 @@ def result_card(
     tail: list[str] = []
     if note:
         tail.append(esc(note))
-    elif kind == "ok":
-        tail.append("<i>Зачисление проверяйте в банке</i>")
     elif kind == "failed":
         tail.append("<i>Это не подтверждение оплаты</i>")
     elif kind == "unknown_bank":

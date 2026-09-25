@@ -51,7 +51,8 @@ def test_ok_card_layout():
     assert "Банк получателя: Сбербанк" in card
     assert "Статус: Успешно" in card
     assert "<b>Проверка</b>\n<blockquote>Банк: Т-Банк\nСтруктура документа: соответствует банку\nПризнаков изменения: нет</blockquote>" in card
-    assert card.endswith("<i>Зачисление проверяйте в банке</i>")
+    assert card.endswith("Признаков изменения: нет</blockquote>")
+    assert "Зачисление" not in card
     assert "История" not in card
 
 
