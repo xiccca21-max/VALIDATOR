@@ -1118,6 +1118,27 @@ WELCOME_CAPTION = (
     "2. Мы не несём ответственности за результаты проверок. Все результаты носят "
     "информационный характер и не гарантируют 100% точность.\n"
     "Используя PROTON, вы подтверждаете согласие с правилами.</blockquote>\n\n"
+    "Что происходит с вашими файлами - /privacy\n"
+    f"<i>Поддержка: {SUPPORT_USERNAME}</i>"
+)
+
+PRIVACY_TEXT = (
+    "<b>Что происходит с вашими файлами</b>\n\n"
+    "<b>Проверка</b>\n"
+    "<blockquote>Файл разбирается на сервере автоматически. В момент проверки "
+    "никто не читает чек вручную.</blockquote>\n\n"
+    "<b>Что сохраняется</b>\n"
+    "<blockquote>Отпечаток файла, номер операции, сумма, дата, банк и результат, "
+    "а также кто и когда проверял. Это нужно для истории проверок: если тот же "
+    "чек пришлёт кто-то другой, он увидит дату и ваш username, без результата.\n"
+    "Сами PDF попадают в закрытый архив команды. На них мы обучаем валидатор и "
+    "разбираем спорные случаи. Доступ к архиву есть только у разработчиков.</blockquote>\n\n"
+    "<b>Чего мы не делаем</b>\n"
+    "<blockquote>Не передаём файлы и реквизиты третьим лицам, не публикуем чеки, "
+    "не пишем отправителям и получателям, не продаём данные.</blockquote>\n\n"
+    "<b>Удаление</b>\n"
+    "<blockquote>Напишите в поддержку и приложите файл или номер операции. "
+    "Удалим из архива и из истории.</blockquote>\n\n"
     f"<i>Поддержка: {SUPPORT_USERNAME}</i>"
 )
 
@@ -1247,6 +1268,11 @@ async def btn_support(msg: Message):
         parse_mode="HTML",
         reply_markup=_kb_for(msg),
     )
+
+
+@dp.message(Command("privacy"))
+async def cmd_privacy(msg: Message):
+    await msg.answer(PRIVACY_TEXT, parse_mode="HTML")
 
 
 @dp.message(Command("help"))
@@ -1464,6 +1490,75 @@ async def cmd_stats(msg: Message):
         body + "\n\n"
         f"<i>База репутации:</i> операций {rep['seen_ops']}, "
         f"известных фейков {rep['known_fakes']}",
+        parse_mode="HTML",
+    )
+
+
+def _growth_rows(weeks: int = 4) -> list[dict]:
+    """Rolling 7-day windows, newest first. Team accounts are excluded from
+    check counts so the numbers reflect real traffic."""
+    now = time.time()
+    skip = tuple(ARCHIVE_SKIP_USERNAMES)
+    ph = ",".join("?" * len(skip))
+    rows: list[dict] = []
+    con = analytics._con()
+    try:
+        for i in range(weeks):
+            end = now - i * 7 * 86400
+            start = end - 7 * 86400
+            new_users = con.execute(
+                "SELECT COUNT(*) FROM users WHERE first_seen>=? AND first_seen<?",
+                (start, end),
+            ).fetchone()[0]
+            base = (
+                f" FROM checks WHERE ts>=? AND ts<? "
+                f"AND (username IS NULL OR lower(username) NOT IN ({ph}))"
+            )
+            args = (start, end, *skip)
+            active = con.execute("SELECT COUNT(DISTINCT user_id)" + base, args).fetchone()[0]
+            checks = con.execute("SELECT COUNT(*)" + base, args).fetchone()[0]
+            fakes = con.execute(
+                "SELECT COUNT(*)" + base + " AND verdict='ФЕЙК'", args
+            ).fetchone()[0]
+            groups = con.execute(
+                "SELECT COUNT(*)" + base + " AND chat_type IN ('group','supergroup')", args
+            ).fetchone()[0]
+            rows.append({
+                "start": start, "end": end, "new": new_users, "active": active,
+                "checks": checks, "fakes": fakes, "groups": groups,
+            })
+    finally:
+        con.close()
+    return rows
+
+
+@dp.message(Command("growth"))
+async def cmd_growth(msg: Message):
+    uname = msg.from_user.username if msg.from_user else None
+    uid = msg.from_user.id if msg.from_user else 0
+    if not _is_privileged_user(uname, uid):
+        return
+    rows = _growth_rows()
+    msk = datetime.timezone(datetime.timedelta(hours=3))
+    lines = ["Неделя         Нов  Акт  Пров  Фейк  Груп"]
+    for r in rows:
+        a = datetime.datetime.fromtimestamp(r["start"], msk).strftime("%d.%m")
+        b = datetime.datetime.fromtimestamp(r["end"], msk).strftime("%d.%m")
+        lines.append(
+            f"{a}-{b}    {r['new']:>3}  {r['active']:>3}  {r['checks']:>4}  "
+            f"{r['fakes']:>4}  {r['groups']:>4}"
+        )
+    cur, prev = rows[0], rows[1]
+    def _delta(k: str) -> str:
+        d = cur[k] - prev[k]
+        return f"+{d}" if d > 0 else str(d)
+    await msg.answer(
+        "<b>Рост по неделям</b>\n"
+        f"<pre>{chr(10).join(lines)}</pre>\n"
+        f"К прошлой неделе: новых {_delta('new')}, активных {_delta('active')}, "
+        f"проверок {_delta('checks')}\n"
+        "<i>Нов - новые пользователи, Акт - проверяли хоть раз, "
+        "Груп - проверок из групп. Команда исключена.</i>",
         parse_mode="HTML",
     )
 
@@ -1980,10 +2075,12 @@ _PUBLIC_BOT_COMMANDS = [
     BotCommand(command="mail", description=BTN_MAIL),
     BotCommand(command="support", description=BTN_SUPPORT),
     BotCommand(command="profile", description=BTN_PROFILE),
+    BotCommand(command="privacy", description="🔒 Что происходит с файлами"),
 ]
 
 _ADMIN_BOT_COMMANDS = _PUBLIC_BOT_COMMANDS + [
     BotCommand(command="stats", description="📊 Статистика"),
+    BotCommand(command="growth", description="📈 Рост по неделям"),
     BotCommand(command="admin", description="🛡 Админка"),
 ]
 
